@@ -1,0 +1,1191 @@
+<!DOCTYPE html><html lang="en" data-content_root="../"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>MR Spectroscopy with LCModel — Neurodesk</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet">
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet">
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin="" href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin="" href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079">
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062">
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357">
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b">
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css">
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6">
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e">
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b">
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b">
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-4Z9774J59Y"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-4Z9774J59Y');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-4Z9774J59Y');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'spectroscopy/lcmodel';</script>
+    <link rel="canonical" href="https://neurodesk.github.io/example-notebooks/spectroscopy/lcmodel.html">
+    <link rel="icon" href="../_static/neurodesk_logo.svg">
+    <link rel="index" title="Index" href="../genindex.html">
+    <link rel="search" title="Search" href="../search.html">
+    <link rel="next" title="TBSS Tutorial" href="../diffusion_imaging/Diffusion_TBSS_Demo.html">
+    <link rel="prev" title="SCT Toolbox" href="../structural_imaging/sct_toolbox.html">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox" class="sidebar-toggle" id="pst-primary-sidebar-checkbox">
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox" class="sidebar-toggle" id="pst-secondary-sidebar-checkbox">
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/neurodesk_logo.svg" class="logo__image only-light" alt="Neurodesk - Home">
+    <script>document.write(`<img src="../_static/neurodesk_logo.svg" class="logo__image only-dark" alt="Neurodesk - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Neurodesk environment
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Workflows</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../workflows/AA_Neurodesk_demo_tour.html">Neurodesk Tools Demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/MRIQC.html">MRIQC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/PyBIDS.html">PyBIDS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/RISE_slideshow.html">RISE Slideshow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/bids_conversion.html">BIDS conversion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/nipype_full.html">Nipype on Neurodesk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/nipype_short.html">Basic Nipype</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../workflows/papermill-slurm-submission-example.html">Papermill Slurm Job Submission</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Structural Imaging</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/FSL_course_bet.html">FSL course - BET</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/brain_extraction_different_tools.html">Brain Extraction Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/freesurfer.html">FreeSurfer</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/qsmxt.html">QSMxT</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/sct_toolbox.html">SCT Toolbox</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Spectroscopy</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">MR Spectroscopy with LCModel</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Diffusion Imaging</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../diffusion_imaging/Diffusion_TBSS_Demo.html">TBSS Tutorial</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../diffusion_imaging/MRtrix_1.html">MRtrix: Part 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../diffusion_imaging/MRtrix_2.html">MRtrix: Part 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../diffusion_imaging/MRtrix_3.html">MRtrix: Part 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../diffusion_imaging/mrtrix3tissue.html">MRtrix3Tissue</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Functional Imaging</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/AFNI_preprocessing_only.html">AFNI Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/AFNI_preprocessing_plus_glm.html">AFNI Preprocessing and GLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/AFNI_preprocessing_plus_glm_group.html">AFNI Preprocessing &amp; Group Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/FSL_preproc_glm.html">FSL Preprocessing and GLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/FSLnets_course_practical.html">Resting state with FSLnets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/NiWrap.html">NiWrap and Connectome Workbench</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/aslprep.html">ASLprep</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/deepretinotopy.html">DeepRetinotopy</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/first_and_second_level_spm.html">Nipype-SPM fMRI Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/fmriprep.html">fMRIprep</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/fsl_all_levels_flanker_nipype.html">Nipype-FSL fMRI Analysis</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/intro_to_preprocessing.html">Introduction to Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/mri_vol2surf.html">FreeSurfer: mri_vol2surf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/process_five_echo_dataset.html">tedana: TE Dependent ANAlysis</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons"><a href="https://doi.org/10.5072/zenodo.303070" target="_blank" rel="noopener noreferrer" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button">https://doi.org/10.5072/zenodo.303070</a>
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://play-america.neurodesk.org/hub/user-redirect/git-pull?repo=https%3A//github.com/NeuroDesk/example-notebooks&amp;urlpath=lab/tree/example-notebooks/books/spectroscopy/lcmodel.ipynb&amp;branch=main" target="_blank" class="btn btn-sm dropdown-item" title="Launch on JupyterHub" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="JupyterHub logo" src="../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/NeuroDesk/example-notebooks" target="_blank" class="btn btn-sm btn-source-repository-button dropdown-item" title="Source repository" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/NeuroDesk/example-notebooks/edit/main/books/spectroscopy/lcmodel.ipynb" target="_blank" class="btn btn-sm btn-source-edit-button dropdown-item" title="Suggest edit" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/NeuroDesk/example-notebooks/issues/new?title=Issue%20on%20page%20%2Fspectroscopy/lcmodel.html&amp;body=Your%20issue%20content%20here." target="_blank" class="btn btn-sm btn-source-issues-button dropdown-item" title="Open an issue" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/spectroscopy/lcmodel.ipynb" target="_blank" class="btn btn-sm btn-download-source-button dropdown-item" title="Download source file" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()" class="btn btn-sm btn-download-pdf-button dropdown-item" title="Print to PDF" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()" class="btn btn-sm btn-fullscreen-button" title="Fullscreen mode" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>MR Spectroscopy with LCModel</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyzing-mr-spectra-from-rat-hippocampus">Analyzing MR Spectra from Rat Hippocampus</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#citation">Citation:</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-included-in-this-workflow">Tools included in this workflow</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-software-tools-and-import-python-libraries">Load software tools and import python libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-example-data-from-the-container">Get example data from the container</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-lcmodel-configuration-files">Set up LCModel configuration files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convert-varian-fid-file-to-lcmodel-compatible-raw">Convert Varian fid file to LCModel-compatible .RAW</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-the-raw-fid-data-from-the-raw-file">Visualizing the RAW FID data from the RAW file</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-parameters-to-generate-the-control-file">Extracting parameters to generate the control file</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#write-and-run-the-control-file">Write and run the control file</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-to-pdf-and-png-formats">Conversion to PDF and PNG formats</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="mr-spectroscopy-with-lcmodel">
+<h1>MR Spectroscopy with LCModel<a class="headerlink" href="#mr-spectroscopy-with-lcmodel" title="Link to this heading">#</a></h1>
+<section id="analyzing-mr-spectra-from-rat-hippocampus">
+<h2>Analyzing MR Spectra from Rat Hippocampus<a class="headerlink" href="#analyzing-mr-spectra-from-rat-hippocampus" title="Link to this heading">#</a></h2>
+<p><strong>Author</strong>: Monika Doerig</p>
+<section id="citation">
+<h3>Citation:<a class="headerlink" href="#citation" title="Link to this heading">#</a></h3>
+<section id="tools-included-in-this-workflow">
+<h4>Tools included in this workflow<a class="headerlink" href="#tools-included-in-this-workflow" title="Link to this heading">#</a></h4>
+<p><strong>LCModel</strong>:</p>
+<ul class="simple">
+<li><p>Provencher S. W. (1993). Estimation of metabolite concentrations from localized in vivo proton NMR spectra. Magnetic resonance in medicine, 30(6), 672–679. <a class="reference external" href="https://doi.org/10.1002/mrm.1910300604">https://doi.org/10.1002/mrm.1910300604</a></p></li>
+<li><p><a class="reference external" href="http://s-provencher.com/lcmodel.shtml">LCModel documentation</a></p></li>
+<li><p><a class="reference external" href="http://s-provencher.com/pub/LCModel/manual/manual.pdf">LCModel manual</a></p></li>
+</ul>
+</section>
+<section id="dataset">
+<h4>Dataset<a class="headerlink" href="#dataset" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Dunja Simicic, &amp; Cristina Cudalbu. (2020). MR Spectra from rat hippocampus with LCModel quantification and the corresponding basis set [Data set]. In Magn Reson Med (Version Part1, Bd. 86, Nummer 5, S. 2384–2401). Zenodo. <a class="reference external" href="https://doi.org/10.5281/zenodo.3904443">https://doi.org/10.5281/zenodo.3904443</a></p></li>
+<li><p>Simicic, D., Rackayova, V., Xin, L., Tkáč, I., Borbath, T., Starcuk, Z., Jr, Starcukova, J., Lanz, B., &amp; Cudalbu, C. (2021). In vivo macromolecule signals in rat brain 1 H-MR spectra at 9.4T: Parametrization, spline baseline estimation, and T2 relaxation times. Magnetic resonance in medicine, 86(5), 2384–2401. <a class="reference external" href="https://doi.org/10.1002/mrm.28910">https://doi.org/10.1002/mrm.28910</a></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># output cpu information</span>
+<span class="o">!</span>cat<span class="w"> </span>/proc/cpuinfo<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">'vendor'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq
+<span class="o">!</span>cat<span class="w"> </span>/proc/cpuinfo<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">'model name'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>vendor_id	: GenuineIntel
+model name	: Intel(R) Xeon(R) Gold 6126 CPU @ 2.60GHz
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="load-software-tools-and-import-python-libraries">
+<h2>Load software tools and import python libraries<a class="headerlink" href="#load-software-tools-and-import-python-libraries" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">module</span>
+<span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'lcmodel/6.3'</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>['lcmodel/6.3']
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span> 
+<span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">nibabel</span> <span class="n">numpy</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The command below updates the package list and installs <code class="docutils literal notranslate"><span class="pre">Ghostscript</span></code>, which provides the <code class="docutils literal notranslate"><span class="pre">ps2pd</span></code>f utility for converting LCModel’s <code class="docutils literal notranslate"><span class="pre">.ps</span></code> output into a <code class="docutils literal notranslate"><span class="pre">PDF</span></code>, as well as tools to convert the <code class="docutils literal notranslate"><span class="pre">.ps</span></code> file into <code class="docutils literal notranslate"><span class="pre">PNG</span></code> images for easier inline viewing in notebooks and web pages.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span>-qq<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ghostscript<span class="w"> </span>-y<span class="w"> </span>-qq
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>252 packages can be upgraded. Run 'apt list --upgradable' to see them.
+ghostscript is already the newest version (9.55.0~dfsg1-0ubuntu5.12).
+0 upgraded, 0 newly installed, 0 to remove and 252 not upgraded.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the necessary libraries</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span> 
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span> 
+<span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">nibabel</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">IFrame</span><span class="p">,</span> <span class="n">Image</span><span class="p">,</span> <span class="n">display</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">glob</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="get-example-data-from-the-container">
+<h2>Get example data from the container<a class="headerlink" href="#get-example-data-from-the-container" title="Link to this heading">#</a></h2>
+<p>This section locates and verifies access to the example <a class="reference external" href="https://doi.org/10.5281/zenodo.3904443">dataset</a> bundled inside the LCModel container. It:</p>
+<ul class="simple">
+<li><p>Retrieves the path to the lcmodel executable to infer the container base directory.</p></li>
+<li><p>Constructs full paths to the example Varian fid file and BASIS set directory located within the container.</p></li>
+<li><p>Uses <code class="docutils literal notranslate"><span class="pre">glob</span></code> to select the <code class="docutils literal notranslate"><span class="pre">.BASIS</span></code> file (expects exactly one).</p></li>
+<li><p>Verifies that the <code class="docutils literal notranslate"><span class="pre">fid</span></code> file and <code class="docutils literal notranslate"><span class="pre">.BASIS</span></code> file exist and prints their status and raises an error if any are missing.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ===  Get path to lcmodel executable</span>
+<span class="n">lcmodel_path</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">(</span><span class="s2">"which lcmodel"</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+<span class="c1"># === Extract container base and image path</span>
+<span class="n">container_base</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">lcmodel_path</span><span class="p">)</span>  <span class="c1"># e.g., .../lcmodel_6.3_20220222</span>
+<span class="n">container_id</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">container_base</span><span class="p">)</span>  <span class="c1"># e.g., lcmodel_6.3_20220222</span>
+<span class="n">simg_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">container_base</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">container_id</span><span class="si">}</span><span class="s2">.simg"</span><span class="p">)</span>
+
+<span class="c1"># ===  Construct dataset paths inside </span>
+<span class="n">fid_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+    <span class="n">simg_path</span><span class="p">,</span>
+    <span class="s2">"opt/datasets/Spectra_hippocampus(rat)_TE02/s_20131015_03_BDL106_scan0/isise_01.fid/fid"</span>
+<span class="p">)</span>
+<span class="n">basis_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+    <span class="n">simg_path</span><span class="p">,</span>
+    <span class="s2">"opt/datasets/Spectra_hippocampus(rat)_TE02/Control_files_Basis_set"</span>
+<span class="p">)</span>
+<span class="c1"># Get single BASIS file (will raise error if not exactly one)</span>
+<span class="n">basis_files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">basis_path</span><span class="p">,</span> <span class="s2">"*.BASIS"</span><span class="p">))</span>
+<span class="n">basis_file</span> <span class="o">=</span> <span class="n">basis_files</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+
+<span class="c1"># === Check existence of the paths</span>
+<span class="n">fid_exists</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">fid_path</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span>
+<span class="n">basis_dir_exists</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">basis_path</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span>
+<span class="n">basis_file_exists</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">basis_file</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span>
+
+<span class="c1"># === Report status</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"FID path:          </span><span class="si">{</span><span class="n">fid_path</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"BASIS file:        </span><span class="si">{</span><span class="n">basis_file</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"FID exists?        </span><span class="si">{</span><span class="s1">'✅'</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">fid_exists</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">'❌'</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"BASIS dir exists?  </span><span class="si">{</span><span class="s1">'✅'</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">basis_dir_exists</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">'❌'</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"BASIS file exists?  </span><span class="si">{</span><span class="s1">'✅'</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">basis_file_exists</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">'❌'</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># Raise error or fallback if paths missing</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">fid_exists</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">basis_file_exists</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s2">"One or more required dataset paths could not be found."</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>FID path:          /cvmfs/neurodesk.ardc.edu.au/containers/lcmodel_6.3_20220222/lcmodel_6.3_20220222.simg/opt/datasets/Spectra_hippocampus(rat)_TE02/s_20131015_03_BDL106_scan0/isise_01.fid/fid
+BASIS file:        /cvmfs/neurodesk.ardc.edu.au/containers/lcmodel_6.3_20220222/lcmodel_6.3_20220222.simg/opt/datasets/Spectra_hippocampus(rat)_TE02/Control_files_Basis_set/9T_TE02_smallTMS_simulated-apoL0,2Hz-apoG1,8Hz_MM-ourMM_newGrad750_allRemoved.BASIS
+FID exists?        ✅
+BASIS dir exists?  ✅
+BASIS file exists?  ✅
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="set-up-lcmodel-configuration-files">
+<h2>Set up LCModel configuration files<a class="headerlink" href="#set-up-lcmodel-configuration-files" title="Link to this heading">#</a></h2>
+<p>This script sets up the LCModel environment by copying the hidden <code class="docutils literal notranslate"><span class="pre">.lcmodel</span></code> directory (containing all required binaries and configuration files) into your home folder. If the <code class="docutils literal notranslate"><span class="pre">.lcmodel</span></code> directory already exists, the script normally prompts whether to overwrite it — however, in a notebook environment, this prompt is not interactive. To avoid errors, the script can be conditionally run only if <code class="docutils literal notranslate"><span class="pre">.lcmodel</span></code> does not already exist.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">"~/.lcmodel"</span><span class="p">)):</span>
+    <span class="o">!</span>setup_lcmodel.sh
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"~/.lcmodel already exists — skipping setup."</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>~/.lcmodel already exists — skipping setup.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="convert-varian-fid-file-to-lcmodel-compatible-raw">
+<h2>Convert Varian fid file to LCModel-compatible .RAW<a class="headerlink" href="#convert-varian-fid-file-to-lcmodel-compatible-raw" title="Link to this heading">#</a></h2>
+<p>This step uses the <code class="docutils literal notranslate"><span class="pre">bin2raw</span></code> utility to convert the Varian fid file and its associated procpar file into a <code class="docutils literal notranslate"><span class="pre">.RAW</span></code> file that LCModel can process.
+In addition to the <code class="docutils literal notranslate"><span class="pre">.RAW</span></code> file, two auxiliary files are also generated: <code class="docutils literal notranslate"><span class="pre">cpStart</span></code> and <code class="docutils literal notranslate"><span class="pre">extraInfo</span></code>. These are typically used by LCMgui to autofill settings, but in this notebook-based workflow, we’ll manually extract relevant information from <code class="docutils literal notranslate"><span class="pre">extraInfo</span></code> and <code class="docutils literal notranslate"><span class="pre">.RAW</span></code> to generate a custom control (.CONTROL) file for LCModel.</p>
+<p><strong>Details &amp; Requirements for bin2raw:</strong></p>
+<p>The input data must be named fid, and the corresponding procpar file must be in the same directory.</p>
+<p><code class="docutils literal notranslate"><span class="pre">bin2raw</span></code> assumes a voxel volume of 1.0, so water-scaling will only be accurate if the suppressed and unsuppressed water scans were acquired with identical voxel sizes.</p>
+<p>The script depends on <code class="docutils literal notranslate"><span class="pre">bin2asc</span></code>, which must be located in ~/.lcmodel/varian/. First, let’s check if the files are there:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="w"> </span>ls<span class="w"> </span><span class="nv">$HOME</span>/.lcmodel/varian
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bin2asc  bin2raw  preprocessors
+</pre></div>
+</div>
+</div>
+</div>
+<p>Run <code class="docutils literal notranslate"><span class="pre">bin2raw</span></code> to convert the Varian fid file into an LCModel <code class="docutils literal notranslate"><span class="pre">.RAW</span></code> file. The output is saved in a subdirectory (./lcmodel_outputs/raw/) that is visible in JupyterLab for inspection and further use.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span> -s "$fid_path"
+set -e
+DATA_FILE="$1"
+LCM_DIR="./lcmodel_outputs/"
+MET_H2O="raw"
+
+mkdir -p "${LCM_DIR}${MET_H2O}"
+    
+$HOME/.lcmodel/varian/bin2raw $DATA_FILE $LCM_DIR $MET_H2O
+</pre></div>
+</div>
+</div>
+</div>
+<section id="visualizing-the-raw-fid-data-from-the-raw-file">
+<h3>Visualizing the RAW FID data from the RAW file<a class="headerlink" href="#visualizing-the-raw-fid-data-from-the-raw-file" title="Link to this heading">#</a></h3>
+<p>The following code loads and visualizes the raw time-domain data from the .RAW file. This file contains the input data for a single rat from the Simicic and Cudalbu (2020) dataset.
+According to the study’s methods, the data was acquired using a single-voxel SPECIAL sequence in the rat hippocampus (TE=2.8ms, TR=4s). The full experiment involved collecting 160 individual acquisitions (transients) to ensure a high signal-to-noise ratio.
+Our plot visualizes a subset of this data. As we will confirm in the next step when we extract the acquisition parameters, the file contains the first 10 of these transients, each composed of 4096 complex data points. Each large spike in the plot marks the beginning of one of these 10 transients.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load data from RAW for plotting</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_raw_data</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+
+    <span class="c1"># Skip past the two header blocks</span>
+    <span class="n">end_count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">data_start</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lines</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s1">'$END'</span><span class="p">:</span>
+            <span class="n">end_count</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">end_count</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">data_start</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+                <span class="k">break</span>
+
+    <span class="n">data_vals</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">[</span><span class="n">data_start</span><span class="p">:]:</span>
+        <span class="n">parts</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">data_vals</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">parts</span><span class="p">])</span>
+
+    <span class="n">real</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data_vals</span><span class="p">[</span><span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">imag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data_vals</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">real</span><span class="p">,</span> <span class="n">imag</span>
+
+<span class="n">real</span><span class="p">,</span> <span class="n">imag</span> <span class="o">=</span> <span class="n">load_raw_data</span><span class="p">(</span><span class="s2">"./lcmodel_outputs/raw/RAW"</span><span class="p">)</span>
+
+<span class="c1"># Create the x-axis using the number of points</span>
+<span class="n">data_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">real</span><span class="p">))</span>
+
+<span class="c1">#  Plot the data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_points</span><span class="p">,</span> <span class="n">real</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Real'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'blue'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data_points</span><span class="p">,</span> <span class="n">imag</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Imaginary'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'red'</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'--'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Raw FID Signal"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Data Point Index"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Signal Amplitude"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/6a8315982bb8c1c57f227de3e8687407e7676adce53e2100f7e6f6fd2f895b82.png" src="../_images/6a8315982bb8c1c57f227de3e8687407e7676adce53e2100f7e6f6fd2f895b82.png">
+</div>
+</div>
+</section>
+</section>
+<section id="extracting-parameters-to-generate-the-control-file">
+<h2>Extracting parameters to generate the control file<a class="headerlink" href="#extracting-parameters-to-generate-the-control-file" title="Link to this heading">#</a></h2>
+<p>As noted earlier, the <code class="docutils literal notranslate"><span class="pre">bin2raw</span></code> conversion produces auxiliary files such as <code class="docutils literal notranslate"><span class="pre">cpStart</span></code> and embeds a <code class="docutils literal notranslate"><span class="pre">$SEQPAR</span></code> block in the <code class="docutils literal notranslate"><span class="pre">.RAW</span></code> file. These contain key acquisition and sequence parameters needed to generate the LCModel control file. In this step, we extract those parameters by parsing both <code class="docutils literal notranslate"><span class="pre">cpStart</span></code> and the <code class="docutils literal notranslate"><span class="pre">$SEQPAR</span></code> block from the <code class="docutils literal notranslate"><span class="pre">RAW</span></code> file. The parsed values are merged into a single dictionary, with <code class="docutils literal notranslate"><span class="pre">$SEQPAR</span></code> values overriding <code class="docutils literal notranslate"><span class="pre">cpStart</span></code> in case of overlap. This consolidated parameter set will be used to programmatically construct the <code class="docutils literal notranslate"><span class="pre">.CONTROL</span></code> file for LCModel.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">parse_cpstart_file</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span> <span class="ow">or</span> <span class="s1">'='</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'='</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="n">val</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">"'"</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="s1">'.'</span> <span class="ow">in</span> <span class="n">val</span> <span class="ow">or</span> <span class="s1">'e'</span> <span class="ow">in</span> <span class="n">val</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+                    <span class="n">val</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">val</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="n">params</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+    <span class="k">return</span> <span class="n">params</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">parse_raw_seqpar</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">seqpar_block</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'$SEQPAR'</span><span class="p">):</span>
+                <span class="n">seqpar_block</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'$END'</span><span class="p">)</span> <span class="ow">and</span> <span class="n">seqpar_block</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="k">if</span> <span class="n">seqpar_block</span><span class="p">:</span>
+                <span class="c1"># example line: hzpppm=400.268</span>
+                <span class="k">if</span> <span class="s1">'='</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                    <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'='</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                    <span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                    <span class="n">val</span> <span class="o">=</span> <span class="n">val</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="s1">'.'</span> <span class="ow">in</span> <span class="n">val</span> <span class="ow">or</span> <span class="s1">'e'</span> <span class="ow">in</span> <span class="n">val</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+                            <span class="n">val</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">val</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                        <span class="n">val</span> <span class="o">=</span> <span class="n">val</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s2">"'"</span><span class="p">)</span>
+                    <span class="n">params</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+    <span class="k">return</span> <span class="n">params</span>
+
+<span class="c1"># Paths to cpStart and RAW</span>
+<span class="n">cpstart_path</span> <span class="o">=</span> <span class="s2">"./lcmodel_outputs/raw/cpStart"</span>
+<span class="n">raw_path</span> <span class="o">=</span> <span class="s2">"./lcmodel_outputs/raw/RAW"</span>  
+
+<span class="c1"># Parse both</span>
+<span class="n">cpstart_params</span> <span class="o">=</span> <span class="n">parse_cpstart_file</span><span class="p">(</span><span class="n">cpstart_path</span><span class="p">)</span>
+<span class="n">seqpar_params</span> <span class="o">=</span> <span class="n">parse_raw_seqpar</span><span class="p">(</span><span class="n">raw_path</span><span class="p">)</span>
+
+<span class="c1"># Merge dictionaries, seqpar overrides cpstart if keys overlap</span>
+<span class="n">all_params</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">cpstart_params</span><span class="p">,</span> <span class="o">**</span><span class="n">seqpar_params</span><span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">all_params</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{'title': 's_20131015_03  (2013/10/15 22:28:27)  isise  TE/TR/NS=3/4000/16', 'filraw': './lcmodel_outputs/raw/RAW', 'filps': './lcmodel_outputs/ps', 'hzpppm': 400.268, 'deltat': 0.0002, 'nunfil': 4096, 'ndcols': 1, 'ndrows': 10, 'ndslic': 1, 'echot': 3.0}
+</pre></div>
+</div>
+</div>
+</div>
+<section id="write-and-run-the-control-file">
+<h3>Write and run the control file<a class="headerlink" href="#write-and-run-the-control-file" title="Link to this heading">#</a></h3>
+<p>With all required acquisition parameters parsed from the <code class="docutils literal notranslate"><span class="pre">.RAW</span></code> and <code class="docutils literal notranslate"><span class="pre">cpStart</span></code> files, we now generate the LCModel control file programmatically. This file defines the input data (.RAW), output locations (e.g., .TABLE, .PS, .CSV, .COORD), basis set, and sequence-specific parameters such as spectral width or echo time. The control file is written to disk using the <code class="docutils literal notranslate"><span class="pre">write_lcmodel_control()</span></code> function. Finally, LCModel is executed by piping the control file into the lcmodel command-line tool, launching the spectral fitting and quantification process.</p>
+<p><strong>Note:</strong> LCModel is now free software. To use it, the <strong>key = 210387309</strong> needs to be included in the LCModel control file (<a class="reference external" href="http://s-provencher.com/lcmodel.shtml">http://s-provencher.com/lcmodel.shtml</a>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># File paths</span>
+<span class="n">res_dir</span> <span class="o">=</span> <span class="s2">"./lcmodel_outputs/results"</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">res_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">table_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">res_dir</span><span class="p">,</span> <span class="s2">"table"</span><span class="p">)</span>
+<span class="n">csv_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">res_dir</span><span class="p">,</span> <span class="s2">"csv"</span><span class="p">)</span>
+<span class="n">coord_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">res_dir</span><span class="p">,</span><span class="s2">"coord"</span><span class="p">)</span>
+<span class="n">ps_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">res_dir</span><span class="p">,</span><span class="s2">"ps"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">write_lcmodel_control</span><span class="p">(</span><span class="n">control_path</span><span class="p">,</span>
+                          <span class="n">raw_path</span><span class="p">,</span>
+                          <span class="n">srcraw</span><span class="p">,</span>
+                          <span class="n">basis_path</span><span class="p">,</span>
+                          <span class="n">ps_path</span><span class="p">,</span>
+                          <span class="n">table_path</span><span class="p">,</span>
+                          <span class="n">csv_path</span><span class="p">,</span>
+                          <span class="n">coord_path</span><span class="p">,</span>
+                          <span class="n">title</span><span class="p">,</span>
+                          <span class="n">nunfil</span><span class="p">,</span>
+                          <span class="n">ndslic</span><span class="p">,</span>
+                          <span class="n">ndrows</span><span class="p">,</span>
+                          <span class="n">ndcols</span><span class="p">,</span>
+                          <span class="n">hzpppm</span><span class="p">,</span>
+                          <span class="n">echot</span><span class="p">,</span>
+                          <span class="n">deltat</span><span class="p">,</span>
+                          <span class="n">irowst</span><span class="p">,</span>
+                          <span class="n">irowen</span><span class="p">,</span>
+                          <span class="n">icolst</span><span class="p">,</span>
+                          <span class="n">icolen</span><span class="p">,</span>
+                          <span class="n">ppmst</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span>
+                          <span class="n">ppmend</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+                          <span class="n">ltable</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
+                          <span class="n">lps</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+                          <span class="n">lcsv</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span>
+                          <span class="n">lcoord</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
+                          <span class="n">islice</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                          <span class="n">key</span><span class="o">=</span><span class="mi">210387309</span>
+                         <span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Writes a formatted control file for an LCModel analysis.</span>
+
+<span class="sd">    This function generates the .CONTROL file that LCModel uses as its primary</span>
+<span class="sd">    input, specifying all file paths, acquisition parameters, and analysis options.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        Required:</span>
+<span class="sd">            control_path (str): Output path for the CONTROL file</span>
+<span class="sd">            raw_path (str): Path to the .RAW file that LCModel will analyze</span>
+<span class="sd">            srcraw (str): Path to original FID file (for reference)</span>
+<span class="sd">            basis_path (str): Path to BASIS file containing the metabolite basis spectra</span>
+<span class="sd">            ps_path (str): Output path for PS file</span>
+<span class="sd">            table_path (str): Output path for TABLE file</span>
+<span class="sd">            csv_path (str): Output path for CSV file</span>
+<span class="sd">            coord_path (str): Output path for COORD file</span>
+<span class="sd">            title (str): Title of the scan</span>
+<span class="sd">            nunfil (int):  Number of complex data points per FID transient</span>
+<span class="sd">            ndslic (int): Number of slices in the data (usually 1 for Single Voxel Spectroscopy)</span>
+<span class="sd">            ndrows (int): Number of rows (transients) in the .RAW file.</span>
+<span class="sd">            ndcols (int): Number of columns (usually 1 for SVS)</span>
+<span class="sd">            hzpppm (float): Spectrometer frequency (MHz)</span>
+<span class="sd">            echot (float): Echo time (TE) in ms</span>
+<span class="sd">            deltat (float): Time between points (dwell time) in seconds</span>
+<span class="sd">            irowst (int), irowen (int): Start/end row for analysis</span>
+<span class="sd">            icolst (int), icolen (int): Start/end column for analysis</span>
+
+<span class="sd">        Optional:</span>
+<span class="sd">            ppmst (float): Upper limit of ppm window (default: 4.0)</span>
+<span class="sd">            ppmend (float): Lower limit of ppm window (default: 0.2)</span>
+<span class="sd">            islice (int): Slice to analyze (default: 1)</span>
+<span class="sd">            ltable (int), lps (int), lcsv (int), lcoord (int): Output switches to generate output files</span>
+<span class="sd">            islice (int): Slice to analyze (default: 1)</span>
+<span class="sd">            key (int): Free License key (hard coded)</span>
+<span class="sd">    """</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">""" $LCMODL</span>
+<span class="s2"> title= '</span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s2">'</span>
+<span class="s2"> srcraw= '</span><span class="si">{</span><span class="n">srcraw</span><span class="si">}</span><span class="s2">'</span>
+<span class="s2"> ppmst= </span><span class="si">{</span><span class="n">ppmst</span><span class="si">}</span>
+<span class="s2"> ppmend= </span><span class="si">{</span><span class="n">ppmend</span><span class="si">}</span>
+<span class="s2"> nunfil= </span><span class="si">{</span><span class="n">nunfil</span><span class="si">}</span>
+<span class="s2"> ndslic= </span><span class="si">{</span><span class="n">ndslic</span><span class="si">}</span>
+<span class="s2"> ndrows= </span><span class="si">{</span><span class="n">ndrows</span><span class="si">}</span>
+<span class="s2"> ndcols= </span><span class="si">{</span><span class="n">ndcols</span><span class="si">}</span>
+<span class="s2"> ltable= </span><span class="si">{</span><span class="n">ltable</span><span class="si">}</span>
+<span class="s2"> lps= </span><span class="si">{</span><span class="n">lps</span><span class="si">}</span>
+<span class="s2"> islice= </span><span class="si">{</span><span class="n">islice</span><span class="si">}</span>
+<span class="s2"> irowst= </span><span class="si">{</span><span class="n">irowst</span><span class="si">}</span>
+<span class="s2"> irowen= </span><span class="si">{</span><span class="n">irowen</span><span class="si">}</span>
+<span class="s2"> icolst= </span><span class="si">{</span><span class="n">icolst</span><span class="si">}</span>
+<span class="s2"> icolen= </span><span class="si">{</span><span class="n">icolen</span><span class="si">}</span>
+<span class="s2"> hzpppm= </span><span class="si">{</span><span class="n">hzpppm</span><span class="si">}</span>
+<span class="s2"> filtab= '</span><span class="si">{</span><span class="n">table_path</span><span class="si">}</span><span class="s2">'</span>
+<span class="s2"> filraw= '</span><span class="si">{</span><span class="n">raw_path</span><span class="si">}</span><span class="s2">'</span>
+<span class="s2"> filps= '</span><span class="si">{</span><span class="n">ps_path</span><span class="si">}</span><span class="s2">'</span>
+<span class="s2"> filbas= '</span><span class="si">{</span><span class="n">basis_path</span><span class="si">}</span><span class="s2">'</span>
+<span class="s2"> echot= </span><span class="si">{</span><span class="n">echot</span><span class="si">}</span>
+<span class="s2"> deltat= </span><span class="si">{</span><span class="n">deltat</span><span class="si">}</span>
+<span class="s2"> key= </span><span class="si">{</span><span class="n">key</span><span class="si">}</span>
+<span class="s2"> lcsv= </span><span class="si">{</span><span class="n">lcsv</span><span class="si">}</span>
+<span class="s2"> filcsv= '</span><span class="si">{</span><span class="n">csv_path</span><span class="si">}</span><span class="s2">'</span>
+<span class="s2"> lcoord= </span><span class="si">{</span><span class="n">lcoord</span><span class="si">}</span>
+<span class="s2"> filcoo= '</span><span class="si">{</span><span class="n">coord_path</span><span class="si">}</span><span class="s2">'</span>
+<span class="s2"> $END</span>
+<span class="s2">"""</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">control_path</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"ascii"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"✅ CONTROL file written to </span><span class="si">{</span><span class="n">control_path</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">write_lcmodel_control</span><span class="p">(</span>
+    <span class="n">control_path</span><span class="o">=</span><span class="s1">'./lcmodel_outputs/control'</span><span class="p">,</span>
+    <span class="n">raw_path</span><span class="o">=</span><span class="n">raw_path</span><span class="p">,</span>
+    <span class="n">srcraw</span><span class="o">=</span><span class="n">fid_path</span><span class="p">,</span>
+    <span class="n">basis_path</span><span class="o">=</span><span class="n">basis_file</span><span class="p">,</span>  
+    <span class="n">ps_path</span><span class="o">=</span><span class="n">ps_path</span><span class="p">,</span>
+    <span class="n">table_path</span><span class="o">=</span><span class="n">table_path</span><span class="p">,</span>   
+    <span class="n">csv_path</span><span class="o">=</span><span class="n">csv_path</span><span class="p">,</span>       
+    <span class="n">coord_path</span><span class="o">=</span><span class="n">coord_path</span><span class="p">,</span>   
+    <span class="n">title</span><span class="o">=</span><span class="n">all_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'title'</span><span class="p">,</span> <span class="s1">'Default Title'</span><span class="p">),</span>
+    <span class="n">ppmst</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="c1"># Left edge of ppm window</span>
+    <span class="n">ppmend</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="c1"># Right edge of ppm window</span>
+    <span class="n">nunfil</span><span class="o">=</span><span class="n">all_params</span><span class="p">[</span><span class="s1">'nunfil'</span><span class="p">],</span>
+    <span class="n">ndslic</span><span class="o">=</span><span class="n">all_params</span><span class="p">[</span><span class="s1">'ndslic'</span><span class="p">],</span>
+    <span class="n">ndrows</span><span class="o">=</span><span class="n">all_params</span><span class="p">[</span><span class="s1">'ndrows'</span><span class="p">],</span>
+    <span class="n">ndcols</span><span class="o">=</span><span class="n">all_params</span><span class="p">[</span><span class="s1">'ndcols'</span><span class="p">],</span>
+    <span class="n">ltable</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="c1">#will create filtab</span>
+    <span class="n">lps</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="c1">#will create filps</span>
+    <span class="n">irowst</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="c1">#default - selecting row 1 through irowen for preview and analysis</span>
+    <span class="n">irowen</span><span class="o">=</span><span class="n">all_params</span><span class="p">[</span><span class="s1">'ndrows'</span><span class="p">],</span>
+    <span class="n">icolst</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="c1">#default - selecting columns 1 through icolen for preview an analysis</span>
+    <span class="n">icolen</span><span class="o">=</span><span class="n">all_params</span><span class="p">[</span><span class="s1">'ndcols'</span><span class="p">],</span>
+    <span class="n">hzpppm</span><span class="o">=</span><span class="n">all_params</span><span class="p">[</span><span class="s1">'hzpppm'</span><span class="p">],</span>
+    <span class="n">echot</span><span class="o">=</span><span class="n">all_params</span><span class="p">[</span><span class="s1">'echot'</span><span class="p">],</span>  
+    <span class="n">deltat</span><span class="o">=</span><span class="n">all_params</span><span class="p">[</span><span class="s1">'deltat'</span><span class="p">],</span>
+    <span class="n">lcsv</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="c1"># will make filcsv</span>
+    <span class="n">lcoord</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="c1"># will make filcoo</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>✅ CONTROL file written to ./lcmodel_outputs/control
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>lcmodel<span class="w"> </span>&lt;<span class="w"> </span>./lcmodel_outputs/control
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="conversion-to-pdf-and-png-formats">
+<h2>Conversion to PDF and PNG formats<a class="headerlink" href="#conversion-to-pdf-and-png-formats" title="Link to this heading">#</a></h2>
+<p>LCModel outputs a PostScript <code class="docutils literal notranslate"><span class="pre">(.ps</span></code>) file summarizing the spectral fit results, which can be converted to other formats like <code class="docutils literal notranslate"><span class="pre">PDF</span></code> or to <code class="docutils literal notranslate"><span class="pre">PNG</span></code> images for easier viewing and sharing. Converting to PDF using <code class="docutils literal notranslate"><span class="pre">ps2pdf</span></code> preserves the vector graphics and multipage layout, making it suitable for high-quality printing and detailed inspection.
+Alternatively, converting the .ps to PNG images with Ghostscript produces raster images (one per page) that are easy to display inline in notebooks and web pages without requiring PDF viewers.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#convert .ps to .pdf</span>
+<span class="o">!</span>ps2pdf<span class="w"> </span>./lcmodel_outputs/results/sl1_1-1.ps<span class="w"> </span>./lcmodel_outputs/results/sl1_1-1.pdf
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#convert .ps to 2 png images </span>
+<span class="o">!</span>gs<span class="w"> </span>-dSAFER<span class="w"> </span>-dBATCH<span class="w"> </span>-dNOPAUSE<span class="w"> </span>-dAutoRotatePages<span class="o">=</span>/None<span class="w"> </span><span class="err">\</span>
+    <span class="o">-</span><span class="n">sDEVICE</span><span class="o">=</span><span class="n">png16m</span> <span class="o">-</span><span class="n">r300</span> \
+    <span class="o">-</span><span class="n">dFirstPage</span><span class="o">=</span><span class="mi">1</span> \
+    <span class="o">-</span><span class="n">sOutputFile</span><span class="o">=./</span><span class="n">lcmodel_outputs</span><span class="o">/</span><span class="n">results</span><span class="o">/</span><span class="n">sl1_1</span><span class="o">-</span><span class="mi">1</span><span class="n">_page_</span><span class="o">%</span><span class="k">d</span>.png \
+    <span class="o">-</span><span class="n">c</span> <span class="s2">"&lt;&lt;/Orientation 1&gt;&gt; setpagedevice"</span> \
+    <span class="o">-</span><span class="n">f</span> <span class="o">./</span><span class="n">lcmodel_outputs</span><span class="o">/</span><span class="n">results</span><span class="o">/</span><span class="n">sl1_1</span><span class="o">-</span><span class="mf">1.</span><span class="n">ps</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GPL Ghostscript 9.55.0 (2021-09-27)
+Copyright (C) 2021 Artifex Software, Inc.  All rights reserved.
+This software is supplied under the GNU AGPLv3 and comes with NO WARRANTY:
+see the file COPYING for details.
+Loading NimbusSans-Regular font from /usr/share/ghostscript/9.55.0/Resource/Font/NimbusSans-Regular... 4466276 2919749 2017472 704520 1 done.
+Loading NimbusSans-Italic font from /usr/share/ghostscript/9.55.0/Resource/Font/NimbusSans-Italic... 4532388 3109010 2037672 717907 1 done.
+Loading NimbusMonoPS-Bold font from /usr/share/ghostscript/9.55.0/Resource/Font/NimbusMonoPS-Bold... 4719700 3356826 2118472 774025 1 done.
+Loading NimbusMonoPS-Regular font from /usr/share/ghostscript/9.55.0/Resource/Font/NimbusMonoPS-Regular... 4967612 3596618 2118472 777832 1 done.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># displayt the to png images (two pdf pages)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span> 
+    <span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="sa">f</span><span class="s2">"./lcmodel_outputs/results/sl1_1-1_page_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">.png"</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/043ac6743b5ff13af4bb0a6bd592301855524e435f0f020f582ca5edfb664033.png" src="../_images/043ac6743b5ff13af4bb0a6bd592301855524e435f0f020f582ca5edfb664033.png">
+<img alt="../_images/417fcdb9db12db541a71cde89555bb4c723c0e18c13f9a0eb05bf8fd71379300.png" src="../_images/417fcdb9db12db541a71cde89555bb4c723c0e18c13f9a0eb05bf8fd71379300.png">
+</div>
+</div>
+<p><strong>Note on PDF viewing:</strong> PDFs can be displayed directly within Jupyter notebooks using <code class="docutils literal notranslate"><span class="pre">IFrame</span></code>, but this only works in interactive environments (local Jupyter, Colab, etc.). When viewing this notebook on GitHub Pages, the PDFs won’t render due to security restrictions.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This works in Jupyter but not on GitHub Pages</span>
+<span class="n">IFrame</span><span class="p">(</span><span class="s2">"./lcmodel_outputs/results/sl1_1-1.pdf"</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./spectroscopy"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev" href="../structural_imaging/sct_toolbox.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">SCT Toolbox</p>
+      </div>
+    </a>
+    <a class="right-next" href="../diffusion_imaging/Diffusion_TBSS_Demo.html" title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">TBSS Tutorial</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyzing-mr-spectra-from-rat-hippocampus">Analyzing MR Spectra from Rat Hippocampus</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#citation">Citation:</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-included-in-this-workflow">Tools included in this workflow</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-software-tools-and-import-python-libraries">Load software tools and import python libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#get-example-data-from-the-container">Get example data from the container</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-lcmodel-configuration-files">Set up LCModel configuration files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#convert-varian-fid-file-to-lcmodel-compatible-raw">Convert Varian fid file to LCModel-compatible .RAW</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-the-raw-fid-data-from-the-raw-file">Visualizing the RAW FID data from the RAW file</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extracting-parameters-to-generate-the-control-file">Extracting parameters to generate the control file</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#write-and-run-the-control-file">Write and run the control file</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-to-pdf-and-png-formats">Conversion to PDF and PNG formats</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Neurodesk Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  
+</body></html>

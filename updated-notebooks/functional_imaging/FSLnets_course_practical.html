@@ -1,0 +1,2563 @@
+<!DOCTYPE html><html lang="en" data-content_root="../"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Resting state with FSLnets — Neurodesk</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet">
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet">
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin="" href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin="" href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079">
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062">
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357">
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b">
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css">
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6">
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e">
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b">
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b">
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-4Z9774J59Y"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-4Z9774J59Y');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-4Z9774J59Y');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'functional_imaging/FSLnets_course_practical';</script>
+    <link rel="canonical" href="https://neurodesk.github.io/example-notebooks/functional_imaging/FSLnets_course_practical.html">
+    <link rel="icon" href="../_static/neurodesk_logo.svg">
+    <link rel="index" title="Index" href="../genindex.html">
+    <link rel="search" title="Search" href="../search.html">
+    <link rel="next" title="NiWrap and Connectome Workbench" href="NiWrap.html">
+    <link rel="prev" title="FSL Preprocessing and GLM" href="FSL_preproc_glm.html">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox" class="sidebar-toggle" id="pst-primary-sidebar-checkbox">
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox" class="sidebar-toggle" id="pst-secondary-sidebar-checkbox">
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/neurodesk_logo.svg" class="logo__image only-light" alt="Neurodesk - Home">
+    <script>document.write(`<img src="../_static/neurodesk_logo.svg" class="logo__image only-dark" alt="Neurodesk - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Neurodesk environment
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Workflows</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../workflows/AA_Neurodesk_demo_tour.html">Neurodesk Tools Demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/MRIQC.html">MRIQC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/PyBIDS.html">PyBIDS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/RISE_slideshow.html">RISE Slideshow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/bids_conversion.html">BIDS conversion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/nipype_full.html">Nipype on Neurodesk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/nipype_short.html">Basic Nipype</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../workflows/papermill-slurm-submission-example.html">Papermill Slurm Job Submission</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Structural Imaging</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/FSL_course_bet.html">FSL course - BET</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/brain_extraction_different_tools.html">Brain Extraction Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/freesurfer.html">FreeSurfer</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/qsmxt.html">QSMxT</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/sct_toolbox.html">SCT Toolbox</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Spectroscopy</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../spectroscopy/lcmodel.html">MR Spectroscopy with LCModel</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Diffusion Imaging</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../diffusion_imaging/Diffusion_TBSS_Demo.html">TBSS Tutorial</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../diffusion_imaging/MRtrix_1.html">MRtrix: Part 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../diffusion_imaging/MRtrix_2.html">MRtrix: Part 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../diffusion_imaging/MRtrix_3.html">MRtrix: Part 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../diffusion_imaging/mrtrix3tissue.html">MRtrix3Tissue</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Functional Imaging</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="AFNI_preprocessing_only.html">AFNI Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AFNI_preprocessing_plus_glm.html">AFNI Preprocessing and GLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AFNI_preprocessing_plus_glm_group.html">AFNI Preprocessing &amp; Group Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FSL_preproc_glm.html">FSL Preprocessing and GLM</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Resting state with FSLnets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="NiWrap.html">NiWrap and Connectome Workbench</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aslprep.html">ASLprep</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deepretinotopy.html">DeepRetinotopy</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="first_and_second_level_spm.html">Nipype-SPM fMRI Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fmriprep.html">fMRIprep</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fsl_all_levels_flanker_nipype.html">Nipype-FSL fMRI Analysis</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="intro_to_preprocessing.html">Introduction to Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mri_vol2surf.html">FreeSurfer: mri_vol2surf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="process_five_echo_dataset.html">tedana: TE Dependent ANAlysis</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons"><a href="https://doi.org/10.5072/zenodo.303081" target="_blank" rel="noopener noreferrer" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button">https://doi.org/10.5072/zenodo.303081</a>
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://play-america.neurodesk.org/hub/user-redirect/git-pull?repo=https%3A//github.com/NeuroDesk/example-notebooks&amp;urlpath=lab/tree/example-notebooks/books/functional_imaging/FSLnets_course_practical.ipynb&amp;branch=main" target="_blank" class="btn btn-sm dropdown-item" title="Launch on JupyterHub" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="JupyterHub logo" src="../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/NeuroDesk/example-notebooks" target="_blank" class="btn btn-sm btn-source-repository-button dropdown-item" title="Source repository" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/NeuroDesk/example-notebooks/edit/main/books/functional_imaging/FSLnets_course_practical.ipynb" target="_blank" class="btn btn-sm btn-source-edit-button dropdown-item" title="Suggest edit" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/NeuroDesk/example-notebooks/issues/new?title=Issue%20on%20page%20%2Ffunctional_imaging/FSLnets_course_practical.html&amp;body=Your%20issue%20content%20here." target="_blank" class="btn btn-sm btn-source-issues-button dropdown-item" title="Open an issue" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/functional_imaging/FSLnets_course_practical.ipynb" target="_blank" class="btn btn-sm btn-download-source-button dropdown-item" title="Download source file" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()" class="btn btn-sm btn-download-pdf-button dropdown-item" title="Print to PDF" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()" class="btn btn-sm btn-fullscreen-button" title="Fullscreen mode" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Resting state with FSLnets</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citation">Citation:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-included-in-this-workflow">Tools included in this workflow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#educational-resources">Educational resources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output-cpu-information">Output CPU information</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-fslnets">Introduction to FSLnets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-fsl-and-import-python-libraries">Load FSL and Import Python libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-course-material">Download course material</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fslnets-network-analysis-setup">FSLnets Network Analysis Setup</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#networks-estimation">Networks estimation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-time-series-power-spectra">Node time series power spectra</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#group-average-netmat-summaries">Group-average netmat summaries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-subject-comparison-with-netmats">Cross-subject comparison with netmats</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="resting-state-with-fslnets">
+<h1>Resting state with FSLnets<a class="headerlink" href="#resting-state-with-fslnets" title="Link to this heading">#</a></h1>
+<p>This interactive demonstration is based on the official FSL course <strong>“Resting state FSLnets practical”</strong>.</p>
+<p>FSLnets is a toolbox for analyzing brain network connectivity from fMRI time series, typically derived from resting-state data. It takes as input the timecourses from specific brain regions, usually obtained via group-ICA and dual regression, and computes subject-level connectivity matrices using full or partial correlations. These network matrices can then be used for statistical comparisons across subjects or groups.</p>
+<p><strong>Author</strong>: Monika Doerig</p>
+<section id="citation">
+<h2>Citation:<a class="headerlink" href="#citation" title="Link to this heading">#</a></h2>
+<section id="tools-included-in-this-workflow">
+<h3>Tools included in this workflow<a class="headerlink" href="#tools-included-in-this-workflow" title="Link to this heading">#</a></h3>
+<p><strong>FSL/ FSLnets</strong>:</p>
+<ul class="simple">
+<li><p>M. Jenkinson, C.F. Beckmann, T.E. Behrens, M.W. Woolrich, S.M. Smith. FSL. NeuroImage, 62:782-90, 2012. <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S1053811911010603?via%3Dihub">https://doi.org/10.1016/j.neuroimage.2011.09.015</a></p></li>
+<li><p>Smith SM, Beckmann CF, Auerbach EJ, et al. (2013). Resting-state fMRI in the Human Connectome Project. NeuroImage, 80, 144–168. <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S1053811913005338?via%3Dihub">https://doi.org/10.1016/j.neuroimage.2013.05.039</a></p></li>
+</ul>
+</section>
+<section id="educational-resources">
+<h3>Educational resources<a class="headerlink" href="#educational-resources" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://open.win.ox.ac.uk/pages/fslcourse/website/online_materials.html">FSL course online materials</a></p></li>
+<li><p><a class="reference external" href="https://open.win.ox.ac.uk/pages/fslcourse/practicals/fslnets/index.html">FSL course practicals FSLnets</a></p></li>
+<li><p><a class="reference external" href="https://fsl.fmrib.ox.ac.uk/fsl/docs/#/resting_state/fslnets">FSL Wiki fslnets</a></p></li>
+</ul>
+</section>
+<section id="dataset">
+<h3>Dataset<a class="headerlink" href="#dataset" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://open.win.ox.ac.uk/pages/fslcourse/website/downloads.html">Link to Downloading and Installing FSL Course Data</a></p></li>
+</ul>
+</section>
+</section>
+<section id="output-cpu-information">
+<h2>Output CPU information<a class="headerlink" href="#output-cpu-information" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>cat<span class="w"> </span>/proc/cpuinfo<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">'vendor'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq
+<span class="o">!</span>cat<span class="w"> </span>/proc/cpuinfo<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">'model name'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>vendor_id	: GenuineIntel
+model name	: Intel(R) Xeon(R) Gold 6126 CPU @ 2.60GHz
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="introduction-to-fslnets">
+<h2>Introduction to FSLnets<a class="headerlink" href="#introduction-to-fslnets" title="Link to this heading">#</a></h2>
+<p>FSLnets enables network modeling of fMRI data by analyzing the temporal relationships between brain regions. It is particularly useful for group-level studies of functional connectivity, where the goal is to identify differences or commonalities in brain network organization</p>
+<p><strong>The typical FSLnets pipeline includes:</strong></p>
+<ul class="simple">
+<li><p>Extracting subject-level timeseries spatial node maps (e.g., dual regression outputs)</p></li>
+<li><p>Identifying and removing structured noise components from the data</p></li>
+<li><p>Computing full or partial correlation matrices (netmats) for each subject</p></li>
+<li><p>Exploring group-average connectivity patterns and hierarchical node clustering</p></li>
+<li><p>Performing statistical comparisons of connectivity across subjects or group</p></li>
+<li><p><em>(Optional)</em> Conducting multivariate cross-subject analysis, which uses the full network matrix to classify or differentiate groups (e.g., patients vs. controls) using machine learning techniques like linear discriminant analysis (LDA), support vector machines (SVM), or random forests</p></li>
+</ul>
+<p>This notebook guides you through the core steps of network analysis: estimating connectivity matrices, comparing them across groups, and visualizing the results.</p>
+<p>For a full pipeline and detailed information about the steps, refer to the complete <a class="reference external" href="https://open.win.ox.ac.uk/pages/fslcourse/practicals/fslnets/index.html">Resting state FSLnets practical</a>.</p>
+</section>
+<section id="load-fsl-and-import-python-libraries">
+<h2>Load FSL and Import Python libraries<a class="headerlink" href="#load-fsl-and-import-python-libraries" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">module</span>
+<span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'fsl/6.0.7.16'</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>['fsl/6.0.7.16']
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">Markdown</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="download-course-material">
+<h2>Download course material<a class="headerlink" href="#download-course-material" title="Link to this heading">#</a></h2>
+<div class="cell tag_scroll-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>wget<span class="w"> </span>-c<span class="w"> </span>-nc<span class="w"> </span>https://fsl.fmrib.ox.ac.uk/fslcourse/downloads/rest.tar.gz
+<span class="o">!</span>tar<span class="w"> </span>-xzvf<span class="w"> </span>rest.tar.gz<span class="w"> </span>--wildcards<span class="w"> </span>--no-anchored<span class="w"> </span><span class="s1">'rest/Nets/*'</span>
+<span class="o">!</span>rm<span class="w"> </span>-r<span class="w"> </span>rest.tar.gz
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--2025-07-30 04:38:38--  https://fsl.fmrib.ox.ac.uk/fslcourse/downloads/rest.tar.gz
+Resolving fsl.fmrib.ox.ac.uk (fsl.fmrib.ox.ac.uk)... 129.67.248.66
+Connecting to fsl.fmrib.ox.ac.uk (fsl.fmrib.ox.ac.uk)|129.67.248.66|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 15935669577 (15G) [application/x-gzip]
+Saving to: ‘rest.tar.gz’
+
+rest.tar.gz         100%[===================&gt;]  14.84G  62.4MB/s    in 4m 44s  
+
+2025-07-30 04:43:23 (53.5 MB/s) - ‘rest.tar.gz’ saved [15935669577/15935669577]
+
+fsl_course_data/rest/Nets/groupICA100/
+fsl_course_data/rest/Nets/groupICA100/Noise__inv.nii.gz
+fsl_course_data/rest/Nets/groupICA100/mask.nii.gz
+fsl_course_data/rest/Nets/groupICA100/melodic_pca.nii.gz
+fsl_course_data/rest/Nets/groupICA100/report/
+fsl_course_data/rest/Nets/groupICA100/report/IC_76_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_90_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_49_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_13_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_79_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_60_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_74.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_17_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_86_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_90_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_99_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_16.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_76_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_9.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_69_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_27.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_91_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_61_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_2_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_65_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_29_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_21_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_6_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_95_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_85.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_73.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_61_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_16_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_69_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_45.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_66_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_48_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_80_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_46_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_60_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_42_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_7.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_74.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_31_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_68.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_23.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_23_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_59_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_15_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_56_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_27_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_33.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_81.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_63_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_34.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_12.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_59.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_8_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_99.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_7_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_48.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_7_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_99.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_22_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_51_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_34_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_46_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_47_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_97.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_70.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_14_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_46.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_49_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_8.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_11_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_90.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_62_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_41.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_41.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_18_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_100_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_50.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_9_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_100_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_61_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_81.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_65_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_87_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_88_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_36_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_88_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_95.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_57.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_37.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_36_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_4.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_86.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_13_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_32_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_39_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_25.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_64_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_40_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_33_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_71_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_8_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_59.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_98_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_56_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_88.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_19_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_25_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_97_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_55.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_11_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_89_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_64.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_22.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_29_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_12_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_26_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_15_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_84_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_71_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_91.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_74_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_81_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_67_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_33.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_67_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_70_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_78.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_17.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_14_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_39_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_41_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_97_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_80_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_78_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_11_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_49.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_10.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_19_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_88_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_16_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_38_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_60.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_53_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_38_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_51_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_89.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_57_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_62.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_66_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_65.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_10_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_19.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_51.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_37_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_57_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_91.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_40.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_58_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_4_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_36_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_33_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_68_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_94.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_6_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_40_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_9_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_85_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_36.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_5.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_96.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_47.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_48_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_10_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_84_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_47_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_74_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_35.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_54.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_11_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_69_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_92_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_14_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_37_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_98.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_49.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_5_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_62_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_65.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_41_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_58_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_18_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_10_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_84_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_32.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_36_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_79_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_90.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_6_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_89_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_45_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_34_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_91_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_20_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_78_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_79.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_6.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_32.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_1.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_100_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_77_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_53_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_99_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_85_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_69_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_1.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_87_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_20_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_75_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_48.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_71_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_81_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_42_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_61.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_35_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_81_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_7_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_67_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_72.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_68_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_88.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_86_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_30_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_5_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_75.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_52_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_43_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_50.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_56_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_8.png
+fsl_course_data/rest/Nets/groupICA100/report/EVplot.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_54_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_90_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_40_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_81_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_64.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_60_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_27_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_3_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_44_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_64_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_42_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_7_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_18.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_94_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_17.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_31_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_32_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_78_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_88_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_26.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_17_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_84.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_98_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_63.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_18_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_68_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_44.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_11.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_47_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_50_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_80_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_100_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_43_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_45_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_1_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_1_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_33_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_75.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_2_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_16.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_89_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_9_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_18_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_22.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_86_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_46_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_69.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_23.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_80.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_83_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_60_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_24.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_38_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_22_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_37_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_58.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_89.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_58.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_30_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_13.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_2_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_26_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_65_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_96_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_47_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_95_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_98.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_19_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_99_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_16_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_56.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_9.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_73_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_82_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_70_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_87.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_71.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_83_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_51.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_40.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_49_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_80.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_27_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_28_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_3_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_31_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_12_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_34_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_23_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_60.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_3_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_16_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_34.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_7.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_67.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_85_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_90_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_63_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_96.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_55_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_100.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_22_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_35_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_69.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_24_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_79_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_56.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_89_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_15.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_31_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_55_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_91_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_95_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_12.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_39_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_26_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_54_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_43_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_73_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/log.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_30_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_67.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_27.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_30.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_48_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_3.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_14_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_21_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_92.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_58_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_64_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_43_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_57_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_50_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_94_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_17_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_72_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_20.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_54_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_92_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_82_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_52.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_83.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_2_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_63.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_20_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_28.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_87_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_8_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_29.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_77_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_19.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_56_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_52.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_53_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_55.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_73_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_84.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_93_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_83_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_15.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_51_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_59_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_23_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_38.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_45_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_41_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_95.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_94_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_44.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_49_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_85_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_92.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_75_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_86.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_43.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_92_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_10_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_24.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_93_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_79_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_27_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_74_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_63_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_33_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_50_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_92_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_1_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_62_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_5_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_66_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_95_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_96_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_46.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_31.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_82_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_77.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_36.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_64_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_26_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_78_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_9_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_96_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_5_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_2.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_4_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_82.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_20.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_100.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_53_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_25_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_54_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_11.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_78.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_5.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_98_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_76.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_38.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_68_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_97_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_73.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_28_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_13_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_52_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_37_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_20_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_44_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_44_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_24_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_21_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_24_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_71.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_42.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_52_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_48_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_28.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_99_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_15_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_14.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_54.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_85.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_87.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_53.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_82.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_74_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_41_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_32_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_44_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_57_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_40_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_24_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_25.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_42_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_1_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_98_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_47.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_21.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_3_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_8_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_26.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_76.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_93_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_75_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_63_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_52_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_4_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_67_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_97_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_13.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_83.html
+fsl_course_data/rest/Nets/groupICA100/report/00index.html
+fsl_course_data/rest/Nets/groupICA100/report/nav.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_35_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/head.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_21.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_68.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_62_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_10.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_28_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_14.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_84_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_76_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_21_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_72.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_66.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_39.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_25_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_25_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_39_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_70_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_72_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_80_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_77_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_66_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_61.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_29_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_43.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_15_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_94_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_96_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_29_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_70_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_70.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_4_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_13_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_77.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_35.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_6.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_58_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_97.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_55_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_17_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_12_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_57.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_79.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_38_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_28_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_4.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_71_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_59_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_91_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_12_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_34_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_3.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_61_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_87_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_66.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_45_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_77_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_30_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_72_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_31.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_51_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_2.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_37.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_55_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_93.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_22_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_19_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_75_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_23_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_50_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_93_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_35_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_46_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_59_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_30.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_86_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_73_MMfit.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_93.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_76_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_42.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_29.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_72_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_62.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_82_MM.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_6_thresh.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_32_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_53.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_18.html
+fsl_course_data/rest/Nets/groupICA100/report/IC_65_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_39.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_94.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_83_prob.png
+fsl_course_data/rest/Nets/groupICA100/report/IC_45.png
+fsl_course_data/rest/Nets/groupICA100/melodic_Tmodes
+fsl_course_data/rest/Nets/groupICA100/melodic_FTmix
+fsl_course_data/rest/Nets/groupICA100/melodic_pcaE
+fsl_course_data/rest/Nets/groupICA100/melodic_mix
+fsl_course_data/rest/Nets/groupICA100/log.txt
+fsl_course_data/rest/Nets/groupICA100/melodic_FTdewhite
+fsl_course_data/rest/Nets/groupICA100/melodic_white
+fsl_course_data/rest/Nets/groupICA100/melodic_unmix
+fsl_course_data/rest/Nets/groupICA100/melodic_oIC.nii.gz
+fsl_course_data/rest/Nets/groupICA100/mean.nii.gz
+fsl_course_data/rest/Nets/groupICA100/melodic_ICstats
+fsl_course_data/rest/Nets/groupICA100/melodic_dewhite
+fsl_course_data/rest/Nets/groupICA100/melodic_IC.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat2.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat55.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat15.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat95.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_47
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_30
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_30.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_70.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat83.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat18.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_9
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_26.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat58.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_66.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_3
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_75
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat100.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat43.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_6.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_91
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat98.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat34.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_91.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat74.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_51.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_29
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_54
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_23
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_11.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat79.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_47.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat39.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat22.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_82
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_87.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_11
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_66
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_88
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat62.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_85
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_72.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_32.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_9.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat97.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_61
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_16
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_29.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat17.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_69.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat57.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_59
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_4.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat41.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_24
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_53
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_64.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_24.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat81.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_72
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_13.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_88.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_78
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_96
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_53.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_48.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat76.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_93.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_4
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat36.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat60.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_37
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_40
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_85.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat20.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_45.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_39.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_2.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_39
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_79.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_33
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat47.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_44
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_62.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_22.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat87.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_92
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_74.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_34.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_98
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_76
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat91.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat11.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat51.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat6.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_58.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat66.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_20
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_57
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_83.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_18.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat26.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_98.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_43.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_65
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_12
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_15.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_18
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_55.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_81
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat70.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_95.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat30.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat85.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_20.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_60.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat9.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_15
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_62
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat45.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_86
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_68
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat4.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat53.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat13.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat88.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat93.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_36.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_50
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_27
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat48.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_76.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_41.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_7
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_95
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat24.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_81.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat64.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_71
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat32.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_97.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat72.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat69.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_57.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_49
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_43
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_34
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat29.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_17.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_79
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_97
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_54.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_14.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_73
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_94.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_100.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_5
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat31.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat71.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_82.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat27.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_19.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat67.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_41
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_36
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_59.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_42.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_99.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_35.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_17
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_60
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat90.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_84
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_75.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat50.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat7.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat10.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat46.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_78.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_52
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_25
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_58
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_3.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_38.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_23.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat86.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_63.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat73.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat33.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_96.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_22
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_55
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_16.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat28.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_28
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_56.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat68.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_40.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_67
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_10
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_89
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat65.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat25.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_80.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_83
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat12.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat89.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat5.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat52.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_77.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat49.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_31
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_46
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat92.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_37.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_61.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat8.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_2
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat84.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_8
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_21.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_1.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_90
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat44.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_74
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat38.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_6
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_46.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat78.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_100
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_70
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat63.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat23.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_94
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_86.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat75.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat35.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_90.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_35
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_42
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_10.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_48
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_50.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_67.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat59.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat82.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_27.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat19.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_87
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_69
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_7.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat99.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat42.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_63
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_14
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat14.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat3.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat54.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_71.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat94.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_26
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_51
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_31.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_84.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat21.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_56
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_21
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat61.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_44.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_19
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_80
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_52.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_12.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_13
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_64
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_89.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_92.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat37.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat77.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_49.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/stats.log
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat40.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_45
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_32
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_38
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_5.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_25.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat80.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_65.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_99
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_8.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_77
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_33.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat96.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_73.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_93
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat56.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_68.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat1.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/MMstats_1
+fsl_course_data/rest/Nets/groupICA100/stats/thresh_zstat16.nii.gz
+fsl_course_data/rest/Nets/groupICA100/stats/probmap_28.nii.gz
+fsl_course_data/rest/Nets/groupICA100/melodic_pcaD
+fsl_course_data/rest/Nets/groupICA100/eigenvalues_percent
+fsl_course_data/rest/Nets/run_groupICA.sh
+fsl_course_data/rest/Nets/design/
+fsl_course_data/rest/Nets/design/unpaired_ttest.png
+fsl_course_data/rest/Nets/design/unpaired_ttest_1con.grp
+fsl_course_data/rest/Nets/design/unpaired_ttest.mat
+fsl_course_data/rest/Nets/design/unpaired_ttest.ppm
+fsl_course_data/rest/Nets/design/unpaired_ttest_1con.con
+fsl_course_data/rest/Nets/design/unpaired_ttest.fsf
+fsl_course_data/rest/Nets/design/unpaired_ttest_1con.mat
+fsl_course_data/rest/Nets/design/unpaired_ttest_1con_cov.ppm
+fsl_course_data/rest/Nets/design/unpaired_ttest_cov.ppm
+fsl_course_data/rest/Nets/design/unpaired_ttest_1con.fsf
+fsl_course_data/rest/Nets/design/unpaired_ttest.con
+fsl_course_data/rest/Nets/design/unpaired_ttest_1con.ppm
+fsl_course_data/rest/Nets/design/unpaired_ttest_cov.png
+fsl_course_data/rest/Nets/design/unpaired_ttest_1con_cov.png
+fsl_course_data/rest/Nets/design/unpaired_ttest.grp
+fsl_course_data/rest/Nets/design/unpaired_ttest_1con.png
+fsl_course_data/rest/Nets/groupICA100.dr/
+fsl_course_data/rest/Nets/groupICA100.dr/dr_stage1_subject00010.txt
+fsl_course_data/rest/Nets/groupICA100.dr/dr_stage1_subject00006.txt
+fsl_course_data/rest/Nets/groupICA100.dr/dr_stage1_subject00001.txt
+fsl_course_data/rest/Nets/groupICA100.dr/dr_stage1_subject00008.txt
+fsl_course_data/rest/Nets/groupICA100.dr/maskALL.nii.gz
+fsl_course_data/rest/Nets/groupICA100.dr/dr_stage1_subject00011.txt
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.6
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drA.e4455710.10
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.13
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.64
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.31
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.80
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.46
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.19
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drC.e4455715.1
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drC.o4455715.7
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drA.o4455710.1
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drA.e4455710.7
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.90
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.56
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.21
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.74
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.22
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.55
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.93
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.77
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.99
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.28
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.38
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.89
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.67
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.10
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.45
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.83
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.32
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drC.o4455715.10
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.17
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.60
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.48
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.35
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.84
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.42
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.94
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.52
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.25
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.58
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.70
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drA.o4455710.6
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.26
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.51
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.97
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.79
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.73
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drC.e4455715.6
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.63
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.14
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.69
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.41
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.87
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.36
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.1
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.7
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.45
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.83
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.32
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drC.e4455715.10
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.38
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.89
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.67
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.10
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.9
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.3
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.5
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drA.o4455710.8
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.77
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.99
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.28
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.22
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.55
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.93
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drA.e4455710.4
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drB.o4455712
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drA.o4455710.2
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drC
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drC.o4455715.4
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drC.e4455715.2
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drC.e4455715.8
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.74
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.90
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.56
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.21
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.31
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.80
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.46
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.19
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.13
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.64
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drA.o4455710.10
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.69
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.41
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.87
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.36
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.63
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.14
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.73
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.26
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.51
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.97
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.79
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drC.o4455715.3
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drC.e4455715.5
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drC.o4455715.9
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drA.e4455710.9
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.58
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.70
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.94
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.52
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.25
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drA.e4455710.3
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drA.o4455710.5
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.100
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.8
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.4
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.2
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.35
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.84
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.42
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.17
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.60
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.48
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.72
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.96
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.50
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.27
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.78
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drA.o4455710.7
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drA.e4455710.1
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drC.e4455715.7
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drC.o4455715.1
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.68
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.37
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.86
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.40
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.15
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.62
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.100
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.6
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.43
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.85
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.34
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.61
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.16
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.49
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.59
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.71
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.24
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.53
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.95
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.76
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.29
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.98
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.92
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.54
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.23
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drA.o4455710.12
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drC.o4455715.11
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.33
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.82
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.44
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.88
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.39
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.11
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.66
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drA.e4455710.11
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.7
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.1
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/command
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.47
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.81
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.30
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.18
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drC.e4455715.12
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.65
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.12
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drA
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drC.o4455715.6
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.75
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.20
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.57
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.91
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drA.e4455710.6
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drC.o4455715.8
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drC.o4455715.2
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drC.e4455715.4
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drA.e4455710.2
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drA.o4455710.4
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.24
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.53
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.95
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.59
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.71
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drA.e4455710.8
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.5
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.3
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.9
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.61
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.16
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.49
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.43
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.85
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.34
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.15
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.62
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.68
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.37
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.86
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.40
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.96
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.50
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.27
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.78
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.72
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.20
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.57
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.91
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.75
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.65
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.12
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.47
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.81
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.30
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.18
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drC.o4455715.12
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drA.o4455710.11
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.88
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.39
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.11
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.66
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drB.e4455712
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drC.e4455715.11
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.33
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.82
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.44
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.2
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.4
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.8
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drA.e4455710.12
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drA.e4455710.5
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drA.o4455710.3
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.92
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.54
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.23
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.76
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.e4455734.29
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drD.o4455734.98
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drA.o4455710.9
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drC.e4455715.9
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drC.o4455715.5
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drC.e4455715.3
+fsl_course_data/rest/Nets/groupICA100.dr/scripts+logs/drB
+fsl_course_data/rest/Nets/groupICA100.dr/dr_stage1_subject00009.txt
+fsl_course_data/rest/Nets/groupICA100.dr/dr_stage1_subject00000.txt
+fsl_course_data/rest/Nets/groupICA100.dr/dr_stage1_subject00007.txt
+fsl_course_data/rest/Nets/groupICA100.dr/dr_stage1_subject00004.txt
+fsl_course_data/rest/Nets/groupICA100.dr/dr_stage1_subject00003.txt
+fsl_course_data/rest/Nets/groupICA100.dr/dr_stage1_subject00002.txt
+fsl_course_data/rest/Nets/groupICA100.dr/dr_stage1_subject00005.txt
+fsl_course_data/rest/Nets/groupICA100.dr/mask.nii.gz
+fsl_course_data/rest/Nets/groupICA100.sum/
+fsl_course_data/rest/Nets/groupICA100.sum/0036.png
+fsl_course_data/rest/Nets/groupICA100.sum/0031.png
+fsl_course_data/rest/Nets/groupICA100.sum/0092.png
+fsl_course_data/rest/Nets/groupICA100.sum/0043.png
+fsl_course_data/rest/Nets/groupICA100.sum/0095.png
+fsl_course_data/rest/Nets/groupICA100.sum/0044.png
+fsl_course_data/rest/Nets/groupICA100.sum/0038.png
+fsl_course_data/rest/Nets/groupICA100.sum/0071.png
+fsl_course_data/rest/Nets/groupICA100.sum/0076.png
+fsl_course_data/rest/Nets/groupICA100.sum/0004.png
+fsl_course_data/rest/Nets/groupICA100.sum/0078.png
+fsl_course_data/rest/Nets/groupICA100.sum/0003.png
+fsl_course_data/rest/Nets/groupICA100.sum/0012.png
+fsl_course_data/rest/Nets/groupICA100.sum/0015.png
+fsl_course_data/rest/Nets/groupICA100.sum/0069.png
+fsl_course_data/rest/Nets/groupICA100.sum/0067.png
+fsl_course_data/rest/Nets/groupICA100.sum/0060.png
+fsl_course_data/rest/Nets/groupICA100.sum/0055.png
+fsl_course_data/rest/Nets/groupICA100.sum/0084.png
+fsl_course_data/rest/Nets/groupICA100.sum/0029.png
+fsl_course_data/rest/Nets/groupICA100.sum/0052.png
+fsl_course_data/rest/Nets/groupICA100.sum/0083.png
+fsl_course_data/rest/Nets/groupICA100.sum/0020.png
+fsl_course_data/rest/Nets/groupICA100.sum/0027.png
+fsl_course_data/rest/Nets/groupICA100.sum/0002.png
+fsl_course_data/rest/Nets/groupICA100.sum/0005.png
+fsl_course_data/rest/Nets/groupICA100.sum/0079.png
+fsl_course_data/rest/Nets/groupICA100.sum/0077.png
+fsl_course_data/rest/Nets/groupICA100.sum/0070.png
+fsl_course_data/rest/Nets/groupICA100.sum/0094.png
+fsl_course_data/rest/Nets/groupICA100.sum/0045.png
+fsl_course_data/rest/Nets/groupICA100.sum/0039.png
+fsl_course_data/rest/Nets/groupICA100.sum/0093.png
+fsl_course_data/rest/Nets/groupICA100.sum/0042.png
+fsl_course_data/rest/Nets/groupICA100.sum/0030.png
+fsl_course_data/rest/Nets/groupICA100.sum/0037.png
+fsl_course_data/rest/Nets/groupICA100.sum/0026.png
+fsl_course_data/rest/Nets/groupICA100.sum/0021.png
+fsl_course_data/rest/Nets/groupICA100.sum/0053.png
+fsl_course_data/rest/Nets/groupICA100.sum/0082.png
+fsl_course_data/rest/Nets/groupICA100.sum/0054.png
+fsl_course_data/rest/Nets/groupICA100.sum/0085.png
+fsl_course_data/rest/Nets/groupICA100.sum/0028.png
+fsl_course_data/rest/Nets/groupICA100.sum/0061.png
+fsl_course_data/rest/Nets/groupICA100.sum/0066.png
+fsl_course_data/rest/Nets/groupICA100.sum/0014.png
+fsl_course_data/rest/Nets/groupICA100.sum/0068.png
+fsl_course_data/rest/Nets/groupICA100.sum/0013.png
+fsl_course_data/rest/Nets/groupICA100.sum/0022.png
+fsl_course_data/rest/Nets/groupICA100.sum/0059.png
+fsl_course_data/rest/Nets/groupICA100.sum/0088.png
+fsl_course_data/rest/Nets/groupICA100.sum/0025.png
+fsl_course_data/rest/Nets/groupICA100.sum/0057.png
+fsl_course_data/rest/Nets/groupICA100.sum/0086.png
+fsl_course_data/rest/Nets/groupICA100.sum/0050.png
+fsl_course_data/rest/Nets/groupICA100.sum/0081.png
+fsl_course_data/rest/Nets/groupICA100.sum/0019.png
+fsl_course_data/rest/Nets/groupICA100.sum/0065.png
+fsl_course_data/rest/Nets/groupICA100.sum/0062.png
+fsl_course_data/rest/Nets/groupICA100.sum/0010.png
+fsl_course_data/rest/Nets/groupICA100.sum/0017.png
+fsl_course_data/rest/Nets/groupICA100.sum/0006.png
+fsl_course_data/rest/Nets/groupICA100.sum/0001.png
+fsl_course_data/rest/Nets/groupICA100.sum/0073.png
+fsl_course_data/rest/Nets/groupICA100.sum/0008.png
+fsl_course_data/rest/Nets/groupICA100.sum/0074.png
+fsl_course_data/rest/Nets/groupICA100.sum/0090.png
+fsl_course_data/rest/Nets/groupICA100.sum/0041.png
+fsl_course_data/rest/Nets/groupICA100.sum/0097.png
+fsl_course_data/rest/Nets/groupICA100.sum/0046.png
+fsl_course_data/rest/Nets/groupICA100.sum/0099.png
+fsl_course_data/rest/Nets/groupICA100.sum/0048.png
+fsl_course_data/rest/Nets/groupICA100.sum/0034.png
+fsl_course_data/rest/Nets/groupICA100.sum/0033.png
+fsl_course_data/rest/Nets/groupICA100.sum/0016.png
+fsl_course_data/rest/Nets/groupICA100.sum/0011.png
+fsl_course_data/rest/Nets/groupICA100.sum/0063.png
+fsl_course_data/rest/Nets/groupICA100.sum/0018.png
+fsl_course_data/rest/Nets/groupICA100.sum/0064.png
+fsl_course_data/rest/Nets/groupICA100.sum/0051.png
+fsl_course_data/rest/Nets/groupICA100.sum/0080.png
+fsl_course_data/rest/Nets/groupICA100.sum/0056.png
+fsl_course_data/rest/Nets/groupICA100.sum/0087.png
+fsl_course_data/rest/Nets/groupICA100.sum/0058.png
+fsl_course_data/rest/Nets/groupICA100.sum/0089.png
+fsl_course_data/rest/Nets/groupICA100.sum/0024.png
+fsl_course_data/rest/Nets/groupICA100.sum/0023.png
+fsl_course_data/rest/Nets/groupICA100.sum/0032.png
+fsl_course_data/rest/Nets/groupICA100.sum/0098.png
+fsl_course_data/rest/Nets/groupICA100.sum/0049.png
+fsl_course_data/rest/Nets/groupICA100.sum/0035.png
+fsl_course_data/rest/Nets/groupICA100.sum/0096.png
+fsl_course_data/rest/Nets/groupICA100.sum/0047.png
+fsl_course_data/rest/Nets/groupICA100.sum/0091.png
+fsl_course_data/rest/Nets/groupICA100.sum/0040.png
+fsl_course_data/rest/Nets/groupICA100.sum/0009.png
+fsl_course_data/rest/Nets/groupICA100.sum/0075.png
+fsl_course_data/rest/Nets/groupICA100.sum/0072.png
+fsl_course_data/rest/Nets/groupICA100.sum/0000.png
+fsl_course_data/rest/Nets/groupICA100.sum/0007.png
+rm: cannot remove 'rest': No such file or directory
+</pre></div>
+</div>
+</div>
+</div>
+<section id="fslnets-network-analysis-setup">
+<h3>FSLnets Network Analysis Setup<a class="headerlink" href="#fslnets-network-analysis-setup" title="Link to this heading">#</a></h3>
+<p>Technical Note: FSLnets is typically executed using the <code class="docutils literal notranslate"><span class="pre">fslipython</span></code> command in a terminal, which provides access to FSL’s Python environment with all necessary dependencies. Since Jupyter notebooks can’t directly invoke <code class="docutils literal notranslate"><span class="pre">fslipython</span></code> commands,  this demo creates standalone Python scripts (using <code class="docutils literal notranslate"><span class="pre">%%writefile</span></code>) containing the FSLnets code and runs them externally using subprocess calls within the following utility function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="c1">#create output directory</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s2">"FSLnets"</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Utility function to run fslpython scripts safely in Jupyter</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">run_fslpython</span><span class="p">(</span><span class="n">script_path</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Run a Python script using fslpython inside a Jupyter notebook.</span>
+<span class="sd">    Prevents hanging by disabling stdin and capturing output.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    script_path : str</span>
+<span class="sd">        Path to the Python script to run with fslpython.</span>
+
+<span class="sd">    """</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+        <span class="p">[</span><span class="s2">"fslpython"</span><span class="p">,</span> <span class="n">script_path</span><span class="p">],</span>
+        <span class="n">stdin</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">DEVNULL</span><span class="p">,</span>      <span class="c1"># prevent it from waiting for input</span>
+        <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>           <span class="c1"># capture stdout and stderr</span>
+        <span class="n">text</span><span class="o">=</span><span class="kc">True</span>                      <span class="c1"># decode bytes to string</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">verbose</span> <span class="ow">or</span> <span class="n">result</span><span class="o">.</span><span class="n">stderr</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">stdout</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"✅ STDOUT:</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">stderr</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"⚠️ STDERR:</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+            
+    <span class="c1"># No return statement</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="networks-estimation">
+<h2>Networks estimation<a class="headerlink" href="#networks-estimation" title="Link to this heading">#</a></h2>
+<p><strong>Loading Data:</strong></p>
+<p>FSLnets loads timeseries data with <code class="docutils literal notranslate"><span class="pre">nets.load()</span></code>from dual-regression output into a <code class="docutils literal notranslate"><span class="pre">ts</span></code> object containing multiple fields for network analysis.</p>
+<p><strong>Quality Controland Cleaning Components:</strong></p>
+<ul class="simple">
+<li><p>Spectral Analysis: <code class="docutils literal notranslate"><span class="pre">nets.plot_spectra(ts)</span></code> visualizes temporal spectra of resting-state networks to verify data quality</p></li>
+<li><p>Component Cleanup: Remove artifact components using <code class="docutils literal notranslate"><span class="pre">nets.clean()</span></code> with predefined good nodes based on spatial maps, timeseries, and frequency spectra.</p></li>
+</ul>
+<p><strong>Network Matrix Calculation (netmats):</strong>
+Two types of connectivity matrices are computed for each subject:</p>
+<ul class="simple">
+<li><p>Full Correlation (<code class="docutils literal notranslate"><span class="pre">corr</span></code>): Simple correlation coefficients between all node pairs</p></li>
+<li><p>Partial Correlation (<code class="docutils literal notranslate"><span class="pre">ridgep</span></code>): Regularized partial correlations that better estimate direct connections by removing indirect effects</p></li>
+</ul>
+<p>→ Partial correlation matrices typically provide more accurate representations of direct network connections compared to full correlation matrices.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> ./FSLnets/estimate_network.py
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fsl</span><span class="w"> </span><span class="kn">import</span> <span class="n">nets</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
+
+<span class="c1"># Load the ICA time series</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">nets</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'./fsl_course_data/rest/Nets/groupICA100.dr'</span><span class="p">,</span>
+               <span class="n">tr</span><span class="o">=</span><span class="mf">0.72</span><span class="p">,</span>
+               <span class="n">varnorm</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+               <span class="n">thumbnaildir</span><span class="o">=</span><span class="s1">'./fsl_course_data/rest/Nets/groupICA100.sum'</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"📘 Help on ts.ts:"</span><span class="p">)</span>
+<span class="n">help</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">ts</span><span class="p">)</span>
+
+<span class="c1"># Plot original spectra</span>
+<span class="n">nets</span><span class="o">.</span><span class="n">plot_spectra</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">'./FSLnets/temporal_spectra_of_RSNs.png'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1"># Clean the time series using selected nodes</span>
+<span class="n">goodnodes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span>
+             <span class="mi">12</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span>
+             <span class="mi">26</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span>
+             <span class="mi">36</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">49</span><span class="p">,</span> <span class="mi">51</span><span class="p">,</span>
+             <span class="mi">52</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">57</span><span class="p">,</span> <span class="mi">58</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">61</span><span class="p">,</span> <span class="mi">63</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span>
+             <span class="mi">65</span><span class="p">,</span> <span class="mi">69</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">71</span><span class="p">,</span> <span class="mi">72</span><span class="p">,</span> <span class="mi">73</span><span class="p">,</span> <span class="mi">76</span><span class="p">,</span> <span class="mi">79</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span>
+             <span class="mi">86</span><span class="p">,</span> <span class="mi">92</span><span class="p">,</span> <span class="mi">96</span><span class="p">]</span>
+
+<span class="n">nets</span><span class="o">.</span><span class="n">clean</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">goodnodes</span><span class="p">,</span> <span class="n">aggressive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># aggressive cleanup</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'./FSLnets/ts_cleaned.pkl'</span><span class="p">,</span> <span class="s1">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+<span class="c1"># Plot cleaned spectra</span>
+<span class="n">nets</span><span class="o">.</span><span class="n">plot_spectra</span><span class="p">(</span><span class="n">ts</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">'./FSLnets/cleaned_spectra.png'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1"># Compute full and partial correlation matrices</span>
+<span class="n">Fnetmats</span> <span class="o">=</span> <span class="n">nets</span><span class="o">.</span><span class="n">netmats</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">'corr'</span><span class="p">)</span>
+<span class="n">Pnetmats</span> <span class="o">=</span> <span class="n">nets</span><span class="o">.</span><span class="n">netmats</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">'ridgep'</span><span class="p">)</span>
+
+<span class="c1"># Save netmats as NumPy arrays for inspection</span>
+<span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'./FSLnets/Fnetmats.npy'</span><span class="p">,</span> <span class="n">Fnetmats</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'./FSLnets/Pnetmats.npy'</span><span class="p">,</span> <span class="n">Pnetmats</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Fnetmats shape:"</span><span class="p">,</span> <span class="n">Fnetmats</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="c1"># number of rows is equal to the number of subjects</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Pnetmats shape:"</span><span class="p">,</span> <span class="n">Pnetmats</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"✅ Finished computing and saving results."</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing ./FSLnets/estimate_network.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_scroll-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run_fslpython</span><span class="p">(</span><span class="s1">'./FSLnets/estimate_network.py'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>✅ STDOUT:
+ 📘 Help on ts.ts:
+Help on list object:
+
+class list(object)
+ |  list(iterable=(), /)
+ |
+ |  Built-in mutable sequence.
+ |
+ |  If no argument is given, the constructor creates a new empty list.
+ |  The argument must be an iterable if specified.
+ |
+ |  Methods defined here:
+ |
+ |  __add__(self, value, /)
+ |      Return self+value.
+ |
+ |  __contains__(self, key, /)
+ |      Return bool(key in self).
+ |
+ |  __delitem__(self, key, /)
+ |      Delete self[key].
+ |
+ |  __eq__(self, value, /)
+ |      Return self==value.
+ |
+ |  __ge__(self, value, /)
+ |      Return self&gt;=value.
+ |
+ |  __getattribute__(self, name, /)
+ |      Return getattr(self, name).
+ |
+ |  __getitem__(self, index, /)
+ |      Return self[index].
+ |
+ |  __gt__(self, value, /)
+ |      Return self&gt;value.
+ |
+ |  __iadd__(self, value, /)
+ |      Implement self+=value.
+ |
+ |  __imul__(self, value, /)
+ |      Implement self*=value.
+ |
+ |  __init__(self, /, *args, **kwargs)
+ |      Initialize self.  See help(type(self)) for accurate signature.
+ |
+ |  __iter__(self, /)
+ |      Implement iter(self).
+ |
+ |  __le__(self, value, /)
+ |      Return self&lt;=value.
+ |
+ |  __len__(self, /)
+ |      Return len(self).
+ |
+ |  __lt__(self, value, /)
+ |      Return self&lt;value.
+ |
+ |  __mul__(self, value, /)
+ |      Return self*value.
+ |
+ |  __ne__(self, value, /)
+ |      Return self!=value.
+ |
+ |  __repr__(self, /)
+ |      Return repr(self).
+ |
+ |  __reversed__(self, /)
+ |      Return a reverse iterator over the list.
+ |
+ |  __rmul__(self, value, /)
+ |      Return value*self.
+ |
+ |  __setitem__(self, key, value, /)
+ |      Set self[key] to value.
+ |
+ |  __sizeof__(self, /)
+ |      Return the size of the list in memory, in bytes.
+ |
+ |  append(self, object, /)
+ |      Append object to the end of the list.
+ |
+ |  clear(self, /)
+ |      Remove all items from list.
+ |
+ |  copy(self, /)
+ |      Return a shallow copy of the list.
+ |
+ |  count(self, value, /)
+ |      Return number of occurrences of value.
+ |
+ |  extend(self, iterable, /)
+ |      Extend list by appending elements from the iterable.
+ |
+ |  index(self, value, start=0, stop=9223372036854775807, /)
+ |      Return first index of value.
+ |
+ |      Raises ValueError if the value is not present.
+ |
+ |  insert(self, index, object, /)
+ |      Insert object before index.
+ |
+ |  pop(self, index=-1, /)
+ |      Remove and return item at index (default last).
+ |
+ |      Raises IndexError if list is empty or index is out of range.
+ |
+ |  remove(self, value, /)
+ |      Remove first occurrence of value.
+ |
+ |      Raises ValueError if the value is not present.
+ |
+ |  reverse(self, /)
+ |      Reverse *IN PLACE*.
+ |
+ |  sort(self, /, *, key=None, reverse=False)
+ |      Sort the list in ascending order and return None.
+ |
+ |      The sort is in-place (i.e. the list itself is modified) and stable (i.e. the
+ |      order of two equal elements is maintained).
+ |
+ |      If a key function is given, apply it once to each list item and sort them,
+ |      ascending or descending, according to their function values.
+ |
+ |      The reverse flag can be set to sort in descending order.
+ |
+ |  ----------------------------------------------------------------------
+ |  Class methods defined here:
+ |
+ |  __class_getitem__(...)
+ |      See PEP 585
+ |
+ |  ----------------------------------------------------------------------
+ |  Static methods defined here:
+ |
+ |  __new__(*args, **kwargs)
+ |      Create and return a new object.  See help(type) for accurate signature.
+ |
+ |  ----------------------------------------------------------------------
+ |  Data and other attributes defined here:
+ |
+ |  __hash__ = None
+
+Fnetmats shape: (12, 3969)
+Pnetmats shape: (12, 3969)
+✅ Finished computing and saving results.
+</pre></div>
+</div>
+</div>
+</div>
+<section id="node-time-series-power-spectra">
+<h3>Node time series power spectra<a class="headerlink" href="#node-time-series-power-spectra" title="Link to this heading">#</a></h3>
+<p>The top section of the plot displays the average power spectrum for each group-ICA component across all subjects. The bottom section shows all spectra overlaid, with the median spectrum highlighted as a thick black line.</p>
+<p>Ideally, spectra should decline smoothly at higher frequencies. Components with elevated power in the mid to high frequency range (a “raised tail”) may indicate noise. The median spectrum also appears as a thin grey line behind each individual plot on the left.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">'#### Original spectra'</span><span class="p">),</span> <span class="n">Image</span><span class="p">(</span><span class="s1">'./FSLnets/temporal_spectra_of_RSNs.png'</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<h4 class="rubric" id="original-spectra">Original spectra</h4>
+<img alt="../_images/6bdfaf3955fd6ccbbea96054b809bce2ea0eb951163a688860a94450198069e7.png" src="../_images/6bdfaf3955fd6ccbbea96054b809bce2ea0eb951163a688860a94450198069e7.png">
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">'#### Cleaned spectra'</span><span class="p">),</span> <span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="s1">'./FSLnets/cleaned_spectra.png'</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<h4 class="rubric" id="cleaned-spectra">Cleaned spectra</h4>
+<img alt="../_images/cd8bd365360007007955d2082f526e11b42215c1c8d2f04a00e94e706394f17a.png" src="../_images/cd8bd365360007007955d2082f526e11b42215c1c8d2f04a00e94e706394f17a.png">
+</div>
+</div>
+</section>
+</section>
+<section id="group-average-netmat-summaries">
+<h2>Group-average netmat summaries<a class="headerlink" href="#group-average-netmat-summaries" title="Link to this heading">#</a></h2>
+<p>The following script performs group-level statistical analysis on the individual subject network matrices computed previously. It calculates group averages and statistical significance across all subjects using <code class="docutils literal notranslate"><span class="pre">nets.groupmean()</span></code>, which produces both simple averages (<code class="docutils literal notranslate"><span class="pre">Mnet</span></code>) and one-sample t-test results (<code class="docutils literal notranslate"><span class="pre">Znet</span></code>) testing connectivity strength against zero.</p>
+<p>The analysis generates two key visualizations: a summary figure showing group t-test results alongside a consistency scatter plot (indicating how similar individual subjects are to the group average), and a network hierarchy plot that reveals how individual nodes cluster into larger resting-state networks through hierarchical clustering based on covariance patterns.</p>
+<p>The script also demonstrates how to access specific connectivity values (e.g., Mnet_P[2, 26]) and map them back to original component indices using <code class="docutils literal notranslate"><span class="pre">ts.nodes</span></code>, accounting for the fact that node numbering changes after artifact removal during the cleaning step.</p>
+<p><em>This analysis reveals group-level connectivity patterns and network organization, including identification of well-known resting-state networks like the default mode network.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> ./FSLnets/nets_group_analysis.py
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fsl</span><span class="w"> </span><span class="kn">import</span> <span class="n">nets</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
+
+<span class="n">Fnetmats</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'./FSLnets/Fnetmats.npy'</span><span class="p">)</span>
+<span class="n">Pnetmats</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'./FSLnets/Pnetmats.npy'</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'./FSLnets/ts_cleaned.pkl'</span><span class="p">,</span> <span class="s1">'rb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">ts</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="c1"># === Group-level analysis ===</span>
+<span class="n">Znet_F</span><span class="p">,</span> <span class="n">Mnet_F</span> <span class="o">=</span> <span class="n">nets</span><span class="o">.</span><span class="n">groupmean</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">Fnetmats</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">Znet_P</span><span class="p">,</span> <span class="n">Mnet_P</span> <span class="o">=</span> <span class="n">nets</span><span class="o">.</span><span class="n">groupmean</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">Pnetmats</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">'Partial correlation'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">'./FSLnets/groupmean_partial_corr.png'</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">'tight'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"📊 Summary figure plot saved as 'groupmean_partial_corr.png'"</span><span class="p">)</span>
+
+<span class="c1"># Save matrices</span>
+<span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'./FSLnets/Znet_F.npy'</span><span class="p">,</span> <span class="n">Znet_F</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'./FSLnets/Znet_P.npy'</span><span class="p">,</span> <span class="n">Znet_P</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'./FSLnets/Mnet_F.npy'</span><span class="p">,</span> <span class="n">Mnet_F</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'./FSLnets/Mnet_P.npy'</span><span class="p">,</span> <span class="n">Mnet_P</span><span class="p">)</span>
+
+<span class="c1"># Print a specific matrix entry as requested</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"✅ Group means calculated."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Mnet_P[2, 26] ="</span><span class="p">,</span> <span class="n">Mnet_P</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">26</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Original node indices for row 3 and column 27:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"ts.nodes[2] ="</span><span class="p">,</span> <span class="n">ts</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"ts.nodes[26] ="</span><span class="p">,</span> <span class="n">ts</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">26</span><span class="p">])</span>
+
+<span class="c1"># === Network hierarchy visualization ===</span>
+<span class="n">nets</span><span class="o">.</span><span class="n">plot_hierarchy</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">Znet_F</span><span class="p">,</span> <span class="n">Znet_P</span><span class="p">,</span> <span class="n">lowlabel</span><span class="o">=</span><span class="s1">'Full correlations'</span><span class="p">,</span> <span class="n">highlabel</span><span class="o">=</span><span class="s1">'Partial correlations'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">'./FSLnets/network_hierarchy.png'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"📊 Network hierarchy plot saved as 'network_hierarchy.png'"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing ./FSLnets/nets_group_analysis.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run_fslpython</span><span class="p">(</span><span class="s1">'./FSLnets/nets_group_analysis.py'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>✅ STDOUT:
+ 📊 Summary figure plot saved as 'groupmean_partial_corr.png'
+✅ Group means calculated.
+Mnet_P[2, 26] = 6.654220574631274
+Original node indices for row 3 and column 27:
+ts.nodes[2] = 2
+ts.nodes[26] = 32
+📊 Network hierarchy plot saved as 'network_hierarchy.png'
+
+⚠️ STDERR:
+ invalid value encountered in divide
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="s1">'./FSLnets/groupmean_partial_corr.png'</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/d7ddfc053baa93f3a1646058a16ee363f5d06ca9e96f35e7b91d5da219d9b5f9.png" src="../_images/d7ddfc053baa93f3a1646058a16ee363f5d06ca9e96f35e7b91d5da219d9b5f9.png">
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="s1">'./FSLnets/network_hierarchy.png'</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/8a6d69b041221e501f0325b8b14d734ed4b275ca29944a80c662a7f3e8805377.png" src="../_images/8a6d69b041221e501f0325b8b14d734ed4b275ca29944a80c662a7f3e8805377.png">
+</div>
+</div>
+</section>
+<section id="cross-subject-comparison-with-netmats">
+<h2>Cross-subject comparison with netmats<a class="headerlink" href="#cross-subject-comparison-with-netmats" title="Link to this heading">#</a></h2>
+<p>This script performs statistical comparison between two groups (healthy controls vs. tumor patients) using the partial correlation network matrices. It implements a two-sample t-test with permutation testing via FSL’s randomise function, treating each network connection as a separate statistical test while correcting for multiple comparisons across all edges.</p>
+<p>The analysis uses pre-designed GLM files to compare connectivity patterns between groups with 5000 permutations per contrast. Results are visualized in two ways: a network matrix showing corrected p-values for significant group differences (p&lt;0.05), and detailed boxplots displaying the strongest between-group differences for specific node pairs. The boxplot visualization reveals which specific brain network connections differ most significantly between groups, with connection strength indicated by line thickness and color (red=positive correlation, blue=negative/anti-correlation), and statistical significance shown as 1-p values (values &gt;0.95 indicate significant differences after multiple comparison correction).</p>
+<p><em>This analysis identifies specific network connections that are disrupted in tumor patients compared to healthy controls, providing insights into disease-related changes in brain connectivity.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> ./FSLnets/cross_subject_comparison.py
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fsl</span><span class="w"> </span><span class="kn">import</span> <span class="n">nets</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Load cleaned timeseries and partial correlation netmats</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'./FSLnets/ts_cleaned.pkl'</span><span class="p">,</span> <span class="s1">'rb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">ts</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="c1">#with open('Pnetmats.pkl', 'rb') as f:</span>
+<span class="c1">#    Pnetmats = pickle.load(f)</span>
+<span class="n">Pnetmats</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'./FSLnets/Pnetmats.npy'</span><span class="p">)</span>
+<span class="n">Znet_P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'./FSLnets/Znet_P.npy'</span><span class="p">)</span>
+
+
+<span class="c1"># Perform two-sample t-test using randomise</span>
+<span class="n">p_corr</span><span class="p">,</span> <span class="n">p_uncorr</span> <span class="o">=</span> <span class="n">nets</span><span class="o">.</span><span class="n">glm</span><span class="p">(</span>
+    <span class="n">ts</span><span class="p">,</span>
+    <span class="n">Pnetmats</span><span class="p">,</span>
+    <span class="s1">'./fsl_course_data/rest/Nets/design/unpaired_ttest_1con.mat'</span><span class="p">,</span>
+    <span class="s1">'./fsl_course_data/rest/Nets/design/unpaired_ttest_1con.con'</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">'./FSLnets/corrected_pvalues.png'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1"># Save p-values to file for later reuse</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'./FSLnets/p_corr.pkl'</span><span class="p">,</span> <span class="s1">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">p_corr</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'./FSLnets/p_uncorr.pkl'</span><span class="p">,</span> <span class="s1">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">p_uncorr</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+
+<span class="c1"># Visualize group differences using boxplots</span>
+<span class="n">nets</span><span class="o">.</span><span class="n">boxplots</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">Pnetmats</span><span class="p">,</span> <span class="n">Znet_P</span><span class="p">,</span> <span class="n">p_corr</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">groups</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">'./FSLnets/significant_group_differences.png'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"✅ Two-sample t-test complete and plots generated."</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing ./FSLnets/cross_subject_comparison.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">run_fslpython</span><span class="p">(</span><span class="s1">'./FSLnets/cross_subject_comparison.py'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>✅ STDOUT:
+ 3262303
+
+-----------------
+Contrast 1 [1 -1]
+-----------------
+
+Node i | Node j | T statistic | P value  
+------ | ------ | ----------- | ---------
+39     | 76     | 7.6404834   | 0.9751082
+✅ Two-sample t-test complete and plots generated.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="s1">'./FSLnets/corrected_pvalues.png'</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/0239ea5d25d0a1c4bfbeec745557eb94bca6f8ee0dc266a519df9a2f2a7548fe.png" src="../_images/0239ea5d25d0a1c4bfbeec745557eb94bca6f8ee0dc266a519df9a2f2a7548fe.png">
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="s1">'./FSLnets/significant_group_differences.png'</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b2a2145104bf376cd211caaa8f2287422926ac10e9a6d27009f5f3f06c3ca3c7.png" src="../_images/b2a2145104bf376cd211caaa8f2287422926ac10e9a6d27009f5f3f06c3ca3c7.png">
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./functional_imaging"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev" href="FSL_preproc_glm.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">FSL Preprocessing and GLM</p>
+      </div>
+    </a>
+    <a class="right-next" href="NiWrap.html" title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">NiWrap and Connectome Workbench</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citation">Citation:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-included-in-this-workflow">Tools included in this workflow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#educational-resources">Educational resources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#output-cpu-information">Output CPU information</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-fslnets">Introduction to FSLnets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-fsl-and-import-python-libraries">Load FSL and Import Python libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-course-material">Download course material</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fslnets-network-analysis-setup">FSLnets Network Analysis Setup</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#networks-estimation">Networks estimation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-time-series-power-spectra">Node time series power spectra</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#group-average-netmat-summaries">Group-average netmat summaries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-subject-comparison-with-netmats">Cross-subject comparison with netmats</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Neurodesk Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  
+</body></html>

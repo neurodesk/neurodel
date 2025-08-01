@@ -26,7 +26,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062">
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357">
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b">
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css">
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css">
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6">
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e">
   
@@ -204,6 +204,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../structural_imaging/sct_toolbox.html">SCT Toolbox</a></li>
 
 </ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Spectroscopy</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../spectroscopy/lcmodel.html">MR Spectroscopy with LCModel</a></li>
+</ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Diffusion Imaging</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../diffusion_imaging/Diffusion_TBSS_Demo.html">TBSS Tutorial</a></li>
@@ -218,7 +222,10 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../functional_imaging/AFNI_preprocessing_only.html">AFNI Preprocessing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional_imaging/AFNI_preprocessing_plus_glm.html">AFNI Preprocessing and GLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/AFNI_preprocessing_plus_glm_group.html">AFNI Preprocessing &amp; Group Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional_imaging/FSL_preproc_glm.html">FSL Preprocessing and GLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/FSLnets_course_practical.html">Resting state with FSLnets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/NiWrap.html">NiWrap and Connectome Workbench</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional_imaging/aslprep.html">ASLprep</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional_imaging/deepretinotopy.html">DeepRetinotopy</a></li>
 
@@ -230,6 +237,7 @@
 
 <li class="toctree-l1"><a class="reference internal" href="../functional_imaging/intro_to_preprocessing.html">Introduction to Preprocessing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../functional_imaging/mri_vol2surf.html">FreeSurfer: mri_vol2surf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/process_five_echo_dataset.html">tedana: TE Dependent ANAlysis</a></li>
 </ul>
 
     </div>
@@ -270,7 +278,7 @@
       
         <div class="header-article-item">
 
-<div class="article-header-buttons"><a href="https://doi.org/10.5072/zenodo.280091" target="_blank" rel="noopener noreferrer" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button">https://doi.org/10.5072/zenodo.280091</a>
+<div class="article-header-buttons"><a href="https://doi.org/10.5072/zenodo.303085" target="_blank" rel="noopener noreferrer" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button">https://doi.org/10.5072/zenodo.303085</a>
 
 
 
@@ -506,11 +514,28 @@ model name	: AMD EPYC 9454 48-Core Processor
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>['julia/1.10.4',
+ '&lt;H&gt;',
+ '&lt;H&gt;',
+ '&lt;H&gt;',
+ '&lt;H&gt;',
+ '&lt;H&gt;',
+ '&lt;H&gt;',
+ '&lt;H&gt;',
+ '&lt;H&gt;',
+ '&lt;H&gt;',
+ '&lt;H&gt;',
+ '&lt;H&gt;',
  'openssl/1.1',
  'python/3.10.4-gcccore-11.3.0',
+ '&lt;H&gt;',
+ '&lt;H&gt;',
+ '&lt;H&gt;',
+ '&lt;H&gt;',
+ '&lt;H&gt;',
  'libxslt/1.1.34-gcccore-11.3.0',
  'lxml/4.9.1-gcccore-11.3.0',
  'beautifulsoup/4.10.0-gcccore-11.3.0',
+ '&lt;H&gt;',
  'jupyter-server/1.21.0-gcccore-11.3.0',
  'jupyterlab/3.5.0-gcccore-11.3.0',
  'fsl/6.0.4']
@@ -538,19 +563,22 @@ model name	: AMD EPYC 9454 48-Core Processor
 </section>
 <section id="analysis">
 <h2>Analysis<a class="headerlink" href="#analysis" title="Link to this heading">#</a></h2>
-<div class="cell docutils container">
+<div class="cell tag_parameters docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">subject_id</span><span class="o">=</span><span class="s1">'01'</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#This cell needs to be tagged as "parameters" and it will be replaced at runtime - this can be done by clicking the little cog-wheels in the top right and then tagging the cell</span>
+<span class="n">subject_id</span><span class="o">=</span><span class="s1">'01'</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s1">'bet'</span><span class="p">,</span> <span class="s1">'mp2rage-'</span><span class="o">+</span><span class="n">subject_id</span><span class="o">+</span><span class="s1">'.nii'</span><span class="p">,</span> 
-                        <span class="s1">'mask-sub-'</span><span class="o">+</span><span class="n">subject_id</span><span class="o">+</span><span class="s1">'.nii'</span><span class="p">,</span> <span class="s1">'-R'</span><span class="p">],</span> 
-                       <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>bet<span class="w"> </span>mp2rage-<span class="o">{</span>subject_id<span class="o">}</span>.nii<span class="w"> </span>mask-sub-<span class="o">{</span>subject_id<span class="o">}</span>.nii<span class="w"> </span>-R
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mp2rage-01.nii mask-sub-01.nii -R
 </pre></div>
 </div>
 </div>
@@ -561,14 +589,22 @@ model name	: AMD EPYC 9454 48-Core Processor
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save Notebook and Run this on the terminal to test</span>
-<span class="c1"># !papermill test-analysis.ipynb papermill_output.ipynb --parameters_raw subject_id 02</span>
+<span class="c1"># papermill papermill-slurm-submission-example.ipynb papermill_output.ipynb --parameters_raw subject_id 02</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create sbat file and make sure to replace account string and and execution times and modules loaded:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create sbat file with the following content and make sure to replace account string and and execution times and modules loaded:</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#then run the sbat file:</span>
+<span class="c1">#sbatch papermill.sbat</span>
 </pre></div>
 </div>
 </div>
