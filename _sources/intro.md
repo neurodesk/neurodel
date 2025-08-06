@@ -4,7 +4,7 @@ Each Jupyter notebook in the repository is equipped with a Jupyter Hub button (t
 
 If you want to run these notebooks in another neurodesk environment, make sure to clone this repository first:
 ```
-git clone https://github.com/neurodesk/example-notebooks.git
+git --depth 1 clone https://github.com/neurodesk/example-notebooks.git
 ```
 
 ## Neurodesk
