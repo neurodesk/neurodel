@@ -1,0 +1,1415 @@
+<!DOCTYPE html><html lang="en" data-content_root="../"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Pydra — Neurodesk</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet">
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet">
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin="" href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin="" href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079">
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062">
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357">
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b">
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css">
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6">
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e">
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b">
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b">
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-4Z9774J59Y"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-4Z9774J59Y');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-4Z9774J59Y');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'workflows/pydra_preproc_ants';</script>
+    <link rel="canonical" href="https://neurodesk.github.io/example-notebooks/workflows/pydra_preproc_ants.html">
+    <link rel="icon" href="../_static/neurodesk_logo.svg">
+    <link rel="index" title="Index" href="../genindex.html">
+    <link rel="search" title="Search" href="../search.html">
+    <link rel="next" title="FSL course - BET" href="../structural_imaging/FSL_course_bet.html">
+    <link rel="prev" title="Papermill Slurm Job Submission" href="papermill-slurm-submission-example.html">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox" class="sidebar-toggle" id="pst-primary-sidebar-checkbox">
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox" class="sidebar-toggle" id="pst-secondary-sidebar-checkbox">
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/neurodesk_logo.svg" class="logo__image only-light" alt="Neurodesk - Home">
+    <script>document.write(`<img src="../_static/neurodesk_logo.svg" class="logo__image only-dark" alt="Neurodesk - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Neurodesk environment
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Workflows</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="AA_Neurodesk_demo_tour.html">Neurodesk Tools Demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MRIQC.html">MRIQC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="PyBIDS.html">PyBIDS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RISE_slideshow.html">RISE Slideshow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bids_conversion.html">BIDS conversion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nipype_full.html">Nipype on Neurodesk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nipype_short.html">Basic Nipype</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="papermill-slurm-submission-example.html">Papermill Slurm Job Submission</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Pydra</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Structural Imaging</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/FSL_course_bet.html">FSL course - BET</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/brain_extraction_different_tools.html">Brain Extraction Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/freesurfer.html">FreeSurfer</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/qsmxt.html">QSMxT</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/sct_toolbox.html">SCT Toolbox</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Spectroscopy</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../spectroscopy/lcmodel.html">MR Spectroscopy with LCModel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spectroscopy/osprey.html">MR Spectroscopy with Osprey</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Diffusion Imaging</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../diffusion_imaging/Diffusion_TBSS_Demo.html">TBSS Tutorial</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../diffusion_imaging/MRtrix_1.html">MRtrix: Part 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../diffusion_imaging/MRtrix_2.html">MRtrix: Part 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../diffusion_imaging/MRtrix_3.html">MRtrix: Part 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../diffusion_imaging/mrtrix3tissue.html">MRtrix3Tissue</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Functional Imaging</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/AFNI_preprocessing_only.html">AFNI Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/AFNI_preprocessing_plus_glm.html">AFNI Preprocessing and GLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/AFNI_preprocessing_plus_glm_group.html">AFNI Preprocessing &amp; Group Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/FSL_preproc_glm.html">FSL Preprocessing and GLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/FSLnets_course_practical.html">Resting state with FSLnets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/NiWrap.html">NiWrap and Connectome Workbench</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/aslprep.html">ASLprep</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/deepretinotopy.html">DeepRetinotopy</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/first_and_second_level_spm.html">Nipype-SPM fMRI Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/fmriprep.html">fMRIprep</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/fsl_all_levels_flanker_nipype.html">Nipype-FSL fMRI Analysis</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/intro_to_preprocessing.html">Introduction to Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/mri_vol2surf.html">FreeSurfer: mri_vol2surf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/process_five_echo_dataset.html">tedana: TE Dependent ANAlysis</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Electrophysiology</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../electrophysiology/eeg_with_mne.html">EEG Analysis with MNE</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons"><a href="https://doi.org/10.5072/zenodo.407150" target="_blank" rel="noopener noreferrer" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button">https://doi.org/10.5072/zenodo.407150</a>
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://play-america.neurodesk.org/hub/user-redirect/git-pull?repo=https%3A//github.com/NeuroDesk/example-notebooks&amp;urlpath=lab/tree/example-notebooks/books/workflows/pydra_preproc_ants.ipynb&amp;branch=main" target="_blank" class="btn btn-sm dropdown-item" title="Launch on JupyterHub" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="JupyterHub logo" src="../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/NeuroDesk/example-notebooks" target="_blank" class="btn btn-sm btn-source-repository-button dropdown-item" title="Source repository" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/NeuroDesk/example-notebooks/edit/main/books/workflows/pydra_preproc_ants.ipynb" target="_blank" class="btn btn-sm btn-source-edit-button dropdown-item" title="Suggest edit" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/NeuroDesk/example-notebooks/issues/new?title=Issue%20on%20page%20%2Fworkflows/pydra_preproc_ants.html&amp;body=Your%20issue%20content%20here." target="_blank" class="btn btn-sm btn-source-issues-button dropdown-item" title="Open an issue" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/workflows/pydra_preproc_ants.ipynb" target="_blank" class="btn btn-sm btn-download-source-button dropdown-item" title="Download source file" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()" class="btn btn-sm btn-download-pdf-button dropdown-item" title="Print to PDF" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()" class="btn btn-sm btn-fullscreen-button" title="Fullscreen mode" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Pydra</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registration-workflow-with-antspy-and-freesurfer-s-synthstrip">Registration Workflow with ANTsPy and FreeSurfer’s SynthStrip</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#citation-and-resources">Citation and Resources:</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-included-in-this-workflow">Tools included in this workflow</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-pydra">Introduction Pydra</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-the-preprocessing-workflow">Overview of the Preprocessing Workflow</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-of-data">1. Download of Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-subject-from-the-flanker-dataset-from-openneuro">One Subject from the Flanker Dataset from OpenNeuro</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mni-template-from-nilearn">MNI template from Nilearn</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pydra-tasks">2. Pydra Tasks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-tasks">2.1. Python Tasks</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#define-decorator">Define decorator</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shell-tasks">2.2 Shell-tasks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow">3.3. Workflow</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submitter">3. Submitter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#executing-tasks-in-parallel">4. Executing tasks in parallel</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#workers">Workers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-results">5. Visualizing Results</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-overview-tasks-inputs-and-outputs">Workflow overview: tasks, inputs, and outputs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#functional-registration-to-mni-space">Functional registration to MNI space</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="pydra">
+<h1>Pydra<a class="headerlink" href="#pydra" title="Link to this heading">#</a></h1>
+<section id="registration-workflow-with-antspy-and-freesurfer-s-synthstrip">
+<h2>Registration Workflow with ANTsPy and FreeSurfer’s SynthStrip<a class="headerlink" href="#registration-workflow-with-antspy-and-freesurfer-s-synthstrip" title="Link to this heading">#</a></h2>
+<p><strong>Author</strong>: Monika Doerig</p>
+<section id="citation-and-resources">
+<h3>Citation and Resources:<a class="headerlink" href="#citation-and-resources" title="Link to this heading">#</a></h3>
+<section id="tools-included-in-this-workflow">
+<h4>Tools included in this workflow<a class="headerlink" href="#tools-included-in-this-workflow" title="Link to this heading">#</a></h4>
+<p><strong>Pydra</strong>:</p>
+<ul class="simple">
+<li><p>Jarecka, D., Goncalves, M., Markiewicz, C. J., Esteban, O., Lo, N., Kaczmarzyk, J., Cali, R., Herholz, P., Nielson, D. M., Mentch, J., Nijholt, B., Johnson, C. E., Wigger, J., Close, T. G., Vaillant, G., Agarwal, A., &amp; Ghosh, S. (2025). nipype/pydra: 1.0a2 (1.0a2). Zenodo. <a class="reference external" href="https://doi.org/10.5281/zenodo.16671149">https://doi.org/10.5281/zenodo.16671149</a></p></li>
+<li><p><a class="reference external" href="https://github.com/nipype/pydra"><img alt="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" style="width: 20px;"> nipype/pydra</a></p></li>
+</ul>
+<p><strong>ANTsPy</strong>:</p>
+<ul class="simple">
+<li><p>stnava, Philip Cook, Nick Tustison, Ravnoor Singh Gill, John Muschelli, Jennings Zhang, Daniel Gomez, Andrew Berger, Thiago Franco de Moraes, Stephen Ogier, Asaph Zylbertal, Dean Rance, Pradeep Reddy Raamana, Vasco Diogo, sai8951, Bryn Lloyd, Dženan Zukić, Evert de Man, KYY, … Tommaso Di Noto. (2025). ANTsX/ANTsPy: Aiouea (v0.6.1). Zenodo. <a class="reference external" href="https://doi.org/10.5281/zenodo.15742355">https://doi.org/10.5281/zenodo.15742355</a></p></li>
+<li><p>Tustison, N.J., Cook, P.A., Holbrook, A.J. et al. The ANTsX ecosystem for quantitative biological and medical imaging. Sci Rep 11, 9068 (2021). https://doi.org/10.1038/s41598-021-87564-6</p></li>
+<li><p><a class="reference external" href="https://antspy.readthedocs.io/en/latest/index.html#">Documentation ANTsPy</a></p></li>
+<li><p><a class="reference external" href="https://github.com/ANTsX/ANTsPy"><img alt="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" style="width: 20px;"> ANTsX/ANTsPy</a></p></li>
+</ul>
+<p><strong>SynthStrip:</strong></p>
+<ul class="simple">
+<li><p>SynthStrip: Skull-Stripping for Any Brain Image; Andrew Hoopes, Jocelyn S. Mora, Adrian V. Dalca, Bruce Fischl*, Malte Hoffmann* (*equal contribution); NeuroImage 260, 2022, 119474; <a class="reference external" href="https://doi.org/10.1016/j.neuroimage.2022.119474">https://doi.org/10.1016/j.neuroimage.2022.119474</a></p></li>
+<li><p>Boosting skull-stripping performance for pediatric brain images; William Kelley, Nathan Ngo, Adrian V. Dalca, Bruce Fischl, Lilla Zöllei*, Malte Hoffmann* (*equal contribution); IEEE International Symposium on Biomedical Imaging (ISBI), 2024, forthcoming; <a class="reference external" href="https://arxiv.org/abs/2402.16634">https://arxiv.org/abs/2402.16634</a></p></li>
+<li><p><a class="reference external" href="https://w3id.org/synthstrip">Documentation</a></p></li>
+</ul>
+</section>
+<section id="dataset">
+<h4>Dataset<a class="headerlink" href="#dataset" title="Link to this heading">#</a></h4>
+<p><strong>Opensource Data from OpenNeuro:</strong></p>
+<ul class="simple">
+<li><p>Kelly AMC and Uddin LQ and Biswal BB and Castellanos FX and Milham MP (2018). Flanker task (event-related). <a class="reference external" href="https://openneuro.org/datasets/ds000102/versions/00001">OpenNeuro Dataset ds000102</a></p></li>
+<li><p>Kelly, A.M., Uddin, L.Q., Biswal, B.B., Castellanos, F.X., Milham, M.P. (2008). Competition between functional brain networks mediates behavioral variability. Neuroimage, 39(1):527-37</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+<span class="err">!</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">pydra</span><span class="o">&gt;=</span><span class="mf">1.0</span><span class="n">a</span> <span class="n">antspyx</span><span class="o">==</span><span class="mf">0.6.1</span> <span class="n">nilearn</span> <span class="n">nibabel</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydra.compose</span><span class="w"> </span><span class="kn">import</span> <span class="n">python</span><span class="p">,</span> <span class="n">workflow</span><span class="p">,</span> <span class="n">shell</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydra.engine.submitter</span><span class="w"> </span><span class="kn">import</span> <span class="n">Submitter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydra.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">show_workflow</span><span class="p">,</span> <span class="n">print_help</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pydra.utils.general</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">os.path</span><span class="w"> </span><span class="kn">import</span> <span class="n">join</span> <span class="k">as</span> <span class="n">opj</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span> 
+<span class="kn">import</span><span class="w"> </span><span class="nn">ants</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">nibabel</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nib</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nilearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_mni152_template</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nilearn</span><span class="w"> </span><span class="kn">import</span> <span class="n">plotting</span><span class="p">,</span> <span class="n">image</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ty</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fileformats.generic</span><span class="w"> </span><span class="kn">import</span> <span class="n">File</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">nest_asyncio</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Needed to allow asynchronous execution in Jupyter notebooks</span>
+<span class="n">nest_asyncio</span><span class="o">.</span><span class="n">apply</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">module</span>
+<span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'freesurfer/7.3.2'</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>['freesurfer/7.3.2']
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="introduction-pydra">
+<h2>Introduction Pydra<a class="headerlink" href="#introduction-pydra" title="Link to this heading">#</a></h2>
+<p>Pydra is a lightweight, Python-based dataflow engine designed to build reproducible, scalable, and robust workflows. While it was created to succeed Nipype for neuroimaging applications, Pydra is flexible enough to support analytic pipelines in any scientific domain. It allows you to combine tasks implemented as Python functions or shell commands into coherent workflows that can be executed reliably across different computing environments.</p>
+<p>Key features include:</p>
+<ul class="simple">
+<li><p>Combining diverse tasks into robust workflows.</p></li>
+<li><p>Dynamic workflow construction using standard Python code.</p></li>
+<li><p>Concurrent execution on local workstations or HPC clusters (SLURM, SGE, Dask, etc.).</p></li>
+<li><p>Map-reduce-style parallelism via <code class="docutils literal notranslate"><span class="pre">split()</span></code> and <code class="docutils literal notranslate"><span class="pre">combine()</span></code>.</p></li>
+<li><p>Global caching to avoid unnecessary recomputation.</p></li>
+<li><p>Support for executing tasks in separate software environments (e.g., containers).</p></li>
+<li><p>Strong type-checking of inputs and outputs, including specialized file formats.</p></li>
+</ul>
+<section id="overview-of-the-preprocessing-workflow">
+<h3>Overview of the Preprocessing Workflow<a class="headerlink" href="#overview-of-the-preprocessing-workflow" title="Link to this heading">#</a></h3>
+<p>In this notebook, we demonstrate a neuroimaging registration workflow built with Pydra. The workflow uses:</p>
+<ul class="simple">
+<li><p>Python tasks unsing <code class="docutils literal notranslate"><span class="pre">ANTsPy</span></code> for operations implemented directly in Python.</p></li>
+<li><p>Shell task to wrap FreeSurfer’s command-line tool <code class="docutils literal notranslate"><span class="pre">SynthStrip</span></code> for skull-stripping.</p></li>
+<li><p>A workflow that orchestrates multiple tasks, connecting inputs and outputs.</p></li>
+<li><p>Splitting to process multiple functional runs in parallel.</p></li>
+<li><p>A Submitter object to  to initiate the task execution for a richer Result object</p></li>
+<li><p>Concurrent execution  using the <code class="docutils literal notranslate"><span class="pre">cf</span></code> (ConcurrentFutures) worker.</p></li>
+</ul>
+</section>
+</section>
+<section id="download-of-data">
+<h2>1. Download of Data<a class="headerlink" href="#download-of-data" title="Link to this heading">#</a></h2>
+<section id="one-subject-from-the-flanker-dataset-from-openneuro">
+<h3>One Subject from the Flanker Dataset from OpenNeuro<a class="headerlink" href="#one-subject-from-the-flanker-dataset-from-openneuro" title="Link to this heading">#</a></h3>
+<div class="cell tag_scroll-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>datalad<span class="w"> </span>install<span class="w"> </span>https://github.com/OpenNeuroDatasets/ds000102.git
+<span class="o">!</span><span class="nb">cd</span><span class="w"> </span>ds000102<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>datalad<span class="w"> </span>get<span class="w"> </span>sub-01<span class="w"> </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cloning:   0%|                             | 0.00/2.00 [00:00&lt;?, ? candidates/s]
+Enumerating: 0.00 Objects [00:00, ? Objects/s]
+                                              
+Counting:   0%|                               | 0.00/27.0 [00:00&lt;?, ? Objects/s]
+                                                                                
+Compressing:   0%|                            | 0.00/23.0 [00:00&lt;?, ? Objects/s]
+                                                                                
+Receiving:   0%|                             | 0.00/2.15k [00:00&lt;?, ? Objects/s]
+                                                                                
+Resolving:   0%|                                | 0.00/537 [00:00&lt;?, ? Deltas/s]
+[INFO   ] scanning for unlocked files (this may take some time)                 
+[INFO   ] Remote origin not usable by git-annex; setting annex-ignore 
+[INFO   ] access to 1 dataset sibling s3-PRIVATE not auto-enabled, enable with:
+| 		datalad siblings -d "/home/jovyan/Git_repositories/Neurodesk_examples/drafts/ds000102" enable -s s3-PRIVATE 
+<span class=" -Color -Color-Bold">install</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): /home/jovyan/Git_repositories/Neurodesk_examples/drafts/ds000102 (<span class=" -Color -Color-Bold -Color-Bold-Magenta">dataset</span>)
+Total:   0%|                                   | 0.00/66.8M [00:00&lt;?, ? Bytes/s]
+Get sub-01/a .. 1_T1w.nii.gz:   0%|            | 0.00/10.6M [00:00&lt;?, ? Bytes/s]
+Get sub-01/a .. 1_T1w.nii.gz:   1%|     | 139k/10.6M [00:00&lt;00:22, 473k Bytes/s]
+Get sub-01/a .. 1_T1w.nii.gz:   3%|▏    | 312k/10.6M [00:00&lt;00:11, 882k Bytes/s]
+Get sub-01/a .. 1_T1w.nii.gz:   7%|▎   | 747k/10.6M [00:00&lt;00:04, 1.99M Bytes/s]
+Get sub-01/a .. 1_T1w.nii.gz:  11%|▎  | 1.15M/10.6M [00:00&lt;00:03, 2.61M Bytes/s]
+Get sub-01/a .. 1_T1w.nii.gz:  19%|▌  | 1.97M/10.6M [00:00&lt;00:01, 4.32M Bytes/s]
+Get sub-01/a .. 1_T1w.nii.gz:  37%|█  | 3.88M/10.6M [00:00&lt;00:00, 8.86M Bytes/s]
+Get sub-01/a .. 1_T1w.nii.gz:  55%|█▋ | 5.82M/10.6M [00:00&lt;00:00, 12.0M Bytes/s]
+Get sub-01/a .. 1_T1w.nii.gz:  86%|██▌| 9.09M/10.6M [00:01&lt;00:00, 13.9M Bytes/s]
+Get sub-01/a .. 1_T1w.nii.gz: 100%|██▉| 10.6M/10.6M [00:01&lt;00:00, 9.47M Bytes/s]
+Total:  16%|████                      | 10.6M/66.8M [00:02&lt;00:13, 4.05M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:   0%|            | 0.00/28.1M [00:00&lt;?, ? Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  16%|▍  | 4.60M/28.1M [00:00&lt;00:01, 23.0M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  29%|▊  | 8.12M/28.1M [00:00&lt;00:01, 19.8M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  36%|█  | 10.1M/28.1M [00:00&lt;00:00, 19.8M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  44%|█▎ | 12.3M/28.1M [00:00&lt;00:00, 20.5M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  58%|█▋ | 16.2M/28.1M [00:00&lt;00:00, 19.8M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  65%|█▉ | 18.3M/28.1M [00:00&lt;00:00, 20.1M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  80%|██▍| 22.5M/28.1M [00:01&lt;00:00, 20.6M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  94%|██▊| 26.5M/28.1M [00:01&lt;00:00, 20.2M Bytes/s]
+Total:  58%|███████████████           | 38.6M/66.8M [00:04&lt;00:03, 8.98M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:   0%|            | 0.00/28.1M [00:00&lt;?, ? Bytes/s]
+Get sub-01/f .. _bold.nii.gz:   8%|▎  | 2.36M/28.1M [00:00&lt;00:02, 11.8M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  14%|▍  | 4.03M/28.1M [00:00&lt;00:01, 13.5M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  23%|▋  | 6.60M/28.1M [00:00&lt;00:01, 12.8M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  30%|▉  | 8.48M/28.1M [00:00&lt;00:01, 11.3M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  37%|█  | 10.4M/28.1M [00:00&lt;00:01, 13.1M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  43%|█▎ | 12.1M/28.1M [00:00&lt;00:01, 14.1M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  52%|█▌ | 14.6M/28.1M [00:01&lt;00:01, 13.4M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  57%|█▋ | 16.1M/28.1M [00:01&lt;00:00, 13.8M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  66%|█▉ | 18.7M/28.1M [00:01&lt;00:00, 13.4M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  75%|██▎| 21.2M/28.1M [00:01&lt;00:00, 12.2M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  80%|██▍| 22.5M/28.1M [00:01&lt;00:00, 12.3M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  85%|██▌| 23.9M/28.1M [00:01&lt;00:00, 12.3M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  89%|██▋| 25.2M/28.1M [00:01&lt;00:00, 12.5M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  94%|██▊| 26.5M/28.1M [00:02&lt;00:00, 12.7M Bytes/s]
+Get sub-01/f .. _bold.nii.gz:  99%|██▉| 27.8M/28.1M [00:02&lt;00:00, 12.8M Bytes/s]
+                                                                                
+Get sub-01/f .. _bold.nii.gz:   0%|            | 0.00/28.1M [00:00&lt;?, ? Bytes/s]
+<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): sub-01/anat/sub-01_T1w.nii.gz (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from s3-PUBLIC...]
+<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): sub-01/func/sub-01_task-flanker_run-1_bold.nii.gz (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from s3-PUBLIC...]
+<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): sub-01/func/sub-01_task-flanker_run-2_bold.nii.gz (<span class=" -Color -Color-Bold -Color-Bold-Magenta">file</span>) [from s3-PUBLIC...]
+<span class=" -Color -Color-Bold">get</span>(<span class=" -Color -Color-Bold -Color-Bold-Green">ok</span>): sub-01 (<span class=" -Color -Color-Bold -Color-Bold-Magenta">directory</span>)
+action summary:
+  get (ok: 4)
+
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="mni-template-from-nilearn">
+<h3>MNI template from Nilearn<a class="headerlink" href="#mni-template-from-nilearn" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mni_template</span> <span class="o">=</span> <span class="n">load_mni152_template</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">nib</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">mni_template</span><span class="p">,</span> <span class="s1">'./mni_template.nii.gz'</span><span class="p">)</span>
+
+<span class="n">temp</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">'./mni_template.nii.gz'</span><span class="p">)</span>
+<span class="n">template</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>  <span class="c1"># returns absolute path</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">template</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/jovyan/Git_repositories/Neurodesk_examples/drafts/mni_template.nii.gz
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="pydra-tasks">
+<h2>2. Pydra Tasks<a class="headerlink" href="#pydra-tasks" title="Link to this heading">#</a></h2>
+<p>The basic runnable component of Pydra is a <code class="docutils literal notranslate"><span class="pre">task</span></code>. Tasks are conceptually similar to functions, in that they take inputs, operate on them and then return results. However, unlike standard functions, tasks are parameterized before execution in a separate step. This separation enables parameterized tasks to be linked together into workflows that can be validated for errors before execution, while allowing modular execution workers and environments to be specified independently of the task being performed.</p>
+<p>Tasks can encapsulate <strong>Python functions</strong> or <strong>shell-commands</strong>, or be <strong>multi-component workflows</strong> themselves, constructed from task components including nested workflows.</p>
+<section id="python-tasks">
+<h3>2.1. Python Tasks<a class="headerlink" href="#python-tasks" title="Link to this heading">#</a></h3>
+<p>Python tasks are Python functions that are parameterized before they are executed or added to a workflow. This approach provides several advantages over direct function calls, including input validation, output tracking, and seamless integration into larger computational workflows.</p>
+<section id="define-decorator">
+<h4>Define decorator<a class="headerlink" href="#define-decorator" title="Link to this heading">#</a></h4>
+<p>The simplest way to define a Python task is to decorate a function with <code class="docutils literal notranslate"><span class="pre">pydra.compose.python.define</span></code>.</p>
+<p>This neuroimaging registration pipeline demonstrates this approach by creating five specialized Python tasks with <strong>ANTsPy</strong> that handle different aspects of fMRI data processing:</p>
+<ol class="arabic simple">
+<li><p><strong>Motion correction task</strong> - Corrects for head movement by registering all volumes to a reference timepoint</p></li>
+<li><p><strong>Structural-to-MNI registration task</strong> - Registers the T1-weighted anatomical image to MNI standard space</p></li>
+<li><p><strong>Functional-to-structural registration task</strong> - Registers the reference functional volume to the skull-stripped T1 image</p></li>
+<li><p><strong>Transform combination task</strong> - Concatenates the transformation matrices in the proper order for ANTs</p></li>
+<li><p><strong>Transform application task</strong> - Applies the combined transformations to register the motion-corrected functional data to MNI space</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Motion correction of BOLD images</span>
+
+<span class="nd">@python</span><span class="o">.</span><span class="n">define</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">motion_correction_ants</span><span class="p">(</span><span class="n">epi</span><span class="p">):</span>
+    
+    <span class="n">cwd</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+    <span class="n">new_filename</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">epi</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'.nii.gz'</span><span class="p">,</span> <span class="s1">'_mc.nii.gz'</span><span class="p">)</span> <span class="c1">#new file ending for output file</span>
+    <span class="n">out_path</span> <span class="o">=</span> <span class="n">opj</span><span class="p">(</span><span class="n">cwd</span><span class="p">,</span> <span class="n">new_filename</span><span class="p">)</span>
+
+    <span class="n">epi_path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">epi</span><span class="p">)</span> <span class="c1">#make sure it's string</span>
+    <span class="n">epi_img</span> <span class="o">=</span> <span class="n">ants</span><span class="o">.</span><span class="n">image_read</span><span class="p">(</span><span class="n">epi_path</span><span class="p">)</span>
+
+    <span class="c1"># Split into list of 3D volumes</span>
+    <span class="n">volumes</span> <span class="o">=</span> <span class="n">ants</span><span class="o">.</span><span class="n">ndimage_to_list</span><span class="p">(</span><span class="n">epi_img</span><span class="p">)</span>
+    
+    <span class="c1"># Pick reference volume (middle timepoint)</span>
+    <span class="n">ref_vol</span> <span class="o">=</span> <span class="n">volumes</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">volumes</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span>
+    
+    <span class="c1"># Motion correct each volume</span>
+    <span class="n">motion_corrected</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">vol</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">volumes</span><span class="p">):</span>
+        <span class="n">reg</span> <span class="o">=</span> <span class="n">ants</span><span class="o">.</span><span class="n">registration</span><span class="p">(</span><span class="n">fixed</span><span class="o">=</span><span class="n">ref_vol</span><span class="p">,</span> <span class="n">moving</span><span class="o">=</span><span class="n">vol</span><span class="p">,</span> <span class="n">type_of_transform</span><span class="o">=</span><span class="s2">"Rigid"</span><span class="p">)</span> 
+        <span class="n">motion_corrected</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reg</span><span class="p">[</span><span class="s2">"warpedmovout"</span><span class="p">])</span>
+    
+    <span class="c1"># Recombine into 4D</span>
+    <span class="n">epi_corrected</span> <span class="o">=</span> <span class="n">ants</span><span class="o">.</span><span class="n">list_to_ndimage</span><span class="p">(</span><span class="n">epi_img</span><span class="p">,</span> <span class="n">motion_corrected</span><span class="p">)</span>
+    <span class="n">ants</span><span class="o">.</span><span class="n">image_write</span><span class="p">(</span><span class="n">epi_corrected</span><span class="p">,</span> <span class="n">out_path</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">out_path</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Register BOLD to T1w</span>
+
+<span class="nd">@python</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="n">outputs</span><span class="o">=</span><span class="p">[</span><span class="s2">"tx_EPI2T1"</span><span class="p">,</span> <span class="s2">"warpedmovout"</span><span class="p">])</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">reg_EPI2T1</span><span class="p">(</span><span class="n">bet_anat</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span> 
+    
+    <span class="n">cwd</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+    <span class="n">bet_anat_path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">bet_anat</span><span class="p">)</span>
+
+    <span class="c1"># Load 4D fMRI</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+
+    <span class="c1"># Get the middle volume</span>
+    <span class="n">n_timepoints</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">middle_timepoint</span> <span class="o">=</span> <span class="n">n_timepoints</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="n">middle_vol</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="n">middle_timepoint</span><span class="p">]</span>
+    
+    <span class="c1"># Save</span>
+    <span class="n">ref_img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">Nifti1Image</span><span class="p">(</span><span class="n">middle_vol</span><span class="p">,</span> <span class="n">img</span><span class="o">.</span><span class="n">affine</span><span class="p">,</span> <span class="n">img</span><span class="o">.</span><span class="n">header</span><span class="p">)</span>
+    <span class="n">ref_path</span> <span class="o">=</span> <span class="n">opj</span><span class="p">(</span><span class="n">cwd</span><span class="p">,</span> <span class="s2">"bold_ref.nii.gz"</span><span class="p">)</span>
+    <span class="n">nib</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">ref_img</span><span class="p">,</span> <span class="n">ref_path</span><span class="p">)</span>
+
+    <span class="n">tx_EPI2T1</span><span class="o">=</span> <span class="n">ants</span><span class="o">.</span><span class="n">registration</span><span class="p">(</span><span class="n">fixed</span><span class="o">=</span><span class="n">ants</span><span class="o">.</span><span class="n">image_read</span><span class="p">(</span><span class="n">bet_anat_path</span><span class="p">),</span> 
+                                 <span class="n">moving</span><span class="o">=</span><span class="n">ants</span><span class="o">.</span><span class="n">image_read</span><span class="p">(</span><span class="n">ref_path</span><span class="p">),</span> 
+                                 <span class="n">random_seed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+                                 <span class="n">type_of_transform</span> <span class="o">=</span> <span class="s1">'SyNBold'</span><span class="p">,</span> 
+                                 <span class="n">outprefix</span><span class="o">=</span> <span class="n">opj</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s1">'EPI2T1_'</span><span class="p">))</span>
+    
+    <span class="n">moved_path</span> <span class="o">=</span> <span class="n">opj</span><span class="p">(</span><span class="n">cwd</span> <span class="p">,</span><span class="s1">'EPI2T1.nii.gz'</span><span class="p">)</span>
+    <span class="n">ants</span><span class="o">.</span><span class="n">image_write</span><span class="p">(</span><span class="n">tx_EPI2T1</span><span class="p">[</span><span class="s1">'warpedmovout'</span><span class="p">],</span> <span class="n">moved_path</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">tx_EPI2T1</span><span class="p">[</span><span class="s1">'fwdtransforms'</span><span class="p">],</span> <span class="n">moved_path</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Register T1w to MNI</span>
+
+<span class="nd">@python</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="n">outputs</span><span class="o">=</span><span class="p">[</span><span class="s2">"tx_struct2MNI"</span><span class="p">,</span> <span class="s2">"warpedmovout"</span><span class="p">])</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">reg_struct2MNI</span><span class="p">(</span><span class="n">template</span><span class="p">,</span> <span class="n">bet_anat</span><span class="p">):</span>
+
+    <span class="n">bet_anat_path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">bet_anat</span><span class="p">)</span>
+
+    <span class="n">tx_struct2MNI</span><span class="o">=</span> <span class="n">ants</span><span class="o">.</span><span class="n">registration</span><span class="p">(</span><span class="n">fixed</span><span class="o">=</span><span class="n">ants</span><span class="o">.</span><span class="n">image_read</span><span class="p">(</span><span class="n">template</span><span class="p">),</span> 
+                                   <span class="n">moving</span><span class="o">=</span><span class="n">ants</span><span class="o">.</span><span class="n">image_read</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">bet_anat_path</span><span class="p">)),</span>
+                                   <span class="n">random_seed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+                                   <span class="n">type_of_transform</span> <span class="o">=</span> <span class="s1">'SyN'</span><span class="p">,</span> <span class="n">outprefix</span><span class="o">=</span> <span class="n">opj</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s1">'SyN_struct2MNI_'</span><span class="p">))</span>
+
+    <span class="n">moved_path</span> <span class="o">=</span> <span class="n">opj</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="p">,</span><span class="s1">'T12MNI.nii.gz'</span><span class="p">)</span>
+    <span class="n">ants</span><span class="o">.</span><span class="n">image_write</span><span class="p">(</span><span class="n">tx_struct2MNI</span><span class="p">[</span><span class="s1">'warpedmovout'</span><span class="p">],</span> <span class="n">moved_path</span><span class="p">)</span>
+                                     
+    <span class="k">return</span> <span class="p">(</span><span class="n">tx_struct2MNI</span><span class="p">[</span><span class="s1">'fwdtransforms'</span><span class="p">],</span> <span class="n">moved_path</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Concatenate transformations - last transformation is applied first</span>
+
+<span class="nd">@python</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="n">outputs</span><span class="o">=</span><span class="p">[</span><span class="s2">"transform_list"</span><span class="p">])</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">collect_transforms</span><span class="p">(</span><span class="n">tx_struct2mni</span><span class="p">,</span> <span class="n">tx_epi2t1</span><span class="p">):</span>
+    <span class="k">return</span>  <span class="n">tx_struct2mni</span> <span class="o">+</span> <span class="n">tx_epi2t1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apply transformations BOLD --&gt; T1, T1 --&gt; MNI; BOLD &gt;&gt; MNI in one step </span>
+
+<span class="nd">@python</span><span class="o">.</span><span class="n">define</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">applyTransform_epi2mni</span><span class="p">(</span><span class="n">template</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">transform_list</span><span class="p">):</span>
+
+    <span class="n">cwd</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+    <span class="n">new_filename</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">func</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'_mc.nii.gz'</span><span class="p">,</span> <span class="s1">'_mc_mni.nii.gz'</span><span class="p">)</span>
+    <span class="n">out_path</span> <span class="o">=</span> <span class="n">opj</span><span class="p">(</span><span class="n">cwd</span><span class="p">,</span> <span class="n">new_filename</span><span class="p">)</span>
+
+    <span class="n">func_path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+
+    <span class="n">mov_epi2mni</span> <span class="o">=</span> <span class="n">ants</span><span class="o">.</span><span class="n">apply_transforms</span><span class="p">(</span><span class="n">fixed</span> <span class="o">=</span> <span class="n">ants</span><span class="o">.</span><span class="n">image_read</span><span class="p">(</span><span class="n">template</span><span class="p">),</span> 
+                                        <span class="n">moving</span> <span class="o">=</span> <span class="n">ants</span><span class="o">.</span><span class="n">image_read</span><span class="p">(</span><span class="n">func_path</span><span class="p">),</span>  
+                                        <span class="n">transformlist</span><span class="o">=</span><span class="n">transform_list</span><span class="p">,</span>
+                                        <span class="n">interpolator</span><span class="o">=</span><span class="s1">'lanczosWindowedSinc'</span><span class="p">,</span> <span class="n">imagetype</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+    <span class="n">file_path_gz</span> <span class="o">=</span> <span class="n">opj</span><span class="p">(</span><span class="n">cwd</span> <span class="p">,</span><span class="n">out_path</span><span class="p">)</span>
+    <span class="n">ants</span><span class="o">.</span><span class="n">image_write</span><span class="p">(</span><span class="n">mov_epi2mni</span><span class="p">,</span> <span class="n">file_path_gz</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">file_path_gz</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="shell-tasks">
+<h3>2.2 Shell-tasks<a class="headerlink" href="#shell-tasks" title="Link to this heading">#</a></h3>
+<p>In <strong>Pydra</strong>, shell tasks can be defined using command-line style templates, which closely resemble the syntax shown in a tool’s inline help. This approach provides a concise and intuitive way to map a CLI program into a Python task that can be used in workflows.</p>
+<p>Key features of the shell tasks:</p>
+<ul class="simple">
+<li><p><strong>Input and Outputs:</strong></p>
+<ul>
+<li><p>Fields are enclosed in <code class="docutils literal notranslate"><span class="pre">&lt;</span> <span class="pre">&gt;</span></code>.</p></li>
+<li><p>Outputs are marked with the <code class="docutils literal notranslate"><span class="pre">out|</span></code> prefix (e.g., <code class="docutils literal notranslate"><span class="pre">&lt;out|out_file:File&gt;</span></code>).</p></li>
+<li><p>By default, fields are treated as <code class="docutils literal notranslate"><span class="pre">fileformats.generic.FsObject</span></code>, but more specific types (e.g. <code class="docutils literal notranslate"><span class="pre">NiftiGz</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, <code class="docutils literal notranslate"><span class="pre">bool</span></code>) can be specified with <code class="docutils literal notranslate"><span class="pre">:&lt;type&gt;</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>Flags and Options:</strong></p>
+<ul>
+<li><p>Flags are associated with fields by placing the field after the flag (e.g., <code class="docutils literal notranslate"><span class="pre">-i</span> <span class="pre">&lt;image:File&gt;</span></code>).</p></li>
+<li><p>Boolean flags are included only if the value is True, and omitted otherwise (e.g., <code class="docutils literal notranslate"><span class="pre">-g&lt;gpu?:bool&gt;</span> <span class="pre">"</span></code> –&gt; optional, and the default is <code class="docutils literal notranslate"><span class="pre">False</span></code>)</p></li>
+<li><p>Options that take a value have the field inserted after the flag (e.g., <code class="docutils literal notranslate"><span class="pre">--model</span> <span class="pre">&lt;model:File&gt;</span></code>)</p></li>
+</ul>
+</li>
+<li><p><strong>Optional Arguments:</strong></p>
+<ul>
+<li><p>Adding <code class="docutils literal notranslate"><span class="pre">?</span></code> after the type marks a field as optional (e.g., <code class="docutils literal notranslate"><span class="pre">&lt;border:float?&gt;</span></code>).</p></li>
+<li><p>Optional fields are omitted from the command if not set, allowing the underlying tool to use its own defaults.</p></li>
+</ul>
+</li>
+<li><p><strong>Defaults</strong></p>
+<ul>
+<li><p>A default value can be provided after <code class="docutils literal notranslate"><span class="pre">=</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">&lt;border:float?=1&gt;</span></code>, which will override the CLI default if desired)</p></li>
+<li><p>Defaults allow tasks to run without explicitly setting every argument.</p></li>
+</ul>
+</li>
+<li><p><strong>Path Templates for Outputs:</strong></p>
+<ul>
+<li><p>By default, output fields are assigned a <code class="docutils literal notranslate"><span class="pre">path_template</span></code> derived from the field name and extension (e.g., <code class="docutils literal notranslate"><span class="pre">out_file.gz</span></code>).</p></li>
+<li><p>You can override this default filename using <code class="docutils literal notranslate"><span class="pre">$</span></code> followed by a filename (e.g., <code class="docutils literal notranslate"><span class="pre">&lt;out|mask_file:File$brain_mask.nii.gz&gt;</span></code>).</p></li>
+<li><p>The auto-generated filename will be used unless the user provides an explicit path when initializing the task.</p></li>
+</ul>
+</li>
+</ul>
+<p>We will create <code class="docutils literal notranslate"><span class="pre">SynthStrip</span> <span class="pre">shell</span> <span class="pre">task</span></code>  by wrapping FreeSurfer’s <code class="docutils literal notranslate"><span class="pre">mri_synthstrip</span></code> skull-stripping tool. Let’s first look at the help page:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="w"> </span>mri_synthstrip<span class="w"> </span>--help
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>usage: mri_synthstrip [-h] -i file [-o file] [-m file] [-g] [-b BORDER]
+                      [--no-csf] [--model file]
+
+Robust, universal skull-stripping for brain images of any type. If you use
+SynthStrip in your analysis, please cite: SynthStrip: Skull-Stripping for Any
+Brain Image. A Hoopes, JS Mora, AV Dalca, B Fischl, M Hoffmann. NeuroImage 206
+(2022), 119474. https://doi.org/10.1016/j.neuroimage.2022.119474
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i file, --image file
+                        Input image to skullstrip.
+  -o file, --out file   Save stripped image to path.
+  -m file, --mask file  Save binary brain mask to path.
+  -g, --gpu             Use the GPU.
+  -b BORDER, --border BORDER
+                        Mask border threshold in mm. Default is 1.
+  --no-csf              Exclude CSF from brain border.
+  --model file          Alternative model weights.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id1">
+<h3><a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">SynthStrip</span></code> tool for robust skull-stripping can be expressed as shell task in just a few lines using this syntax:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SynthStrip</span> <span class="o">=</span> <span class="n">shell</span><span class="o">.</span><span class="n">define</span><span class="p">(</span>
+    <span class="s2">"mri_synthstrip "</span>
+    <span class="s2">"-i &lt;image:File&gt; "</span>
+    <span class="s2">"-o &lt;out|out_file:File$brain_stripped.nii.gz&gt; "</span>
+    <span class="s2">"-m &lt;out|mask_file:File$brain_mask.nii.gz&gt; "</span>
+    <span class="s2">"-g&lt;gpu?:bool&gt; "</span>
+    <span class="s2">"--no-csf&lt;no_csf?:bool&gt; "</span>
+    <span class="s2">"-b &lt;border:float?&gt; "</span> <span class="c1"># CLI uses its default (1 mm)</span>
+    <span class="s2">"--model &lt;model:file?&gt;"</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">print_help</span><span class="p">(</span><span class="n">SynthStrip</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------
+Help for Shell task 'mri_synthstrip'
+------------------------------------
+
+Inputs:
+- executable: str | Sequence[str]; default = 'mri_synthstrip'
+    the first part of the command, can be a string, e.g. 'ls', or a list, e.g.
+    ['ls', '-l', 'dirname']
+- image: generic/file ('-i')
+- out_file: Path | bool; default = True ('-o')
+    The path specified for the output file, if True, the default 'path
+    template' will be used.
+- mask_file: Path | bool; default = True ('-m')
+    The path specified for the output file, if True, the default 'path
+    template' will be used.
+- border: float | None; default = None ('-b')
+- model: generic/file | None; default = None ('--model')
+- append_args: list[str | generic/file]; default-factory = list()
+    Additional free-form arguments to append to the end of the command.
+
+Outputs:
+- out_file: generic/file
+- mask_file: generic/file
+- return_code: int
+    The process' exit code.
+- stdout: str
+    The standard output stream produced by the command.
+- stderr: str
+    The standard error stream produced by the command.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="workflow">
+<h3>3.3. Workflow<a class="headerlink" href="#workflow" title="Link to this heading">#</a></h3>
+<p><img alt="Nested Workflow" src="https://raw.githubusercontent.com/nipype/pydra-tutorial/refs/heads/master/figures/nested_workflow.png"></p>
+<p>In Pydra, workflows represent directed acyclic graphs (DAGs) of tasks, where individual tasks are connected through their inputs and outputs to form complex computational pipelines. Like tasks, workflows are defined as dataclasses, but instead of performing computations themselves, they orchestrate the execution of multiple interconnected components.</p>
+<p>Workflows are defined using the <code class="docutils literal notranslate"><span class="pre">@workflow.define</span></code> decorator applied to a constructor function, which specifies how tasks should be connected and executed. Within the constructor function, individual tasks are added to the workflow using <code class="docutils literal notranslate"><span class="pre">workflow.add()</span></code>. This returns an outputs object, whose fields serve as placeholders for the task’s eventual results. These placeholders can then be used as inputs to downstream tasks, establishing the dependencies that determine the workflow’s execution order. The workflow itself returns its specified outputs as a tuple once all tasks have completed.</p>
+<p>In our preprocessing pipeline, we’ll demonstrate how to combine our Python tasks (motion correction, registration, and transformation) with our shell task (skull stripping) into a cohesive workflow that processes functional MRI data from raw acquisition to standardized space registration.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@workflow</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="n">outputs</span><span class="o">=</span><span class="p">[</span><span class="s2">"anat_brain"</span><span class="p">,</span> <span class="s2">"bold_preproc"</span><span class="p">])</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">PreprocWorkflow</span><span class="p">(</span><span class="n">anat</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">template</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ty</span><span class="o">.</span><span class="n">Tuple</span><span class="p">[</span><span class="n">File</span><span class="p">,</span> <span class="n">File</span><span class="p">]:</span>
+
+    <span class="c1"># Brain extraction</span>
+    <span class="n">synth_strip_task</span> <span class="o">=</span> <span class="n">workflow</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">SynthStrip</span><span class="p">(</span>
+                                    <span class="n">image</span><span class="o">=</span><span class="n">anat</span><span class="p">))</span>
+
+    <span class="c1"># Register T1w to MNI</span>
+    <span class="n">struct2MNI_task</span> <span class="o">=</span> <span class="n">workflow</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">reg_struct2MNI</span><span class="p">(</span><span class="n">template</span><span class="o">=</span><span class="n">template</span><span class="p">,</span> 
+                            <span class="n">bet_anat</span><span class="o">=</span><span class="n">synth_strip_task</span><span class="o">.</span><span class="n">out_file</span><span class="p">))</span>
+
+
+    <span class="c1"># Motion Correction</span>
+    <span class="n">mc_task</span> <span class="o">=</span>  <span class="n">workflow</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">motion_correction_ants</span><span class="p">(</span><span class="n">epi</span> <span class="o">=</span> <span class="n">func</span><span class="p">))</span>
+
+    <span class="c1"># Register ref EPI to T1w --&gt;tx_EPI2T1</span>
+    <span class="n">epi2T1_task</span> <span class="o">=</span> <span class="n">workflow</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">reg_EPI2T1</span><span class="p">(</span><span class="n">bet_anat</span><span class="o">=</span><span class="n">synth_strip_task</span><span class="o">.</span><span class="n">out_file</span><span class="p">,</span>
+                               <span class="n">func</span><span class="o">=</span><span class="n">mc_task</span><span class="o">.</span><span class="n">out</span><span class="p">))</span>
+
+    <span class="c1"># Merge transformations</span>
+    <span class="n">merge_transforms</span> <span class="o">=</span> <span class="n">workflow</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">collect_transforms</span><span class="p">(</span><span class="n">tx_struct2mni</span><span class="o">=</span><span class="n">struct2MNI_task</span><span class="o">.</span><span class="n">tx_struct2MNI</span><span class="p">,</span> 
+                                          <span class="n">tx_epi2t1</span><span class="o">=</span><span class="n">epi2T1_task</span><span class="o">.</span><span class="n">tx_EPI2T1</span><span class="p">))</span>
+
+    <span class="c1"># Resample func to mni</span>
+    <span class="n">apply_transform</span> <span class="o">=</span> <span class="n">workflow</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">applyTransform_epi2mni</span><span class="p">(</span><span class="n">template</span><span class="o">=</span><span class="n">template</span><span class="p">,</span>
+                                         <span class="n">func</span> <span class="o">=</span> <span class="n">mc_task</span><span class="o">.</span><span class="n">out</span><span class="p">,</span>
+                                         <span class="n">transform_list</span> <span class="o">=</span> <span class="n">merge_transforms</span><span class="o">.</span><span class="n">transform_list</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">synth_strip_task</span><span class="o">.</span><span class="n">out_file</span><span class="p">,</span> <span class="n">apply_transform</span><span class="o">.</span><span class="n">out</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">print_help</span><span class="p">(</span><span class="n">PreprocWorkflow</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>----------------------------------------
+Help for Workflow task 'PreprocWorkflow'
+----------------------------------------
+
+Inputs:
+- anat: str
+- func: str
+- template: str
+- constructor: Callable[]; default = PreprocWorkflow()
+
+Outputs:
+- anat_brain: generic/file
+- bold_preproc: generic/file
+</pre></div>
+</div>
+</div>
+</div>
+<p>Pydra workflows support splitting inputs across multiple tasks using the <code class="docutils literal notranslate"><span class="pre">split()</span></code> method. This is particularly useful in neuroimaging pipelines, where the same preprocessing steps need to be applied to multiple subjects, sessions, or runs. For example, a workflow can be executed over every NIfTI file in a directory by splitting the workflow’s input over the set of files. If the outputs are not combined with <code class="docutils literal notranslate"><span class="pre">combine()</span></code>, the splits will automatically propagate to downstream nodes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">func_run_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">'./ds000102/sub-01/func'</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span> 
+<span class="n">anat_sub_01</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">'./ds000102/sub-01/anat/sub-01_T1w.nii.gz'</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span> 
+
+<span class="n">wf_preproc</span> <span class="o">=</span> <span class="n">PreprocWorkflow</span><span class="p">(</span><span class="n">anat</span><span class="o">=</span> <span class="n">anat_sub_01</span><span class="p">,</span>
+                            <span class="n">template</span><span class="o">=</span><span class="n">template</span>
+                             <span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">func</span><span class="o">=</span><span class="p">(</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">func_run_dir</span><span class="o">.</span><span class="n">iterdir</span><span class="p">()</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">".nii.gz"</span><span class="p">)))</span> <span class="c1">#only nifti files, ignore json files</span>
+                           
+<span class="n">result_wf</span> <span class="o">=</span> <span class="n">wf_preproc</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result_wf</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SplitOutputs(anat_brain=[File('/home/jovyan/.cache/pydra/1.0a2/run-cache/workflow-5147aca5e78063f99d30f52d1381f21d/brain_stripped.nii.gz'), File('/home/jovyan/.cache/pydra/1.0a2/run-cache/workflow-5147aca5e78063f99d30f52d1381f21d/brain_stripped.nii (1).gz')], bold_preproc=[File('/home/jovyan/.cache/pydra/1.0a2/run-cache/workflow-5147aca5e78063f99d30f52d1381f21d/sub-01_task-flanker_run-2_bold_mc_mni.nii.gz'), File('/home/jovyan/.cache/pydra/1.0a2/run-cache/workflow-5147aca5e78063f99d30f52d1381f21d/sub-01_task-flanker_run-1_bold_mc_mni.nii.gz')])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="submitter">
+<h2>3. Submitter<a class="headerlink" href="#submitter" title="Link to this heading">#</a></h2>
+<p>If you want to access a richer <code class="docutils literal notranslate"><span class="pre">Result</span></code> object you can use a <code class="docutils literal notranslate"><span class="pre">Submitter</span></code> object to initiate the task execution.</p>
+<p>The Result object contains:</p>
+<ul class="simple">
+<li><p>output: the outputs of the task (if there is only one output it is called out by default)</p></li>
+<li><p>runtime: information about the peak memory and CPU usage</p></li>
+<li><p>errored: the error status of the task</p></li>
+<li><p>task: the task object that generated the results</p></li>
+<li><p>cache_dir: the output directory the results are stored in</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">pydra</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">general</span><span class="o">.</span><span class="n">default_run_cache_root</span><span class="p">)</span> <span class="c1"># Clear previous workflow results so we can showcase execution again</span>
+              
+<span class="n">wf_sub</span> <span class="o">=</span> <span class="n">PreprocWorkflow</span><span class="p">(</span><span class="n">anat</span><span class="o">=</span> <span class="n">anat_sub_01</span><span class="p">,</span>
+                            <span class="n">template</span><span class="o">=</span><span class="n">template</span>
+                             <span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">func</span><span class="o">=</span><span class="p">(</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">func_run_dir</span><span class="o">.</span><span class="n">iterdir</span><span class="p">()</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">".nii.gz"</span><span class="p">)))</span>
+<span class="k">with</span> <span class="n">Submitter</span><span class="p">()</span> <span class="k">as</span> <span class="n">sub</span><span class="p">:</span>
+    <span class="n">result_sub</span> <span class="o">=</span> <span class="n">sub</span><span class="p">(</span><span class="n">wf_sub</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result_sub</span><span class="o">.</span><span class="n">task</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Split(defn=PreprocWorkflow(anat='/home/jovyan/Git_repositories/Neurodesk_examples/drafts/ds000102/.git/annex/objects/Pf/6k/MD5E-s10581116--757e697a01eeea5c97a7d6fbc7153373.nii.gz/MD5E-s10581116--757e697a01eeea5c97a7d6fbc7153373.nii.gz', func=StateArray('/home/jovyan/Git_repositories/Neurodesk_examples/drafts/ds000102/sub-01/func/sub-01_task-flanker_run-2_bold.nii.gz', '/home/jovyan/Git_repositories/Neurodesk_examples/drafts/ds000102/sub-01/func/sub-01_task-flanker_run-1_bold.nii.gz'), template='/home/jovyan/Git_repositories/Neurodesk_examples/drafts/mni_template.nii.gz', constructor=&lt;function PreprocWorkflow at 0x7f8c158e7880&gt;), output_types={'anat_brain': out(name='anat_brain', type=list[fileformats.generic.file.File], default=NO_DEFAULT, help='', requires=[], converter=None, validator=None, hash_eq=False), 'bold_preproc': out(name='bold_preproc', type=list[fileformats.generic.file.File], default=NO_DEFAULT, help='', requires=[], converter=None, validator=None, hash_eq=False)}, environment=Native())
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result_sub</span><span class="o">.</span><span class="n">cache_dir</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PosixPath('/home/jovyan/.cache/pydra/1.0a2/run-cache/workflow-5147aca5e78063f99d30f52d1381f21d')
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result_sub</span><span class="o">.</span><span class="n">outputs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SplitOutputs(anat_brain=[File('/home/jovyan/.cache/pydra/1.0a2/run-cache/workflow-5147aca5e78063f99d30f52d1381f21d/brain_stripped.nii.gz'), File('/home/jovyan/.cache/pydra/1.0a2/run-cache/workflow-5147aca5e78063f99d30f52d1381f21d/brain_stripped.nii (1).gz')], bold_preproc=[File('/home/jovyan/.cache/pydra/1.0a2/run-cache/workflow-5147aca5e78063f99d30f52d1381f21d/sub-01_task-flanker_run-2_bold_mc_mni.nii.gz'), File('/home/jovyan/.cache/pydra/1.0a2/run-cache/workflow-5147aca5e78063f99d30f52d1381f21d/sub-01_task-flanker_run-1_bold_mc_mni.nii.gz')])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="executing-tasks-in-parallel">
+<h2>4. Executing tasks in parallel<a class="headerlink" href="#executing-tasks-in-parallel" title="Link to this heading">#</a></h2>
+<section id="workers">
+<h3>Workers<a class="headerlink" href="#workers" title="Link to this heading">#</a></h3>
+<p>Pydra allows tasks to be executed in parallel using different workers. The default is the <em>debug</em> worker, which runs tasks serially in a single process; useful for debugging but not optimal for production.</p>
+<p>For local parallel execution, the <code class="docutils literal notranslate"><span class="pre">cf</span></code> (ConcurrentFutures) worker can spread tasks across multiple CPU cores for better efficiency. On HPC clusters, SLURM, SGE, and PSI/J workers can submit workflow nodes as separate jobs to the scheduler. There is also an experimental Dask worker with multiple backend options.</p>
+<p>Workers can be specified by string or by class, and additional parameters (e.g., <code class="docutils literal notranslate"><span class="pre">n_procs=2</span></code>) can be passed at execution.
+When running multi-process code in a Python script, the workflow execution should be enclosed in an if <strong>name</strong> == “<strong>main</strong>”: block to prevent the worker processes from re-executing the top-level script.
+This guard is not required when running inside a Jupyter Notebook.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">pydra</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">general</span><span class="o">.</span><span class="n">default_run_cache_root</span><span class="p">)</span> <span class="c1"># Clear previous workflow results so we can showcase execution</span>
+
+<span class="c1"># Use this block when calling multi-process code in a top level script</span>
+<span class="c1"># if __name__ == "__main__":</span>
+
+<span class="c1"># Use the 'cf' worker to run tasks concurrently</span>
+<span class="n">wf_parallel</span><span class="o">=</span><span class="n">PreprocWorkflow</span><span class="p">(</span><span class="n">anat</span><span class="o">=</span> <span class="n">anat_sub_01</span><span class="p">,</span>
+                            <span class="n">template</span><span class="o">=</span><span class="n">template</span>
+                         <span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">func</span><span class="o">=</span><span class="p">(</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">func_run_dir</span><span class="o">.</span><span class="n">iterdir</span><span class="p">()</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">".nii.gz"</span><span class="p">)))</span>
+
+<span class="n">result_parallel</span> <span class="o">=</span> <span class="n">wf_parallel</span><span class="p">(</span><span class="n">worker</span><span class="o">=</span><span class="s2">"cf"</span><span class="p">,</span> <span class="n">n_procs</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># &lt;-- Select the "cf" worker here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result_parallel</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SplitOutputs(anat_brain=[File('/home/jovyan/.cache/pydra/1.0a2/run-cache/workflow-5147aca5e78063f99d30f52d1381f21d/brain_stripped.nii.gz'), File('/home/jovyan/.cache/pydra/1.0a2/run-cache/workflow-5147aca5e78063f99d30f52d1381f21d/brain_stripped.nii (1).gz')], bold_preproc=[File('/home/jovyan/.cache/pydra/1.0a2/run-cache/workflow-5147aca5e78063f99d30f52d1381f21d/sub-01_task-flanker_run-2_bold_mc_mni.nii.gz'), File('/home/jovyan/.cache/pydra/1.0a2/run-cache/workflow-5147aca5e78063f99d30f52d1381f21d/sub-01_task-flanker_run-1_bold_mc_mni.nii.gz')])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="visualizing-results">
+<h2>5. Visualizing Results<a class="headerlink" href="#visualizing-results" title="Link to this heading">#</a></h2>
+<section id="workflow-overview-tasks-inputs-and-outputs">
+<h3>Workflow overview: tasks, inputs, and outputs<a class="headerlink" href="#workflow-overview-tasks-inputs-and-outputs" title="Link to this heading">#</a></h3>
+<p>The figure below shows the full workflow execution graph, including all tasks, their inputs, and outputs. This provides a visual overview of the data flow and dependencies across the preprocessing steps.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">show_workflow</span><span class="p">(</span><span class="n">PreprocWorkflow</span><span class="p">,</span> <span class="n">plot_type</span><span class="o">=</span><span class="s2">"detailed"</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/5886ab964fe1a8da79f94c96d2620e1dc7db619ff200a4243bdf1d0ecfe19eb2.png" src="../_images/5886ab964fe1a8da79f94c96d2620e1dc7db619ff200a4243bdf1d0ecfe19eb2.png">
+</div>
+</div>
+</section>
+<section id="functional-registration-to-mni-space">
+<h3>Functional registration to MNI space<a class="headerlink" href="#functional-registration-to-mni-space" title="Link to this heading">#</a></h3>
+<p>The mean BOLD image after motion correction was registered to the MNI template. The overlays below allows for visual inspection of alignment quality.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get mean BOLD image</span>
+<span class="n">mean_bold</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">mean_img</span><span class="p">(</span><span class="n">result_parallel</span><span class="o">.</span><span class="n">bold_preproc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">copy_header</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Overlay of the mean bold image on MNI background template</span>
+<span class="n">plotting</span><span class="o">.</span><span class="n">plot_stat_map</span><span class="p">(</span><span class="n">stat_map_img</span><span class="o">=</span><span class="n">mean_bold</span><span class="p">,</span> 
+                  <span class="n">bg_img</span><span class="o">=</span><span class="n">template</span><span class="p">,</span>
+                  <span class="n">transparency</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> 
+                  <span class="n">colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;nilearn.plotting.displays._slicers.OrthoSlicer at 0x7f8c158f9130&gt;
+</pre></div>
+</div>
+<img alt="../_images/0866e077bcaa7a3796c85432d3f371f0a18892ea761404969d9916a21c82fcfc.png" src="../_images/0866e077bcaa7a3796c85432d3f371f0a18892ea761404969d9916a21c82fcfc.png">
+</div>
+</div>
+<p>Let’s use <code class="docutils literal notranslate"><span class="pre">add_edges</span></code> as another visualization option for checking coregistration by overlaying the MNI template as edges (red) on top of mean functional image (background):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span> <span class="o">=</span> <span class="n">plotting</span><span class="o">.</span><span class="n">plot_anat</span><span class="p">(</span><span class="n">mean_bold</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">"Edges of MNI template on mean BOLD"</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">display</span><span class="o">.</span><span class="n">add_edges</span><span class="p">(</span><span class="n">template</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"r"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/58abdb86c45eb90312f97fc985203ecf895ed871ca0225e127a0cc47fd554aa2.png" src="../_images/58abdb86c45eb90312f97fc985203ecf895ed871ca0225e127a0cc47fd554aa2.png">
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./workflows"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev" href="papermill-slurm-submission-example.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Papermill Slurm Job Submission</p>
+      </div>
+    </a>
+    <a class="right-next" href="../structural_imaging/FSL_course_bet.html" title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">FSL course - BET</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#registration-workflow-with-antspy-and-freesurfer-s-synthstrip">Registration Workflow with ANTsPy and FreeSurfer’s SynthStrip</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#citation-and-resources">Citation and Resources:</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-included-in-this-workflow">Tools included in this workflow</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-pydra">Introduction Pydra</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-of-the-preprocessing-workflow">Overview of the Preprocessing Workflow</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#download-of-data">1. Download of Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#one-subject-from-the-flanker-dataset-from-openneuro">One Subject from the Flanker Dataset from OpenNeuro</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mni-template-from-nilearn">MNI template from Nilearn</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pydra-tasks">2. Pydra Tasks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-tasks">2.1. Python Tasks</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#define-decorator">Define decorator</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shell-tasks">2.2 Shell-tasks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow">3.3. Workflow</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submitter">3. Submitter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#executing-tasks-in-parallel">4. Executing tasks in parallel</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#workers">Workers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-results">5. Visualizing Results</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-overview-tasks-inputs-and-outputs">Workflow overview: tasks, inputs, and outputs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#functional-registration-to-mni-space">Functional registration to MNI space</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Neurodesk Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  
+</body></html>

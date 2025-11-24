@@ -1,0 +1,1348 @@
+<!DOCTYPE html><html lang="en" data-content_root="../"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>MR Spectroscopy with Osprey — Neurodesk</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet">
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet">
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet">
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin="" href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin="" href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079">
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062">
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357">
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b">
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css">
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6">
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e">
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b">
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b">
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-4Z9774J59Y"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-4Z9774J59Y');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-4Z9774J59Y');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'spectroscopy/osprey';</script>
+    <link rel="canonical" href="https://neurodesk.github.io/example-notebooks/spectroscopy/osprey.html">
+    <link rel="icon" href="../_static/neurodesk_logo.svg">
+    <link rel="index" title="Index" href="../genindex.html">
+    <link rel="search" title="Search" href="../search.html">
+    <link rel="next" title="TBSS Tutorial" href="../diffusion_imaging/Diffusion_TBSS_Demo.html">
+    <link rel="prev" title="MR Spectroscopy with LCModel" href="lcmodel.html">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="docsearch:language" content="en">
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox" class="sidebar-toggle" id="pst-primary-sidebar-checkbox">
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox" class="sidebar-toggle" id="pst-secondary-sidebar-checkbox">
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/neurodesk_logo.svg" class="logo__image only-light" alt="Neurodesk - Home">
+    <script>document.write(`<img src="../_static/neurodesk_logo.svg" class="logo__image only-dark" alt="Neurodesk - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Neurodesk environment
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Workflows</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../workflows/AA_Neurodesk_demo_tour.html">Neurodesk Tools Demo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/MRIQC.html">MRIQC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/PyBIDS.html">PyBIDS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/RISE_slideshow.html">RISE Slideshow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/bids_conversion.html">BIDS conversion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/nipype_full.html">Nipype on Neurodesk</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/nipype_short.html">Basic Nipype</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../workflows/papermill-slurm-submission-example.html">Papermill Slurm Job Submission</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workflows/pydra_preproc_ants.html">Pydra</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Structural Imaging</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/FSL_course_bet.html">FSL course - BET</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/brain_extraction_different_tools.html">Brain Extraction Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/freesurfer.html">FreeSurfer</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/qsmxt.html">QSMxT</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../structural_imaging/sct_toolbox.html">SCT Toolbox</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Spectroscopy</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lcmodel.html">MR Spectroscopy with LCModel</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">MR Spectroscopy with Osprey</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Diffusion Imaging</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../diffusion_imaging/Diffusion_TBSS_Demo.html">TBSS Tutorial</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="../diffusion_imaging/MRtrix_1.html">MRtrix: Part 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../diffusion_imaging/MRtrix_2.html">MRtrix: Part 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../diffusion_imaging/MRtrix_3.html">MRtrix: Part 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../diffusion_imaging/mrtrix3tissue.html">MRtrix3Tissue</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Functional Imaging</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/AFNI_preprocessing_only.html">AFNI Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/AFNI_preprocessing_plus_glm.html">AFNI Preprocessing and GLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/AFNI_preprocessing_plus_glm_group.html">AFNI Preprocessing &amp; Group Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/FSL_preproc_glm.html">FSL Preprocessing and GLM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/FSLnets_course_practical.html">Resting state with FSLnets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/NiWrap.html">NiWrap and Connectome Workbench</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/aslprep.html">ASLprep</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/deepretinotopy.html">DeepRetinotopy</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/first_and_second_level_spm.html">Nipype-SPM fMRI Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/fmriprep.html">fMRIprep</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/fsl_all_levels_flanker_nipype.html">Nipype-FSL fMRI Analysis</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/intro_to_preprocessing.html">Introduction to Preprocessing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/mri_vol2surf.html">FreeSurfer: mri_vol2surf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../functional_imaging/process_five_echo_dataset.html">tedana: TE Dependent ANAlysis</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Electrophysiology</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../electrophysiology/eeg_with_mne.html">EEG Analysis with MNE</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons"><a href="https://doi.org/10.5072/zenodo.407146" target="_blank" rel="noopener noreferrer" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button">https://doi.org/10.5072/zenodo.407146</a>
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://play-america.neurodesk.org/hub/user-redirect/git-pull?repo=https%3A//github.com/NeuroDesk/example-notebooks&amp;urlpath=lab/tree/example-notebooks/books/spectroscopy/osprey.ipynb&amp;branch=main" target="_blank" class="btn btn-sm dropdown-item" title="Launch on JupyterHub" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="JupyterHub logo" src="../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">JupyterHub</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/NeuroDesk/example-notebooks" target="_blank" class="btn btn-sm btn-source-repository-button dropdown-item" title="Source repository" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/NeuroDesk/example-notebooks/edit/main/books/spectroscopy/osprey.ipynb" target="_blank" class="btn btn-sm btn-source-edit-button dropdown-item" title="Suggest edit" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/NeuroDesk/example-notebooks/issues/new?title=Issue%20on%20page%20%2Fspectroscopy/osprey.html&amp;body=Your%20issue%20content%20here." target="_blank" class="btn btn-sm btn-source-issues-button dropdown-item" title="Open an issue" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/spectroscopy/osprey.ipynb" target="_blank" class="btn btn-sm btn-download-source-button dropdown-item" title="Download source file" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()" class="btn btn-sm btn-download-pdf-button dropdown-item" title="Print to PDF" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()" class="btn btn-sm btn-fullscreen-button" title="Fullscreen mode" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>MR Spectroscopy with Osprey</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyzing-mr-spectra-from-the-human-brain-using-single-voxel-spectroscopy-svs">Analyzing MR Spectra from the Human Brain using Single Voxel Spectroscopy (SVS)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mr-spectroscopy-mrs">MR Spectroscopy (MRS)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#citation-and-resources">Citation and Resources:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#osprey-input">Osprey input</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#osprey-output">Osprey output</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#check-cpu-vendor-and-model-for-compatibility-or-performance-considerations">Check CPU vendor and model for compatibility or performance considerations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-software-tools-and-import-python-libraries">Load software tools and import python libraries</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-osprey-job-configuration">Set up Osprey Job configuration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-osprey-processing">Run Osprey processing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#t1s-with-the-mrs-voxel-aligned">T1s with the MRS voxel aligned</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-modelling">Spectral modelling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metabolite-concetrations">Metabolite concetrations</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="mr-spectroscopy-with-osprey">
+<h1>MR Spectroscopy with Osprey<a class="headerlink" href="#mr-spectroscopy-with-osprey" title="Link to this heading">#</a></h1>
+<section id="analyzing-mr-spectra-from-the-human-brain-using-single-voxel-spectroscopy-svs">
+<h2>Analyzing MR Spectra from the Human Brain using Single Voxel Spectroscopy (SVS)<a class="headerlink" href="#analyzing-mr-spectra-from-the-human-brain-using-single-voxel-spectroscopy-svs" title="Link to this heading">#</a></h2>
+<p><strong>Author</strong>: Michal Toth</p>
+<p>This notebook was prepared for an audience of clinicians at the 2025 PACTALS (Pan-Asian consortium of Treatment and Research in ALS) conference in Melbourne (<a class="reference external" href="https://www.pactalscongress.com/programme">link</a>)</p>
+<div style="border:2px solid #1976D2; border-radius:10px; padding:15px; background-color:#f0f3f5;">
+<h2 style="color:#0D47A1;">📘 How to Use This Notebook</h2>
+<p>
+This notebook is an <b style="color:#1565C0;">interactive document</b>.  
+It mixes short explanations (like this box) with computer code that runs automatically.
+</p>
+<h3 style="color:#1565C0;">⚡ The basics</h3>
+<ul style="font-size:16px; line-height:1.6;">
+  <li>👆 <b>Click on a cell</b> (the boxes with text or code)</li>
+  <li>▶️ <b>Run it</b> by pressing <code>Command + Enter</code> (Mac) or <code>Control + Enter</code> (Windows/Linux)</li>
+  <li>⏭️ Or use the <b>play button</b> in the toolbar above</li>
+  <li>⬇️ Move to the next cell and repeat</li>
+</ul>
+<h3 style="color:#1565C0;">🧩 What happens when you run a cell?</h3>
+<p>
+The computer will either:
+</p>
+<ul style="font-size:16px; line-height:1.6;">
+  <li>✏️ Show you some text or figures</li>
+  <li>🖥️ Run an analysis step in the background</li>
+  <li>📂 Save results into a folder</li>
+</ul>
+</div></section>
+<section id="mr-spectroscopy-mrs">
+<h2>MR Spectroscopy (MRS)<a class="headerlink" href="#mr-spectroscopy-mrs" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Quantification of concentration of various metabolites (chemical compounds)</p></li>
+<li><p>Each metabolite has a distinct spectral (frequency-domain) signature based on its chemical structure</p></li>
+</ul>
+<div style="background-color: #000000; border-radius: 4px; display: inline-block; padding: 10px; max-width: 60%;">
+<img src="https://raw.githubusercontent.com/neurodesk/example-notebooks/refs/heads/main/books/images/mrs_intro.png" alt="My Image" width="100%" height="100%">
+</div>
+</section>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>This example demonstrates the processing of MR spectra acquired from the human motor cortex using <code class="docutils literal notranslate"><span class="pre">Osprey</span></code>, a standalone tool for processing and quantification of magnetic resonance spectroscopy (MRS) data.</p>
+<section id="citation-and-resources">
+<h3>Citation and Resources:<a class="headerlink" href="#citation-and-resources" title="Link to this heading">#</a></h3>
+<p><strong>Osprey</strong>:</p>
+<ul class="simple">
+<li><p>Oeltzschner, G., Zöllner, H. J., Hui, S. C. N., Mikkelsen, M., Saleh, M. G., Tapper, S., &amp; Edden, R. A. E. (2020). Osprey: Open-source processing, reconstruction &amp; estimation of magnetic resonance spectroscopy data. Journal of Neuroscience Methods, 343, 108827. <a class="reference external" href="https://doi.org/10.1016/j.jneumeth.2020.108827">https://doi.org/10.1016/j.jneumeth.2020.108827</a></p></li>
+<li><p><a class="reference external" href="https://schorschinho.github.io/osprey/">Osprey documentation</a></p></li>
+</ul>
+<p><strong>Python</strong>:</p>
+<ul class="simple">
+<li><p>Python Software Foundation. (2023). Python (Version 3.11.6) [Software]. Available at <a class="reference external" href="https://www.python.org/">https://www.python.org/</a></p></li>
+</ul>
+<p><strong>Dataset</strong>:</p>
+<ul class="simple">
+<li><p>Collected at UQ as part of the BeLong study</p></li>
+<li><p>T1 weighted MP2RAGE at 3T (healthy control)</p></li>
+<li><p>SEMI-LASER MRS at 3T (healthy control)</p>
+<ul>
+<li><p>Oz, G., &amp; Tkáč, I. (2011). Short-echo, single-shot, full-intensity proton magnetic resonance spectroscopy for neurochemical profiling at 4 T: validation in the cerebellum and brainstem. Magn Reson Med, 65(4), 901-910. <a class="reference external" href="https://doi.org/10.1002/mrm.22708">https://doi.org/10.1002/mrm.22708</a></p></li>
+<li><p>Deelchand, D. K., Berrington, A., Noeske, R., Joers, J. M., Arani, A., Gillen, J., Schär, M., Nielsen, J. F., Peltier, S., Seraji-Bozorgzad, N., Landheer, K., Juchem, C., Soher, B. J., Noll, D. C., Kantarci, K., Ratai, E. M., Mareci, T. H., Barker, P. B., &amp; Öz, G. (2021). Across-vendor standardization of semi-LASER for single-voxel MRS at 3T. NMR Biomed, 34(5), e4218. <a class="reference external" href="https://doi.org/10.1002/nbm.4218">https://doi.org/10.1002/nbm.4218</a></p></li>
+<li><p>The basis file used in this example is a placeholder, the SLaser basis set used in the acquisition (Eftekhari, Z., Shaw, T., Deelchand, D., Marjańska, M., Bogner, W., &amp; Barth, M. (2025). Reliability and Reproducibility of Metabolite Quantification Using 1H MRS in the Human Brain at 3 T and 7 T. NMR in biomedicine, 38, e70087. <a class="reference external" href="https://doi.org/10.1002/nbm.70087">https://doi.org/10.1002/nbm.70087</a>) is not shareable at the moment.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="osprey-input">
+<h3>Osprey input<a class="headerlink" href="#osprey-input" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Description</p></th>
+<th class="head"><p>Filename</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Raw metabolite data</p></td>
+<td><p>mrs/…svs_slaser_dkd_ul.dat</p></td>
+</tr>
+<tr class="row-odd"><td><p>Water reference data</p></td>
+<td><p>mrs/…svs_slaser_dkd_ul_wref.dat</p></td>
+</tr>
+<tr class="row-even"><td><p>T1-weighted anatomical image</p></td>
+<td><p>anat/…acq-MP2RAGE_T1w.nii</p></td>
+</tr>
+<tr class="row-odd"><td><p>JSON file configuring the pipeline. See <a class="reference external" href="https://schorschinho.github.io/osprey/the-osprey-job-file.html">Osprey’s documentation</a> for more details</p></td>
+<td><p>osprey-job.json</p></td>
+</tr>
+<tr class="row-even"><td><p>A BASIS file containing simulated model spectra for known metabolites. Used by LCModel to fit data.</p></td>
+<td><p>set.BASIS</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="osprey-output">
+<h3>Osprey output<a class="headerlink" href="#osprey-output" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Description</p></th>
+<th class="head"><p>Filename</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>MRS voxel aligned with the anatomy</p></td>
+<td><p>osprey-output/VoxelMasks/…svs_slaser_dkd_ul_space-scanner_mask.nii</p></td>
+</tr>
+<tr class="row-odd"><td><p>MRS voxel segmentation masks (GM, WM, CSF)</p></td>
+<td><p>osprey-output/SegMaps/…svs_slaser_dkd_ul_space-scanner_Voxel-1_label-CSF.nii</p></td>
+</tr>
+<tr class="row-even"><td><p>Results of spectral fitting (from LCmodel)</p></td>
+<td><p>osprey-output/LCMOutput/</p></td>
+</tr>
+<tr class="row-odd"><td><p>Summary of results from different steps of the pipeline. It includes some QC metrics</p></td>
+<td><p>osprey-output/Reports/sub-002-report.html</p></td>
+</tr>
+<tr class="row-even"><td><p>Tables with concentration values for metabolites using different references</p></td>
+<td><p>osprey-output/QuantifyResults/</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="check-cpu-vendor-and-model-for-compatibility-or-performance-considerations">
+<h3>Check CPU vendor and model for compatibility or performance considerations<a class="headerlink" href="#check-cpu-vendor-and-model-for-compatibility-or-performance-considerations" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>cat<span class="w"> </span>/proc/cpuinfo<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">'vendor'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq
+<span class="o">!</span>cat<span class="w"> </span>/proc/cpuinfo<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">'model name'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>vendor_id	: GenuineIntel
+model name	: Intel(R) Xeon(R) Gold 6126 CPU @ 2.60GHz
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="load-software-tools-and-import-python-libraries">
+<h3>Load software tools and import python libraries<a class="headerlink" href="#load-software-tools-and-import-python-libraries" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">module</span>
+<span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'osprey/2.9.0'</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>['osprey/2.9.0']
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+<span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">nibabel</span> <span class="n">numpy</span> <span class="n">pandas</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span> <span class="k">as</span> <span class="n">ipython_image</span><span class="p">,</span> <span class="n">display</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span><span class="p">,</span> <span class="n">ImageFont</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ipyniivue</span><span class="w"> </span><span class="kn">import</span> <span class="n">NiiVue</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">nibabel</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ipywidgets</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">widgets</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="set-up-osprey-job-configuration">
+<h2>Set up Osprey Job configuration<a class="headerlink" href="#set-up-osprey-job-configuration" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Download and prepare data</p></li>
+<li><p>Set up paths to the relevant MRS/MRI files</p></li>
+<li><p>Set up the configuration JSON file</p></li>
+<li><p>Check that all specified paths exist</p></li>
+</ol>
+<p><em>NOTE: For a more detailed explanation of all the configuration options see <a class="reference external" href="https://schorschinho.github.io/osprey/the-osprey-job-file.html">Osprey’s documentation</a></em></p>
+<div class="cell tag_scroll-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+echo "Downloading data"
+osf -p 3a2ws fetch osfstorage/osprey.zip ./data_osprey/osprey.zip
+echo "Unzipping data"
+unzip ./data_osprey/osprey.zip -d ./data_osprey/
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading data
+Unzipping data
+Archive:  ./data_osprey/osprey.zip
+   creating: ./data_osprey/sub-002/ses-01/
+   creating: ./data_osprey/sub-002/ses-01/anat/
+  inflating: ./data_osprey/sub-002/ses-01/anat/sub-002_ses-01_acq-MP2RAGE_desc-defaced_T1w.nii  
+   creating: ./data_osprey/sub-002/ses-01/mrs/
+  inflating: ./data_osprey/sub-002/ses-01/mrs/meas_MID00104_FID130221_svs_slaser_dkd_ul_wref.dat  
+  inflating: ./data_osprey/sub-002/ses-01/mrs/meas_MID00103_FID130220_svs_slaser_dkd_ul.dat
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 150M/150M [00:13&lt;00:00, 10.9Mbytes/s]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get path to Osprey executable.</span>
+<span class="n">osprey_path</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">check_output</span><span class="p">(</span><span class="s2">"which ospreyCMD"</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+<span class="c1"># Extract container base and image path.</span>
+<span class="n">container_base</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">osprey_path</span><span class="p">)</span>
+<span class="n">container_id</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">container_base</span><span class="p">)</span>
+<span class="n">simg_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">container_base</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">container_id</span><span class="si">}</span><span class="s2">.simg"</span><span class="p">)</span>
+
+<span class="c1"># Construct the basis set path (from inside the container).</span>
+<span class="n">basis_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+    <span class="n">simg_path</span><span class="p">,</span>
+    <span class="s2">"opt/basissets/3T/siemens/unedited/slaser/30"</span>
+<span class="p">)</span>
+
+<span class="c1"># Osprey will try to convert this .mat basis file into a .BASIS type</span>
+<span class="c1"># file. It will try to write the new .BASIS file into the same folder</span>
+<span class="c1"># where the .mat basis file is. Thus, the .mat basis file needs to be</span>
+<span class="c1"># copied into a writeable location.</span>
+<span class="o">!</span>cp<span class="w"> </span><span class="o">{</span>basis_path<span class="o">}</span>/basis_siemens_slaser30.mat<span class="w"> </span>./data_osprey/basis_siemens_slaser30.mat
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">base_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+<span class="n">data_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">base_path</span><span class="si">}</span><span class="s1">/data_osprey'</span>
+<span class="n">output_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">base_path</span><span class="si">}</span><span class="s1">/osprey-output'</span>
+<span class="n">basis_set</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">data_path</span><span class="si">}</span><span class="s1">/basis_siemens_slaser30.mat'</span>
+<span class="n">job_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">base_path</span><span class="si">}</span><span class="s1">/osprey-job.json'</span>
+
+<span class="n">sub</span> <span class="o">=</span> <span class="s1">'sub-002'</span>
+<span class="n">ses</span> <span class="o">=</span> <span class="s1">'ses-01'</span>
+
+<span class="c1"># Metabolite data.</span>
+<span class="n">files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">data_path</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">sub</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">ses</span><span class="si">}</span><span class="s1">/mrs/meas_MID00103_FID130220_svs_slaser_dkd_ul.dat'</span>
+<span class="p">]</span>
+<span class="c1"># Water reference data.</span>
+<span class="n">files_ref</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">data_path</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">sub</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">ses</span><span class="si">}</span><span class="s1">/mrs/meas_MID00104_FID130221_svs_slaser_dkd_ul_wref.dat'</span>
+<span class="p">]</span>
+<span class="c1"># T1.</span>
+<span class="n">files_nii</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">data_path</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">sub</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">ses</span><span class="si">}</span><span class="s1">/anat/</span><span class="si">{</span><span class="n">sub</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">ses</span><span class="si">}</span><span class="s1">_acq-MP2RAGE_desc-defaced_T1w.nii'</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mrs_options</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'seqType'</span><span class="p">:</span> <span class="s1">'unedited'</span><span class="p">,</span>
+    <span class="s1">'editTarget'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'none'</span><span class="p">],</span>
+    <span class="s1">'dataScenario'</span><span class="p">:</span> <span class="s1">'invivo'</span><span class="p">,</span>
+    <span class="s1">'outputFolder'</span><span class="p">:</span> <span class="p">[</span><span class="n">output_path</span><span class="p">],</span>
+    <span class="s1">'SpecReg'</span><span class="p">:</span> <span class="s1">'RobSpecReg'</span><span class="p">,</span>
+    <span class="s1">'SubSpecAlignment'</span><span class="p">:</span> <span class="s1">'none'</span><span class="p">,</span>
+    <span class="s1">'EECraw'</span><span class="p">:</span> <span class="s1">'1'</span><span class="p">,</span>
+    <span class="s1">'ECCmm'</span><span class="p">:</span> <span class="s1">'1'</span><span class="p">,</span>
+    <span class="s1">'method'</span><span class="p">:</span> <span class="s1">'LCModel'</span><span class="p">,</span>
+    <span class="s1">'saveLCM'</span><span class="p">:</span> <span class="s1">'1'</span><span class="p">,</span>
+    <span class="s1">'savejMRUI'</span><span class="p">:</span> <span class="s1">'0'</span><span class="p">,</span>
+    <span class="s1">'saveVendor'</span><span class="p">:</span> <span class="s1">'1'</span><span class="p">,</span>
+    <span class="s1">'saveNII'</span><span class="p">:</span> <span class="s1">'1'</span><span class="p">,</span>
+    <span class="s1">'savePDF'</span><span class="p">:</span> <span class="s1">'0'</span><span class="p">,</span>
+    <span class="s1">'includeMetabs'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'default'</span><span class="p">],</span>
+    <span class="s1">'style'</span><span class="p">:</span> <span class="s1">'Separate'</span><span class="p">,</span>
+    <span class="s1">'range'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'0.5'</span><span class="p">,</span> <span class="s1">'4.2'</span><span class="p">],</span>
+    <span class="s1">'rangeWater'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'2.0'</span><span class="p">,</span> <span class="s1">'7.4'</span><span class="p">],</span>
+    <span class="s1">'bLineKnotSpace'</span><span class="p">:</span> <span class="s1">'5'</span><span class="p">,</span>
+    <span class="s1">'fitMM'</span><span class="p">:</span> <span class="s1">'1'</span><span class="p">,</span>
+    <span class="s1">'basisSet'</span><span class="p">:</span> <span class="n">basis_set</span><span class="p">,</span>
+    <span class="s1">'files'</span><span class="p">:</span> <span class="n">files</span><span class="p">,</span>
+    <span class="s1">'files_ref'</span><span class="p">:</span> <span class="n">files_ref</span><span class="p">,</span>
+    <span class="s1">'files_nii'</span><span class="p">:</span> <span class="n">files_nii</span>
+<span class="p">}</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">job_path</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">mrs_options</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">check_paths</span> <span class="o">=</span> <span class="p">[</span><span class="n">data_path</span><span class="p">,</span> <span class="n">output_path</span><span class="p">,</span> <span class="n">basis_set</span><span class="p">,</span> <span class="n">job_path</span><span class="p">]</span>
+<span class="n">check_paths</span> <span class="o">=</span> <span class="n">check_paths</span> <span class="o">+</span> <span class="n">files</span> <span class="o">+</span> <span class="n">files_ref</span> <span class="o">+</span> <span class="n">files_nii</span>
+
+<span class="c1"># Create the results directory if it doesn't exist yet</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">any_warning</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="k">for</span> <span class="n">pth</span> <span class="ow">in</span> <span class="n">check_paths</span><span class="p">:</span>
+    <span class="n">pth_exists</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">pth</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="s1">'✅'</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">pth_exists</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">'❌'</span><span class="si">}</span><span class="s2">  '</span><span class="si">{</span><span class="n">pth</span><span class="si">}</span><span class="s2">'"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>✅  '/home/jovyan/Git_repositories/example-notebooks/books/spectroscopy/data_osprey'
+✅  '/home/jovyan/Git_repositories/example-notebooks/books/spectroscopy/osprey-output'
+✅  '/home/jovyan/Git_repositories/example-notebooks/books/spectroscopy/data_osprey/basis_siemens_slaser30.mat'
+✅  '/home/jovyan/Git_repositories/example-notebooks/books/spectroscopy/osprey-job.json'
+✅  '/home/jovyan/Git_repositories/example-notebooks/books/spectroscopy/data_osprey/sub-002/ses-01/mrs/meas_MID00103_FID130220_svs_slaser_dkd_ul.dat'
+✅  '/home/jovyan/Git_repositories/example-notebooks/books/spectroscopy/data_osprey/sub-002/ses-01/mrs/meas_MID00104_FID130221_svs_slaser_dkd_ul_wref.dat'
+✅  '/home/jovyan/Git_repositories/example-notebooks/books/spectroscopy/data_osprey/sub-002/ses-01/anat/sub-002_ses-01_acq-MP2RAGE_desc-defaced_T1w.nii'
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="run-osprey-processing">
+<h2>Run Osprey processing<a class="headerlink" href="#run-osprey-processing" title="Link to this heading">#</a></h2>
+<p>The following command runs the Oprey CLI software with specifications from the job file defined above.</p>
+<div class="cell tag_scroll-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>ospreyCMD<span class="w"> </span><span class="o">{</span>job_path<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>------------------------------------------
+Setting up environment variables
+---
+LD_LIBRARY_PATH is .:/opt/MCR/R2023a//runtime/glnxa64:/opt/MCR/R2023a//bin/glnxa64:/opt/MCR/R2023a//sys/os/glnxa64:/opt/MCR/R2023a//sys/opengl/lib/glnxa64
+Spectral fitting parameters will not be saved (default). Please indicate otherwise in the csv-file or the GUI 
+/home/jovyan/Git_repositories/example-notebooks/books/spectroscopy/osprey-job.json
+Timestamp September 24, 2025 02:18:38 Osprey 2.9.0
+Timestamp September 24, 2025 02:18:38 Osprey 2.9.0  OspreyLoad
+Loading raw data from dataset   1 out of   1 total datasets...
+Software version: VD (!?)
+Reader version: 1496740353 (UTC: 06-Jun-2017 09:12:33)
+Scan 1/2, read all mdhs:
+    35.3 MB read in    0 s
+Scan 2/2, read all mdhs:
+    83.9 MB read in    0 s
+
+ans =
+
+     0
+
+multi RAID file detected.
+Software version: VD (!?)
+Reader version: 1496740353 (UTC: 06-Jun-2017 09:12:33)
+Scan 1/2, read all mdhs:
+    35.3 MB read in    0 s
+Scan 2/2, read all mdhs:
+    19.0 MB read in    0 s
+
+ans =
+
+     0
+
+multi RAID file detected.
+
+... done.
+ Elapsed time 15.375816 seconds
+Timestamp September 24, 2025 02:18:54 Osprey 2.9.0  OspreyProcess
+Processing data from dataset   1 out of   1 total datasets...
+
+... done.
+ Elapsed time 68.660608 seconds
+Writing table to file = /home/jovyan/Git_repositories/example-notebooks/books/spectroscopy/osprey-output/QM_processed_spectra.tsv
+Writing table to file = /home/jovyan/Git_repositories/example-notebooks/books/spectroscopy/osprey-output/QM_processed_spectra.json
+Timestamp September 24, 2025 02:20:04 Osprey 2.9.0  OspreyFit
+Fitting metabolite spectra from dataset   1 out of   1 total datasets...
+
+... done.
+ Elapsed time 4.866655 seconds
+
+... done.
+ Elapsed time 4.866655 seconds
+Writing table to file = /home/jovyan/Git_repositories/example-notebooks/books/spectroscopy/osprey-output/QM_processed_spectra.tsv
+Writing table to file = /home/jovyan/Git_repositories/example-notebooks/books/spectroscopy/osprey-output/QM_processed_spectra.json
+Timestamp September 24, 2025 02:20:15 Osprey 2.9.0  OspreyCoreg
+Coregistering voxel from dataset   1 out of   1 total datasets...
+
+... done.
+ Elapsed time 7.306444 seconds
+Timestamp September 24, 2025 02:20:23 Osprey 2.9.0  OspreySeg
+
+Segmenting structural image from dataset   1 out of   1 total datasets...
+
+
+------------------------------------------------------------------------
+24-Sep-2025 02:20:31 - Running job #1
+------------------------------------------------------------------------
+24-Sep-2025 02:20:31 - Running 'Segment'
+
+SPM12: spm_preproc_run (v7670)                     02:20:31 - 24/09/2025
+========================================================================
+Segment /home/jovyan/Git_repositories/example-notebooks/books/spectroscopy/data_osprey/sub-002/ses-01/anat/sub-002_ses-01_acq-MP2RAGE_desc-defaced_T1w.nii,1
+Completed                               :          02:23:48 - 24/09/2025
+24-Sep-2025 02:23:48 - Done    'Segment'
+24-Sep-2025 02:23:48 - Done
+
+
+
+------------------------------------------------------------------------
+24-Sep-2025 02:23:51 - Running job #1
+------------------------------------------------------------------------
+24-Sep-2025 02:23:51 - Running 'Normalise: Write'
+24-Sep-2025 02:23:56 - Done    'Normalise: Write'
+24-Sep-2025 02:23:56 - Done
+
+
+
+------------------------------------------------------------------------
+24-Sep-2025 02:24:00 - Running job #1
+------------------------------------------------------------------------
+24-Sep-2025 02:24:00 - Running 'Image Calculator'
+
+SPM12: spm_imcalc (v6961)                          02:24:00 - 24/09/2025
+========================================================================
+ImCalc Image: /home/jovyan/Git_repositories/example-notebooks/books/spectroscopy/osprey-output/VoxelMasks/MID00103_FID130220_svs_slaser_dkd_ul_space-spm152_mask_VoxelOverlap.nii
+24-Sep-2025 02:24:01 - Done    'Image Calculator'
+24-Sep-2025 02:24:01 - Done
+
+
+... done.
+ Elapsed time 210.691464 seconds
+Writing table to file = /home/jovyan/Git_repositories/example-notebooks/books/spectroscopy/osprey-output/SegMaps/TissueFractions_Voxel_1.tsv
+Writing table to file = /home/jovyan/Git_repositories/example-notebooks/books/spectroscopy/osprey-output/SegMaps/TissueFractions_Voxel_1.json
+Timestamp September 24, 2025 02:24:01 Osprey 2.9.0  OspreyQuantify
+
+Quantifying dataset   1 out of   1 total datasets...
+
+... done.
+ Elapsed time 0.056855 seconds
+Writing table to file = /home/jovyan/Git_repositories/example-notebooks/books/spectroscopy/osprey-output/QuantifyResults/A_amplMets_Voxel_1_Basis_1.tsv
+Writing table to file = /home/jovyan/Git_repositories/example-notebooks/books/spectroscopy/osprey-output/QuantifyResults/A_amplMets_Voxel_1_Basis_1.json
+Writing table to file = /home/jovyan/Git_repositories/example-notebooks/books/spectroscopy/osprey-output/QuantifyResults/A_tCr_Voxel_1_Basis_1.tsv
+Writing table to file = /home/jovyan/Git_repositories/example-notebooks/books/spectroscopy/osprey-output/QuantifyResults/A_tCr_Voxel_1_Basis_1.json
+Writing table to file = /home/jovyan/Git_repositories/example-notebooks/books/spectroscopy/osprey-output/QuantifyResults/A_rawWaterScaled_Voxel_1_Basis_1.tsv
+Writing table to file = /home/jovyan/Git_repositories/example-notebooks/books/spectroscopy/osprey-output/QuantifyResults/A_rawWaterScaled_Voxel_1_Basis_1.json
+Writing table to file = /home/jovyan/Git_repositories/example-notebooks/books/spectroscopy/osprey-output/QuantifyResults/A_CSFWaterScaled_Voxel_1_Basis_1.tsv
+Writing table to file = /home/jovyan/Git_repositories/example-notebooks/books/spectroscopy/osprey-output/QuantifyResults/A_CSFWaterScaled_Voxel_1_Basis_1.json
+Writing table to file = /home/jovyan/Git_repositories/example-notebooks/books/spectroscopy/osprey-output/QuantifyResults/A_TissCorrWaterScaled_Voxel_1_Basis_1.tsv
+Writing table to file = /home/jovyan/Git_repositories/example-notebooks/books/spectroscopy/osprey-output/QuantifyResults/A_TissCorrWaterScaled_Voxel_1_Basis_1.json
+Writing table to file = /home/jovyan/Git_repositories/example-notebooks/books/spectroscopy/osprey-output/QuantifyResults/A_AlphaCorrWaterScaled_Voxel_1_Basis_1.tsv
+Writing table to file = /home/jovyan/Git_repositories/example-notebooks/books/spectroscopy/osprey-output/QuantifyResults/A_AlphaCorrWaterScaled_Voxel_1_Basis_1.json
+Writing table to file = /home/jovyan/Git_repositories/example-notebooks/books/spectroscopy/osprey-output/QuantifyResults/A_AlphaCorrWaterScaledGroupNormed_Voxel_1_Basis_1.tsv
+Writing table to file = /home/jovyan/Git_repositories/example-notebooks/books/spectroscopy/osprey-output/QuantifyResults/A_AlphaCorrWaterScaledGroupNormed_Voxel_1_Basis_1.json
+Writing table to file = /home/jovyan/Git_repositories/example-notebooks/books/spectroscopy/osprey-output/QuantifyResults/A_CRLB_Voxel_1_Basis_1.tsv
+Writing table to file = /home/jovyan/Git_repositories/example-notebooks/books/spectroscopy/osprey-output/QuantifyResults/A_CRLB_Voxel_1_Basis_1.json
+Writing table to file = /home/jovyan/Git_repositories/example-notebooks/books/spectroscopy/osprey-output/QuantifyResults/A_h2oarea_Voxel_1_Basis_1.tsv
+Writing table to file = /home/jovyan/Git_repositories/example-notebooks/books/spectroscopy/osprey-output/QuantifyResults/A_h2oarea_Voxel_1_Basis_1.json
+Timestamp September 24, 2025 02:24:03 Osprey 2.9.0  OspreyOverview
+
+Gathering spectra from subspectrum 1 out of 2 total subspectra..Gathering spectra from subspectrum 1 out of 2 total subspectra..Gathering spectra from subspectrum 2 out of 2 total subspectra...
+... done.
+Gathering fit models from fit 1 out of 1 total fits.Gathering fit models from fit 1 out of 1 total fits...
+... done.
+Interpolating fit models from fit 1 out of 1 total fits.Interpolating fit models from fit 1 out of 1 total fits...
+... done.
+
+Scaling data from dataset 1 out of 1 total datasets.Scaling data from dataset 1 out of 1 total datasets.Scaling data from dataset 1 out of 1 total datasets...
+... done.
+Writing table to file = /home/jovyan/Git_repositories/example-notebooks/books/spectroscopy/osprey-output/subject_names_and_excluded.tsv
+Writing table to file = /home/jovyan/Git_repositories/example-notebooks/books/spectroscopy/osprey-output/subject_names_and_excluded.json
+... done.
+ Elapsed time 0.120314 seconds
+Runtime Breakdown................
+OspreyLoad runtime: 15.375816 seconds
+OspreyProcess runtime: 68.660608 seconds
+OspreyFit runtime: 4.866655 seconds
+	OspreyFit metab runtime: 4.866655 seconds
+OspreyCoreg runtime: 7.306444 seconds
+OspreySeg runtime: 210.691464 seconds
+OspreyOverview runtime: 0.120314 seconds
+Full Osprey runtime: 307.078156 seconds
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="results">
+<h2>Results<a class="headerlink" href="#results" title="Link to this heading">#</a></h2>
+<section id="t1s-with-the-mrs-voxel-aligned">
+<h3>T1s with the MRS voxel aligned<a class="headerlink" href="#t1s-with-the-mrs-voxel-aligned" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Osprey performs alignment with T1</p></li>
+<li><p>Osprey also performs segmentation to determine the proportion of tissue types within the voxel (for WM and CSF correction)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prepare the main viewer withot the 3D render.</span>
+<span class="n">nv</span> <span class="o">=</span> <span class="n">NiiVue</span><span class="p">(</span>
+    <span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span>
+    <span class="n">multiplanar_layout</span><span class="o">=</span><span class="s2">"ROW"</span><span class="p">,</span>
+    <span class="n">multiplanar_show_render</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">multiplanar_pad_pixels</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">is_ruler</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">is_colorbar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">is_orient_cube</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">is_radiological_convention</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">back_color</span><span class="o">=</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">1.0</span><span class="p">),</span>
+    <span class="n">crosshair_color</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># Robust intensity window (ignore zeros and outliers)</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">files_nii</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+<span class="n">vals</span> <span class="o">=</span> <span class="n">t1</span><span class="p">[</span><span class="n">t1</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">99.5</span><span class="p">])</span> <span class="k">if</span> <span class="n">vals</span><span class="o">.</span><span class="n">size</span> <span class="k">else</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+<span class="c1"># T1 with contrast adjusted.</span>
+<span class="n">nv</span><span class="o">.</span><span class="n">add_volume</span><span class="p">({</span>
+    <span class="s2">"path"</span><span class="p">:</span> <span class="n">files_nii</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"native"</span><span class="p">,</span>
+    <span class="s2">"opacity"</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="s2">"colormap"</span><span class="p">:</span> <span class="s2">"gray"</span><span class="p">,</span>
+    <span class="s2">"cal_min"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">vmin</span><span class="p">)</span> <span class="k">if</span> <span class="n">vmin</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s2">"cal_max"</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">vmax</span><span class="p">)</span> <span class="k">if</span> <span class="n">vmax</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="s2">"ignore_zero_voxels"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">})</span>
+
+<span class="c1"># WM segmentation.</span>
+<span class="n">nv</span><span class="o">.</span><span class="n">add_volume</span><span class="p">({</span>
+    <span class="s2">"path"</span><span class="p">:</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s1">/SegMaps/meas_MID00103_FID130220_svs_slaser_dkd_ul_space-scanner_Voxel-1_label-WM.nii.gz'</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"wm"</span><span class="p">,</span>
+    <span class="s2">"opacity"</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+    <span class="s2">"colormap"</span><span class="p">:</span> <span class="s2">"red"</span><span class="p">,</span>
+    <span class="s2">"ignore_zero_voxels"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">})</span>
+
+<span class="c1"># GM segmentation.</span>
+<span class="n">nv</span><span class="o">.</span><span class="n">add_volume</span><span class="p">({</span>
+    <span class="s2">"path"</span><span class="p">:</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s1">/SegMaps/meas_MID00103_FID130220_svs_slaser_dkd_ul_space-scanner_Voxel-1_label-GM.nii.gz'</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"gm"</span><span class="p">,</span>
+    <span class="s2">"opacity"</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+    <span class="s2">"colormap"</span><span class="p">:</span> <span class="s2">"blue"</span><span class="p">,</span>
+    <span class="s2">"ignore_zero_voxels"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">})</span>
+
+<span class="c1"># CSF segmentation.</span>
+<span class="n">nv</span><span class="o">.</span><span class="n">add_volume</span><span class="p">({</span>
+    <span class="s2">"path"</span><span class="p">:</span> <span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s1">/SegMaps/meas_MID00103_FID130220_svs_slaser_dkd_ul_space-scanner_Voxel-1_label-CSF.nii.gz'</span><span class="p">,</span>
+    <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"csf"</span><span class="p">,</span>
+    <span class="s2">"opacity"</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+    <span class="s2">"colormap"</span><span class="p">:</span> <span class="s2">"green"</span><span class="p">,</span>
+    <span class="s2">"ignore_zero_voxels"</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">})</span>
+
+<span class="c1"># Add legend (in HTML so we can style).</span>
+<span class="n">fontsize</span> <span class="o">=</span> <span class="mi">25</span>
+<span class="n">entry_sep</span> <span class="o">=</span> <span class="mi">25</span>
+<span class="n">text_sep</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">cube_size</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">capt</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">"&lt;div style='font:</span><span class="si">{</span><span class="n">fontsize</span><span class="si">}</span><span class="s2">px sans-serif; margin-left:285px;'&gt;"</span>
+    <span class="sa">f</span><span class="s2">"&lt;div style='display:inline-block; margin-right:</span><span class="si">{</span><span class="n">entry_sep</span><span class="si">}</span><span class="s2">px;'&gt;"</span>
+    <span class="sa">f</span><span class="s2">"&lt;span style='display:inline-block; width:</span><span class="si">{</span><span class="n">cube_size</span><span class="si">}</span><span class="s2">px; height:</span><span class="si">{</span><span class="n">cube_size</span><span class="si">}</span><span class="s2">px; background-color:#de4743; margin-right:</span><span class="si">{</span><span class="n">text_sep</span><span class="si">}</span><span class="s2">px;'&gt;&lt;/span&gt;WM"</span>
+    <span class="s2">"&lt;/div&gt;"</span>
+    <span class="sa">f</span><span class="s2">"&lt;div style='display:inline-block; margin-right:</span><span class="si">{</span><span class="n">entry_sep</span><span class="si">}</span><span class="s2">px;'&gt;"</span>
+    <span class="sa">f</span><span class="s2">"&lt;span style='display:inline-block; width:</span><span class="si">{</span><span class="n">cube_size</span><span class="si">}</span><span class="s2">px; height:</span><span class="si">{</span><span class="n">cube_size</span><span class="si">}</span><span class="s2">px; background-color:#4037a4; margin-right:</span><span class="si">{</span><span class="n">text_sep</span><span class="si">}</span><span class="s2">px;'&gt;&lt;/span&gt;GM"</span>
+    <span class="s2">"&lt;/div&gt;"</span>
+    <span class="sa">f</span><span class="s2">"&lt;div style='display:inline-block; margin-right:</span><span class="si">{</span><span class="n">entry_sep</span><span class="si">}</span><span class="s2">px;'&gt;"</span>
+    <span class="sa">f</span><span class="s2">"&lt;span style='display:inline-block; width:</span><span class="si">{</span><span class="n">cube_size</span><span class="si">}</span><span class="s2">px; height:</span><span class="si">{</span><span class="n">cube_size</span><span class="si">}</span><span class="s2">px; background-color:#479a2e; margin-right:</span><span class="si">{</span><span class="n">text_sep</span><span class="si">}</span><span class="s2">px;'&gt;&lt;/span&gt;CSF"</span>
+    <span class="s2">"&lt;/div&gt;"</span>
+    <span class="s2">"&lt;/div&gt;"</span>
+<span class="p">)</span>
+<span class="c1"># Put the legend above the NiiVue viewer.</span>
+<span class="n">panel</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="n">capt</span><span class="p">,</span> <span class="n">nv</span><span class="p">])</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">panel</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "32b1bf581e684d4ab1e761476a499403", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">ipython_image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s1">'https://raw.githubusercontent.com/neurodesk/example-notebooks/refs/heads/main/books/images/osprey-notebook.png'</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><img src="https://raw.githubusercontent.com/neurodesk/example-notebooks/refs/heads/main/books/images/osprey-notebook.png"></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">ipython_image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2">/Reports/reportFigures/sub-002/sub-002_seg_svs_space-scanner_mask.jpg"</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/3ee3a31d64b49cf6d0b2391f0d076647e9fd60830f3e8cceb773a61e685c9245.jpg" src="../_images/3ee3a31d64b49cf6d0b2391f0d076647e9fd60830f3e8cceb773a61e685c9245.jpg">
+</div>
+</div>
+</section>
+<section id="spectral-modelling">
+<h3>Spectral modelling<a class="headerlink" href="#spectral-modelling" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Osprey runs LCModel for spectral fitting</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">crlb_threshold</span> <span class="o">=</span> <span class="mi">20</span>
+
+<span class="c1"># Make sure to only include the metabolites in the LCmodel plot.</span>
+<span class="n">metabolites</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">'Asp'</span><span class="p">,</span> <span class="s1">'Asc'</span><span class="p">,</span> <span class="s1">'Cr'</span><span class="p">,</span> <span class="s1">'GABA'</span><span class="p">,</span> <span class="s1">'Gln'</span><span class="p">,</span> <span class="s1">'Glu'</span><span class="p">,</span> <span class="s1">'GPC'</span><span class="p">,</span> <span class="s1">'GSH'</span><span class="p">,</span> <span class="s1">'Lac'</span><span class="p">,</span>
+    <span class="s1">'PCr'</span><span class="p">,</span> <span class="s1">'PE'</span><span class="p">,</span> <span class="s1">'NAA'</span><span class="p">,</span> <span class="s1">'NAAG'</span><span class="p">,</span> <span class="s1">'Tau'</span><span class="p">,</span> <span class="s1">'CrCH2'</span><span class="p">,</span> <span class="s1">'Lip13a'</span><span class="p">,</span> <span class="s1">'Lip13b'</span><span class="p">,</span>
+    <span class="s1">'Lip09'</span><span class="p">,</span> <span class="s1">'MM09'</span><span class="p">,</span> <span class="s1">'Lip20'</span><span class="p">,</span> <span class="s1">'MM20'</span><span class="p">,</span> <span class="s1">'MM12'</span><span class="p">,</span> <span class="s1">'MM14'</span><span class="p">,</span> <span class="s1">'MM17'</span>
+<span class="p">]</span>
+
+<span class="c1"># crlbs = pd.read_csv(f'{output_path}/QuantifyResults/A_CRLB_Voxel_1_Basis_1.tsv', delimiter='\t')[metabolites]</span>
+<span class="n">crlbs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s1">/QuantifyResults/A_CRLB_Voxel_1_Basis_1.tsv'</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">'</span><span class="se">\t</span><span class="s1">'</span><span class="p">)[</span><span class="n">metabolites</span><span class="p">]</span>
+<span class="n">crlb_dict</span> <span class="o">=</span> <span class="n">crlbs</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+
+<span class="c1"># Osprey fitting results image.</span>
+<span class="n">img_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2">/Reports/reportFigures/sub-002/sub-002_metab_A_model.jpg"</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">img_path</span><span class="p">)</span>
+
+<span class="c1"># Draw CRLBs on top of the image.</span>
+<span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+<span class="n">font</span> <span class="o">=</span> <span class="n">ImageFont</span><span class="o">.</span><span class="n">load_default</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">1135</span><span class="p">,</span> <span class="mi">253</span>
+<span class="k">for</span> <span class="n">met</span><span class="p">,</span> <span class="n">crlb</span> <span class="ow">in</span> <span class="n">crlb_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">y</span> <span class="o">+=</span> <span class="mf">20.67</span>  <span class="c1"># shift down for next line</span>
+    <span class="c1"># Only show</span>
+    <span class="k">if</span> <span class="n">crlb</span> <span class="o">&lt;</span> <span class="n">crlb_threshold</span><span class="p">:</span>
+        <span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="sa">f</span><span class="s2">"(</span><span class="si">{</span><span class="n">crlb</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">)"</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s2">"#2e4b67"</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="n">font</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/651471e90dc32d319255ac3a7126592a1bf8a40fe9e66812cbda8e49077c877c.png" src="../_images/651471e90dc32d319255ac3a7126592a1bf8a40fe9e66812cbda8e49077c877c.png">
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span><span class="p">,</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">Image</span>
+
+<span class="c1"># Centered title</span>
+<span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="s2">"&lt;h2 style='text-align: center;'&gt;Averaged Spectra&lt;/h2&gt;"</span><span class="p">))</span>
+
+<span class="c1"># Image (keeps default alignment unless styled otherwise)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2">/Reports/reportFigures/sub-002/sub-002_metab_A.jpg"</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><h2 style="text-align: center;">Averaged Spectra</h2></div><img alt="../_images/2392edb5615535e863b57a6de3855cefee9728f81de79f3b52fd0e508b12aa65.jpg" src="../_images/2392edb5615535e863b57a6de3855cefee9728f81de79f3b52fd0e508b12aa65.jpg">
+</div>
+</div>
+</section>
+<section id="metabolite-concetrations">
+<h3>Metabolite concetrations<a class="headerlink" href="#metabolite-concetrations" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Osprey calculates metabolite concentrations relative to different references</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metabolites</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Cr'</span><span class="p">,</span> <span class="s1">'GABA'</span><span class="p">,</span> <span class="s1">'Gln'</span><span class="p">,</span> <span class="s1">'Glu'</span><span class="p">,</span> <span class="s1">'GPC'</span><span class="p">,</span> <span class="s1">'GSH'</span><span class="p">,</span> <span class="s1">'Lac'</span><span class="p">,</span> <span class="s1">'PCr'</span><span class="p">,</span> <span class="s1">'PE'</span><span class="p">,</span> <span class="s1">'NAA'</span><span class="p">,</span> <span class="s1">'NAAG'</span><span class="p">,</span> <span class="s1">'Tau'</span><span class="p">,</span> <span class="s1">'CrCH2'</span><span class="p">,</span> <span class="s1">'tCr'</span><span class="p">,</span> <span class="s1">'tNAA'</span><span class="p">,</span> <span class="s1">'Glx'</span><span class="p">]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_metabolites</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">'(raw values in arbitrary units)'</span><span class="p">,</span> <span class="n">ytick_step</span><span class="o">=</span><span class="mf">0.2</span><span class="p">):</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Metabolites</span><span class="se">\n</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+    
+    <span class="n">ylims</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()</span>
+    <span class="n">yticks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ylims</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ylims</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">ytick_step</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">yticks</span><span class="p">)</span>
+    
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">'y'</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">met_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s1">/QuantifyResults/A_tCr_Voxel_1_Basis_1.tsv'</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">'</span><span class="se">\t</span><span class="s1">'</span><span class="p">)</span>
+<span class="n">plot_metabolites</span><span class="p">(</span><span class="n">met_data</span><span class="p">[</span><span class="n">metabolites</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">'(ratio of tCR)'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b2ba2c75285beb563a58f45d24ef3b5202fdc39bca7264a95d885946f70d0f55.png" src="../_images/b2ba2c75285beb563a58f45d24ef3b5202fdc39bca7264a95d885946f70d0f55.png">
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">met_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s1">/QuantifyResults/A_TissCorrWaterScaled_Voxel_1_Basis_1.tsv'</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">'</span><span class="se">\t</span><span class="s1">'</span><span class="p">)</span>
+<span class="n">plot_metabolites</span><span class="p">(</span><span class="n">met_data</span><span class="p">[</span><span class="n">metabolites</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">'(molal concentration, using tissue corrected water; mol/kg)'</span><span class="p">,</span> <span class="n">ytick_step</span><span class="o">=</span><span class="mf">2.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/14b3ae04e8499ee5118fe504f3f5e251b3baa25ee6d851ff1a2e17f1880c42b6.png" src="../_images/14b3ae04e8499ee5118fe504f3f5e251b3baa25ee6d851ff1a2e17f1880c42b6.png">
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./spectroscopy"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev" href="lcmodel.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">MR Spectroscopy with LCModel</p>
+      </div>
+    </a>
+    <a class="right-next" href="../diffusion_imaging/Diffusion_TBSS_Demo.html" title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">TBSS Tutorial</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyzing-mr-spectra-from-the-human-brain-using-single-voxel-spectroscopy-svs">Analyzing MR Spectra from the Human Brain using Single Voxel Spectroscopy (SVS)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mr-spectroscopy-mrs">MR Spectroscopy (MRS)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#citation-and-resources">Citation and Resources:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#osprey-input">Osprey input</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#osprey-output">Osprey output</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#check-cpu-vendor-and-model-for-compatibility-or-performance-considerations">Check CPU vendor and model for compatibility or performance considerations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-software-tools-and-import-python-libraries">Load software tools and import python libraries</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#set-up-osprey-job-configuration">Set up Osprey Job configuration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-osprey-processing">Run Osprey processing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#results">Results</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#t1s-with-the-mrs-voxel-aligned">T1s with the MRS voxel aligned</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-modelling">Spectral modelling</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metabolite-concetrations">Metabolite concetrations</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Neurodesk Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  
+</body></html>
