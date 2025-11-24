@@ -28,7 +28,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -619,22 +619,22 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">from</span> <span class="nn">pydra.compose</span> <span class="kn">import</span> <span class="n">python</span><span class="p">,</span> <span class="n">workflow</span><span class="p">,</span> <span class="n">shell</span>
-<span class="kn">from</span> <span class="nn">pydra.engine.submitter</span> <span class="kn">import</span> <span class="n">Submitter</span>
-<span class="kn">from</span> <span class="nn">pydra.utils</span> <span class="kn">import</span> <span class="n">show_workflow</span><span class="p">,</span> <span class="n">print_help</span>
-<span class="kn">import</span> <span class="nn">pydra.utils.general</span>
-<span class="kn">import</span> <span class="nn">shutil</span>
-<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">join</span> <span class="k">as</span> <span class="n">opj</span>
-<span class="kn">import</span> <span class="nn">os</span> 
-<span class="kn">import</span> <span class="nn">ants</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nib</span>
-<span class="kn">from</span> <span class="nn">nilearn.datasets</span> <span class="kn">import</span> <span class="n">load_mni152_template</span>
-<span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">plotting</span><span class="p">,</span> <span class="n">image</span>
-<span class="kn">import</span> <span class="nn">typing</span> <span class="k">as</span> <span class="nn">ty</span>
-<span class="kn">from</span> <span class="nn">fileformats.generic</span> <span class="kn">import</span> <span class="n">File</span>
-<span class="kn">import</span> <span class="nn">nest_asyncio</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydra.compose</span><span class="w"> </span><span class="kn">import</span> <span class="n">python</span><span class="p">,</span> <span class="n">workflow</span><span class="p">,</span> <span class="n">shell</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydra.engine.submitter</span><span class="w"> </span><span class="kn">import</span> <span class="n">Submitter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydra.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">show_workflow</span><span class="p">,</span> <span class="n">print_help</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pydra.utils.general</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">os.path</span><span class="w"> </span><span class="kn">import</span> <span class="n">join</span> <span class="k">as</span> <span class="n">opj</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span> 
+<span class="kn">import</span><span class="w"> </span><span class="nn">ants</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">nibabel</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nib</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nilearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_mni152_template</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nilearn</span><span class="w"> </span><span class="kn">import</span> <span class="n">plotting</span><span class="p">,</span> <span class="n">image</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ty</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fileformats.generic</span><span class="w"> </span><span class="kn">import</span> <span class="n">File</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">nest_asyncio</span>
 </pre></div>
 </div>
 </div>
@@ -649,7 +649,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">module</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">module</span>
 <span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;freesurfer/7.3.2&#39;</span><span class="p">)</span>
 <span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
 </pre></div>
@@ -813,7 +813,7 @@ action summary:
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Motion correction of BOLD images</span>
 
 <span class="nd">@python</span><span class="o">.</span><span class="n">define</span>
-<span class="k">def</span> <span class="nf">motion_correction_ants</span><span class="p">(</span><span class="n">epi</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">motion_correction_ants</span><span class="p">(</span><span class="n">epi</span><span class="p">):</span>
     
     <span class="n">cwd</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
     <span class="n">new_filename</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">epi</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.nii.gz&#39;</span><span class="p">,</span> <span class="s1">&#39;_mc.nii.gz&#39;</span><span class="p">)</span> <span class="c1">#new file ending for output file</span>
@@ -848,7 +848,7 @@ action summary:
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Register BOLD to T1w</span>
 
 <span class="nd">@python</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="n">outputs</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;tx_EPI2T1&quot;</span><span class="p">,</span> <span class="s2">&quot;warpedmovout&quot;</span><span class="p">])</span>
-<span class="k">def</span> <span class="nf">reg_EPI2T1</span><span class="p">(</span><span class="n">bet_anat</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span> 
+<span class="k">def</span><span class="w"> </span><span class="nf">reg_EPI2T1</span><span class="p">(</span><span class="n">bet_anat</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span> 
     
     <span class="n">cwd</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
     <span class="n">bet_anat_path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">bet_anat</span><span class="p">)</span>
@@ -886,7 +886,7 @@ action summary:
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Register T1w to MNI</span>
 
 <span class="nd">@python</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="n">outputs</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;tx_struct2MNI&quot;</span><span class="p">,</span> <span class="s2">&quot;warpedmovout&quot;</span><span class="p">])</span>
-<span class="k">def</span> <span class="nf">reg_struct2MNI</span><span class="p">(</span><span class="n">template</span><span class="p">,</span> <span class="n">bet_anat</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">reg_struct2MNI</span><span class="p">(</span><span class="n">template</span><span class="p">,</span> <span class="n">bet_anat</span><span class="p">):</span>
 
     <span class="n">bet_anat_path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">bet_anat</span><span class="p">)</span>
 
@@ -908,7 +908,7 @@ action summary:
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Concatenate transformations - last transformation is applied first</span>
 
 <span class="nd">@python</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="n">outputs</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;transform_list&quot;</span><span class="p">])</span>
-<span class="k">def</span> <span class="nf">collect_transforms</span><span class="p">(</span><span class="n">tx_struct2mni</span><span class="p">,</span> <span class="n">tx_epi2t1</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">collect_transforms</span><span class="p">(</span><span class="n">tx_struct2mni</span><span class="p">,</span> <span class="n">tx_epi2t1</span><span class="p">):</span>
     <span class="k">return</span>  <span class="n">tx_struct2mni</span> <span class="o">+</span> <span class="n">tx_epi2t1</span>
 </pre></div>
 </div>
@@ -919,7 +919,7 @@ action summary:
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apply transformations BOLD --&gt; T1, T1 --&gt; MNI; BOLD &gt;&gt; MNI in one step </span>
 
 <span class="nd">@python</span><span class="o">.</span><span class="n">define</span>
-<span class="k">def</span> <span class="nf">applyTransform_epi2mni</span><span class="p">(</span><span class="n">template</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">transform_list</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">applyTransform_epi2mni</span><span class="p">(</span><span class="n">template</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">transform_list</span><span class="p">):</span>
 
     <span class="n">cwd</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
     <span class="n">new_filename</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">func</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;_mc.nii.gz&#39;</span><span class="p">,</span> <span class="s1">&#39;_mc_mni.nii.gz&#39;</span><span class="p">)</span>
@@ -1082,7 +1082,7 @@ Outputs:
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nd">@workflow</span><span class="o">.</span><span class="n">define</span><span class="p">(</span><span class="n">outputs</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;anat_brain&quot;</span><span class="p">,</span> <span class="s2">&quot;bold_preproc&quot;</span><span class="p">])</span>
-<span class="k">def</span> <span class="nf">PreprocWorkflow</span><span class="p">(</span><span class="n">anat</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">template</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ty</span><span class="o">.</span><span class="n">Tuple</span><span class="p">[</span><span class="n">File</span><span class="p">,</span> <span class="n">File</span><span class="p">]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">PreprocWorkflow</span><span class="p">(</span><span class="n">anat</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">template</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ty</span><span class="o">.</span><span class="n">Tuple</span><span class="p">[</span><span class="n">File</span><span class="p">,</span> <span class="n">File</span><span class="p">]:</span>
 
     <span class="c1"># Brain extraction</span>
     <span class="n">synth_strip_task</span> <span class="o">=</span> <span class="n">workflow</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">SynthStrip</span><span class="p">(</span>

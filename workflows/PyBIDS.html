@@ -28,7 +28,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -1918,7 +1918,7 @@ action summary:
 <p>The BIDSLayout instance is a lightweight container for all of the files in the BIDS project directory. It automatically detects any BIDS entities found in the file paths, and allows us to perform simple but relatively powerful queries over the file tree. By default, defined BIDS entities include things like “subject”, “session”, “run”, and “type”.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bids.layout</span> <span class="kn">import</span> <span class="n">BIDSLayout</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">bids.layout</span><span class="w"> </span><span class="kn">import</span> <span class="n">BIDSLayout</span>
 <span class="n">layout</span> <span class="o">=</span> <span class="n">BIDSLayout</span><span class="p">(</span><span class="s2">&quot;ds000114&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -2568,7 +2568,7 @@ The first 3 files are:
 <p>However, it’s important to note that the Python-based validator may lag behind the official JavaScript implementation available online. Additionally, the Python version only validates individual file paths - it doesn’t support validation of an entire <code class="docutils literal notranslate"><span class="pre">BIDS</span> <span class="pre">dataset</span></code>. For full dataset validation, it’s recommended to use the online <a class="reference external" href="https://bids-standard.github.io/bids-validator/">BIDS Validator</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bids.layout</span> <span class="kn">import</span> <span class="n">BIDSValidator</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">bids.layout</span><span class="w"> </span><span class="kn">import</span> <span class="n">BIDSValidator</span>
 </pre></div>
 </div>
 </div>

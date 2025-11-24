@@ -28,7 +28,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -626,7 +626,7 @@ model name	: Intel(R) Xeon(R) Gold 6126 CPU @ 2.60GHz
 <h2>Load software tools and import python libraries<a class="headerlink" href="#load-software-tools-and-import-python-libraries" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">module</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">module</span>
 <span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;lcmodel/6.3&#39;</span><span class="p">)</span>
 <span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
 </pre></div>
@@ -664,15 +664,15 @@ ghostscript is already the newest version (9.55.0~dfsg1-0ubuntu5.12).
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import the necessary libraries</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> 
-<span class="kn">import</span> <span class="nn">os</span> 
-<span class="kn">import</span> <span class="nn">subprocess</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nib</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">IFrame</span><span class="p">,</span> <span class="n">Image</span><span class="p">,</span> <span class="n">display</span>
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span> 
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span> 
+<span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">nibabel</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">IFrame</span><span class="p">,</span> <span class="n">Image</span><span class="p">,</span> <span class="n">display</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">glob</span>
 </pre></div>
 </div>
 </div>
@@ -947,7 +947,7 @@ $HOME/.lcmodel/varian/bin2raw $DATA_FILE $LCM_DIR $MET_H2O
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load data from RAW for plotting</span>
-<span class="k">def</span> <span class="nf">load_raw_data</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">load_raw_data</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parses an LCModel .RAW file to extract real and imaginary parts of the FID signal.</span>
 
@@ -1032,7 +1032,7 @@ Visual inspection of the FID can help identify noise, artifacts, or unexpected d
 <p>As noted earlier, the <code class="docutils literal notranslate"><span class="pre">bin2raw</span></code> conversion produces auxiliary files such as <code class="docutils literal notranslate"><span class="pre">cpStart</span></code> and embeds a <code class="docutils literal notranslate"><span class="pre">$SEQPAR</span></code> block in the <code class="docutils literal notranslate"><span class="pre">.RAW</span></code> file. These contain key acquisition and sequence parameters needed to generate the LCModel control file. In this step, we extract those parameters by parsing both <code class="docutils literal notranslate"><span class="pre">cpStart</span></code> and the <code class="docutils literal notranslate"><span class="pre">$SEQPAR</span></code> block from the <code class="docutils literal notranslate"><span class="pre">RAW</span></code> file. The parsed values are merged into a single dictionary, with <code class="docutils literal notranslate"><span class="pre">$SEQPAR</span></code> values overriding <code class="docutils literal notranslate"><span class="pre">cpStart</span></code> in case of overlap. This consolidated parameter set will be used to programmatically construct the <code class="docutils literal notranslate"><span class="pre">.CONTROL</span></code> file for LCModel.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">parse_cpstart_file</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">parse_cpstart_file</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
     <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
@@ -1052,7 +1052,7 @@ Visual inspection of the FID can help identify noise, artifacts, or unexpected d
             <span class="n">params</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
     <span class="k">return</span> <span class="n">params</span>
 
-<span class="k">def</span> <span class="nf">parse_raw_seqpar</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">parse_raw_seqpar</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
     <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">seqpar_block</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -1125,7 +1125,7 @@ For details, see: <a href="http://s-provencher.com/lcmodel.shtml">http://s-prove
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">write_lcmodel_control</span><span class="p">(</span><span class="n">control_path</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">write_lcmodel_control</span><span class="p">(</span><span class="n">control_path</span><span class="p">,</span>
                           <span class="n">raw_path</span><span class="p">,</span>
                           <span class="n">srcraw</span><span class="p">,</span>
                           <span class="n">basis_path</span><span class="p">,</span>

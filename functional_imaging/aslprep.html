@@ -28,7 +28,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -584,8 +584,8 @@ model name	: AMD EPYC-Rome Processor
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load fmriprep</span>
-<span class="kn">import</span> <span class="nn">module</span>
-<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">module</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;aslprep/0.7.2&#39;</span><span class="p">)</span>
 <span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
 </pre></div>
@@ -2277,13 +2277,14 @@ sbref: null
 <p>This panel shows the template T1-weighted image (if several T1w images were found), with contours delineating the detected brain mask and brain tissue segmentations.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">SVG</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.core.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">SVG</span>
 <span class="n">SVG</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;aslprep-output/sub-01/figures/sub-01_dseg.svg&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fca05a1bd988031501266890a35cbb31a6e663ff5abc6859b465c4601c0f5515.svg" src="../_images/fca05a1bd988031501266890a35cbb31a6e663ff5abc6859b465c4601c0f5515.svg" /></div>
+<img alt="../_images/fca05a1bd988031501266890a35cbb31a6e663ff5abc6859b465c4601c0f5515.svg" src="../_images/fca05a1bd988031501266890a35cbb31a6e663ff5abc6859b465c4601c0f5515.svg" />
+</div>
 </div>
 </section>
 <section id="spatial-normalization-of-the-anatomical-t1w-reference">
@@ -2291,13 +2292,14 @@ sbref: null
 <p>Results of nonlinear alignment of the T1w reference one or more template space(s)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">SVG</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.core.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">SVG</span>
 <span class="n">SVG</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;aslprep-output/sub-01/figures/sub-01_space-MNI152NLin2009cAsym_T1w.svg&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/0c1eee5b29028e9a0aba66dc3b9703e318636bd831ef874ef3e1bfa202bb2fd8.svg" src="../_images/0c1eee5b29028e9a0aba66dc3b9703e318636bd831ef874ef3e1bfa202bb2fd8.svg" /></div>
+<img alt="../_images/0c1eee5b29028e9a0aba66dc3b9703e318636bd831ef874ef3e1bfa202bb2fd8.svg" src="../_images/0c1eee5b29028e9a0aba66dc3b9703e318636bd831ef874ef3e1bfa202bb2fd8.svg" />
+</div>
 </div>
 </section>
 <section id="surface-reconstruction">
@@ -2305,13 +2307,14 @@ sbref: null
 <p>Surfaces (white and pial) reconstructed with FreeSurfer (recon-all) overlaid on the participant’s T1w template.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">SVG</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.core.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">SVG</span>
 <span class="n">SVG</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;aslprep-output/sub-01/figures/sub-01_desc-reconall_T1w.svg&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/298b9ead6e2976a61cb05f5fd05307c974509a3d752974d41298dfd4173f11ce.svg" src="../_images/298b9ead6e2976a61cb05f5fd05307c974509a3d752974d41298dfd4173f11ce.svg" /></div>
+<img alt="../_images/298b9ead6e2976a61cb05f5fd05307c974509a3d752974d41298dfd4173f11ce.svg" src="../_images/298b9ead6e2976a61cb05f5fd05307c974509a3d752974d41298dfd4173f11ce.svg" />
+</div>
 </div>
 </section>
 </section>
@@ -2320,26 +2323,28 @@ sbref: null
 <p>mri_coreg (FreeSurfer) was used to generate transformations from EPI space to T1 Space - bbregister refinement rejected. Note that Nearest Neighbor interpolation is used in the reportlets in order to highlight potential spin-history and other artifacts, whereas final images are resampled using Lanczos interpolation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">SVG</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.core.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">SVG</span>
 <span class="n">SVG</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;aslprep-output/sub-01/figures/sub-01_desc-coreg_asl.svg&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/25d162b65ca9c46fcbffce39a232bde236c8e253998057e919fcad16bd44f6d1.svg" src="../_images/25d162b65ca9c46fcbffce39a232bde236c8e253998057e919fcad16bd44f6d1.svg" /></div>
+<img alt="../_images/25d162b65ca9c46fcbffce39a232bde236c8e253998057e919fcad16bd44f6d1.svg" src="../_images/25d162b65ca9c46fcbffce39a232bde236c8e253998057e919fcad16bd44f6d1.svg" />
+</div>
 </div>
 <section id="asl-summary">
 <h3>ASL Summary<a class="headerlink" href="#asl-summary" title="Link to this heading">#</a></h3>
 <p>Summary statistics are plotted, which may reveal trends or artifacts in the ASL data. DVARS and FD show the standardized DVARS and framewise-displacement measures for each time point. A carpet plot shows the time series for all voxels within the brain mask. Voxels are grouped into cortical (blue), and subcortical (orange) gray matter, cerebellum (green) and white matter and CSF (red), indicated by the color map on the left-hand side.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">SVG</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.core.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">SVG</span>
 <span class="n">SVG</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;aslprep-output/sub-01/figures/sub-01_desc-carpetplot_asl.svg&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/02f49e22a1cb769187554e49562704ee4fddbc26b473316121432972ea51763d.svg" src="../_images/02f49e22a1cb769187554e49562704ee4fddbc26b473316121432972ea51763d.svg" /></div>
+<img alt="../_images/02f49e22a1cb769187554e49562704ee4fddbc26b473316121432972ea51763d.svg" src="../_images/02f49e22a1cb769187554e49562704ee4fddbc26b473316121432972ea51763d.svg" />
+</div>
 </div>
 </section>
 <section id="cbf">
@@ -2347,13 +2352,14 @@ sbref: null
 <p>The maps plot cerebral blood flow (CBF) for basic CBF. The unit is mL/100 g/min.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">SVG</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.core.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">SVG</span>
 <span class="n">SVG</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;aslprep-output/sub-01/figures/sub-01_desc-cbf_cbf.svg&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/13c252337ef614f94df2448485481cf6b7b53c61a0c44a4f7e8dc6380938b8bc.svg" src="../_images/13c252337ef614f94df2448485481cf6b7b53c61a0c44a4f7e8dc6380938b8bc.svg" /></div>
+<img alt="../_images/13c252337ef614f94df2448485481cf6b7b53c61a0c44a4f7e8dc6380938b8bc.svg" src="../_images/13c252337ef614f94df2448485481cf6b7b53c61a0c44a4f7e8dc6380938b8bc.svg" />
+</div>
 </div>
 </section>
 </section>

@@ -28,7 +28,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -586,10 +586,10 @@ document.write(`
 <h2>Import relevant libraries<a class="headerlink" href="#import-relevant-libraries" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">module</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nib</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">module</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">nibabel</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nib</span>
 </pre></div>
 </div>
 </div>
@@ -1593,12 +1593,12 @@ Data has been converted!
 </div>
 <div class="cell tag_scroll-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nilearn</span> <span class="kn">import</span> <span class="n">plotting</span>
-<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="n">Dropdown</span><span class="p">,</span> <span class="n">interact</span>
-<span class="kn">import</span> <span class="nn">nibabel</span> <span class="k">as</span> <span class="nn">nib</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nilearn</span><span class="w"> </span><span class="kn">import</span> <span class="n">plotting</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ipywidgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dropdown</span><span class="p">,</span> <span class="n">interact</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">nibabel</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="k">def</span> <span class="nf">plot_data</span><span class="p">(</span><span class="n">depth</span><span class="p">,</span> <span class="n">time_point</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_data</span><span class="p">(</span><span class="n">depth</span><span class="p">,</span> <span class="n">time_point</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">depth</span> <span class="o">!=</span><span class="s1">&#39;average&#39;</span><span class="p">:</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;../new_data/sub-01_ses-01_task-fixedbar_run-1_space-T1w_desc-preproc_bold_depth-&quot;</span>
                                  <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">depth</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;.func.gii&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">agg_data</span><span class="p">())[:,</span><span class="n">time_point</span><span class="p">]</span>
@@ -1621,7 +1621,7 @@ Data has been converted!
 <span class="n">time_point</span> <span class="o">=</span> <span class="n">Dropdown</span><span class="p">(</span><span class="n">options</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">300</span><span class="p">])</span>
 
 <span class="nd">@interact</span><span class="p">(</span><span class="n">depth</span> <span class="o">=</span> <span class="n">depth</span><span class="p">,</span> <span class="n">time_point</span> <span class="o">=</span> <span class="n">time_point</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">plot1</span><span class="p">(</span><span class="n">depth</span><span class="p">,</span> <span class="n">time_point</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot1</span><span class="p">(</span><span class="n">depth</span><span class="p">,</span> <span class="n">time_point</span><span class="p">):</span>
 
     <span class="k">return</span> <span class="n">plot_data</span><span class="p">(</span><span class="n">depth</span><span class="p">,</span> <span class="n">time_point</span><span class="p">)</span>
 </pre></div>

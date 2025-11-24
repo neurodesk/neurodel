@@ -28,7 +28,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -610,7 +610,7 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">module</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">module</span>
 <span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;afni/24.3.00&#39;</span><span class="p">)</span>
 <span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
 </pre></div>
@@ -625,12 +625,12 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">os.path</span> <span class="k">as</span> <span class="nn">op</span>
-<span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
-<span class="kn">import</span> <span class="nn">webbrowser</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os.path</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">op</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">glob</span><span class="w"> </span><span class="kn">import</span> <span class="n">glob</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">webbrowser</span>
 
-<span class="kn">from</span> <span class="nn">tedana.workflows</span> <span class="kn">import</span> <span class="n">tedana_workflow</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tedana.workflows</span><span class="w"> </span><span class="kn">import</span> <span class="n">tedana_workflow</span>
 </pre></div>
 </div>
 </div>
@@ -891,15 +891,16 @@ INFO     utils:log_newsletter_info:709 https://groups.google.com/g/tedana-newsle
 <h3>Carpet plot<a class="headerlink" href="#carpet-plot" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">SVG</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.core.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">SVG</span>
 
 <span class="n">SVG</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;five-echo-dataset/tedana_processed/figures/carpet_optcom.svg&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1bd35d559e35b39dbbce59a91c99a162592a72d8709f6aa23db823007e8f1ce3.svg" src="../_images/1bd35d559e35b39dbbce59a91c99a162592a72d8709f6aa23db823007e8f1ce3.svg" /></div>
+<img alt="../_images/1bd35d559e35b39dbbce59a91c99a162592a72d8709f6aa23db823007e8f1ce3.svg" src="../_images/1bd35d559e35b39dbbce59a91c99a162592a72d8709f6aa23db823007e8f1ce3.svg" />
+</div>
 </div>
 </section>
 <section id="adaptive-mask">
@@ -911,7 +912,8 @@ INFO     utils:log_newsletter_info:709 https://groups.google.com/g/tedana-newsle
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8f5e29fddda5789cc8fcabf1bcd45ce32e20c8c49c8d6323c57cf493275ae7be.svg" src="../_images/8f5e29fddda5789cc8fcabf1bcd45ce32e20c8c49c8d6323c57cf493275ae7be.svg" /></div>
+<img alt="../_images/8f5e29fddda5789cc8fcabf1bcd45ce32e20c8c49c8d6323c57cf493275ae7be.svg" src="../_images/8f5e29fddda5789cc8fcabf1bcd45ce32e20c8c49c8d6323c57cf493275ae7be.svg" />
+</div>
 </div>
 </section>
 <section id="t2">
@@ -926,7 +928,9 @@ INFO     utils:log_newsletter_info:709 https://groups.google.com/g/tedana-newsle
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/56663dc00e21515e2ca11765b8e323f7a37aaf33d446da692e70407df5aecaf7.svg" src="../_images/56663dc00e21515e2ca11765b8e323f7a37aaf33d446da692e70407df5aecaf7.svg" /><img alt="../_images/19e79a087ea4d28325c766b10eb2957e83dc658030dd8504d95ea37d3bf794df.svg" src="../_images/19e79a087ea4d28325c766b10eb2957e83dc658030dd8504d95ea37d3bf794df.svg" /></div>
+<img alt="../_images/56663dc00e21515e2ca11765b8e323f7a37aaf33d446da692e70407df5aecaf7.svg" src="../_images/56663dc00e21515e2ca11765b8e323f7a37aaf33d446da692e70407df5aecaf7.svg" />
+<img alt="../_images/19e79a087ea4d28325c766b10eb2957e83dc658030dd8504d95ea37d3bf794df.svg" src="../_images/19e79a087ea4d28325c766b10eb2957e83dc658030dd8504d95ea37d3bf794df.svg" />
+</div>
 </div>
 </section>
 <section id="s0">
@@ -941,7 +945,9 @@ INFO     utils:log_newsletter_info:709 https://groups.google.com/g/tedana-newsle
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5cfe9d5347baa2ddd706f63286077edefbed44a8454da59b405e44c029772f62.svg" src="../_images/5cfe9d5347baa2ddd706f63286077edefbed44a8454da59b405e44c029772f62.svg" /><img alt="../_images/6de2dd04cfd7707e8d8bc8637995839a4980dbda4ecc7026285123c163aa9dba.svg" src="../_images/6de2dd04cfd7707e8d8bc8637995839a4980dbda4ecc7026285123c163aa9dba.svg" /></div>
+<img alt="../_images/5cfe9d5347baa2ddd706f63286077edefbed44a8454da59b405e44c029772f62.svg" src="../_images/5cfe9d5347baa2ddd706f63286077edefbed44a8454da59b405e44c029772f62.svg" />
+<img alt="../_images/6de2dd04cfd7707e8d8bc8637995839a4980dbda4ecc7026285123c163aa9dba.svg" src="../_images/6de2dd04cfd7707e8d8bc8637995839a4980dbda4ecc7026285123c163aa9dba.svg" />
+</div>
 </div>
 </section>
 <section id="t2-and-s0-model-fit-rmse-scaled-between-2nd-and-98th-percentiles">
@@ -956,7 +962,9 @@ INFO     utils:log_newsletter_info:709 https://groups.google.com/g/tedana-newsle
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2774691b00a0ba42f8b2254ec66a5af2369949943a076a9fc76d91e409f8fec3.svg" src="../_images/2774691b00a0ba42f8b2254ec66a5af2369949943a076a9fc76d91e409f8fec3.svg" /><img alt="../_images/ebec4c857b7f80dadcbbab0b4fb79beb4cdededcc28a978060c9c30ee1d6af1a.svg" src="../_images/ebec4c857b7f80dadcbbab0b4fb79beb4cdededcc28a978060c9c30ee1d6af1a.svg" /></div>
+<img alt="../_images/2774691b00a0ba42f8b2254ec66a5af2369949943a076a9fc76d91e409f8fec3.svg" src="../_images/2774691b00a0ba42f8b2254ec66a5af2369949943a076a9fc76d91e409f8fec3.svg" />
+<img alt="../_images/ebec4c857b7f80dadcbbab0b4fb79beb4cdededcc28a978060c9c30ee1d6af1a.svg" src="../_images/ebec4c857b7f80dadcbbab0b4fb79beb4cdededcc28a978060c9c30ee1d6af1a.svg" />
+</div>
 </div>
 </section>
 <section id="time-series-generation-using-afni-commands">
@@ -1519,7 +1527,8 @@ INFO     utils:log_newsletter_info:709 https://groups.google.com/g/tedana-newsle
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b98bb0777ce094ce161e61f1c3bf24209b85dfc0af00d597d6c0fb16065df984.svg" src="../_images/b98bb0777ce094ce161e61f1c3bf24209b85dfc0af00d597d6c0fb16065df984.svg" /></div>
+<img alt="../_images/b98bb0777ce094ce161e61f1c3bf24209b85dfc0af00d597d6c0fb16065df984.svg" src="../_images/b98bb0777ce094ce161e61f1c3bf24209b85dfc0af00d597d6c0fb16065df984.svg" />
+</div>
 </div>
 </section>
 <section id="id2">
@@ -1531,7 +1540,8 @@ INFO     utils:log_newsletter_info:709 https://groups.google.com/g/tedana-newsle
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/33ecac96f580fb67eca8e63b10778ec210783237e4ab0c0eff46f042c50532d4.svg" src="../_images/33ecac96f580fb67eca8e63b10778ec210783237e4ab0c0eff46f042c50532d4.svg" /></div>
+<img alt="../_images/33ecac96f580fb67eca8e63b10778ec210783237e4ab0c0eff46f042c50532d4.svg" src="../_images/33ecac96f580fb67eca8e63b10778ec210783237e4ab0c0eff46f042c50532d4.svg" />
+</div>
 </div>
 </section>
 <section id="id3">
@@ -1546,7 +1556,9 @@ INFO     utils:log_newsletter_info:709 https://groups.google.com/g/tedana-newsle
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1fa2851051cbcfaec8f95b985f404452c72efe7432eba248820603db0c6fcd1e.svg" src="../_images/1fa2851051cbcfaec8f95b985f404452c72efe7432eba248820603db0c6fcd1e.svg" /><img alt="../_images/7a9e49ff12b689833db0225f3227e63ce34f3a55d6d155358c0b78ba4798f904.svg" src="../_images/7a9e49ff12b689833db0225f3227e63ce34f3a55d6d155358c0b78ba4798f904.svg" /></div>
+<img alt="../_images/1fa2851051cbcfaec8f95b985f404452c72efe7432eba248820603db0c6fcd1e.svg" src="../_images/1fa2851051cbcfaec8f95b985f404452c72efe7432eba248820603db0c6fcd1e.svg" />
+<img alt="../_images/7a9e49ff12b689833db0225f3227e63ce34f3a55d6d155358c0b78ba4798f904.svg" src="../_images/7a9e49ff12b689833db0225f3227e63ce34f3a55d6d155358c0b78ba4798f904.svg" />
+</div>
 </div>
 </section>
 <section id="id4">
@@ -1561,7 +1573,9 @@ INFO     utils:log_newsletter_info:709 https://groups.google.com/g/tedana-newsle
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c6e41658f703a31690f9c7d2b4c982ff0e71d10dd39aeb522c8d70ad0065c0d1.svg" src="../_images/c6e41658f703a31690f9c7d2b4c982ff0e71d10dd39aeb522c8d70ad0065c0d1.svg" /><img alt="../_images/a9c4e54214f88e293b0342c129f6614e5615e20a9380d411a14287c9db783a7a.svg" src="../_images/a9c4e54214f88e293b0342c129f6614e5615e20a9380d411a14287c9db783a7a.svg" /></div>
+<img alt="../_images/c6e41658f703a31690f9c7d2b4c982ff0e71d10dd39aeb522c8d70ad0065c0d1.svg" src="../_images/c6e41658f703a31690f9c7d2b4c982ff0e71d10dd39aeb522c8d70ad0065c0d1.svg" />
+<img alt="../_images/a9c4e54214f88e293b0342c129f6614e5615e20a9380d411a14287c9db783a7a.svg" src="../_images/a9c4e54214f88e293b0342c129f6614e5615e20a9380d411a14287c9db783a7a.svg" />
+</div>
 </div>
 </section>
 <section id="id5">
@@ -1576,7 +1590,9 @@ INFO     utils:log_newsletter_info:709 https://groups.google.com/g/tedana-newsle
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/73a88cfbfd8b613ba3e799ed0635595b36046db5aaa3f1afceec4d95fe863533.svg" src="../_images/73a88cfbfd8b613ba3e799ed0635595b36046db5aaa3f1afceec4d95fe863533.svg" /><img alt="../_images/9feb428ffcc982bfdd1f686391305c75ad08b9b4916cad6c58db9778a04cc111.svg" src="../_images/9feb428ffcc982bfdd1f686391305c75ad08b9b4916cad6c58db9778a04cc111.svg" /></div>
+<img alt="../_images/73a88cfbfd8b613ba3e799ed0635595b36046db5aaa3f1afceec4d95fe863533.svg" src="../_images/73a88cfbfd8b613ba3e799ed0635595b36046db5aaa3f1afceec4d95fe863533.svg" />
+<img alt="../_images/9feb428ffcc982bfdd1f686391305c75ad08b9b4916cad6c58db9778a04cc111.svg" src="../_images/9feb428ffcc982bfdd1f686391305c75ad08b9b4916cad6c58db9778a04cc111.svg" />
+</div>
 </div>
 </section>
 <section id="external-regressors">
@@ -1588,7 +1604,8 @@ INFO     utils:log_newsletter_info:709 https://groups.google.com/g/tedana-newsle
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8549d548c06742e75ede909054d56a583580ce18f56eaa20c010cf0f31c82266.svg" src="../_images/8549d548c06742e75ede909054d56a583580ce18f56eaa20c010cf0f31c82266.svg" /></div>
+<img alt="../_images/8549d548c06742e75ede909054d56a583580ce18f56eaa20c010cf0f31c82266.svg" src="../_images/8549d548c06742e75ede909054d56a583580ce18f56eaa20c010cf0f31c82266.svg" />
+</div>
 </div>
 </section>
 </section>
