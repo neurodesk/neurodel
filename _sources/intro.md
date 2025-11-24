@@ -11,7 +11,7 @@ git clone --depth 1 https://github.com/neurodesk/example-notebooks.git
 
 ## Neurodesk
 
-For more information about how to develop these notebooks or explore the tools in Neurodesk, please visit [our website neurodesk.org](https://www.neurodesk.org/).
+For more information about how to develop these notebooks or explore the tools in Neurodesk, please visit [our website neurodesk.org](https://neurodesk.org/).
 
 ## Acknowledgements
 This example repository is funded by the Wellcome Trust with a Wellcome Discretionary Award as part of the Chan Zuckerberg Initiative (CZI), The Kavli Foundation and Wellcome’s Essential Open Source Software for Science (Cycle 6) Program [313306/Z/24/Z]
