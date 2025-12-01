@@ -1,4 +1,5 @@
-## Neurodesk environment
+# NeurodEL
+## Neurodesk's Education and Learning hub
 
 Each Jupyter notebook in the repository is equipped with a Jupyter Hub button (the little rocket) at the top. This button will allow you to interact with the notebooks in a cloud-based environment. The environment is pre-configured to support Neurodesk, so you can start experimenting with the notebooks right away without having to install any additional software or packages.
 
