@@ -82,11 +82,9 @@ jobs:
       uses: tj-actions/changed-files@c3a1bb2c992d77180ae65be6ae6c166cf40f857c
       with:
         path: "./books"
-        #can expand the list of files later on but for now just this one.
+        #removing `*.md` for now to skip testing on markdown changes.
         files: |
           **/*.ipynb
-          *.md
-          structural_imaging/MFCSC.md
         dir_names_exclude_current_dir: "true"
     - name: Filter down to changed notebooks
       id: list_changed_notebooks
