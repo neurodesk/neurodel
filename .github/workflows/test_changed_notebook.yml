@@ -11,11 +11,11 @@ on:
   push:
     paths:
       - '**/*.ipynb'
-      - 'books/*.md'
+      - 'books/**/*.md'
   pull_request:
     paths:
       - '**/*.ipynb'
-      - 'books/*.md'
+      - 'books/**/*.md'
     # don't trigger for draft PRs
     types: [ opened, synchronize, reopened, ready_for_review ]
   # Trigger the workflow on manual dispatch
@@ -184,7 +184,7 @@ jobs:
       run: |
         rm -rf /home/ubuntu/actions_github_pages_*
   build-structure:
-    if: ${{ needs.test-notebooks.result != 'failure' }}
+    if: ${{ always() && needs.test-notebooks.result != 'failure' }}
     needs: [ test-notebooks, select-runner ]
     runs-on: ubuntu-22.04
     container: 
