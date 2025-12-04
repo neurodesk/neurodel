@@ -12,14 +12,10 @@ on:
     paths:
       - '**/*.ipynb'
       - 'books/*.md'
-      #can expand the list of files later on but for now just this one.
-      - 'books/structural_imaging/MFCSC.md'
   pull_request:
     paths:
       - '**/*.ipynb'
       - 'books/*.md'
-      #can expand the list of files later on but for now just this one.
-      - 'books/structural_imaging/MFCSC.md'
     # don't trigger for draft PRs
     types: [ opened, synchronize, reopened, ready_for_review ]
   # Trigger the workflow on manual dispatch
@@ -84,8 +80,7 @@ jobs:
         path: "./books"
         files: |
           **/*.ipynb
-          # TEMPORARY: Support for MFCSC.md (will be converted to ipynb later)
-          **/*.md
+          *.md
         dir_names_exclude_current_dir: "true"
     - name: Filter down to changed notebooks
       id: list_changed_notebooks
@@ -99,10 +94,7 @@ jobs:
           changed_notebooks="${{ inputs.notebook_selector }}"
         else
           echo ${{ steps.find_changed_notebooks.outputs.all_changed_files }}
-          # Original:
-          # changed_notebooks=$(echo "${{ steps.find_changed_notebooks.outputs.all_changed_files }}")
-          # TEMPORARY: sed fix for path resolution (needed for MFCSC.md)
-          changed_notebooks=$(echo "${{ steps.find_changed_notebooks.outputs.all_changed_files }}" | sed 's|books/||g')
+          changed_notebooks=$(echo "${{ steps.find_changed_notebooks.outputs.all_changed_files }}")
         fi
         
         notebook_list='['
@@ -147,21 +139,9 @@ jobs:
         echo $GITHUB_WORKSPACE
         export PATH=/opt/conda/bin:$HOME/.local/bin:$PATH
         echo "PATH=$PATH"
-        # Original:
-        # echo "NOTEBOOK=$(basename -s .ipynb ${{ matrix.notebooks }})"
-
-        # TEMPORARY: Logic to handle .md files (will be converted to ipynb later)
-        NOTEBOOK_FILENAME=$(basename "${{ matrix.notebooks }}")
-        if [[ "$NOTEBOOK_FILENAME" == *.ipynb ]]; then
-          NOTEBOOK="${NOTEBOOK_FILENAME%.ipynb}"
-        elif [[ "$NOTEBOOK_FILENAME" == *.md ]]; then
-          NOTEBOOK="${NOTEBOOK_FILENAME%.md}"
-        else
-          NOTEBOOK="$NOTEBOOK_FILENAME"
-        fi
-        echo "NOTEBOOK=$NOTEBOOK"
+        echo "NOTEBOOK=$(basename -s .ipynb ${{ matrix.notebooks }})"
         echo "DIRNAME=$(dirname ${{ matrix.notebooks }})"
-        echo "NOTEBOOK=$NOTEBOOK" >> $GITHUB_ENV
+        echo "NOTEBOOK=$(basename -s .ipynb ${{ matrix.notebooks }})" >> $GITHUB_ENV
         echo "DIRNAME=$(dirname ${{ matrix.notebooks }})" >> $GITHUB_ENV
         
         # Debugging
@@ -203,9 +183,8 @@ jobs:
     - name: Clean build dir
       run: |
         rm -rf /home/ubuntu/actions_github_pages_*
-
   build-structure:
-    if: ${{ always() && needs.test-notebooks.result != 'failure' }}
+    if: ${{ needs.test-notebooks.result != 'failure' }}
     needs: [ test-notebooks, select-runner ]
     runs-on: ubuntu-22.04
     container: 
