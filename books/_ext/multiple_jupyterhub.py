@@ -2,11 +2,44 @@
 
 from pathlib import Path
 from typing import Any, Optional
-from urllib.parse import urlencode
+from urllib.parse import quote, urlencode
 
 from docutils.nodes import document
 from sphinx.application import Sphinx
 from sphinx_book_theme.header_buttons import get_repo_url, get_repo_parts
+
+
+def _build_jupyterhub_url(
+    server_url: str,
+    repo_url: str,
+    ui_pre: str,
+    repo: str,
+    path_rel_repo: str,
+    branch: str,
+) -> str:
+    """Build a JupyterHub git-pull launch URL."""
+    url_params = urlencode(
+        dict(
+            repo=repo_url,
+            urlpath=f"{ui_pre}/{repo}/{path_rel_repo}",
+            branch=branch,
+        ),
+        safe="/",
+    )
+    return f"{server_url}/hub/user-redirect/git-pull?{url_params}"
+
+
+def _build_colab_url(
+    server_url: str,
+    org: str,
+    repo: str,
+    branch: str,
+    path_rel_repo: str,
+) -> str:
+    """Build a Google Colab URL for a notebook in a GitHub repository."""
+    quoted_branch = quote(branch, safe="")
+    quoted_path = quote(path_rel_repo, safe="/")
+    return f"{server_url}/github/{org}/{repo}/blob/{quoted_branch}/{quoted_path}"
 
 
 def add_multiple_jupyterhub_buttons(
@@ -58,9 +91,9 @@ def add_multiple_jupyterhub_buttons(
     
     # Get repository information using the same functions as the original launch buttons
     repo_url, _ = get_repo_url(context)
-    provider_url, org, repo, provider = get_repo_parts(context)
-    
-    if org is None and repo is None:
+    _, org, repo, _ = get_repo_parts(context)
+
+    if not org or not repo:
         return
     
     # Get the branch from config (fall back across common config locations)
@@ -104,24 +137,36 @@ def add_multiple_jupyterhub_buttons(
     if original_jupyterhub_idx is not None:
         launch_buttons_list.pop(original_jupyterhub_idx)
     
-    # Add each JupyterHub server as a button
+    colab_providers = {"colab", "google-colab", "google_colab"}
+
+    # Add each configured server as a button
     for server in jupyterhub_servers:
+        provider_kind = str(server.get("provider", "jupyterhub")).strip().lower()
         server_url = server.get("url", "").strip("/")
         server_text = server.get("text", "JupyterHub")
-        
-        if not server_url:
-            continue
-        
-        url_params = urlencode(
-            dict(
-                repo=repo_url,
-                urlpath=f"{ui_pre}/{repo}/{path_rel_repo}",
-                branch=branch
-            ),
-            safe="/",
-        )
-        url = f"{server_url}/hub/user-redirect/git-pull?{url_params}"
-        
+
+        if provider_kind in colab_providers:
+            if not server_url:
+                server_url = "https://colab.research.google.com"
+            url = _build_colab_url(
+                server_url=server_url,
+                org=org,
+                repo=repo,
+                branch=branch,
+                path_rel_repo=path_rel_repo,
+            )
+        else:
+            if not server_url:
+                continue
+            url = _build_jupyterhub_url(
+                server_url=server_url,
+                repo_url=repo_url,
+                ui_pre=ui_pre,
+                repo=repo,
+                path_rel_repo=path_rel_repo,
+                branch=branch,
+            )
+
         launch_buttons_list.append(
             {
                 "type": "link",

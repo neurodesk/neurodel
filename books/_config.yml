@@ -67,6 +67,9 @@ sphinx:
             url: "https://play-europe.neurodesk.org"
           - text: "Run in Global Server 2"
             url: "https://edu.neurodesk.org"
+          - text: "Run in Google Colab"
+            url: "https://colab.research.google.com"
+            provider: "colab"
   local_extensions:
     multiple_jupyterhub: _ext
 
