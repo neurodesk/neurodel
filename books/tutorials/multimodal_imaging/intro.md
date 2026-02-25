@@ -6,5 +6,8 @@ title: "Multimodal Imaging"
 
 Tutorial pages related to multimodal imaging workflows.
 
-```{tableofcontents}
+```{toctree}
+:maxdepth: 2
+
+MFCSC
 ```

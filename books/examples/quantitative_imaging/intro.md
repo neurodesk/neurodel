@@ -6,5 +6,9 @@ title: "Quantitative Imaging"
 
 Example notebooks for quantitative data preprocessing and analysis.
 
-```{tableofcontents}
+```{toctree}
+:maxdepth: 2
+
+aslprep
+qsmxt
 ```

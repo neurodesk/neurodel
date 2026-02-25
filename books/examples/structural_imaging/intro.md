@@ -6,5 +6,11 @@ title: "Structural Imaging"
 
 Example notebooks for structural imaging workflows.
 
-```{tableofcontents}
+```{toctree}
+:maxdepth: 2
+
+brain_extraction_different_tools
+freesurfer
+FSL_course_bet
+sct_toolbox
 ```

@@ -6,5 +6,9 @@ title: "Open Data"
 
 Tutorial pages related to open data tooling and workflows.
 
-```{tableofcontents}
+```{toctree}
+:maxdepth: 2
+
+datalad
+osfclient
 ```

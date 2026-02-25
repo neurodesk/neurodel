@@ -6,5 +6,8 @@ title: "Reproducibility"
 
 Tutorial pages related to reproducible workflows.
 
-```{tableofcontents}
+```{toctree}
+:maxdepth: 2
+
+datalad-run
 ```
