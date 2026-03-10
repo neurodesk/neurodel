@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generated_at": "2026-03-10T06:35:47+00:00",
+  "generated_at": "2026-03-10T12:10:45+00:00",
   "source": {
     "type": "github-issues",
     "repo": "neurodesk/neurodeskedu-reviews"
@@ -181,7 +181,7 @@
       "reviewed_at": "2026-03-08",
       "review_commit_sha": "29a43836273f3e069fe9bdac2f1192f4818910fc",
       "source_path": "examples/workflows/ipyniivue_ipywidgets.ipynb",
-      "stale_reason": "File modified after review (latest: f6fa830ce712, reviewed at: 29a43836273f)"
+      "stale_reason": "File modified after review (latest: 972f140ce4d2, reviewed at: 29a43836273f)"
     },
     "521aa89c-987d-4a47-8e75-575e76ea4460": {
       "state": "reviewed",
@@ -275,7 +275,7 @@
       "reviewed_at": "2026-03-06",
       "review_commit_sha": "fd7705e44f378a44314212fa73c7956504978793",
       "source_path": "examples/diffusion_imaging/MRtrix_3.ipynb",
-      "stale_reason": "File modified after review (latest: f6fa830ce712, reviewed at: fd7705e44f37)"
+      "stale_reason": "File modified after review (latest: 972f140ce4d2, reviewed at: fd7705e44f37)"
     },
     "309d5842-9df4-47d5-a962-60fc90699c48": {
       "state": "reviewed",
@@ -296,7 +296,7 @@
       "reviewed_at": "2026-03-07",
       "review_commit_sha": "43ebdf3fdbd0045d2994e70605d2b04864c20c8d",
       "source_path": "examples/workflows/AA_Neurodesk_demo_tour.ipynb",
-      "stale_reason": "File modified after review (latest: f6fa830ce712, reviewed at: 43ebdf3fdbd0)"
+      "stale_reason": "File modified after review (latest: 972f140ce4d2, reviewed at: 43ebdf3fdbd0)"
     },
     "b8f472e3-3d87-45da-80d8-086501ffb91a": {
       "state": "stale",
