@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generated_at": "2026-03-10T12:10:45+00:00",
+  "generated_at": "2026-03-10T12:52:11+00:00",
   "source": {
     "type": "github-issues",
     "repo": "neurodesk/neurodeskedu-reviews"
@@ -132,7 +132,7 @@
       "source_path": "examples/functional_imaging/AFNI_preprocessing_plus_glm.ipynb"
     },
     "5af154c0-ad12-4ea7-970e-329a664651fa": {
-      "state": "stale",
+      "state": "reviewed",
       "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews/issues/9",
       "reviewers": [
         "mrneont"
@@ -140,7 +140,7 @@
       "reviewed_at": "2026-03-10",
       "review_commit_sha": "62a503b00a5ee77872135733d944ec0b31991d46",
       "source_path": "examples/functional_imaging/AFNI_preprocessing_plus_glm_group.ipynb",
-      "stale_reason": "File modified after review (latest: 95d678ac933c, reviewed at: 62a503b00a5e)"
+      "review_content_hash": "ffa3947d5ccd62f13e4b59e33a7cd0d280b9caff68ca08f79b5d26ea577ed77c"
     },
     "5d3c6acd-b9c9-42d9-b3af-55f3458b0f52": {
       "state": "reviewed",
@@ -150,7 +150,8 @@
       ],
       "reviewed_at": "2026-03-10",
       "review_commit_sha": "cffbc39fa0b81b14dd94218d158d764803e98e0d",
-      "source_path": "examples/spectroscopy/lcmodel.ipynb"
+      "source_path": "examples/spectroscopy/lcmodel.ipynb",
+      "review_content_hash": "420f6162cd5b8961a5fe5ae8cb2646b776187149b4b9baab2cac92fffef8621b"
     },
     "7b0edb6e-1f30-4116-beed-b311f3832a99": {
       "state": "reviewed",
@@ -160,7 +161,8 @@
       ],
       "reviewed_at": "2026-03-09",
       "review_commit_sha": "62a503b00a5ee77872135733d944ec0b31991d46",
-      "source_path": "examples/workflows/PyBIDS.ipynb"
+      "source_path": "examples/workflows/PyBIDS.ipynb",
+      "review_content_hash": "e71b62b44f5a32fa7fd61fd3bc998083d3ff9da0a2eb6f25244d6b28fd600536"
     },
     "ae2af25f-cf27-440b-a0d8-884a7b7e1703": {
       "state": "reviewed",
@@ -170,10 +172,11 @@
       ],
       "reviewed_at": "2026-03-06",
       "review_commit_sha": "c20323f110aacb06dc1f5cd41000a743ae798de1",
-      "source_path": "examples/workflows/nipype_full.ipynb"
+      "source_path": "examples/workflows/nipype_full.ipynb",
+      "review_content_hash": "a1a4ccc48ade60e8da82ee574c98c5635a0caa2fcc67aadc1a0d7c18fe8e842d"
     },
     "1ba869e1-d94c-44b6-b958-f49cd5cb4e5e": {
-      "state": "stale",
+      "state": "reviewed",
       "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews/issues/41",
       "reviewers": [
         "felenitaribeiro"
@@ -181,7 +184,7 @@
       "reviewed_at": "2026-03-08",
       "review_commit_sha": "29a43836273f3e069fe9bdac2f1192f4818910fc",
       "source_path": "examples/workflows/ipyniivue_ipywidgets.ipynb",
-      "stale_reason": "File modified after review (latest: 972f140ce4d2, reviewed at: 29a43836273f)"
+      "review_content_hash": "36bea27f60d8c43d2ef343749f24009a36ae014b26a434acf2aadba655b61390"
     },
     "521aa89c-987d-4a47-8e75-575e76ea4460": {
       "state": "reviewed",
@@ -191,10 +194,11 @@
       ],
       "reviewed_at": "2026-03-08",
       "review_commit_sha": "62a503b00a5ee77872135733d944ec0b31991d46",
-      "source_path": "examples/workflows/pydra_preproc_ants.ipynb"
+      "source_path": "examples/workflows/pydra_preproc_ants.ipynb",
+      "review_content_hash": "8c982c479fdea167064181128a55d817b87c30f90d5322e4570b8d3e64ec1cc2"
     },
     "38be8dd8-a1c1-4e9d-b151-9bbd24c77534": {
-      "state": "stale",
+      "state": "reviewed",
       "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews/issues/23",
       "reviewers": [
         "MoniDoerig"
@@ -202,10 +206,10 @@
       "reviewed_at": "2026-03-06",
       "review_commit_sha": "43ebdf3fdbd0045d2994e70605d2b04864c20c8d",
       "source_path": "examples/quantitative_imaging/qsmxt.ipynb",
-      "stale_reason": "File modified after review (latest: df589a83e500, reviewed at: 43ebdf3fdbd0)"
+      "review_content_hash": "260a658f54cb0648ab497c6d5514ad8d6dd68e73d5dadd4981c8259d8e969fd1"
     },
     "1b898d09-a15e-466a-b6f2-d7b1f48b5042": {
-      "state": "stale",
+      "state": "reviewed",
       "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews/issues/10",
       "reviewers": [
         "MoniDoerig"
@@ -213,7 +217,7 @@
       "reviewed_at": "2026-03-06",
       "review_commit_sha": "fd7705e44f378a44314212fa73c7956504978793",
       "source_path": "examples/functional_imaging/deepretinotopy.ipynb",
-      "stale_reason": "File modified after review (latest: 95d678ac933c, reviewed at: fd7705e44f37)"
+      "review_content_hash": "92bffc79e37fdcd68e2baac142e30387fb2eb412f78d84daa7303b3ea17c297d"
     },
     "25f75b0e-c5e5-4f35-854c-3824f0a15762": {
       "state": "reviewed",
@@ -223,7 +227,8 @@
       ],
       "reviewed_at": "2026-03-06",
       "review_commit_sha": "92d6523696db8b5b344e711fe6e199f5ec8c8cb4",
-      "source_path": "examples/workflows/nipype_short.ipynb"
+      "source_path": "examples/workflows/nipype_short.ipynb",
+      "review_content_hash": "9e09faf7d0ebfdcdcf8f2cda84eb3df62176d1807b216fddc458e6126cc462c9"
     },
     "3ae3595e-e83b-496c-a70d-a91c32f8a6d0": {
       "state": "reviewed",
@@ -233,10 +238,11 @@
       ],
       "reviewed_at": "2026-03-05",
       "review_commit_sha": "c20323f110aacb06dc1f5cd41000a743ae798de1",
-      "source_path": "examples/diffusion_imaging/mrtrix3tissue.ipynb"
+      "source_path": "examples/diffusion_imaging/mrtrix3tissue.ipynb",
+      "review_content_hash": "982b9aca16c32074a551442ceb292008ae6b6780cec80734130dcb70c6e39d72"
     },
     "e166a1f9-f4bd-429b-b497-fbc862211eea": {
-      "state": "stale",
+      "state": "reviewed",
       "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews/issues/15",
       "reviewers": [
         "mrneont"
@@ -244,7 +250,7 @@
       "reviewed_at": "2026-03-08",
       "review_commit_sha": "29a43836273f3e069fe9bdac2f1192f4818910fc",
       "source_path": "examples/functional_imaging/FSLnets_course_practical.ipynb",
-      "stale_reason": "File modified after review (latest: 95d678ac933c, reviewed at: 29a43836273f)"
+      "review_content_hash": "8a27ee5b372c86dafe9a4b201c01a141e896d8b4c5b384afe85db24f8f317246"
     },
     "20e4499d-61ef-44df-a5c1-6fd48cc5d23f": {
       "state": "reviewed",
@@ -254,7 +260,8 @@
       ],
       "reviewed_at": "2026-03-03",
       "review_commit_sha": "62a503b00a5ee77872135733d944ec0b31991d46",
-      "source_path": "examples/spectroscopy/osprey.ipynb"
+      "source_path": "examples/spectroscopy/osprey.ipynb",
+      "review_content_hash": "92135a394c056c14d701655ef0b4fe2ecb94512ea3c1867f0466c1478031000c"
     },
     "61b2682e-754e-42f0-86f7-f84192adef0b": {
       "state": "reviewed",
@@ -264,10 +271,11 @@
       ],
       "reviewed_at": "2026-03-06",
       "review_commit_sha": "fd7705e44f378a44314212fa73c7956504978793",
-      "source_path": "examples/functional_imaging/mri_vol2surf.ipynb"
+      "source_path": "examples/functional_imaging/mri_vol2surf.ipynb",
+      "review_content_hash": "95bd97bcf4de589a50ba81908ce8159a992c4c3c38ece2b1276459dbedb423a9"
     },
     "f4439cdb-8be0-42e6-ba12-eb96f736f304": {
-      "state": "stale",
+      "state": "reviewed",
       "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews/issues/4",
       "reviewers": [
         "giuliabaracc"
@@ -275,7 +283,7 @@
       "reviewed_at": "2026-03-06",
       "review_commit_sha": "fd7705e44f378a44314212fa73c7956504978793",
       "source_path": "examples/diffusion_imaging/MRtrix_3.ipynb",
-      "stale_reason": "File modified after review (latest: 972f140ce4d2, reviewed at: fd7705e44f37)"
+      "review_content_hash": "50e54e00e305f7cbcbe8b7a23c5cd4621c938e2a503d29325edacc453e984fda"
     },
     "309d5842-9df4-47d5-a962-60fc90699c48": {
       "state": "reviewed",
@@ -285,10 +293,11 @@
       ],
       "reviewed_at": "2026-03-04",
       "review_commit_sha": "f603bae2f6824ff445965109c4e193281d38a4ae",
-      "source_path": "examples/functional_imaging/fmriprep.ipynb"
+      "source_path": "examples/functional_imaging/fmriprep.ipynb",
+      "review_content_hash": "f9c35f2c62e2a435bf3a1f8ddafb08fb877547fcfe7ec643d0b30befca037b7e"
     },
     "f6f59510-0915-4139-bec2-e4134813fa95": {
-      "state": "stale",
+      "state": "reviewed",
       "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews/issues/28",
       "reviewers": [
         "stebo85"
@@ -296,10 +305,10 @@
       "reviewed_at": "2026-03-07",
       "review_commit_sha": "43ebdf3fdbd0045d2994e70605d2b04864c20c8d",
       "source_path": "examples/workflows/AA_Neurodesk_demo_tour.ipynb",
-      "stale_reason": "File modified after review (latest: 972f140ce4d2, reviewed at: 43ebdf3fdbd0)"
+      "review_content_hash": "b20bb6e7c31fdc464369abf9ef5b86e7084abd1ebf6780bffeec30b28157391a"
     },
     "b8f472e3-3d87-45da-80d8-086501ffb91a": {
-      "state": "stale",
+      "state": "reviewed",
       "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews/issues/29",
       "reviewers": [
         "MoniDoerig"
@@ -307,10 +316,10 @@
       "reviewed_at": "2026-03-02",
       "review_commit_sha": "62a503b00a5ee77872135733d944ec0b31991d46",
       "source_path": "examples/workflows/bids_conversion.ipynb",
-      "stale_reason": "File modified after review (latest: 95d678ac933c, reviewed at: 62a503b00a5e)"
+      "review_content_hash": "28e15dd4ed66691a2e3c47102ab6ff1766f8325d728f2647c3242fce0ae9c7e5"
     },
     "4937acbd-3beb-4b7f-bbca-a2ea7d422efe": {
-      "state": "stale",
+      "state": "reviewed",
       "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews/issues/14",
       "reviewers": [
         "marlapinkert"
@@ -318,7 +327,7 @@
       "reviewed_at": "2026-03-06",
       "review_commit_sha": "62a503b00a5ee77872135733d944ec0b31991d46",
       "source_path": "examples/functional_imaging/FSL_preproc_glm.ipynb",
-      "stale_reason": "File modified after review (latest: 95d678ac933c, reviewed at: 62a503b00a5e)"
+      "review_content_hash": "f3fa94d499b0f697ae274d94475c85620e4b68863d9f3bd136587e69d76a14ac"
     },
     "487f836b-a505-4f76-8ee3-84988c1d8965": {
       "state": "reviewed",
@@ -328,7 +337,8 @@
       ],
       "reviewed_at": "2026-03-05",
       "review_commit_sha": "c50b3f9b8078eda2654b986050d9fadfc20165ee",
-      "source_path": "examples/structural_imaging/FSL_course_bet.ipynb"
+      "source_path": "examples/structural_imaging/FSL_course_bet.ipynb",
+      "review_content_hash": "c966febc287218bf2622a16bff03e78e3d6ac858c1bcdbda927677869714d26d"
     },
     "77605892-b360-443a-adbf-47051ebdcdb3": {
       "state": "reviewed",
@@ -338,7 +348,8 @@
       ],
       "reviewed_at": "2026-03-08",
       "review_commit_sha": "62a503b00a5ee77872135733d944ec0b31991d46",
-      "source_path": "examples/functional_imaging/fsl_all_levels_flanker_nipype.ipynb"
+      "source_path": "examples/functional_imaging/fsl_all_levels_flanker_nipype.ipynb",
+      "review_content_hash": "e69d39aed413c84453ab7a8cdf6b97e0aa1c6a3aadd27951348ad3cc01b8860d"
     },
     "9dab0bae-455d-46a8-a15f-f3d449581ce9": {
       "state": "reviewed",
@@ -348,10 +359,11 @@
       ],
       "reviewed_at": "2026-03-04",
       "review_commit_sha": "00e7e122b7fe24109427a11e634ce4edb0146b93",
-      "source_path": "examples/structural_imaging/sct_toolbox.ipynb"
+      "source_path": "examples/structural_imaging/sct_toolbox.ipynb",
+      "review_content_hash": "8705fad7e7ade547c4ab0bb4ddfd77af6cabd8aac510fbdd3d4fe01de16b30e7"
     },
     "0597490a-84c9-45e4-a3c8-fb49ec988172": {
-      "state": "stale",
+      "state": "reviewed",
       "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews/issues/19",
       "reviewers": [
         "andrewjahn"
@@ -359,7 +371,7 @@
       "reviewed_at": "2026-03-07",
       "review_commit_sha": "62a503b00a5ee77872135733d944ec0b31991d46",
       "source_path": "examples/functional_imaging/process_five_echo_dataset.ipynb",
-      "stale_reason": "File modified after review (latest: 4066b5144ba7, reviewed at: 62a503b00a5e)"
+      "review_content_hash": "80d8b12ab22e1d9515c72693b818f70327bb3afc4fd777af0afca127551c33d4"
     },
     "f578f799-150b-4e54-a9d7-e168596d782f": {
       "state": "reviewed",
@@ -369,7 +381,8 @@
       ],
       "reviewed_at": "2026-03-06",
       "review_commit_sha": "9063ec7f355f21069f10cfa498c87b7a28feee09",
-      "source_path": "examples/structural_imaging/brain_extraction_different_tools.ipynb"
+      "source_path": "examples/structural_imaging/brain_extraction_different_tools.ipynb",
+      "review_content_hash": "73f197bf989062903ee98cd9460b60b7f09bb2ab5281d995160cb8ead966b3f9"
     },
     "cb3ff00e-c02a-45ff-b97f-8b58f1aec62c": {
       "state": "reviewed",
@@ -379,10 +392,11 @@
       ],
       "reviewed_at": "2026-03-04",
       "review_commit_sha": "00e7e122b7fe24109427a11e634ce4edb0146b93",
-      "source_path": "examples/functional_imaging/intro_to_preprocessing.ipynb"
+      "source_path": "examples/functional_imaging/intro_to_preprocessing.ipynb",
+      "review_content_hash": "5682526718864c020b6e0068bea287ac65a39ad3b7291fb02a3f698779712315"
     },
     "71fd5ecb-23f1-424c-9701-3beb2027db7d": {
-      "state": "stale",
+      "state": "reviewed",
       "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews/issues/45",
       "reviewers": [
         "MoniDoerig"
@@ -390,10 +404,10 @@
       "reviewed_at": "2026-03-03",
       "review_commit_sha": "fa4d6c4071dc8c55cc2c367b9c05795bd27122d2",
       "source_path": "examples/functional_imaging/AFNI_processing_task_based.ipynb",
-      "stale_reason": "File modified after review (latest: df589a83e500, reviewed at: fa4d6c4071dc)"
+      "review_content_hash": "a8354b01659c28def882190157b149da0600c2b131dd966da95c353f6903a1a0"
     },
     "85e6e128-5ac1-4a9e-9aef-de9b537e8b16": {
-      "state": "stale",
+      "state": "reviewed",
       "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews/issues/11",
       "reviewers": [
         "giuliabaracc"
@@ -401,7 +415,7 @@
       "reviewed_at": "2026-03-06",
       "review_commit_sha": "62a503b00a5ee77872135733d944ec0b31991d46",
       "source_path": "examples/functional_imaging/first_and_second_level_spm.ipynb",
-      "stale_reason": "File modified after review (latest: df589a83e500, reviewed at: 62a503b00a5e)"
+      "review_content_hash": "ec3dd84f6ea7160c895c0de7aaa3a332a7c314d5c81bb81b36b980a27fe21ee6"
     },
     "01b9bb47-e439-4b5e-8af8-73058cd6df87": {
       "state": "reviewed",
@@ -411,10 +425,11 @@
       ],
       "reviewed_at": "2026-03-07",
       "review_commit_sha": "62a503b00a5ee77872135733d944ec0b31991d46",
-      "source_path": "examples/functional_imaging/fMRI_tutorial_in_R_magic.ipynb"
+      "source_path": "examples/functional_imaging/fMRI_tutorial_in_R_magic.ipynb",
+      "review_content_hash": "34779559eb731ca4ce31bc632a7af121dfb8e5e819c43b1cb76a430ed7e62ce1"
     },
     "7c44c84f-c365-4c19-96b8-ba6178e0326a": {
-      "state": "stale",
+      "state": "reviewed",
       "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews/issues/1",
       "reviewers": [
         "stebo85"
@@ -422,7 +437,7 @@
       "reviewed_at": "2026-03-02",
       "review_commit_sha": "62a503b00a5ee77872135733d944ec0b31991d46",
       "source_path": "examples/diffusion_imaging/Diffusion_TBSS_Demo.ipynb",
-      "stale_reason": "File modified after review (latest: 95d678ac933c, reviewed at: 62a503b00a5e)"
+      "review_content_hash": "fb61c067675e56630fd25101954bae94ea2ef0168d042b4b7d092adf8e387c84"
     },
     "800d8b06-269e-4d0f-84a0-8c4b078db09c": {
       "state": "reviewed",
@@ -432,7 +447,8 @@
       ],
       "reviewed_at": "2026-03-03",
       "review_commit_sha": "e40060cb820d061b02dfd90412d0e8d1e8406604",
-      "source_path": "examples/structural_imaging/freesurfer-recon-all-clinical.ipynb"
+      "source_path": "examples/structural_imaging/freesurfer-recon-all-clinical.ipynb",
+      "review_content_hash": "f0675dbe0a8adaf4ac9404b7df36695012fb98825447fe9f731e384bc5e4b678"
     }
   }
 }
