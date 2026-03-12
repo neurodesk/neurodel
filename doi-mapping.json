@@ -124,25 +124,25 @@
     "doi_url": "https://doi.org/10.5281/zenodo.18718436",
     "website_url": "https://neurodesk.org/edu/tutorials/functional_imaging/mriqc.html",
     "concept_recid": "18718436",
-    "record_id": "18718437",
+    "record_id": "18991794",
     "content_type": "tutorial",
-    "checksum": "4a498cc3162399e48a584fe31c656885",
+    "checksum": "c1ab02fbcae6a33d85ae0334b0f9acb0",
     "authors": [
       "Kelly G. Garner"
     ],
-    "updated_at": "2026-02-21T00:56:45Z"
+    "updated_at": "2026-03-12T23:10:44Z"
   },
   "books/tutorials/functional_imaging/fmriprep.md": {
     "doi_url": "https://doi.org/10.5281/zenodo.18718438",
     "website_url": "https://neurodesk.org/edu/tutorials/functional_imaging/fmriprep.html",
     "concept_recid": "18718438",
-    "record_id": "18718439",
+    "record_id": "18991797",
     "content_type": "tutorial",
-    "checksum": "24776f35824941e33d15e417d766b6b6",
+    "checksum": "06a3fdf3a3e846b7adafe9c55587a8be",
     "authors": [
       "Kelly G. Garner"
     ],
-    "updated_at": "2026-02-21T00:56:48Z"
+    "updated_at": "2026-03-12T23:10:47Z"
   },
   "books/tutorials/functional_imaging/connectomeWorkbench.md": {
     "doi_url": "https://doi.org/10.5281/zenodo.18718440",
@@ -184,37 +184,37 @@
     "doi_url": "https://doi.org/10.5281/zenodo.18718446",
     "website_url": "https://neurodesk.org/edu/tutorials/functional_imaging/physio_batch_workflow.html",
     "concept_recid": "18718446",
-    "record_id": "18718447",
+    "record_id": "18991798",
     "content_type": "tutorial",
-    "checksum": "3ac23cc74cf23b7097b4fa1d9636de97",
+    "checksum": "e0ab4d5025c448deb6dd402841db5082",
     "authors": [
       "Kelly G. Garner"
     ],
-    "updated_at": "2026-02-21T00:57:01Z"
+    "updated_at": "2026-03-12T23:10:51Z"
   },
   "books/tutorials/open_data/datalad.md": {
     "doi_url": "https://doi.org/10.5281/zenodo.18718448",
     "website_url": "https://neurodesk.org/edu/tutorials/open_data/datalad.html",
     "concept_recid": "18718448",
-    "record_id": "18718449",
+    "record_id": "18991801",
     "content_type": "tutorial",
-    "checksum": "a8807d1ae0c3c17861cf8eaa93bf6ea9",
+    "checksum": "afd72dd4ceca3a482b4ea129b199e309",
     "authors": [
       "Steffen Bollmann"
     ],
-    "updated_at": "2026-02-21T00:57:04Z"
+    "updated_at": "2026-03-12T23:10:55Z"
   },
   "books/tutorials/open_data/osfclient.md": {
     "doi_url": "https://doi.org/10.5281/zenodo.18718450",
     "website_url": "https://neurodesk.org/edu/tutorials/open_data/osfclient.html",
     "concept_recid": "18718450",
-    "record_id": "18718451",
+    "record_id": "18991802",
     "content_type": "tutorial",
-    "checksum": "5895b33efcd8f7c70fa3d00944347183",
+    "checksum": "8c2fafbd252eb1a9e32d9e7724a9bea4",
     "authors": [
       "Steffen Bollmann"
     ],
-    "updated_at": "2026-02-21T00:57:07Z"
+    "updated_at": "2026-03-12T23:10:59Z"
   },
   "books/tutorials/reproducibility/datalad-run.md": {
     "doi_url": "https://doi.org/10.5281/zenodo.18718457",
@@ -805,10 +805,10 @@
     "doi_url": "https://doi.org/10.5281/zenodo.18991604",
     "website_url": "https://neurodesk.org/edu/tutorials/neurodesk_workflows/accessing_neurodesk_tools.html",
     "concept_recid": "18991604",
-    "record_id": "18991605",
+    "record_id": "18991791",
     "content_type": "notebook",
-    "checksum": "162c25188c356ec7df276688201be04c",
+    "checksum": "af673ab4f22497ce62f32c91869088b0",
     "authors": [],
-    "updated_at": "2026-03-12T22:49:08Z"
+    "updated_at": "2026-03-12T23:10:40Z"
   }
 }
