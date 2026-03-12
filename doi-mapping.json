@@ -800,5 +800,15 @@
       "Monika Doerig"
     ],
     "updated_at": "2026-03-06T01:33:36Z"
+  },
+  "books/tutorials/neurodesk_workflows/accessing_neurodesk_tools.ipynb": {
+    "doi_url": "https://doi.org/10.5281/zenodo.18991604",
+    "website_url": "https://neurodesk.org/edu/tutorials/neurodesk_workflows/accessing_neurodesk_tools.html",
+    "concept_recid": "18991604",
+    "record_id": "18991605",
+    "content_type": "notebook",
+    "checksum": "162c25188c356ec7df276688201be04c",
+    "authors": [],
+    "updated_at": "2026-03-12T22:49:08Z"
   }
 }
