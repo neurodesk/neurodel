@@ -805,10 +805,10 @@
     "doi_url": "https://doi.org/10.5281/zenodo.18991604",
     "website_url": "https://neurodesk.org/edu/tutorials/neurodesk_workflows/accessing_neurodesk_tools.html",
     "concept_recid": "18991604",
-    "record_id": "18991791",
+    "record_id": "18995771",
     "content_type": "notebook",
-    "checksum": "af673ab4f22497ce62f32c91869088b0",
+    "checksum": "dc699174320ca44e598e9ccb7a377352",
     "authors": [],
-    "updated_at": "2026-03-12T23:10:40Z"
+    "updated_at": "2026-03-13T05:48:18Z"
   }
 }
