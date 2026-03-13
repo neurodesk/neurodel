@@ -810,5 +810,15 @@
     "checksum": "dc699174320ca44e598e9ccb7a377352",
     "authors": [],
     "updated_at": "2026-03-13T05:48:18Z"
+  },
+  "books/tutorials/about_neurodesk/accessing_neurodesk_tools.ipynb": {
+    "doi_url": "https://doi.org/10.5281/zenodo.18995883",
+    "website_url": "https://neurodesk.org/edu/tutorials/about_neurodesk/accessing_neurodesk_tools.html",
+    "concept_recid": "18995883",
+    "record_id": "18995884",
+    "content_type": "notebook",
+    "checksum": "a40745d3f9c929a2277bffca6daf5ded",
+    "authors": [],
+    "updated_at": "2026-03-13T06:00:06Z"
   }
 }
