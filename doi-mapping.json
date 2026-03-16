@@ -820,5 +820,35 @@
     "checksum": "a40745d3f9c929a2277bffca6daf5ded",
     "authors": [],
     "updated_at": "2026-03-13T06:00:06Z"
+  },
+  "books/tutorials/phase_processing/swi.ipynb": {
+    "doi_url": "https://doi.org/10.5281/zenodo.19043245",
+    "website_url": "https://neurodesk.org/edu/tutorials/phase_processing/swi.html",
+    "concept_recid": "19043245",
+    "record_id": "19043246",
+    "content_type": "notebook",
+    "checksum": "e7058aca0783fcca2ac16fd1fd2dd7e7",
+    "authors": [],
+    "updated_at": "2026-03-16T04:30:21Z"
+  },
+  "books/tutorials/phase_processing/unwrapping.ipynb": {
+    "doi_url": "https://doi.org/10.5281/zenodo.19043247",
+    "website_url": "https://neurodesk.org/edu/tutorials/phase_processing/unwrapping.html",
+    "concept_recid": "19043247",
+    "record_id": "19043248",
+    "content_type": "notebook",
+    "checksum": "705ec88155e950a11cd81fd9bdfb4605",
+    "authors": [],
+    "updated_at": "2026-03-16T04:30:24Z"
+  },
+  "books/tutorials/phase_processing/qsm.ipynb": {
+    "doi_url": "https://doi.org/10.5281/zenodo.19043249",
+    "website_url": "https://neurodesk.org/edu/tutorials/phase_processing/qsm.html",
+    "concept_recid": "19043249",
+    "record_id": "19043250",
+    "content_type": "notebook",
+    "checksum": "acb79414fd72c86e247ec834a6ceca3e",
+    "authors": [],
+    "updated_at": "2026-03-16T04:30:27Z"
   }
 }
