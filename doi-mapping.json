@@ -456,11 +456,11 @@
     "doi_url": "https://doi.org/10.5281/zenodo.18728790",
     "website_url": "https://neurodesk.org/edu/examples/workflows/papermill-slurm-submission-example.html",
     "concept_recid": "18728790",
-    "record_id": "18728791",
+    "record_id": "19058778",
     "content_type": "notebook",
-    "checksum": "2f8b09505f322716b09c288e87373f1a",
+    "checksum": "779efe76d61c8b0e1c23a8ee05524f7c",
     "authors": [],
-    "updated_at": "2026-02-22T03:24:21Z"
+    "updated_at": "2026-03-17T02:23:18Z"
   },
   "books/examples/structural_imaging/sct_toolbox.ipynb": {
     "doi_url": "https://doi.org/10.5281/zenodo.18728792",
