@@ -587,13 +587,13 @@
     "doi_url": "https://doi.org/10.5281/zenodo.18740123",
     "website_url": "https://neurodesk.org/edu/examples/functional_imaging/AFNI_preprocessing_only.html",
     "concept_recid": "18740123",
-    "record_id": "18882598",
+    "record_id": "19105417",
     "content_type": "notebook",
-    "checksum": "2ffd274700204133418bebecc3caa230",
+    "checksum": "d805ce162b19a4a447a5baf66128656a",
     "authors": [
       "Monika Doerig"
     ],
-    "updated_at": "2026-03-05T23:01:35Z"
+    "updated_at": "2026-03-19T06:17:52Z"
   },
   "books/examples/functional_imaging/AFNI_preprocessing_plus_glm_group.ipynb": {
     "doi_url": "https://doi.org/10.5281/zenodo.18740130",
