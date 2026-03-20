@@ -372,25 +372,25 @@
     "doi_url": "https://doi.org/10.5281/zenodo.18728774",
     "website_url": "https://neurodesk.org/edu/examples/diffusion_imaging/DIPY_2.html",
     "concept_recid": "18728774",
-    "record_id": "18933643",
+    "record_id": "19125681",
     "content_type": "notebook",
-    "checksum": "5c871b9585bcf0f003d23d10b5e1c551",
+    "checksum": "c1f2fa76fece3f0ae8edf7f219516365",
     "authors": [
       "Monika Doerig"
     ],
-    "updated_at": "2026-03-10T06:39:52Z"
+    "updated_at": "2026-03-20T07:20:24Z"
   },
   "books/examples/diffusion_imaging/DIPY_1.ipynb": {
     "doi_url": "https://doi.org/10.5281/zenodo.18728776",
     "website_url": "https://neurodesk.org/edu/examples/diffusion_imaging/DIPY_1.html",
     "concept_recid": "18728776",
-    "record_id": "18996908",
+    "record_id": "19125682",
     "content_type": "notebook",
-    "checksum": "d2eb2e4e43a62ea7436db861f12fc4a1",
+    "checksum": "989d66ede64dfd41c674e3f1e0a0ed76",
     "authors": [
       "Monika Doerig"
     ],
-    "updated_at": "2026-03-13T07:13:58Z"
+    "updated_at": "2026-03-20T07:20:30Z"
   },
   "books/examples/spectroscopy/lcmodel.ipynb": {
     "doi_url": "https://doi.org/10.5281/zenodo.18728778",
@@ -478,14 +478,14 @@
     "doi_url": "https://doi.org/10.5281/zenodo.18728794",
     "website_url": "https://neurodesk.org/edu/examples/electrophysiology/eeg_with_mne.html",
     "concept_recid": "18728794",
-    "record_id": "18728795",
+    "record_id": "19125684",
     "content_type": "notebook",
-    "checksum": "4fae9f8b16b76f9b7a6b1b232eb93a8b",
+    "checksum": "ad0b5b6ab7f43f050d16bcb55dbd3305",
     "authors": [
       "Angela Renton",
       "Monika Doerig"
     ],
-    "updated_at": "2026-02-22T03:24:26Z"
+    "updated_at": "2026-03-20T07:20:41Z"
   },
   "books/examples/workflows/RISE_slideshow.ipynb": {
     "doi_url": "https://doi.org/10.5281/zenodo.18728796",
@@ -574,14 +574,14 @@
     "doi_url": "https://doi.org/10.5281/zenodo.18728812",
     "website_url": "https://neurodesk.org/edu/examples/diffusion_imaging/Diffusion_TBSS_Demo.html",
     "concept_recid": "18728812",
-    "record_id": "18934072",
+    "record_id": "19125686",
     "content_type": "notebook",
-    "checksum": "cf0d27e3d90534a6010ea31d2925d57c",
+    "checksum": "d73d4ed8562654a5aeb2679157df15a6",
     "authors": [
       "Andrew Jahn",
       "Monika Doerig"
     ],
-    "updated_at": "2026-03-10T07:27:00Z"
+    "updated_at": "2026-03-20T07:20:58Z"
   },
   "books/examples/functional_imaging/AFNI_preprocessing_only.ipynb": {
     "doi_url": "https://doi.org/10.5281/zenodo.18740123",
@@ -647,14 +647,14 @@
     "doi_url": "https://doi.org/10.5281/zenodo.18740151",
     "website_url": "https://neurodesk.org/edu/examples/diffusion_imaging/mrtrix3tissue.html",
     "concept_recid": "18740151",
-    "record_id": "18860169",
+    "record_id": "19125685",
     "content_type": "notebook",
-    "checksum": "c2dfa8b5149b947e3bc0b56ab54f0f5e",
+    "checksum": "a9aeee295a7879285639203464627b0e",
     "authors": [
       "Thuy Dao",
       "Monika Doerig"
     ],
-    "updated_at": "2026-03-04T08:08:55Z"
+    "updated_at": "2026-03-20T07:20:51Z"
   },
   "books/examples/functional_imaging/process_five_echo_dataset.ipynb": {
     "doi_url": "https://doi.org/10.5281/zenodo.18740153",
@@ -722,13 +722,13 @@
     "doi_url": "https://doi.org/10.5281/zenodo.18740171",
     "website_url": "https://neurodesk.org/edu/examples/diffusion_imaging/MRtrix_2.html",
     "concept_recid": "18740171",
-    "record_id": "18933653",
+    "record_id": "19125689",
     "content_type": "notebook",
-    "checksum": "1ef8400fe03472c85bec903822e32362",
+    "checksum": "70f85dcb83ac118605d8fa0e5b0dc408",
     "authors": [
       "Monika Doerig"
     ],
-    "updated_at": "2026-03-10T06:40:26Z"
+    "updated_at": "2026-03-20T07:21:08Z"
   },
   "books/examples/functional_imaging/fMRI_tutorial_in_R_magic.ipynb": {
     "doi_url": "https://doi.org/10.5281/zenodo.18779080",
@@ -769,25 +769,25 @@
     "doi_url": "https://doi.org/10.5281/zenodo.18872514",
     "website_url": "https://neurodesk.org/edu/examples/diffusion_imaging/MRtrix_1.html",
     "concept_recid": "18872514",
-    "record_id": "18932584",
+    "record_id": "19125680",
     "content_type": "notebook",
-    "checksum": "e2e8e207daf4240c9162a503cc4338c0",
+    "checksum": "e4fdd037ea2ff81a959c25cd4320c619",
     "authors": [
       "Monika Doerig"
     ],
-    "updated_at": "2026-03-10T04:40:03Z"
+    "updated_at": "2026-03-20T07:20:19Z"
   },
   "books/examples/diffusion_imaging/MRtrix_3.ipynb": {
     "doi_url": "https://doi.org/10.5281/zenodo.18872548",
     "website_url": "https://neurodesk.org/edu/examples/diffusion_imaging/MRtrix_3.html",
     "concept_recid": "18872548",
-    "record_id": "18933652",
+    "record_id": "19125683",
     "content_type": "notebook",
-    "checksum": "ccd92db7eb1ea59669d08582f9d847f6",
+    "checksum": "aeabda17124e517682f91139a6103e3e",
     "authors": [
       "Monika Doerig"
     ],
-    "updated_at": "2026-03-10T06:40:16Z"
+    "updated_at": "2026-03-20T07:20:36Z"
   },
   "books/examples/structural_imaging/brain_extraction_different_tools.ipynb": {
     "doi_url": "https://doi.org/10.5281/zenodo.18883334",
