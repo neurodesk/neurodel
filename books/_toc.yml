@@ -112,6 +112,7 @@ chapters:
 
       - file: tutorials/structural_imaging/intro
         sections:
+          - file: tutorials/structural_imaging/freesurfer_hpc
           - file: tutorials/structural_imaging/freesurfer
           - file: tutorials/structural_imaging/structuralconnectivity
 
