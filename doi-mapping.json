@@ -599,13 +599,13 @@
     "doi_url": "https://doi.org/10.5281/zenodo.18740130",
     "website_url": "https://neurodesk.org/edu/examples/functional_imaging/AFNI_preprocessing_plus_glm_group.html",
     "concept_recid": "18740130",
-    "record_id": "18934064",
+    "record_id": "19340216",
     "content_type": "notebook",
-    "checksum": "2064ec435b5cb6c2b0728b65ed59777f",
+    "checksum": "7e5f826cd44c3b96a6f90067dff9765f",
     "authors": [
       "Monika Doerig"
     ],
-    "updated_at": "2026-03-10T07:26:25Z"
+    "updated_at": "2026-03-30T20:42:24Z"
   },
   "books/examples/functional_imaging/deepretinotopy.ipynb": {
     "doi_url": "https://doi.org/10.5281/zenodo.18740132",
@@ -710,13 +710,13 @@
     "doi_url": "https://doi.org/10.5281/zenodo.18740167",
     "website_url": "https://neurodesk.org/edu/examples/functional_imaging/AFNI_preprocessing_plus_glm.html",
     "concept_recid": "18740167",
-    "record_id": "18934074",
+    "record_id": "19340219",
     "content_type": "notebook",
-    "checksum": "395a6c19dff58a1e84795ee5075cbeec",
+    "checksum": "94febe05f42041cbe17f41dcd1e074ec",
     "authors": [
       "Monika Doerig"
     ],
-    "updated_at": "2026-03-10T07:27:07Z"
+    "updated_at": "2026-03-30T20:42:29Z"
   },
   "books/examples/diffusion_imaging/MRtrix_2.ipynb": {
     "doi_url": "https://doi.org/10.5281/zenodo.18740171",
