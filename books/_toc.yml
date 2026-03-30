@@ -66,6 +66,8 @@ chapters:
       - file: tutorials/about_neurodesk/intro
         sections:
           - file: tutorials/about_neurodesk/accessing_neurodesk_tools
+          - file: tutorials/about_neurodesk/neurodesktop_storage
+          - file: tutorials/about_neurodesk/neurodesk_hpc
 
       - file: tutorials/electrophysiology/intro
         sections:
@@ -76,6 +78,7 @@ chapters:
         sections:
           - file: tutorials/functional_imaging/connectomeWorkbench
           - file: tutorials/functional_imaging/fmriprep
+          - file: tutorials/functional_imaging/fsleyes
           - file: tutorials/functional_imaging/mriqc
           - file: tutorials/functional_imaging/physio
           - file: tutorials/functional_imaging/physio_batch_workflow
@@ -88,6 +91,7 @@ chapters:
       - file: tutorials/open_data/intro
         sections:
           - file: tutorials/open_data/datalad
+          - file: tutorials/open_data/openneuro
           - file: tutorials/open_data/osfclient
 
       - file: tutorials/phase_processing/intro
@@ -100,6 +104,7 @@ chapters:
         sections:
           - file: tutorials/programming/conda
           - file: tutorials/programming/matlab
+          - file: tutorials/programming/r_rstudio
 
       - file: tutorials/reproducibility/intro
         sections:
@@ -112,6 +117,7 @@ chapters:
 
       - file: tutorials/structural_imaging/intro
         sections:
+          - file: tutorials/structural_imaging/brain_extraction
           - file: tutorials/structural_imaging/freesurfer_hpc
           - file: tutorials/structural_imaging/freesurfer
           - file: tutorials/structural_imaging/structuralconnectivity
