@@ -10,6 +10,7 @@ chapters:
           - file: examples/diffusion_imaging/MRtrix_2
           - file: examples/diffusion_imaging/MRtrix_3
           - file: examples/diffusion_imaging/mrtrix3tissue
+          - file: examples/diffusion_imaging/structural_connectivity
 
       - file: examples/electrophysiology/intro
         sections:
@@ -17,6 +18,7 @@ chapters:
 
       - file: examples/functional_imaging/intro
         sections:
+          - file: examples/functional_imaging/physio_batch_workflow
           - file: examples/functional_imaging/AFNI_preprocessing_only
           - file: examples/functional_imaging/AFNI_preprocessing_plus_glm
           - file: examples/functional_imaging/AFNI_preprocessing_plus_glm_group
@@ -52,6 +54,10 @@ chapters:
         sections:
           - file: examples/workflows/AA_Neurodesk_demo_tour
           - file: examples/workflows/bids_conversion
+          - file: examples/workflows/conda
+          - file: examples/workflows/datalad
+          - file: examples/workflows/datalad_run
+          - file: examples/workflows/osfclient
           - file: examples/workflows/MRIQC
           - file: examples/workflows/nipype_full
           - file: examples/workflows/nipype_short
@@ -66,8 +72,6 @@ chapters:
       - file: tutorials/about_neurodesk/intro
         sections:
           - file: tutorials/about_neurodesk/accessing_neurodesk_tools
-          - file: tutorials/about_neurodesk/neurodesktop_storage
-          - file: tutorials/about_neurodesk/neurodesk_hpc
 
       - file: tutorials/electrophysiology/intro
         sections:
