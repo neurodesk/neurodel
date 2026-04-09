@@ -660,14 +660,14 @@
     "doi_url": "https://doi.org/10.5281/zenodo.18740153",
     "website_url": "https://neurodesk.org/edu/examples/functional_imaging/process_five_echo_dataset.html",
     "concept_recid": "18740153",
-    "record_id": "18934070",
+    "record_id": "19477348",
     "content_type": "notebook",
-    "checksum": "cd1e5ba9ed3edb2a89ab41795dd75093",
+    "checksum": "4f2d7fc4d20ff83ec8da29f5d9c67fe8",
     "authors": [
       "Daniel Handwerker",
       "Monika Doerig"
     ],
-    "updated_at": "2026-03-10T07:26:54Z"
+    "updated_at": "2026-04-09T00:44:36Z"
   },
   "books/examples/functional_imaging/fmriprep.ipynb": {
     "doi_url": "https://doi.org/10.5281/zenodo.18740155",
