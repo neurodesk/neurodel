@@ -280,11 +280,11 @@
     "doi_url": "https://doi.org/10.5281/zenodo.18728757",
     "website_url": "https://neurodesk.org/edu/examples/workflows/AA_Neurodesk_demo_tour.html",
     "concept_recid": "18728757",
-    "record_id": "18933642",
+    "record_id": "19503182",
     "content_type": "notebook",
-    "checksum": "fbaa1745ef6266c9fe336f9aa7db488d",
+    "checksum": "0b7a9e220a6038ec9e07fd1048433891",
     "authors": [],
-    "updated_at": "2026-03-10T06:39:46Z"
+    "updated_at": "2026-04-10T23:41:09Z"
   },
   "books/examples/quantitative_imaging/qsmxt.ipynb": {
     "doi_url": "https://doi.org/10.5281/zenodo.18728759",
@@ -348,13 +348,13 @@
     "doi_url": "https://doi.org/10.5281/zenodo.18728770",
     "website_url": "https://neurodesk.org/edu/examples/functional_imaging/FSL_preproc_glm.html",
     "concept_recid": "18728770",
-    "record_id": "18934062",
+    "record_id": "19503185",
     "content_type": "notebook",
-    "checksum": "22028f8c0fce4ae0a3342a3ee5824d10",
+    "checksum": "2848ba08bad1f983b9302c601ac67c95",
     "authors": [
       "Monika Doerig"
     ],
-    "updated_at": "2026-03-10T07:26:17Z"
+    "updated_at": "2026-04-10T23:41:17Z"
   },
   "books/examples/workflows/nipype_short.ipynb": {
     "doi_url": "https://doi.org/10.5281/zenodo.18728772",
