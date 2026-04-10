@@ -599,13 +599,13 @@
     "doi_url": "https://doi.org/10.5281/zenodo.18740130",
     "website_url": "https://neurodesk.org/edu/examples/functional_imaging/AFNI_preprocessing_plus_glm_group.html",
     "concept_recid": "18740130",
-    "record_id": "19340216",
+    "record_id": "19494418",
     "content_type": "notebook",
-    "checksum": "7e5f826cd44c3b96a6f90067dff9765f",
+    "checksum": "e0a03c828187708d2926a93cc393a14e",
     "authors": [
       "Monika Doerig"
     ],
-    "updated_at": "2026-03-30T20:42:24Z"
+    "updated_at": "2026-04-10T09:07:23Z"
   },
   "books/examples/functional_imaging/deepretinotopy.ipynb": {
     "doi_url": "https://doi.org/10.5281/zenodo.18740132",
@@ -673,13 +673,13 @@
     "doi_url": "https://doi.org/10.5281/zenodo.18740155",
     "website_url": "https://neurodesk.org/edu/examples/functional_imaging/fmriprep.html",
     "concept_recid": "18740155",
-    "record_id": "18850349",
+    "record_id": "19494415",
     "content_type": "notebook",
-    "checksum": "b10bddfd9f435905b6d1ea9e72ff5e67",
+    "checksum": "2c27a8400ec5dd64e8926969d39648ad",
     "authors": [
       "Steffen Bollmann"
     ],
-    "updated_at": "2026-03-03T14:50:05Z"
+    "updated_at": "2026-04-10T09:07:03Z"
   },
   "books/examples/quantitative_imaging/aslprep.ipynb": {
     "doi_url": "https://doi.org/10.5281/zenodo.18740157",
