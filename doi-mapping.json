@@ -408,13 +408,13 @@
     "doi_url": "https://doi.org/10.5281/zenodo.18728780",
     "website_url": "https://neurodesk.org/edu/examples/structural_imaging/FSL_course_bet.html",
     "concept_recid": "18728780",
-    "record_id": "18740134",
+    "record_id": "19491028",
     "content_type": "notebook",
-    "checksum": "66734b32fe03abb7826104210896d735",
+    "checksum": "1219ecd494fe20ed120cbaddeb8f1e8f",
     "authors": [
       "Monika Doerig"
     ],
-    "updated_at": "2026-02-23T09:11:47Z"
+    "updated_at": "2026-04-10T03:39:05Z"
   },
   "books/examples/workflows/ipyniivue_ipywidgets.ipynb": {
     "doi_url": "https://doi.org/10.5281/zenodo.18728782",
@@ -478,14 +478,14 @@
     "doi_url": "https://doi.org/10.5281/zenodo.18728794",
     "website_url": "https://neurodesk.org/edu/examples/electrophysiology/eeg_with_mne.html",
     "concept_recid": "18728794",
-    "record_id": "19125684",
+    "record_id": "19491024",
     "content_type": "notebook",
-    "checksum": "ad0b5b6ab7f43f050d16bcb55dbd3305",
+    "checksum": "27db3779e1ae45d9de0441cec9e30d8f",
     "authors": [
       "Angela Renton",
       "Monika Doerig"
     ],
-    "updated_at": "2026-03-20T07:20:41Z"
+    "updated_at": "2026-04-10T03:38:49Z"
   },
   "books/examples/workflows/RISE_slideshow.ipynb": {
     "doi_url": "https://doi.org/10.5281/zenodo.18728796",
@@ -623,13 +623,13 @@
     "doi_url": "https://doi.org/10.5281/zenodo.18740135",
     "website_url": "https://neurodesk.org/edu/examples/structural_imaging/freesurfer-recon-all-clinical.html",
     "concept_recid": "18740135",
-    "record_id": "18835280",
+    "record_id": "19491023",
     "content_type": "notebook",
-    "checksum": "b311d2ec80f51ded9b10628712222141",
+    "checksum": "1ec0a7fcb42d0eaa3579877eb74b9178",
     "authors": [
       "Thomas Shaw"
     ],
-    "updated_at": "2026-03-02T12:15:06Z"
+    "updated_at": "2026-04-10T03:38:43Z"
   },
   "books/examples/functional_imaging/FSLnets_course_practical.ipynb": {
     "doi_url": "https://doi.org/10.5281/zenodo.18740141",
@@ -685,14 +685,14 @@
     "doi_url": "https://doi.org/10.5281/zenodo.18740157",
     "website_url": "https://neurodesk.org/edu/examples/quantitative_imaging/aslprep.html",
     "concept_recid": "18740157",
-    "record_id": "19180707",
+    "record_id": "19491033",
     "content_type": "notebook",
-    "checksum": "f26b80f52a9e2bfa4ec5e2319ea68920",
+    "checksum": "02d166282bc689d9aeb8d63b9377198b",
     "authors": [
       "Steffen Bollmann",
       "Monika Doerig"
     ],
-    "updated_at": "2026-03-23T07:30:02Z"
+    "updated_at": "2026-04-10T03:39:11Z"
   },
   "books/examples/functional_imaging/first_and_second_level_spm.ipynb": {
     "doi_url": "https://doi.org/10.5281/zenodo.18740162",
@@ -757,13 +757,13 @@
     "doi_url": "https://doi.org/10.5281/zenodo.18843449",
     "website_url": "https://neurodesk.org/edu/examples/structural_imaging/freesurfer.html",
     "concept_recid": "18843449",
-    "record_id": "18843450",
+    "record_id": "19491025",
     "content_type": "notebook",
-    "checksum": "781d4c1e0796dd7faa8199882979e628",
+    "checksum": "73161b9a4c1910ef2bd7b7e4d73b134e",
     "authors": [
       "Steffen Bollmann"
     ],
-    "updated_at": "2026-03-03T02:28:26Z"
+    "updated_at": "2026-04-10T03:38:57Z"
   },
   "books/examples/diffusion_imaging/MRtrix_1.ipynb": {
     "doi_url": "https://doi.org/10.5281/zenodo.18872514",
@@ -793,13 +793,13 @@
     "doi_url": "https://doi.org/10.5281/zenodo.18883334",
     "website_url": "https://neurodesk.org/edu/examples/structural_imaging/brain_extraction_different_tools.html",
     "concept_recid": "18883334",
-    "record_id": "18883335",
+    "record_id": "19491034",
     "content_type": "notebook",
-    "checksum": "b9dae506004eb558d1b10820c3de4211",
+    "checksum": "29a6b6f047ef7c3d3f92145cf7e3a4e0",
     "authors": [
       "Monika Doerig"
     ],
-    "updated_at": "2026-03-06T01:33:36Z"
+    "updated_at": "2026-04-10T03:39:23Z"
   },
   "books/tutorials/neurodesk_workflows/accessing_neurodesk_tools.ipynb": {
     "doi_url": "https://doi.org/10.5281/zenodo.18991604",
