@@ -420,13 +420,13 @@
     "doi_url": "https://doi.org/10.5281/zenodo.18728782",
     "website_url": "https://neurodesk.org/edu/examples/workflows/ipyniivue_ipywidgets.html",
     "concept_recid": "18728782",
-    "record_id": "18933649",
+    "record_id": "19600844",
     "content_type": "notebook",
-    "checksum": "73f7f3d17510d77d477949d6a3f8ea8f",
+    "checksum": "fce0eeed4ce8df7f7fc6f680c53fc5fe",
     "authors": [
       "Monika Doerig"
     ],
-    "updated_at": "2026-03-10T06:40:09Z"
+    "updated_at": "2026-04-16T00:55:55Z"
   },
   "books/examples/workflows/Magic_commands.ipynb": {
     "doi_url": "https://doi.org/10.5281/zenodo.18728786",
