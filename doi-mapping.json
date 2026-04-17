@@ -850,5 +850,15 @@
     "checksum": "acb79414fd72c86e247ec834a6ceca3e",
     "authors": [],
     "updated_at": "2026-03-16T04:30:27Z"
+  },
+  "books/examples/functional_imaging/Demo_fmriprep_FEAT.ipynb": {
+    "doi_url": "https://doi.org/10.5281/zenodo.19627256",
+    "website_url": "https://neurodesk.org/edu/examples/functional_imaging/Demo_fmriprep_FEAT.html",
+    "concept_recid": "19627256",
+    "record_id": "19627257",
+    "content_type": "notebook",
+    "checksum": "f309842c34f3769f184884e14e0a184b",
+    "authors": [],
+    "updated_at": "2026-04-17T08:25:01Z"
   }
 }
