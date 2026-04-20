@@ -860,5 +860,15 @@
     "checksum": "f309842c34f3769f184884e14e0a184b",
     "authors": [],
     "updated_at": "2026-04-17T08:25:01Z"
+  },
+  "books/examples/functional_imaging/Demo_FEAT_HigherLevelStats.ipynb": {
+    "doi_url": "https://doi.org/10.5281/zenodo.19657478",
+    "website_url": "https://neurodesk.org/edu/examples/functional_imaging/Demo_FEAT_HigherLevelStats.html",
+    "concept_recid": "19657478",
+    "record_id": "19657479",
+    "content_type": "notebook",
+    "checksum": "aebcd752bd4d97ad56558aba8b48813e",
+    "authors": [],
+    "updated_at": "2026-04-20T04:08:23Z"
   }
 }
