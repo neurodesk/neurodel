@@ -58,7 +58,7 @@ on:
         type: boolean
         default: false
       notebook_selector:
-        description: 'Path relative to books/ (e.g. examples/functional_imaging/intro_to_preprocessing.ipynb)'
+        description: 'Notebook path(s) relative to books/, comma-separated for multiple (e.g. swi.ipynb,qsm.ipynb)'
         required: false
         type: string
       use_self_hosted:
@@ -203,29 +203,40 @@ jobs:
             changed_notebooks=$(find books -name "*.ipynb" | sed 's|^books/||')
 
           elif [ -n "${{ inputs.notebook_selector }}" ]; then
-            # Normalize input: strip common prefixes
-            search_term="${{ inputs.notebook_selector }}"
-            search_term="${search_term#neurodeskedu/}"  # Strip neurodeskedu/
-            search_term="${search_term#books/}"         # Strip books/
+            # Comma-separated list — single value works as before (no comma)
+            raw_input="${{ inputs.notebook_selector }}"
+            IFS=',' read -ra raw_terms <<< "$raw_input"
 
-            # Search for matching files, ensure results are .ipynb
-            echo "Searching for: ${search_term}"
-            search_name=$(basename "$search_term")
-            mapfile -t found_notebooks < <(find books -type f -name "*${search_name}*" | grep '\.ipynb$' | sed 's|^books/||')
+            all_found=()
+            for term in "${raw_terms[@]}"; do
+              # Trim whitespace, strip common prefixes
+              term=$(echo "$term" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
+              [ -z "$term" ] && continue
+              term="${term#neurodeskedu/}"
+              term="${term#books/}"
 
-            if [ ${#found_notebooks[@]} -eq 0 ]; then
-              echo "::error::No notebook found matching: ${search_term}"
-              exit 1
-            elif [ ${#found_notebooks[@]} -gt 1 ]; then
-              echo "::error::Multiple notebooks found matching '${search_term}':"
-              printf '  - %s\n' "${found_notebooks[@]}"
-              echo "Please provide a more specific path."
-              exit 1
-            fi
+              echo "Searching for: ${term}"
+              search_name=$(basename "$term")
+              mapfile -t matches < <(find books -type f -name "*${search_name}*" | grep '\.ipynb$' | sed 's|^books/||')
 
-            notebook_path="${found_notebooks[0]}"
-            echo "Mode: Running specific notebook: ${notebook_path}"
-            changed_notebooks="${notebook_path}"
+              if [ ${#matches[@]} -eq 0 ]; then
+                echo "::error::No notebook found matching: ${term}"
+                exit 1
+              elif [ ${#matches[@]} -gt 1 ]; then
+                echo "::error::Multiple notebooks found matching '${term}':"
+                printf '  - %s\n' "${matches[@]}"
+                echo "Please provide a more specific path."
+                exit 1
+              fi
+
+              all_found+=("${matches[0]}")
+            done
+
+            # Dedupe (handles repeated entries in the comma list)
+            changed_notebooks=$(printf '%s\n' "${all_found[@]}" | awk '!seen[$0]++')
+            count=$(printf '%s\n' "$changed_notebooks" | grep -c .)
+            echo "Mode: Running ${count} selected notebook(s):"
+            printf '%s\n' "$changed_notebooks" | sed 's|^|  - |'
 
           else
             echo "Mode: Running changed notebooks only"
