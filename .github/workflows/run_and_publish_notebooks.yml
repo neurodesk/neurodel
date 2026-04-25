@@ -37,6 +37,16 @@ on:
         description: 'Override the Docker image (e.g. ghcr.io/neurodesk/neurodesktop/neurodesktop:2025-12-20)'
         required: false
         type: string
+      runner_target:
+        description: 'Runner pool (default arc-base; manual override for recovery / testing)'
+        required: false
+        type: choice
+        default: 'arc-base'
+        options:
+          - 'arc-base'
+          - 'arc-mem'
+          - 'legacy-vm'
+          - 'github-hosted'
       force_execution:
         description: 'Force execution of all notebooks'
         required: false
@@ -92,45 +102,40 @@ jobs:
         id: select_runner
         run: |
           # =====================================================================
-          # RUNNER SELECTION — ONE decision point, everything else follows
+          # RUNNER SELECTION — driven by the workflow_dispatch `runner_target`
+          # input (default: arc-base). Push events always use arc-base.
           # =====================================================================
-          # Uncomment ONE block below. This controls:
-          #   1. Which runner the notebook jobs land on (runs-on)
-          #   2. Whether the in-cluster registry mirror is used for image pulls
-          #   3. Any other runner-specific conditional logic downstream
-          #
-          # runner  = used by conditional logic (mirror toggle, etc.)
+          # runner  = used by conditional logic (mirror toggle, ARC_FLAGS, etc.)
           # runs_on = used by the runs-on field (handles group vs label syntax)
+          #
+          # To force all push events to a different pool: change the default
+          # below from 'arc-base' to one of the four supported values.
           # =====================================================================
+          TARGET="${{ inputs.runner_target || 'arc-base' }}"
+          echo "Selected runner pool: $TARGET"
 
-          # --- ARC K8s runners (CVMFS-enabled, in-cluster mirror) ---
-          echo "runner=arc-base" >> $GITHUB_OUTPUT
-          echo 'runs_on={"group":"arc-base"}' >> $GITHUB_OUTPUT
-
-          # --- Legacy VMs (neurodeskedu-1 through -8) ---
-          # echo "runner=self-hosted" >> $GITHUB_OUTPUT
-          # echo 'runs_on="self-hosted"' >> $GITHUB_OUTPUT
-
-          # --- GitHub-hosted public runner ---
-          # echo "runner=ubuntu-22.04" >> $GITHUB_OUTPUT
-          # echo 'runs_on="ubuntu-22.04"' >> $GITHUB_OUTPUT
-
-          # --- Original dynamic logic (uncomment to restore automatic selection) ---
-          # if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-          #   if [ "${{ inputs.use_self_hosted }}" = "true" ]; then
-          #     echo "runner=self-hosted" >> $GITHUB_OUTPUT
-          #     echo 'runs_on="self-hosted"' >> $GITHUB_OUTPUT
-          #   else
-          #     echo "runner=ubuntu-22.04" >> $GITHUB_OUTPUT
-          #     echo 'runs_on="ubuntu-22.04"' >> $GITHUB_OUTPUT
-          #   fi
-          # elif [ "${{ github.repository }}" = "neurodesk/neurodeskedu" ]; then
-          #   echo "runner=self-hosted" >> $GITHUB_OUTPUT
-          #   echo 'runs_on="self-hosted"' >> $GITHUB_OUTPUT
-          # else
-          #   echo "runner=ubuntu-22.04" >> $GITHUB_OUTPUT
-          #   echo 'runs_on="ubuntu-22.04"' >> $GITHUB_OUTPUT
-          # fi
+          case "$TARGET" in
+            arc-base)
+              echo "runner=arc-base" >> $GITHUB_OUTPUT
+              echo 'runs_on={"group":"arc-base"}' >> $GITHUB_OUTPUT
+              ;;
+            arc-mem)
+              echo "runner=arc-mem" >> $GITHUB_OUTPUT
+              echo 'runs_on={"group":"arc-mem"}' >> $GITHUB_OUTPUT
+              ;;
+            legacy-vm)
+              echo "runner=self-hosted" >> $GITHUB_OUTPUT
+              echo 'runs_on="self-hosted"' >> $GITHUB_OUTPUT
+              ;;
+            github-hosted)
+              echo "runner=ubuntu-22.04" >> $GITHUB_OUTPUT
+              echo 'runs_on="ubuntu-22.04"' >> $GITHUB_OUTPUT
+              ;;
+            *)
+              echo "::error::Unknown runner_target: $TARGET"
+              exit 1
+              ;;
+          esac
 
       - name: Determine Neurodesk image
         id: get_image
@@ -268,11 +273,12 @@ jobs:
     needs: [setup, select-notebooks]
     if: ${{ needs.select-notebooks.outputs.notebook_list != '[]' && inputs.use_notebook_cache != true }}
     # Per-notebook runner routing:
-    # Storage-heavy notebooks (>16 Gi work-dir need) → arc-mem (64 Gi PVC, cpu:9, mem:24Gi, maxRunners:3).
-    # Everyone else → whatever setup selected (default: arc-base).
+    # Storage-heavy notebooks (>16 Gi work-dir need) → arc-mem (64 Gi PVC, cpu:9, mem:24Gi, maxRunners:3),
+    # but ONLY when setup picked arc-base. If runner_target dispatches to legacy-vm or github-hosted,
+    # everything stays on the chosen pool (no split routing).
     # Cluster-side helm revision 17 provisioned arc-mem as the storage-heavy tier on 2026-04-23.
     # To add another notebook to the heavy list: append its path to the array below.
-    runs-on: ${{ contains(fromJson('["examples/functional_imaging/Demo_FEAT_HigherLevelStats.ipynb","examples/functional_imaging/Demo_fmriprep_FEAT.ipynb"]'), matrix.notebooks) && fromJson('{"group":"arc-mem"}') || fromJson(needs.setup.outputs.runs_on) }}
+    runs-on: ${{ (needs.setup.outputs.runner == 'arc-base' && contains(fromJson('["examples/functional_imaging/Demo_FEAT_HigherLevelStats.ipynb","examples/functional_imaging/Demo_fmriprep_FEAT.ipynb"]'), matrix.notebooks)) && fromJson('{"group":"arc-mem"}') || fromJson(needs.setup.outputs.runs_on) }}
     timeout-minutes: 1500
 
     concurrency:
