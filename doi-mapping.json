@@ -3,13 +3,13 @@
     "doi_url": "https://doi.org/10.5281/zenodo.18717009",
     "website_url": "https://neurodesk.org/edu/examples/workflows/nextflow_neurodesk.html",
     "concept_recid": "18717009",
-    "record_id": "18764735",
+    "record_id": "19904039",
     "content_type": "notebook",
-    "checksum": "fd5bebf0ef88f45e1cbd159ea2437a21",
+    "checksum": "099dc22e5132cc056c1ded3787addcf0",
     "authors": [
       "Steffen Bollmann"
     ],
-    "updated_at": "2026-02-25T00:56:32Z"
+    "updated_at": "2026-04-30T02:18:25Z"
   },
   "books/tutorials/spectroscopy/lcmodel.md": {
     "doi_url": "https://doi.org/10.5281/zenodo.18718416",
@@ -338,11 +338,11 @@
     "doi_url": "https://doi.org/10.5281/zenodo.18728768",
     "website_url": "https://neurodesk.org/edu/examples/template.html",
     "concept_recid": "18728768",
-    "record_id": "18740125",
+    "record_id": "19904038",
     "content_type": "notebook",
-    "checksum": "01633759478d97c4634e97a043baa680",
+    "checksum": "e541154637635bfe9cca92c1a06296f6",
     "authors": [],
-    "updated_at": "2026-02-23T09:11:20Z"
+    "updated_at": "2026-04-30T02:18:21Z"
   },
   "books/examples/functional_imaging/FSL_preproc_glm.ipynb": {
     "doi_url": "https://doi.org/10.5281/zenodo.18728770",
@@ -865,10 +865,10 @@
     "doi_url": "https://doi.org/10.5281/zenodo.19657478",
     "website_url": "https://neurodesk.org/edu/examples/functional_imaging/Demo_FEAT_HigherLevelStats.html",
     "concept_recid": "19657478",
-    "record_id": "19657479",
+    "record_id": "19904037",
     "content_type": "notebook",
-    "checksum": "aebcd752bd4d97ad56558aba8b48813e",
+    "checksum": "aa6dfc1cae9824eef6c857a9299386f5",
     "authors": [],
-    "updated_at": "2026-04-20T04:08:23Z"
+    "updated_at": "2026-04-30T02:18:16Z"
   }
 }
