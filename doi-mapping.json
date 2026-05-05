@@ -722,13 +722,13 @@
     "doi_url": "https://doi.org/10.5281/zenodo.18740171",
     "website_url": "https://neurodesk.org/edu/examples/diffusion_imaging/MRtrix_2.html",
     "concept_recid": "18740171",
-    "record_id": "20033474",
+    "record_id": "20035193",
     "content_type": "notebook",
-    "checksum": "66ed4de2a864c1af2bdbd6c6a570a7c4",
+    "checksum": "be3f0cb458a38fe0bc2737f13f85f8a8",
     "authors": [
       "Monika Doerig"
     ],
-    "updated_at": "2026-05-05T05:33:47Z"
+    "updated_at": "2026-05-05T08:03:30Z"
   },
   "books/examples/functional_imaging/fMRI_tutorial_in_R_magic.ipynb": {
     "doi_url": "https://doi.org/10.5281/zenodo.18779080",
