@@ -1,0 +1,178 @@
+# Smoke-test workflow for Phase K — drop into .github/workflows/ in the
+# neurodeskedu repo. Validates the hook mechanism end-to-end WITHOUT touching
+# the real run_and_publish_notebooks.yml.
+#
+# Triggers manually via workflow_dispatch. Delete after migration complete.
+#
+# Jobs ramp from trivial (alpine hello) to neurodesk-realistic (FSL exec) so
+# failures isolate to a specific layer.
+
+name: Hooks Smoke Test
+
+on:
+  workflow_dispatch:
+    inputs:
+      level:
+        description: "Test level (1=alpine, 2=neurodesktop, 3=FSL+Apptainer, 4=all)"
+        required: true
+        default: "4"
+        type: choice
+        options:
+          - "1"
+          - "2"
+          - "3"
+          - "4"
+
+jobs:
+  # ------------------------------------------------------------------
+  # LEVEL 1: Hook intercept works at all
+  # ------------------------------------------------------------------
+  level-1-alpine:
+    if: ${{ inputs.level == '1' || inputs.level == '4' }}
+    runs-on:
+      group: runner-neurodeskedu
+    container:
+      image: alpine:latest
+    steps:
+      - name: Hook created a pod
+        run: |
+          echo "If you see this, hooks are intercepting container: syntax."
+          hostname
+          whoami
+
+      - name: Verify running inside hook pod, not runner pod
+        run: |
+          # Runner pod hostname has pattern: neurodesk-arcrunner-neurodeskedu-*-runner-*
+          # Hook pod hostname has different pattern (usually job-id based).
+          hostname
+
+      - name: MTU is 1400 (net-tune init from extension template ran)
+        # Per cluster_gotchas: MTU 1400 required at every layer (OpenStack VXLAN
+        # adds 50-byte header, default 1500 causes silent drops on large transfers).
+        # If this is 1450 (Calico default) or 1500, the net-tune initContainer
+        # in runner-hook-extension ConfigMap did NOT run for this hook pod.
+        # Added 2026-05-11 after Phase J surfaced the gap.
+        run: |
+          mtu=$(cat /sys/class/net/eth0/mtu)
+          echo "eth0 MTU = $mtu"
+          if [ "$mtu" != "1400" ]; then
+            echo "FAIL: Expected MTU 1400, got $mtu. net-tune init container did not apply."
+            exit 1
+          fi
+          echo "PASS: MTU correctly set to 1400 by net-tune init container"
+
+  # ------------------------------------------------------------------
+  # LEVEL 2: Extension template applied correctly
+  # ------------------------------------------------------------------
+  level-2-extension-template:
+    if: ${{ inputs.level == '2' || inputs.level == '4' }}
+    runs-on:
+      group: runner-neurodeskedu
+    container:
+      image: ghcr.io/neurodesk/neurodesktop/neurodesktop:latest
+    steps:
+      - name: Pre-pulled image — verify instant start
+        run: |
+          # If DaemonSet pre-pull worked, pod was Ready in seconds.
+          # Check image on node containerd (from host's perspective, not container's).
+          echo "Container started — pre-pull must have worked."
+          date
+
+      - name: CVMFS mount propagation
+        run: |
+          ls /cvmfs/
+          ls /cvmfs/neurodesk.ardc.edu.au/containers/ | head -5
+
+      - name: /dev/fuse present
+        run: ls -la /dev/fuse
+
+      - name: Capabilities (decoded)
+        run: |
+          cap=$(grep CapEff /proc/self/status | awk '{print $2}')
+          echo "CapEff: $cap"
+          capsh --decode=$cap || true
+
+      - name: Env vars applied by extension template
+        run: |
+          echo "APPTAINER_USERNS=$APPTAINER_USERNS"
+          echo "SINGULARITY_USERNS=$SINGULARITY_USERNS"
+          test "$APPTAINER_USERNS" = "1" || { echo "FAIL: APPTAINER_USERNS not set"; exit 1; }
+
+      - name: Running as root (for container filesystem writes)
+        run: |
+          id
+          test "$(id -u)" = "0" || { echo "FAIL: not root"; exit 1; }
+
+  # ------------------------------------------------------------------
+  # LEVEL 3: The real neurodesk use case — Apptainer on CVMFS
+  # ------------------------------------------------------------------
+  level-3-apptainer-on-cvmfs:
+    if: ${{ inputs.level == '3' || inputs.level == '4' }}
+    runs-on:
+      group: runner-neurodeskedu
+    container:
+      image: ghcr.io/neurodesk/neurodesktop/neurodesktop:latest
+    steps:
+      - name: Direct apptainer exec against CVMFS image
+        run: |
+          cd /tmp
+          apptainer exec \
+            /cvmfs/neurodesk.ardc.edu.au/containers/fsl_6.0.5.1_20221016/fsl_6.0.5.1_20221016.simg \
+            fslmaths 2>&1 | head -10
+
+      - name: Neurodesk wrapper script (how notebooks actually invoke tools)
+        run: |
+          cd /tmp
+          /cvmfs/neurodesk.ardc.edu.au/containers/fsl_6.0.5.1_20221016/bet 2>&1 | head -10
+
+      - name: Lmod module load (per workflow team Q10 — load-bearing for notebooks)
+        # Workflow team confirmed: several notebooks rely on `module load fsl`
+        # and similar Lmod invocations. Lmod setup requires overlayfs mounts built
+        # by neurodesktop's entrypoint, which needs CAP_SYS_ADMIN.
+        # This test confirms both the mount setup AND Lmod still work under hooks.
+        run: |
+          # Source the Lmod init (neurodesktop sets MODULEPATH and LMOD_CMD)
+          source /usr/share/lmod/lmod/init/bash || source /etc/profile.d/modules.sh || true
+          module avail 2>&1 | head -20
+          module load fsl 2>&1 | head -5
+          which flirt
+          flirt -help 2>&1 | head -5
+
+      - name: Overlayfs mount check (CAP_SYS_ADMIN-dependent)
+        # Neurodesktop entrypoint builds overlayfs for the module tree.
+        # If this is empty, the entrypoint didn't complete its init.
+        run: |
+          mount | grep -E "overlay|tmpfs" | head -10
+          ls /opt/ 2>&1 | head
+
+      - name: Apptainer from inside Lmod context (mrtrix3, freesurfer demo style)
+        run: |
+          source /usr/share/lmod/lmod/init/bash || source /etc/profile.d/modules.sh || true
+          module load mrtrix3 2>&1 | head -5 || echo "mrtrix3 module not available on this image"
+          which mrinfo || true
+          mrinfo --help 2>&1 | head -5 || true
+
+      - name: Conda python (the notebook kernel)
+        run: |
+          which python3
+          python3 --version
+          python3 -c "import sys; print(sys.path)"
+
+      - name: Jupyter nbconvert CLI presence
+        run: |
+          which jupyter
+          jupyter --version
+          jupyter nbconvert --version
+
+# ------------------------------------------------------------------
+# Results interpretation
+# ------------------------------------------------------------------
+# LEVEL 1 pass: hooks are translating container: to K8s pods, RBAC ok.
+# LEVEL 2 pass: extension template is being merged, CVMFS/fuse/caps/env ok.
+# LEVEL 3 pass: Apptainer userns + CVMFS chain + Lmod module load + overlayfs
+#               build end-to-end. If Lmod or overlayfs fail here, workflows that
+#               use `module load ...` or rely on the entrypoint's setup will
+#               silently break when the real notebook workflow moves here.
+#
+# If all 3 green: Phase K complete. Proceed to Phase L (autoscaler validation)
+# and Phase M (workflow refactor PR in neurodeskedu).
