@@ -159,14 +159,16 @@ jobs:
         # and similar Lmod invocations. Lmod setup requires overlayfs mounts built
         # by neurodesktop's entrypoint, which needs CAP_SYS_ADMIN.
         # shell: bash required — 'source' is a bash builtin, not available in sh.
-        # MODULEPATH set explicitly — not inherited from runner host under hooks.
+        # MODULEPATH must be set explicitly — not inherited from runner host under hooks
+        # (bash --noprofile --norc skips /etc/profile.d/). Correct path confirmed via
+        # diagnostic: /cvmfs/neurodesk.ardc.edu.au/containers/modules contains .lua files.
         shell: bash
         run: |
-          source /usr/share/lmod/lmod/init/bash || source /etc/profile.d/modules.sh || true
-          export MODULEPATH="${MODULEPATH:-/opt/neurodesktop/local/containers:/opt/neurodesktop/local/tools}"
+          source /etc/profile.d/lmod.sh || source /usr/share/lmod/lmod/init/bash || true
+          export MODULEPATH="/cvmfs/neurodesk.ardc.edu.au/containers/modules"
           module avail 2>&1 | head -20 || true
-          module load fsl 2>&1 | head -5 || true
-          which flirt || echo "flirt not in PATH after module load"
+          module load fsl
+          which flirt
           flirt -help 2>&1 | head -5 || true
 
       - name: Overlayfs mount check (CAP_SYS_ADMIN-dependent)
@@ -178,8 +180,8 @@ jobs:
       - name: Apptainer from inside Lmod context (mrtrix3, freesurfer demo style)
         shell: bash
         run: |
-          source /usr/share/lmod/lmod/init/bash || source /etc/profile.d/modules.sh || true
-          export MODULEPATH="${MODULEPATH:-/opt/neurodesktop/local/containers:/opt/neurodesktop/local/tools}"
+          source /etc/profile.d/lmod.sh || source /usr/share/lmod/lmod/init/bash || true
+          export MODULEPATH="/cvmfs/neurodesk.ardc.edu.au/containers/modules"
           module load mrtrix3 2>&1 | head -5 || echo "mrtrix3 module not available on this image"
           which mrinfo || true
           mrinfo --help 2>&1 | head -5 || true
