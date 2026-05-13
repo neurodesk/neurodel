@@ -143,7 +143,16 @@ jobs:
           echo "${LMOD_CMD:-<not set>}"
           echo "=== Lmod init files ==="
           ls /usr/share/lmod/lmod/init/ 2>/dev/null || echo "not found at /usr/share/lmod"
-          ls /etc/profile.d/ | grep -i module || echo "no module files in /etc/profile.d"
+          echo "=== /etc/profile.d ==="
+          ls /etc/profile.d/ 2>/dev/null || echo "not found"
+          echo "=== /etc/environment ==="
+          cat /etc/environment 2>/dev/null || echo "not found"
+          echo "=== Lua modulefiles in /cvmfs (first 5) ==="
+          find /cvmfs -name "*.lua" 2>/dev/null | head -5 || echo "none found"
+          echo "=== Lua modulefiles in /opt (first 5) ==="
+          find /opt -name "*.lua" 2>/dev/null | head -5 || echo "none found"
+          echo "=== /usr/share/lmod lmodrc ==="
+          cat /usr/share/lmod/lmod/init/lmodrc.lua 2>/dev/null | head -20 || echo "not found"
 
       - name: Lmod module load (per workflow team Q10 — load-bearing for notebooks)
         # Workflow team confirmed: several notebooks rely on `module load fsl`
@@ -157,7 +166,7 @@ jobs:
           export MODULEPATH="${MODULEPATH:-/opt/neurodesktop/local/containers:/opt/neurodesktop/local/tools}"
           module avail 2>&1 | head -20 || true
           module load fsl 2>&1 | head -5 || true
-          which flirt
+          which flirt || echo "flirt not in PATH after module load"
           flirt -help 2>&1 | head -5 || true
 
       - name: Overlayfs mount check (CAP_SYS_ADMIN-dependent)
