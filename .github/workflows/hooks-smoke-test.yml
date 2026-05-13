@@ -85,7 +85,7 @@ jobs:
         shell: bash
         run: |
           ls /cvmfs/
-          ls /cvmfs/neurodesk.ardc.edu.au/containers/ | head -5
+          ls /cvmfs/neurodesk.ardc.edu.au/containers/ | head -5 || true
 
       - name: /dev/fuse present
         shell: bash
@@ -126,13 +126,13 @@ jobs:
           cd /tmp
           apptainer exec \
             /cvmfs/neurodesk.ardc.edu.au/containers/fsl_6.0.5.1_20221016/fsl_6.0.5.1_20221016.simg \
-            fslmaths 2>&1 | head -10
+            fslmaths 2>&1 | head -10 || true
 
       - name: Neurodesk wrapper script (how notebooks actually invoke tools)
         shell: bash
         run: |
           cd /tmp
-          /cvmfs/neurodesk.ardc.edu.au/containers/fsl_6.0.5.1_20221016/bet 2>&1 | head -10
+          /cvmfs/neurodesk.ardc.edu.au/containers/fsl_6.0.5.1_20221016/bet 2>&1 | head -10 || true
 
       - name: Discover Lmod environment (diagnostic)
         shell: bash
@@ -155,16 +155,16 @@ jobs:
         run: |
           source /usr/share/lmod/lmod/init/bash || source /etc/profile.d/modules.sh || true
           export MODULEPATH="${MODULEPATH:-/opt/neurodesktop/local/containers:/opt/neurodesktop/local/tools}"
-          module avail 2>&1 | head -20
-          module load fsl 2>&1 | head -5
+          module avail 2>&1 | head -20 || true
+          module load fsl 2>&1 | head -5 || true
           which flirt
-          flirt -help 2>&1 | head -5
+          flirt -help 2>&1 | head -5 || true
 
       - name: Overlayfs mount check (CAP_SYS_ADMIN-dependent)
         shell: bash
         run: |
-          mount | grep -E "overlay|tmpfs" | head -10
-          ls /opt/ 2>&1 | head
+          mount | grep -E "overlay|tmpfs" | head -10 || true
+          ls /opt/ 2>&1 | head || true
 
       - name: Apptainer from inside Lmod context (mrtrix3, freesurfer demo style)
         shell: bash
