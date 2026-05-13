@@ -1,11 +1,14 @@
-# Smoke-test workflow for Phase K — drop into .github/workflows/ in the
-# neurodeskedu repo. Validates the hook mechanism end-to-end WITHOUT touching
-# the real run_and_publish_notebooks.yml.
+# Smoke-test workflow for Phase K — validates the hook mechanism end-to-end
+# WITHOUT touching the real run_and_publish_notebooks.yml.
 #
 # Triggers manually via workflow_dispatch. Delete after migration complete.
 #
 # Jobs ramp from trivial (alpine hello) to neurodesk-realistic (FSL exec) so
 # failures isolate to a specific layer.
+#
+# Routing: direct scale-set name (not group: syntax — that silently never dispatches
+# on neurocontainers-style ARC installs).
+# Pre-pulled image: vnmd/neurodesktop:2026-04-28 — free cache hit on every node.
 
 name: Hooks Smoke Test
 
@@ -29,18 +32,19 @@ jobs:
   # ------------------------------------------------------------------
   level-1-alpine:
     if: ${{ inputs.level == '1' || inputs.level == '4' }}
-    runs-on:
-      group: runner-neurodeskedu
+    runs-on: neurodesk-arcrunner-neurodeskedu
     container:
       image: alpine:latest
     steps:
       - name: Hook created a pod
+        shell: bash
         run: |
           echo "If you see this, hooks are intercepting container: syntax."
           hostname
           whoami
 
       - name: Verify running inside hook pod, not runner pod
+        shell: bash
         run: |
           # Runner pod hostname has pattern: neurodesk-arcrunner-neurodeskedu-*-runner-*
           # Hook pod hostname has different pattern (usually job-id based).
@@ -51,7 +55,7 @@ jobs:
         # adds 50-byte header, default 1500 causes silent drops on large transfers).
         # If this is 1450 (Calico default) or 1500, the net-tune initContainer
         # in runner-hook-extension ConfigMap did NOT run for this hook pod.
-        # Added 2026-05-11 after Phase J surfaced the gap.
+        shell: bash
         run: |
           mtu=$(cat /sys/class/net/eth0/mtu)
           echo "eth0 MTU = $mtu"
@@ -66,39 +70,43 @@ jobs:
   # ------------------------------------------------------------------
   level-2-extension-template:
     if: ${{ inputs.level == '2' || inputs.level == '4' }}
-    runs-on:
-      group: runner-neurodeskedu
+    runs-on: neurodesk-arcrunner-neurodeskedu
     container:
-      image: ghcr.io/neurodesk/neurodesktop/neurodesktop:latest
+      image: vnmd/neurodesktop:2026-04-28
     steps:
       - name: Pre-pulled image — verify instant start
+        shell: bash
         run: |
-          # If DaemonSet pre-pull worked, pod was Ready in seconds.
-          # Check image on node containerd (from host's perspective, not container's).
+          # Pre-pull DaemonSet targets vnmd/neurodesktop:2026-04-28 on every node.
           echo "Container started — pre-pull must have worked."
           date
 
       - name: CVMFS mount propagation
+        shell: bash
         run: |
           ls /cvmfs/
           ls /cvmfs/neurodesk.ardc.edu.au/containers/ | head -5
 
       - name: /dev/fuse present
+        shell: bash
         run: ls -la /dev/fuse
 
       - name: Capabilities (decoded)
+        shell: bash
         run: |
           cap=$(grep CapEff /proc/self/status | awk '{print $2}')
           echo "CapEff: $cap"
           capsh --decode=$cap || true
 
       - name: Env vars applied by extension template
+        shell: bash
         run: |
           echo "APPTAINER_USERNS=$APPTAINER_USERNS"
           echo "SINGULARITY_USERNS=$SINGULARITY_USERNS"
           test "$APPTAINER_USERNS" = "1" || { echo "FAIL: APPTAINER_USERNS not set"; exit 1; }
 
       - name: Running as root (for container filesystem writes)
+        shell: bash
         run: |
           id
           test "$(id -u)" = "0" || { echo "FAIL: not root"; exit 1; }
@@ -108,12 +116,12 @@ jobs:
   # ------------------------------------------------------------------
   level-3-apptainer-on-cvmfs:
     if: ${{ inputs.level == '3' || inputs.level == '4' }}
-    runs-on:
-      group: runner-neurodeskedu
+    runs-on: neurodesk-arcrunner-neurodeskedu
     container:
-      image: ghcr.io/neurodesk/neurodesktop/neurodesktop:latest
+      image: vnmd/neurodesktop:2026-04-28
     steps:
       - name: Direct apptainer exec against CVMFS image
+        shell: bash
         run: |
           cd /tmp
           apptainer exec \
@@ -121,44 +129,61 @@ jobs:
             fslmaths 2>&1 | head -10
 
       - name: Neurodesk wrapper script (how notebooks actually invoke tools)
+        shell: bash
         run: |
           cd /tmp
           /cvmfs/neurodesk.ardc.edu.au/containers/fsl_6.0.5.1_20221016/bet 2>&1 | head -10
+
+      - name: Discover Lmod environment (diagnostic)
+        shell: bash
+        run: |
+          echo "=== MODULEPATH ==="
+          echo "${MODULEPATH:-<not set>}"
+          echo "=== LMOD_CMD ==="
+          echo "${LMOD_CMD:-<not set>}"
+          echo "=== Lmod init files ==="
+          ls /usr/share/lmod/lmod/init/ 2>/dev/null || echo "not found at /usr/share/lmod"
+          ls /etc/profile.d/ | grep -i module || echo "no module files in /etc/profile.d"
 
       - name: Lmod module load (per workflow team Q10 — load-bearing for notebooks)
         # Workflow team confirmed: several notebooks rely on `module load fsl`
         # and similar Lmod invocations. Lmod setup requires overlayfs mounts built
         # by neurodesktop's entrypoint, which needs CAP_SYS_ADMIN.
-        # This test confirms both the mount setup AND Lmod still work under hooks.
+        # shell: bash required — 'source' is a bash builtin, not available in sh.
+        # MODULEPATH set explicitly — not inherited from runner host under hooks.
+        shell: bash
         run: |
-          # Source the Lmod init (neurodesktop sets MODULEPATH and LMOD_CMD)
           source /usr/share/lmod/lmod/init/bash || source /etc/profile.d/modules.sh || true
+          export MODULEPATH="${MODULEPATH:-/opt/neurodesktop/local/containers:/opt/neurodesktop/local/tools}"
           module avail 2>&1 | head -20
           module load fsl 2>&1 | head -5
           which flirt
           flirt -help 2>&1 | head -5
 
       - name: Overlayfs mount check (CAP_SYS_ADMIN-dependent)
-        # Neurodesktop entrypoint builds overlayfs for the module tree.
-        # If this is empty, the entrypoint didn't complete its init.
+        shell: bash
         run: |
           mount | grep -E "overlay|tmpfs" | head -10
           ls /opt/ 2>&1 | head
 
       - name: Apptainer from inside Lmod context (mrtrix3, freesurfer demo style)
+        shell: bash
         run: |
           source /usr/share/lmod/lmod/init/bash || source /etc/profile.d/modules.sh || true
+          export MODULEPATH="${MODULEPATH:-/opt/neurodesktop/local/containers:/opt/neurodesktop/local/tools}"
           module load mrtrix3 2>&1 | head -5 || echo "mrtrix3 module not available on this image"
           which mrinfo || true
           mrinfo --help 2>&1 | head -5 || true
 
       - name: Conda python (the notebook kernel)
+        shell: bash
         run: |
           which python3
           python3 --version
           python3 -c "import sys; print(sys.path)"
 
       - name: Jupyter nbconvert CLI presence
+        shell: bash
         run: |
           which jupyter
           jupyter --version

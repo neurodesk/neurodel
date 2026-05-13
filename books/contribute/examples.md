@@ -71,6 +71,10 @@ For more detail, consult the <a href="https://github.com/neurodesk/neurodeskedu/
 
 4. Once your pull request is submitted, a GitHub Action will automatically run your notebook to confirm it executes successfully. Once the action passes and your pull request is merged, your notebook will be **published immediately** on the NeurodeskEDU site.
 
+```{note}
+By opening a pull request you agree to the [Terms of Submission](https://github.com/neurodesk/neurodeskedu/blob/main/TERMS_OF_SUBMISSION.md). 
+```
+
 ## Review Process
 
 Publishing and review are separate processes. Your notebook does not need to be reviewed before it is published — it goes live as soon as the automated checks pass and the pull request is merged. The review process happens afterwards to ensure quality and provide feedback.
