@@ -37,14 +37,12 @@ jobs:
       image: alpine:latest
     steps:
       - name: Hook created a pod
-        shell: bash
         run: |
           echo "If you see this, hooks are intercepting container: syntax."
           hostname
           whoami
 
       - name: Verify running inside hook pod, not runner pod
-        shell: bash
         run: |
           # Runner pod hostname has pattern: neurodesk-arcrunner-neurodeskedu-*-runner-*
           # Hook pod hostname has different pattern (usually job-id based).
@@ -55,7 +53,6 @@ jobs:
         # adds 50-byte header, default 1500 causes silent drops on large transfers).
         # If this is 1450 (Calico default) or 1500, the net-tune initContainer
         # in runner-hook-extension ConfigMap did NOT run for this hook pod.
-        shell: bash
         run: |
           mtu=$(cat /sys/class/net/eth0/mtu)
           echo "eth0 MTU = $mtu"
