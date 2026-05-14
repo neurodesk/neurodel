@@ -8,7 +8,7 @@
 #
 # Routing: direct scale-set name (not group: syntax — that silently never dispatches
 # on neurocontainers-style ARC installs).
-# Pre-pulled image: vnmd/neurodesktop:2026-04-28 — free cache hit on every node.
+# Image under test: ghcr.io/neurodesk/neurocommand:2026-05-02 (CLI image, lighter than neurodesktop).
 
 name: Hooks Smoke Test
 
@@ -69,7 +69,7 @@ jobs:
     if: ${{ inputs.level == '2' || inputs.level == '4' }}
     runs-on: neurodesk-arcrunner-neurodeskedu
     container:
-      image: vnmd/neurodesktop:2026-04-28
+      image: ghcr.io/neurodesk/neurocommand:2026-05-02
     steps:
       - name: Pre-pulled image — verify instant start
         shell: bash
@@ -115,7 +115,7 @@ jobs:
     if: ${{ inputs.level == '3' || inputs.level == '4' }}
     runs-on: neurodesk-arcrunner-neurodeskedu
     container:
-      image: vnmd/neurodesktop:2026-04-28
+      image: ghcr.io/neurodesk/neurocommand:2026-05-02
     steps:
       - name: Direct apptainer exec against CVMFS image
         shell: bash
