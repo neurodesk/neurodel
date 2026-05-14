@@ -147,13 +147,11 @@ jobs:
       - name: Build notebook list for matrix
         id: list_notebooks
         run: |
-          # Determine which notebooks to run based on trigger type
+          # Determine which notebooks to run based on trigger type.
+          # notebook_selector takes priority over force_execution — force_execution
+          # only means "bypass HF cache", not "run all notebooks".
           if [ "${{ github.event_name }}" = "schedule" ]; then
             echo "Mode: Scheduled run, execute ALL notebooks"
-            changed_notebooks=$(find books -name "*.ipynb" | sed 's|^books/||')
-
-          elif [ "${{ inputs.force_execution }}" == "true" ]; then
-            echo "Mode: Force execution of ALL notebooks"
             changed_notebooks=$(find books -name "*.ipynb" | sed 's|^books/||')
 
           elif [ -n "${{ inputs.notebook_selector }}" ]; then
@@ -187,6 +185,10 @@ jobs:
 
             echo "Mode: Running ${#resolved_notebooks[@]} selected notebook(s)"
             changed_notebooks="${resolved_notebooks[*]}"
+
+          elif [ "${{ inputs.force_execution }}" == "true" ]; then
+            echo "Mode: Force execution of ALL notebooks (no selector set)"
+            changed_notebooks=$(find books -name "*.ipynb" | sed 's|^books/||')
 
           else
             echo "Mode: Running changed notebooks only"
@@ -285,8 +287,12 @@ jobs:
       # reference working by pointing it at the ephemeral /tmp.
       - name: Prepare in-container filesystem layout
         run: |
-          ln -sf /tmp /overlay-storage
-          echo "Filesystem layout ready (/overlay-storage -> /tmp)"
+          # Use workspace PVC for overlay storage (not /tmp — symlinking /overlay-storage
+          # to /tmp then creating /overlay-storage/file causes a self-link collision when
+          # container setup tries ln -sf /overlay-storage/file /tmp/file).
+          mkdir -p "$GITHUB_WORKSPACE/.overlay-storage"
+          ln -sf "$GITHUB_WORKSPACE/.overlay-storage" /overlay-storage
+          echo "Filesystem layout ready (/overlay-storage -> $GITHUB_WORKSPACE/.overlay-storage)"
 
       # hooks-migration: removed `Ensure Neurodesk image available`. Kubernetes
       # pulls the image when the hook pod is scheduled; the neurodesktop-prepull
