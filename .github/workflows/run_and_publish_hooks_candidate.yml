@@ -454,6 +454,21 @@ jobs:
             echo "No cache match — will execute normally"
           fi
 
+      - name: Force apptainer --writable-tmpfs in neurodesk env
+        if: steps.promote.outputs.promoted != 'true'
+        # Upstream environment_variables.sh picks --overlay because EUID=0 in
+        # hooks pod (skips the non-root --writable-tmpfs branch). --overlay forces
+        # apptainer into FUSE drivers (fuse2fs/fuse-overlayfs) which fail under
+        # APPTAINER_USERNS=1 nested userns. --writable-tmpfs uses kernel tmpfs,
+        # no FUSE, no privilege escalation. Appended so it overrides the script's
+        # final assignment regardless of which branch fires.
+        run: |
+          {
+            echo ''
+            echo '# CI override (hooks pool, APPTAINER_USERNS=1, EUID=0)'
+            echo 'export neurodesk_singularity_opts=" --writable-tmpfs "'
+          } >> /opt/neurodesktop/environment_variables.sh
+
       - name: DIAGNOSTIC apptainer env state
         if: steps.promote.outputs.promoted != 'true'
         run: |
