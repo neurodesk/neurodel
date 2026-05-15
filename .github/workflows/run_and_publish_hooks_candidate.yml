@@ -397,19 +397,20 @@ jobs:
         # UID never needs to match a runner UID. Apptainer overlay setup stays
         # — the modules that require it still require it.
         run: |
-          # Create apptainer overlay for modules that require it
+          # Create apptainer overlay DIRECTORY (not ext3 file) for modules that require it.
+          # Original DinD-era pattern was a 300MB ext3 file, which apptainer mounts via
+          # fuse2fs. Under hooks (APPTAINER_USERNS=1), apptainer creates a nested userns
+          # before invoking fuse2fs — inside the nested userns, setuid is silently ignored
+          # by the kernel and CAP_SYS_ADMIN does not cross the namespace boundary for
+          # fuse2fs's mount syscalls. Result: fuse2fs FATAL on every overlay mount.
+          # Directory overlays use bind mounts (no fuse driver, no privilege escalation).
           if [ ! -L /tmp/apptainer_overlay ]; then
             echo "Creating /tmp/apptainer_overlay symlink to /overlay-storage..."
 
-            # Check if overlay exists in mounted storage
-            if [ ! -f /overlay-storage/apptainer_overlay ]; then
-              echo "Creating 300MB overlay file on secondary disk..."
-              dd if=/dev/zero of=/overlay-storage/apptainer_overlay bs=1M count=300 status=none
-              mkfs.ext3 -F /overlay-storage/apptainer_overlay >/dev/null
-              chmod 777 /overlay-storage/apptainer_overlay
-            fi
+            mkdir -p /overlay-storage/apptainer_overlay/upper
+            mkdir -p /overlay-storage/apptainer_overlay/work
+            chmod -R 777 /overlay-storage/apptainer_overlay
 
-            # Symlink to expected location
             ln -sf /overlay-storage/apptainer_overlay /tmp/apptainer_overlay
           fi
 
