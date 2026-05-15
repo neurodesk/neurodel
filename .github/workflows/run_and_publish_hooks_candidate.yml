@@ -454,6 +454,26 @@ jobs:
             echo "No cache match — will execute normally"
           fi
 
+      - name: DIAGNOSTIC apptainer env state
+        if: steps.promote.outputs.promoted != 'true'
+        run: |
+          source /etc/profile.d/lmod.sh 2>/dev/null || source /usr/share/lmod/lmod/init/bash 2>/dev/null || true
+          export MODULEPATH=/cvmfs/neurodesk.ardc.edu.au/containers/modules
+          module load fsl 2>/dev/null || true
+          echo "===== APPTAINER ENV DIAGNOSTIC ====="
+          echo "EUID=$EUID  UID=$(id -u)  USER=$(id -un)"
+          echo "APPTAINER_USERNS=${APPTAINER_USERNS:-<unset>}"
+          echo "SINGULARITY_USERNS=${SINGULARITY_USERNS:-<unset>}"
+          echo "neurodesk_singularity_opts=[${neurodesk_singularity_opts:-<unset>}]"
+          source /opt/neurodesktop/environment_variables.sh 2>/dev/null && echo "(sourced /opt/neurodesktop/environment_variables.sh)" || echo "(no /opt/neurodesktop/environment_variables.sh)"
+          echo "AFTER SOURCE: neurodesk_singularity_opts=[${neurodesk_singularity_opts:-<unset>}]"
+          echo "----- which fslmaths -----"
+          type fslmaths 2>&1 || true
+          which fslmaths 2>&1 || true
+          echo "----- wrapper tail -----"
+          tail -20 "$(which fslmaths 2>/dev/null)" 2>&1 || true
+          echo "===================================="
+
       - name: Execute notebook
         if: steps.promote.outputs.promoted != 'true'
         timeout-minutes: 1500
