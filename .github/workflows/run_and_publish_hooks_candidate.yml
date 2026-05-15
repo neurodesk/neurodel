@@ -389,6 +389,24 @@ jobs:
           fi
           echo "==================================================="
 
+      - name: Install setuid apptainer (hooks-pool nested-userns workaround)
+        # neurodesktop image ships apptainer mode 755 (no setuid). Under
+        # APPTAINER_USERNS=1 hook pods, that means apptainer can't elevate to
+        # host root before nested userns is created → every FUSE driver mount
+        # (fuse2fs, fuse-overlayfs) fails with "Operation not permitted" on
+        # /dev/fuse. The apt apptainer-suid package installs starter-suid
+        # (mode 4755) which fixes the elevation path. Pattern mirrors
+        # neurocontainers' job-start install.
+        run: |
+          apt-get update -qq
+          apt-get install -y --no-install-recommends apptainer apptainer-suid
+          if [ ! -u /usr/libexec/apptainer/bin/starter-suid ]; then
+            echo "::error::apptainer-suid install completed but starter-suid not setuid"
+            stat /usr/libexec/apptainer/bin/starter-suid 2>&1 || true
+            exit 1
+          fi
+          echo "starter-suid installed setuid: $(stat -c %a /usr/libexec/apptainer/bin/starter-suid)"
+
       - name: Container setup (apptainer overlay, working dirs)
         # hooks-migration: dropped `docker exec --user root $CONTAINER_NAME bash
         # -c '...'` wrapping AND the jovyan UID/GID remap block. We are already
