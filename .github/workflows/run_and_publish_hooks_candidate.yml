@@ -495,20 +495,6 @@ jobs:
             echo "No cache match — will execute normally"
           fi
 
-      - name: Suppress apptainer overlay in neurodesk env
-        if: steps.promote.outputs.promoted != 'true'
-        # Upstream environment_variables.sh picks --overlay because EUID=0 in
-        # hooks pod. Both --overlay (fuse-overlayfs/fuse2fs) and --writable-tmpfs
-        # invoke FUSE drivers that fail under APPTAINER_USERNS=1 nested userns.
-        # Smoke test proved plain `apptainer exec sif command` works on hooks pool.
-        # Setting opts to empty makes wrappers fall through to read-only SIF exec.
-        run: |
-          {
-            echo ''
-            echo '# CI override (hooks pool, APPTAINER_USERNS=1, EUID=0)'
-            echo 'export neurodesk_singularity_opts=""'
-          } >> /opt/neurodesktop/environment_variables.sh
-
       - name: DIAGNOSTIC apptainer env state
         if: steps.promote.outputs.promoted != 'true'
         run: |
