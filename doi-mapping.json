@@ -338,11 +338,11 @@
     "doi_url": "https://doi.org/10.5281/zenodo.18728768",
     "website_url": "https://neurodesk.org/edu/examples/template.html",
     "concept_recid": "18728768",
-    "record_id": "19904038",
+    "record_id": "20279174",
     "content_type": "notebook",
-    "checksum": "e541154637635bfe9cca92c1a06296f6",
+    "checksum": "9161ff42f577458060bf79e7360fb80a",
     "authors": [],
-    "updated_at": "2026-04-30T02:18:21Z"
+    "updated_at": "2026-05-19T03:39:51Z"
   },
   "books/examples/functional_imaging/FSL_preproc_glm.ipynb": {
     "doi_url": "https://doi.org/10.5281/zenodo.18728770",
@@ -880,5 +880,28 @@
     "checksum": "7b611a7aa732c7841f41bd5c6c2c1c1c",
     "authors": [],
     "updated_at": "2026-05-07T21:47:23Z"
+  },
+  "books/tutorials/about_neurodesk/MySt_neurodesk.ipynb": {
+    "doi_url": "https://doi.org/10.5281/zenodo.20279172",
+    "website_url": "https://neurodesk.org/edu/tutorials/about_neurodesk/MySt_neurodesk.html",
+    "concept_recid": "20279172",
+    "record_id": "20279173",
+    "content_type": "notebook",
+    "checksum": "af5d77c2540db04615e503054ec56671",
+    "authors": [
+      "name: Monika Doerig orcid: 0009-0008-3617-2185 affiliations: School of Electrical Engineering",
+      "Computer Science The University of Queensland, Brisbane, Australia github: https://github.com/MoniDoerig"
+    ],
+    "updated_at": "2026-05-19T03:39:43Z"
+  },
+  "books/examples/structural_imaging/brainageR.ipynb": {
+    "doi_url": "https://doi.org/10.5281/zenodo.20279180",
+    "website_url": "https://neurodesk.org/edu/examples/structural_imaging/brainageR.html",
+    "concept_recid": "20279180",
+    "record_id": "20279181",
+    "content_type": "notebook",
+    "checksum": "a3f645ffd678d128a6e185937fce9717",
+    "authors": [],
+    "updated_at": "2026-05-19T03:39:57Z"
   }
 }
