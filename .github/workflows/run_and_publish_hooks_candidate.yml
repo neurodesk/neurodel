@@ -407,29 +407,6 @@ jobs:
           fi
           echo "starter-suid installed setuid: $(stat -c %a /usr/libexec/apptainer/bin/starter-suid)"
 
-      - name: DIAGNOSTIC — apptainer frontend + apptainer.conf (cluster team pre-flight for Option B)
-        run: |
-          echo "===== Verification 1 — apptainer frontend ====="
-          echo "----- apptainer --version (must be 1.5.x, NOT 2021 build) -----"
-          apptainer --version 2>&1 || echo "apptainer not on PATH"
-          echo "----- which apptainer -----"
-          which apptainer
-          echo "----- stat of frontend binary -----"
-          stat -c "mode=%a owner=%U:%G mtime=%y name=%n" "$(which apptainer)" 2>&1
-          echo "----- dpkg ownership of frontend binary -----"
-          dpkg -S "$(which apptainer)" 2>&1 || echo "not dpkg-managed"
-          echo ""
-          echo "===== Verification 2 — apptainer.conf setuid settings ====="
-          for conf in /etc/apptainer/apptainer.conf /opt/apptainer/etc/apptainer/apptainer.conf /usr/local/etc/apptainer/apptainer.conf; do
-            if [ -f "$conf" ]; then
-              echo "----- $conf -----"
-              grep -E "^[^#]*(allow setuid|allow container|enable fusemount)" "$conf" 2>&1 | head -10
-              echo ""
-            fi
-          done
-          echo "----- find all apptainer.conf files on the image -----"
-          find / -name "apptainer.conf" 2>/dev/null | head -5 || true
-
       - name: Container setup (apptainer overlay, working dirs)
         # hooks-migration: dropped `docker exec --user root $CONTAINER_NAME bash
         # -c '...'` wrapping AND the jovyan UID/GID remap block. We are already
