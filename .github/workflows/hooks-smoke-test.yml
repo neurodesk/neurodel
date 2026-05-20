@@ -16,7 +16,7 @@ on:
   workflow_dispatch:
     inputs:
       level:
-        description: "Test level (1=alpine, 2=neurodesktop, 3=FSL+Apptainer, 4=all)"
+        description: "Test level (1=alpine, 2=neurodesktop, 3=FSL+Apptainer, 4=all, 5=heredoc-repro)"
         required: true
         default: "4"
         type: choice
@@ -25,6 +25,7 @@ on:
           - "2"
           - "3"
           - "4"
+          - "5"
 
 jobs:
   # ------------------------------------------------------------------
@@ -196,6 +197,57 @@ jobs:
           which jupyter
           jupyter --version
           jupyter nbconvert --version
+
+  # ------------------------------------------------------------------
+  # LEVEL 5: Heredoc reproducer for cluster-team hook investigation
+  # Tests whether python3 <<EOF heredoc content trips the runner-hook
+  # JSON serializer. Three jobs layer complexity from trivial → matches
+  # the candidate workflow's failing "Execute notebook" step pattern.
+  # Delete this level + the input choice once the hook bug is understood.
+  # ------------------------------------------------------------------
+  level-5a-trivial-heredoc:
+    if: ${{ inputs.level == '5' }}
+    runs-on: neurodesk-arcrunner-neurodeskedu
+    container:
+      image: vnmd/neurodesktop:2026-04-28
+    steps:
+      - name: Trivial python3 heredoc, nothing else
+        run: |
+          python3 <<'EOF'
+          print("hi from heredoc")
+          EOF
+
+  level-5b-heredoc-with-json:
+    if: ${{ inputs.level == '5' }}
+    runs-on: neurodesk-arcrunner-neurodeskedu
+    container:
+      image: vnmd/neurodesktop:2026-04-28
+    steps:
+      - name: Heredoc with quoted dict (mimics kernel.json update from candidate workflow)
+        run: |
+          python3 - <<'PYEOF'
+          import json
+          d = {"MODULEPATH": "/cvmfs/neurodesk.ardc.edu.au/containers/modules",
+               "LMOD_CMD": "/usr/share/lmod/lmod/libexec/lmod"}
+          print(json.dumps(d, indent=2))
+          PYEOF
+
+  level-5c-heredoc-with-timeout:
+    if: ${{ inputs.level == '5' }}
+    runs-on: neurodesk-arcrunner-neurodeskedu
+    container:
+      image: vnmd/neurodesktop:2026-04-28
+    timeout-minutes: 1500
+    steps:
+      - name: Heredoc with step-level timeout-minutes:1500 (matches candidate workflow)
+        timeout-minutes: 1500
+        run: |
+          python3 - <<'PYEOF'
+          import json
+          d = {"MODULEPATH": "/cvmfs/neurodesk.ardc.edu.au/containers/modules",
+               "LMOD_CMD": "/usr/share/lmod/lmod/libexec/lmod"}
+          print(json.dumps(d, indent=2))
+          PYEOF
 
 # ------------------------------------------------------------------
 # Results interpretation
