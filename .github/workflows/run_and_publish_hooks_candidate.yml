@@ -503,31 +503,43 @@ jobs:
       - name: Execute notebook
         if: steps.promote.outputs.promoted != 'true'
         timeout-minutes: 1500
-        # DEBUG: original body replaced with bare echo for hook-bisect investigation.
-        # All framing kept identical: if:, timeout-minutes, matrix expansion, preceding
-        # steps. Restore full body from previous commit once root cause is found.
-        # Original body preserved below as a YAML comment.
+        # DEBUG: Stage 1 of hook-bisect — top half of body restored, halts before
+        # python3 heredoc and jupyter nbconvert. Bottom half preserved as comments
+        # below for the next stage. Restore full body once root cause is found.
         run: |
-          echo "hi from bare repro — matrix=${{ matrix.notebooks }}"
-          # ORIGINAL BODY (restore on revert):
-          # set -eo pipefail
-          # NOTEBOOK_PATH="${{ matrix.notebooks }}"
-          # NOTEBOOK=$(basename -s .ipynb "$NOTEBOOK_PATH")
-          # export PATH=/opt/conda/bin:$HOME/.local/bin:$PATH
-          # if [ -f /usr/share/lmod/lmod/init/bash ]; then
-          #   source /usr/share/lmod/lmod/init/bash
-          # elif [ -f /usr/share/module.sh ]; then
-          #   source /usr/share/module.sh
-          # fi
-          # export MODULEPATH=/cvmfs/neurodesk.ardc.edu.au/containers/modules
-          # echo "MODULEPATH set to: $MODULEPATH"
-          # pip show nbconvert >/dev/null 2>&1 || pip install nbconvert nbclient ipykernel
-          # echo "=== Container Environment ==="
-          # which jupyter && jupyter --version
-          # echo "Current directory: $(pwd)"
-          # echo "Notebook to execute: $NOTEBOOK_PATH"
-          # echo "Notebook name: $NOTEBOOK"
-          # echo "Executing notebook: $NOTEBOOK_PATH"
+          set -eo pipefail
+          NOTEBOOK_PATH="${{ matrix.notebooks }}"
+          NOTEBOOK=$(basename -s .ipynb "$NOTEBOOK_PATH")
+
+          export PATH=/opt/conda/bin:$HOME/.local/bin:$PATH
+
+          # Initialize the module system
+          if [ -f /usr/share/lmod/lmod/init/bash ]; then
+            source /usr/share/lmod/lmod/init/bash
+          elif [ -f /usr/share/module.sh ]; then
+            source /usr/share/module.sh
+          fi
+
+          # Set MODULEPATH to neurodesk modules
+          export MODULEPATH=/cvmfs/neurodesk.ardc.edu.au/containers/modules
+          echo "MODULEPATH set to: $MODULEPATH"
+
+          # Install dependencies only if missing
+          pip show nbconvert >/dev/null 2>&1 || pip install nbconvert nbclient ipykernel
+
+          # Pre-execution verification
+          echo "=== Container Environment ==="
+          which jupyter && jupyter --version
+          echo "Current directory: $(pwd)"
+          echo "Notebook to execute: $NOTEBOOK_PATH"
+          echo "Notebook name: $NOTEBOOK"
+
+          echo "Executing notebook: $NOTEBOOK_PATH"
+
+          # ─── Stage 1 halt point ───
+          echo "halved-1: reached pre-heredoc"
+
+          # ORIGINAL BOTTOM HALF (restore on revert):
           # LOG_FILE="${GITHUB_WORKSPACE}/nbconvert-${NOTEBOOK}.log"
           # KERNEL_JSON="/opt/conda/share/jupyter/kernels/python3/kernel.json"
           # echo "Modifying kernel spec at $KERNEL_JSON"
