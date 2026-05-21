@@ -503,10 +503,9 @@ jobs:
       - name: Execute notebook
         if: steps.promote.outputs.promoted != 'true'
         timeout-minutes: 1500
-        # DEBUG: Stage 2b of hook-bisect — same as Stage 1's top half but with the
-        # Lmod source block REMOVED. If this passes, Lmod's exported bash functions
-        # (BASH_FUNC_module%%, BASH_FUNC_ml%%, etc.) crossing the step boundary are
-        # the trigger. Restore full body once root cause is found.
+        # DEBUG: Stage 1 of hook-bisect — top half of body restored, halts before
+        # python3 heredoc and jupyter nbconvert. Bottom half preserved as comments
+        # below for the next stage. Restore full body once root cause is found.
         run: |
           set -eo pipefail
           NOTEBOOK_PATH="${{ matrix.notebooks }}"
@@ -514,13 +513,12 @@ jobs:
 
           export PATH=/opt/conda/bin:$HOME/.local/bin:$PATH
 
-          # Stage 2b: Lmod source block intentionally removed.
-          # Original block (restore on revert):
-          # if [ -f /usr/share/lmod/lmod/init/bash ]; then
-          #   source /usr/share/lmod/lmod/init/bash
-          # elif [ -f /usr/share/module.sh ]; then
-          #   source /usr/share/module.sh
-          # fi
+          # Initialize the module system
+          if [ -f /usr/share/lmod/lmod/init/bash ]; then
+            source /usr/share/lmod/lmod/init/bash
+          elif [ -f /usr/share/module.sh ]; then
+            source /usr/share/module.sh
+          fi
 
           # Set MODULEPATH to neurodesk modules
           export MODULEPATH=/cvmfs/neurodesk.ardc.edu.au/containers/modules
