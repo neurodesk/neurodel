@@ -582,6 +582,18 @@ jobs:
             grep -nEi "ERROR|Traceback|Exception|CellExecutionError|CalledProcessError|No such file|not found" "$LOG_FILE" | tail -n 80 || true
             echo "--- Last 80 lines from nbconvert log ---"
             tail -n 80 "$LOG_FILE" || true
+            echo "::group::Workspace state at failure (disambiguate infra vs notebook)"
+            echo "--- df -h /__w /tmp ---"
+            df -h /__w /tmp 2>/dev/null || true
+            echo "--- mounts (overlay/tmpfs/__w) ---"
+            cat /proc/mounts | grep -E 'overlay|tmpfs|/__w' | head -5 || true
+            echo "--- notebook dir contents (recursive, head 60) ---"
+            ls -laR "${GITHUB_WORKSPACE}/books/$(dirname "$NOTEBOOK_PATH")/" 2>/dev/null | head -60 || true
+            echo "--- downloaded dataset actual contents (if any) ---"
+            find "${GITHUB_WORKSPACE}/books/$(dirname "$NOTEBOOK_PATH")" -maxdepth 6 -type f 2>/dev/null | head -40 || true
+            echo "--- proxy / http env ---"
+            env | grep -iE 'proxy|http_|https_|no_proxy' || echo "(no proxy env)"
+            echo "::endgroup::"
             exit "${NBEXEC_RC}"
           fi
 
