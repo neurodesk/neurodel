@@ -495,6 +495,17 @@ jobs:
           stat -c "%a %U:%G %n" $(which singularity 2>/dev/null) 2>&1 || echo "(singularity not in PATH)"
           (ls -la /usr/local/bin/apptainer /usr/local/bin/singularity /usr/bin/apptainer /usr/bin/singularity 2>&1 | grep -v "No such" | head -5) || true
           echo "===================================="
+          echo "::group::Apptainer datalad SIF probe (cap-gate vs warning disambiguation)"
+          DATALAD_SIF=$(ls -d /cvmfs/neurodesk.ardc.edu.au/containers/datalad_*/datalad_*.simg 2>/dev/null | sort -V | tail -1)
+          if [ -z "$DATALAD_SIF" ]; then
+            echo "(no datalad SIF found in CVMFS)"
+            echo "datalad_simg_exit=__SIF_NOT_FOUND__"
+          else
+            echo "Probing: $DATALAD_SIF"
+            apptainer exec "$DATALAD_SIF" /bin/true 2>&1
+            echo "datalad_simg_exit=$?"
+          fi
+          echo "::endgroup::"
 
       - name: Execute notebook
         if: steps.promote.outputs.promoted != 'true'
