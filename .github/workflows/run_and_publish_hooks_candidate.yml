@@ -589,6 +589,34 @@ jobs:
           else
             echo "(skipped: jovyan/runuser/SIF missing)"
           fi
+          echo "----- 8. environment_variables.sh full EUID/UID branch grep -----"
+          grep -nE 'EUID|UID|whoami|id -u' /opt/neurodesktop/environment_variables.sh 2>&1 || echo "(no matches)"
+          echo "----- 9. Real-workload probe in mrtrix3 SIF as jovyan -----"
+          if [ -n "$MRTRIX_SIF" ] && id jovyan >/dev/null 2>&1; then
+            echo "Running as jovyan inside $MRTRIX_SIF (no overlay):"
+            runuser -u jovyan -- apptainer exec "$MRTRIX_SIF" /bin/sh -c '
+              echo "--- /dev/fuse perms ---"
+              ls -l /dev/fuse 2>&1
+              echo "--- mrconvert --version (real workload) ---"
+              mrconvert --version 2>&1 | head -5
+              echo "--- /tmp write probe ---"
+              touch /tmp/probe_$$ && echo "tmp write OK" || echo "tmp write FAIL"
+              echo "--- /proc/self/status Cap+Uid ---"
+              cat /proc/self/status | grep -E "^Cap|^Uid"
+            ' 2>&1 || echo "outer-exit_code=$?"
+          fi
+          echo "----- 10. Real-workload probe in datalad SIF as jovyan -----"
+          if [ -n "$DATALAD_SIF" ] && id jovyan >/dev/null 2>&1; then
+            echo "Running as jovyan inside $DATALAD_SIF (no overlay):"
+            runuser -u jovyan -- apptainer exec "$DATALAD_SIF" /bin/sh -c '
+              echo "--- datalad --version (real workload) ---"
+              datalad --version 2>&1 | head -5
+              echo "--- python -c import datalad ---"
+              python3 -c "import datalad; print(datalad.__version__)" 2>&1 | head -5
+              echo "--- /tmp write probe ---"
+              touch /tmp/probe_$$ && echo "tmp write OK" || echo "tmp write FAIL"
+            ' 2>&1 || echo "outer-exit_code=$?"
+          fi
           echo "::endgroup::"
 
       - name: Execute notebook
