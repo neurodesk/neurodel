@@ -495,15 +495,30 @@ jobs:
           stat -c "%a %U:%G %n" $(which singularity 2>/dev/null) 2>&1 || echo "(singularity not in PATH)"
           (ls -la /usr/local/bin/apptainer /usr/local/bin/singularity /usr/bin/apptainer /usr/bin/singularity 2>&1 | grep -v "No such" | head -5) || true
           echo "===================================="
-          echo "::group::Apptainer datalad SIF probe (cap-gate vs warning disambiguation)"
+          echo "::group::Experiment A — starter binary mode (setuid vs unprivileged)"
+          (ls -l /opt/apptainer/libexec/apptainer/bin/starter /opt/apptainer/libexec/apptainer/bin/starter-suid 2>&1 | head -10) || true
+          (ls -l /usr/libexec/apptainer/bin/starter /usr/libexec/apptainer/bin/starter-suid 2>&1 | head -10) || true
+          (ls -l "$(command -v apptainer 2>/dev/null)" 2>&1) || true
+          echo "::endgroup::"
+          echo "::group::Experiment B — datalad SIF metadata (cap declarations on SIF side?)"
           DATALAD_SIF=$(ls -d /cvmfs/neurodesk.ardc.edu.au/containers/datalad_*/datalad_*.simg 2>/dev/null | sort -V | tail -1)
+          if [ -n "$DATALAD_SIF" ]; then
+            echo "Inspecting: $DATALAD_SIF"
+            (apptainer inspect --all "$DATALAD_SIF" 2>&1 | head -80) || true
+            echo "----- sif partitions -----"
+            (apptainer sif list "$DATALAD_SIF" 2>&1 | head -30) || true
+          else
+            echo "(no datalad SIF found in CVMFS)"
+          fi
+          echo "::endgroup::"
+          echo "::group::Apptainer datalad SIF probe (cap-gate vs warning disambiguation)"
           if [ -z "$DATALAD_SIF" ]; then
             echo "(no datalad SIF found in CVMFS)"
             echo "datalad_simg_exit=__SIF_NOT_FOUND__"
           else
             echo "Probing: $DATALAD_SIF"
-            apptainer exec "$DATALAD_SIF" /bin/true 2>&1
-            echo "datalad_simg_exit=$?"
+            apptainer exec "$DATALAD_SIF" /bin/true 2>&1 || EXIT_RC=$?
+            echo "datalad_simg_exit=${EXIT_RC:-0}"
           fi
           echo "::endgroup::"
 
