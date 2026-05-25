@@ -542,6 +542,54 @@ jobs:
             (apptainer sif list "$SIF_PATH" 2>&1 | head -15) || true
           done
           echo "::endgroup::"
+          echo "::group::Beta-prep diagnostic (measurements before any privilege-drop attempt)"
+          echo "----- 1. jovyan user existence and UID/GID -----"
+          id jovyan 2>&1 || echo "MISSING: jovyan user"
+          echo "----- 2. Workspace ownership and inode count -----"
+          stat -c '%u %U:%g %G %n' "$GITHUB_WORKSPACE" 2>&1 || true
+          du -sh "$GITHUB_WORKSPACE" 2>/dev/null || true
+          echo "inode count: $(find "$GITHUB_WORKSPACE" -xdev 2>/dev/null | wc -l)"
+          echo "----- 3. privilege-drop primitive presence -----"
+          for t in runuser setpriv su sudo; do
+            if command -v "$t" >/dev/null 2>&1; then
+              echo "PRESENT: $t at $(command -v $t)"
+            else
+              echo "MISSING: $t"
+            fi
+          done
+          echo "----- 4. environment_variables.sh actual contents (head 80) -----"
+          if [ -f /opt/neurodesktop/environment_variables.sh ]; then
+            head -80 /opt/neurodesktop/environment_variables.sh
+          else
+            echo "MISSING: /opt/neurodesktop/environment_variables.sh"
+          fi
+          echo "----- 5. neurodesk_singularity_opts under root EUID -----"
+          (unset neurodesk_singularity_opts; source /opt/neurodesktop/environment_variables.sh 2>/dev/null; echo "root: neurodesk_singularity_opts=[${neurodesk_singularity_opts:-<unset>}]") || true
+          echo "----- 6. neurodesk_singularity_opts under jovyan EUID (via runuser) -----"
+          if id jovyan >/dev/null 2>&1 && command -v runuser >/dev/null 2>&1; then
+            runuser -u jovyan -- bash -c 'unset neurodesk_singularity_opts; source /opt/neurodesktop/environment_variables.sh 2>/dev/null; echo "jovyan: neurodesk_singularity_opts=[${neurodesk_singularity_opts:-<unset>}]"' 2>&1 || echo "runuser failed"
+          else
+            echo "(skipped: jovyan or runuser unavailable)"
+          fi
+          echo "----- 7. apptainer userns probes as jovyan (3 variants) -----"
+          if id jovyan >/dev/null 2>&1 && command -v runuser >/dev/null 2>&1 && [ -n "$DATALAD_SIF" ]; then
+            echo "[7a] no overlay flag:"
+            unset EXIT_RC
+            runuser -u jovyan -- apptainer exec "$DATALAD_SIF" /bin/true 2>&1 | head -8 || EXIT_RC=$?
+            echo "exit_code=${EXIT_RC:-0}"
+            unset EXIT_RC
+            echo "[7b] --writable-tmpfs:"
+            runuser -u jovyan -- apptainer exec --writable-tmpfs "$DATALAD_SIF" /bin/true 2>&1 | head -8 || EXIT_RC=$?
+            echo "exit_code=${EXIT_RC:-0}"
+            unset EXIT_RC
+            echo "[7c] --overlay /tmp/apptainer_overlay:"
+            runuser -u jovyan -- apptainer exec --overlay /tmp/apptainer_overlay "$DATALAD_SIF" /bin/true 2>&1 | head -8 || EXIT_RC=$?
+            echo "exit_code=${EXIT_RC:-0}"
+            unset EXIT_RC
+          else
+            echo "(skipped: jovyan/runuser/SIF missing)"
+          fi
+          echo "::endgroup::"
 
       - name: Execute notebook
         if: steps.promote.outputs.promoted != 'true'
