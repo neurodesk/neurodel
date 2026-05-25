@@ -519,7 +519,28 @@ jobs:
             echo "Probing: $DATALAD_SIF"
             apptainer exec "$DATALAD_SIF" /bin/true 2>&1 || EXIT_RC=$?
             echo "datalad_simg_exit=${EXIT_RC:-0}"
+            unset EXIT_RC
           fi
+          echo "::endgroup::"
+          echo "::group::Two-SIF cap-demand comparison (mrtrix3 vs datalad)"
+          MRTRIX_SIF=$(ls -d /cvmfs/neurodesk.ardc.edu.au/containers/mrtrix3_*/mrtrix3_*.simg 2>/dev/null | sort -V | tail -1)
+          for SIF_PATH in "$MRTRIX_SIF" "$DATALAD_SIF"; do
+            [ -z "$SIF_PATH" ] && continue
+            echo "----- Cap demand for: $SIF_PATH -----"
+            (apptainer --debug exec "$SIF_PATH" /bin/true 2>&1 | grep -iE "capability|requesting|permitted|ERROR|FATAL" | head -10) || true
+            unset EXIT_RC
+            apptainer exec "$SIF_PATH" /bin/true >/dev/null 2>&1 || EXIT_RC=$?
+            echo "exit_code=${EXIT_RC:-0}"
+            unset EXIT_RC
+          done
+          echo "::endgroup::"
+          echo "::group::SIF metadata comparison (deffile + partitions)"
+          for SIF_PATH in "$MRTRIX_SIF" "$DATALAD_SIF"; do
+            [ -z "$SIF_PATH" ] && continue
+            echo "----- $SIF_PATH -----"
+            (apptainer inspect --deffile "$SIF_PATH" 2>&1 | head -20) || true
+            (apptainer sif list "$SIF_PATH" 2>&1 | head -15) || true
+          done
           echo "::endgroup::"
 
       - name: Execute notebook
