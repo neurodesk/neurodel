@@ -619,6 +619,45 @@ jobs:
           fi
           echo "::endgroup::"
 
+      - name: DIAGNOSTIC datalad install+get probe (mirrors MRtrix_1 sequence)
+        if: steps.promote.outputs.promoted != 'true'
+        # Disambiguates three hypotheses for the MRtrix_1 datalad cell failure
+        # under hooks-pool δ (run 26428196459):
+        #   (a) notebook-layer: Python `!` shell escape swallows datalad exit codes
+        #   (b) infra-layer: apptainer overlay can't handle git-annex write semantics
+        #   (c) stale-workspace: leftover ds001226/ skipped install via os.path.exists
+        # Uses the same repo (ds001226) and same .bvec file the notebook fails on,
+        # on the same filesystem (workspace PVC, not /tmp).
+        run: |
+          echo "::group::Datalad install+get probe (matches MRtrix_1 ds001226 sequence)"
+          source /opt/neurodesktop/environment_variables.sh 2>/dev/null || true
+          echo "neurodesk_singularity_opts=[${neurodesk_singularity_opts:-<unset>}]"
+          DATALAD_WRAPPER=$(ls -1 /cvmfs/neurodesk.ardc.edu.au/containers/datalad_*/datalad 2>/dev/null | sort -V | tail -1)
+          echo "Wrapper: ${DATALAD_WRAPPER:-<not found>}"
+          echo "----- (c) stale-workspace check -----"
+          ls -la "$GITHUB_WORKSPACE/books/examples/diffusion_imaging/ds001226" 2>&1 | head -5 || echo "(no stale ds001226 — good)"
+          PROBE_DIR="$GITHUB_WORKSPACE/.datalad_probe"
+          rm -rf "$PROBE_DIR" && mkdir -p "$PROBE_DIR" && cd "$PROBE_DIR"
+          if [ -z "$DATALAD_WRAPPER" ]; then
+            echo "(no datalad wrapper in CVMFS)"
+            echo "::endgroup::"
+            exit 0
+          fi
+          echo "----- (1) datalad install (same repo as MRtrix_1) -----"
+          unset RC_INSTALL
+          "$DATALAD_WRAPPER" install https://github.com/OpenNeuroDatasets/ds001226.git 2>&1 | tail -20 || RC_INSTALL=$?
+          echo "rc_install=${RC_INSTALL:-0}"
+          echo "----- (2) post-install tree -----"
+          ls -la ds001226/.git/annex 2>&1 | head -10 || echo "MISSING: .git/annex (overlay write failed)"
+          echo "----- (3) datalad get one small file (exercises annex write path) -----"
+          unset RC_GET
+          ( cd ds001226 && "$DATALAD_WRAPPER" get sub-CON02/ses-preop/dwi/sub-CON02_ses-preop_acq-AP_dwi.bvec ) 2>&1 | tail -20 || RC_GET=$?
+          echo "rc_get=${RC_GET:-0}"
+          echo "----- (4) bvec actually materialised? -----"
+          ls -la ds001226/sub-CON02/ses-preop/dwi/sub-CON02_ses-preop_acq-AP_dwi.bvec 2>&1
+          file ds001226/sub-CON02/ses-preop/dwi/sub-CON02_ses-preop_acq-AP_dwi.bvec 2>&1 || true
+          echo "::endgroup::"
+
       - name: Execute notebook
         if: steps.promote.outputs.promoted != 'true'
         timeout-minutes: 1500
