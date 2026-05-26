@@ -389,23 +389,29 @@ jobs:
           fi
           echo "==================================================="
 
-      - name: Install setuid apptainer (hooks-pool nested-userns workaround)
-        # neurodesktop image ships apptainer mode 755 (no setuid). Under
-        # APPTAINER_USERNS=1 hook pods, that means apptainer can't elevate to
-        # host root before nested userns is created → every FUSE driver mount
-        # (fuse2fs, fuse-overlayfs) fails with "Operation not permitted" on
-        # /dev/fuse. The apt apptainer-suid package installs starter-suid
-        # (mode 4755) which fixes the elevation path. Pattern mirrors
-        # neurocontainers' job-start install.
+      - name: Ensure apptainer available (fail-soft apt-install; rely on root caps post-δ)
+        # Originally added for the β / nested-userns era when we needed starter-suid
+        # to elevate caps for unprivileged users. Post-δ the pod runs as root with
+        # add: ["ALL"] (no drops), so the non-suid starter is sufficient — caps come
+        # from the pod's CapEff, not from a setuid binary. Keep the apt-install for
+        # images where apptainer is not baked (e.g. neurodesktop ships userland but
+        # not apptainer-suid; some derived images may ship neither), but make it
+        # fail-soft so images that already have apptainer (or whose apt sources
+        # don't carry the PPA) can proceed.
         run: |
-          apt-get update -qq
-          apt-get install -y --no-install-recommends apptainer apptainer-suid
-          if [ ! -u /usr/libexec/apptainer/bin/starter-suid ]; then
-            echo "::error::apptainer-suid install completed but starter-suid not setuid"
-            stat /usr/libexec/apptainer/bin/starter-suid 2>&1 || true
+          apt-get update -qq 2>&1 | tail -5 || true
+          apt-get install -y --no-install-recommends apptainer apptainer-suid 2>&1 | tail -10 \
+            || echo "(apt-install non-fatal: relying on baked apptainer if present)"
+          if ! command -v apptainer >/dev/null 2>&1; then
+            echo "::error::no apptainer in image and apt-install failed — cannot proceed"
             exit 1
           fi
-          echo "starter-suid installed setuid: $(stat -c %a /usr/libexec/apptainer/bin/starter-suid)"
+          echo "apptainer: $(command -v apptainer) ($(apptainer --version 2>&1 | head -1))"
+          if [ -u /usr/libexec/apptainer/bin/starter-suid ]; then
+            echo "starter-suid present (setuid): $(stat -c %a /usr/libexec/apptainer/bin/starter-suid)"
+          else
+            echo "starter-suid not setuid — fine post-δ (root + add: [ALL] provides caps directly)"
+          fi
 
       - name: Container setup (apptainer overlay, working dirs)
         # hooks-migration: dropped `docker exec --user root $CONTAINER_NAME bash
