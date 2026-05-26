@@ -372,7 +372,7 @@ jobs:
                       `for peer review. Know anyone who'd be a good fit to ` +
                       `review it? Someone familiar with the method or tooling ` +
                       `used tends to work best. Drop a name (or a few) below, ` +
-                      `and we'll take it from there.`;
+                      `and @micmas will take it from there.`;
 
                     await github.rest.issues.createComment({
                       owner: repoOwner,
