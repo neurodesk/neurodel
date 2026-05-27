@@ -520,6 +520,14 @@ jobs:
           stat -c "%a %U:%G %n" $(which singularity 2>/dev/null) 2>&1 || echo "(singularity not in PATH)"
           (ls -la /usr/local/bin/apptainer /usr/local/bin/singularity /usr/bin/apptainer /usr/bin/singularity 2>&1 | grep -v "No such" | head -5) || true
           echo "===================================="
+          echo "::group::kernel_wrapper.sh contents (suspected source of arc-base/hooks divergence for ! datalad)"
+          if [ -f /opt/neurodesktop/kernel_wrapper.sh ]; then
+            ls -l /opt/neurodesktop/kernel_wrapper.sh
+            cat /opt/neurodesktop/kernel_wrapper.sh
+          else
+            echo "(no /opt/neurodesktop/kernel_wrapper.sh — kernel.json may reference a different launcher)"
+          fi
+          echo "::endgroup::"
           echo "::group::Experiment A — starter binary mode (setuid vs unprivileged)"
           (ls -l /opt/apptainer/libexec/apptainer/bin/starter /opt/apptainer/libexec/apptainer/bin/starter-suid 2>&1 | head -10) || true
           (ls -l /usr/libexec/apptainer/bin/starter /usr/libexec/apptainer/bin/starter-suid 2>&1 | head -10) || true
