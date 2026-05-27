@@ -259,6 +259,19 @@ jobs:
     container:
       image: ${{ needs.setup.outputs.neurodesk_image }}
 
+    # Pass git identity through to apptainer SIFs (datalad calls `git annex init`
+    # which runs `git commit-tree` and needs a committer). The SIF wrapper uses
+    # `singularity exec --cleanenv`, which strips host env vars and the SIF's
+    # container user has a different $HOME from the runner pod's root, so
+    # `git config --global` on the runner doesn't propagate. APPTAINERENV_*
+    # prefixed vars cross the --cleanenv boundary: apptainer translates each into
+    # its unprefixed form inside the container. Values are arbitrary markers.
+    env:
+      APPTAINERENV_GIT_AUTHOR_NAME: "Neurodesk CI"
+      APPTAINERENV_GIT_AUTHOR_EMAIL: "ci@neurodesk.dev"
+      APPTAINERENV_GIT_COMMITTER_NAME: "Neurodesk CI"
+      APPTAINERENV_GIT_COMMITTER_EMAIL: "ci@neurodesk.dev"
+
     concurrency:
       group: notebook-${{ matrix.notebooks }}
       cancel-in-progress: true
@@ -413,17 +426,11 @@ jobs:
             echo "starter-suid not setuid — fine post-δ (root + add: [ALL] provides caps directly)"
           fi
 
-      - name: Configure in-pod git identity (for datalad git-annex init)
-        # datalad's `git annex init` runs `git commit-tree --no-gpg-sign` to create
-        # the initial git-annex branch commit. commit-tree exits 128 without a
-        # committer identity, which silently breaks `datalad install` (Jupyter's `!`
-        # shell escape swallows the non-zero exit, and downstream cells then fail
-        # on missing dataset files). $HOME=/root in this pod and root has no
-        # ~/.gitconfig. Values are arbitrary markers — git only needs SOMETHING set.
-        # This is in-pod only; commits to neurodeskedu still use the actor identity.
-        run: |
-          git config --global user.email "ci@neurodesk.dev"
-          git config --global user.name "Neurodesk CI"
+      # NOTE: git identity for datalad's `git annex init` is set via APPTAINERENV_*
+      # env vars on the job (see job `env:` block above). Tried `git config --global`
+      # on the runner pod first (commit 8f3ac35) — confirmed insufficient because
+      # the SIF wrapper uses `singularity exec --cleanenv` and the SIF's container
+      # user has a different $HOME, so the runner's /root/.gitconfig isn't read.
 
       - name: Container setup (apptainer overlay, working dirs)
         # hooks-migration: dropped `docker exec --user root $CONTAINER_NAME bash
