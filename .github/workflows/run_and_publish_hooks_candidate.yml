@@ -767,8 +767,13 @@ jobs:
             echo "::error::nbconvert failed for $NOTEBOOK_PATH (exit code ${NBEXEC_RC})"
             echo "--- Potential failure lines from nbconvert log ---"
             grep -nEi "ERROR|Traceback|Exception|CellExecutionError|CalledProcessError|No such file|not found" "$LOG_FILE" | tail -n 80 || true
+            echo "--- Datalad-related lines from nbconvert log (diagnosing ! shell-escape silent failures) ---"
+            grep -nEi "datalad|\[INFO\]|annex|git-annex|commit-tree|\[WARNING\]" "$LOG_FILE" | head -n 60 || true
             echo "--- Last 80 lines from nbconvert log ---"
             tail -n 80 "$LOG_FILE" || true
+            echo "::group::Full nbconvert log (collapsed; expand for raw cell output)"
+            cat "$LOG_FILE" 2>/dev/null || echo "(log file not found)"
+            echo "::endgroup::"
             echo "::group::Workspace state at failure (disambiguate infra vs notebook)"
             echo "--- df -h /__w /tmp ---"
             df -h /__w /tmp 2>/dev/null || true
