@@ -691,6 +691,155 @@ jobs:
           file ds001226/sub-CON02/ses-preop/dwi/sub-CON02_ses-preop_acq-AP_dwi.bvec 2>&1 || true
           echo "::endgroup::"
 
+      - name: DIAGNOSTIC env-diff probe (datalad-! root cause investigation)
+        if: steps.promote.outputs.promoted != 'true'
+        # Cluster team diagnostic lead (27 May): the datalad-! silent failure is
+        # almost certainly an env delta between the IPython kernel context and the
+        # workflow shell context. This step captures env from both, dispatches a
+        # throwaway notebook that runs `! env` + `! datalad install`, and dumps
+        # everything so we can diff. Pure probe, no production-path change.
+        #
+        # IMPORTANT (paranoid catch F2): runs AFTER pre-applying kernel.json patch
+        # that the real Execute notebook step applies. Without this, we'd be
+        # measuring a different kernel than the one that fails.
+        run: |
+          set +e  # diagnostic step; never fail the job from here
+          PROBE_DIR=/tmp/env_diff_probe
+          rm -rf "$PROBE_DIR" && mkdir -p "$PROBE_DIR"
+          cd "$PROBE_DIR"
+
+          # Mirror the Execute-notebook step's pre-conditions so the probe kernel
+          # matches the failing kernel. (Patch is idempotent — Execute notebook
+          # step will safely re-apply.)
+          export PATH=/opt/conda/bin:$HOME/.local/bin:$PATH
+          export MODULEPATH=/cvmfs/neurodesk.ardc.edu.au/containers/modules
+          if [ -f /usr/share/lmod/lmod/init/bash ]; then
+            source /usr/share/lmod/lmod/init/bash
+          fi
+          KERNEL_JSON="/opt/conda/share/jupyter/kernels/python3/kernel.json"
+          if [ -f "$KERNEL_JSON" ] && ! grep -q MODULEPATH "$KERNEL_JSON"; then
+            python3 - <<'PYEOF'
+          import json
+          p = "/opt/conda/share/jupyter/kernels/python3/kernel.json"
+          k = json.load(open(p))
+          k.setdefault("env", {}).update({
+              "MODULEPATH": "/cvmfs/neurodesk.ardc.edu.au/containers/modules",
+              "LMOD_CMD": "/usr/share/lmod/lmod/libexec/lmod",
+              "EGL_LOG_LEVEL": "fatal",
+              "PYTHONWARNINGS": "ignore:where used without:UserWarning",
+          })
+          json.dump(k, open(p, "w"), indent=2)
+          PYEOF
+            echo "(probe pre-applied kernel.json patch)"
+          fi
+
+          # Redact obvious credential-shaped env vars before dumping. GitHub masks
+          # declared secrets.* but NOT runner-pod-internal tokens.
+          REDACT_RE='(TOKEN|SECRET|PASSWORD|KEY|CRED|AUTH|API|BEARER)'
+
+          echo "::group::(1) Workflow-shell env (where datalad install WORKS)"
+          env | sort | grep -vE "^[A-Z_]*${REDACT_RE}[A-Z_]*=" > workflow_shell_env.txt
+          wc -l workflow_shell_env.txt
+          cat workflow_shell_env.txt
+          echo "::endgroup::"
+
+          echo "::group::(2) Create tiny throwaway notebook with ! env and ! datalad install"
+          cat > probe.ipynb <<'NBEOF'
+          {
+           "cells": [
+            {"cell_type":"code","execution_count":null,"metadata":{},"outputs":[],
+             "source":["import sys, os\n","print('kernel python:', sys.executable)\n","print('kernel cwd:', os.getcwd())\n","print('kernel HOME:', os.environ.get('HOME'))\n","print('kernel USER:', os.environ.get('USER'))"]},
+            {"cell_type":"code","execution_count":null,"metadata":{},"outputs":[],
+             "source":["import subprocess\n","r = subprocess.run('env | sort > /tmp/env_diff_probe/kernel_bang_env.txt', shell=True, capture_output=True, text=True)\n","print('env-capture rc:', r.returncode)\n","import os; print('file size:', os.path.getsize('/tmp/env_diff_probe/kernel_bang_env.txt') if os.path.exists('/tmp/env_diff_probe/kernel_bang_env.txt') else 'MISSING')"]},
+            {"cell_type":"code","execution_count":null,"metadata":{},"outputs":[],
+             "source":["import subprocess\n","r = subprocess.run('which datalad; datalad --version 2>&1 | head -3', shell=True, capture_output=True, text=True)\n","print('STDOUT:', r.stdout)\n","print('STDERR:', r.stderr)\n","print('rc:', r.returncode)"]},
+            {"cell_type":"code","execution_count":null,"metadata":{},"outputs":[],
+             "source":["import os, subprocess\n","os.makedirs('/tmp/env_diff_probe/clone_dir', exist_ok=True)\n","os.chdir('/tmp/env_diff_probe/clone_dir')\n","print('cwd before datalad:', os.getcwd())\n","r = subprocess.run('datalad install https://github.com/OpenNeuroDatasets/ds001226.git 2>&1', shell=True, capture_output=True, text=True)\n","print('STDOUT (last 30 lines):')\n","print('\\n'.join(r.stdout.splitlines()[-30:]))\n","print('STDERR (last 10 lines):')\n","print('\\n'.join(r.stderr.splitlines()[-10:]))\n","print('rc:', r.returncode)"]},
+            {"cell_type":"code","execution_count":null,"metadata":{},"outputs":[],
+             "source":["import subprocess\n","r = subprocess.run('ls -la /tmp/env_diff_probe/clone_dir/ 2>&1 | head -20', shell=True, capture_output=True, text=True)\n","print(r.stdout)"]},
+            {"cell_type":"code","execution_count":null,"metadata":{},"outputs":[],
+             "source":["# Also reproduce the ORIGINAL `!` shell-escape pattern that fails in real notebooks\n","print('--- Now reproducing the literal ! shell-escape pattern ---')\n","! cd /tmp/env_diff_probe && mkdir -p clone_dir_bang && cd clone_dir_bang && datalad install https://github.com/OpenNeuroDatasets/ds001226.git 2>&1 | tail -25\n","! ls -la /tmp/env_diff_probe/clone_dir_bang/ 2>&1 | head -10"]}
+           ],
+           "metadata":{"kernelspec":{"display_name":"Python 3","language":"python","name":"python3"}},
+           "nbformat":4,"nbformat_minor":5
+          }
+          NBEOF
+          ls -la probe.ipynb
+          echo "::endgroup::"
+
+          echo "::group::(3) Run probe notebook via nbconvert (matches Execute notebook step's invocation)"
+          jupyter nbconvert --to notebook --execute --inplace --allow-errors \
+              --ExecutePreprocessor.timeout=300 \
+              --ExecutePreprocessor.kernel_name=python3 \
+              probe.ipynb 2>&1 | tail -50
+          echo "::endgroup::"
+
+          echo "::group::(4) Executed notebook outputs (raw cell outputs from probe.ipynb)"
+          python3 - <<'PYEOF'
+          import json
+          nb = json.load(open('/tmp/env_diff_probe/probe.ipynb'))
+          for i, cell in enumerate(nb.get('cells', [])):
+              if cell.get('cell_type') != 'code': continue
+              print(f'--- CELL {i} source ---')
+              print(''.join(cell.get('source', [])))
+              for out in cell.get('outputs', []):
+                  ot = out.get('output_type', '?')
+                  if ot == 'stream':
+                      print(f'--- CELL {i} stream({out.get("name","?")}) ---')
+                      print(''.join(out.get('text', [])))
+                  elif ot in ('execute_result', 'display_data'):
+                      tp = out.get('data', {}).get('text/plain', '')
+                      print(f'--- CELL {i} {ot}/text-plain ---')
+                      print(''.join(tp) if isinstance(tp, list) else tp)
+                  elif ot == 'error':
+                      print(f'--- CELL {i} ERROR: {out.get("ename","?")}: {out.get("evalue","?")} ---')
+                      print('\n'.join(out.get('traceback', [])))
+          PYEOF
+          echo "::endgroup::"
+
+          echo "::group::(5) Kernel-bang env (where datalad install FAILS)"
+          if [ -f kernel_bang_env.txt ]; then
+            grep -vE "^[A-Z_]*${REDACT_RE}[A-Z_]*=" kernel_bang_env.txt > kernel_bang_env.redacted.txt
+            wc -l kernel_bang_env.redacted.txt
+            cat kernel_bang_env.redacted.txt
+          else
+            echo "(kernel_bang_env.txt not created — cell 2 did not run or failed)"
+          fi
+          echo "::endgroup::"
+
+          echo "::group::(6) Diff: workflow-shell env vs kernel-bang env"
+          if [ -f kernel_bang_env.redacted.txt ] && [ -f workflow_shell_env.txt ]; then
+            diff workflow_shell_env.txt kernel_bang_env.redacted.txt | head -120
+          else
+            echo "(missing one of the env files — can't diff)"
+          fi
+          echo "::endgroup::"
+
+          echo "::group::(7) Targeted suspect-variable check"
+          for var in \
+              DATALAD_DATASETS_TOPDIR DATALAD_LOG_TARGET DATALAD_NOINTERACTIVE_UI DATALAD_LOG_LEVEL \
+              HOME USER PWD PATH SHELL TMPDIR \
+              PYTHONUNBUFFERED PYTHONIOENCODING PYTHONPATH \
+              LANG LC_ALL LC_CTYPE \
+              MODULEPATH LMOD_CMD \
+              JUPYTER_RUNTIME_DIR JUPYTER_DATA_DIR IPYTHONDIR \
+              GIT_AUTHOR_NAME GIT_AUTHOR_EMAIL GIT_COMMITTER_NAME GIT_COMMITTER_EMAIL \
+              APPTAINERENV_GIT_AUTHOR_NAME APPTAINER_BINDPATH \
+              SSL_CERT_FILE SSL_CERT_DIR REQUESTS_CA_BUNDLE CURL_CA_BUNDLE; do
+            wf=$(grep -E "^${var}=" workflow_shell_env.txt 2>/dev/null | head -1 | cut -d= -f2-)
+            kn=$(grep -E "^${var}=" kernel_bang_env.redacted.txt 2>/dev/null | head -1 | cut -d= -f2-)
+            wf=${wf:-<unset>}
+            kn=${kn:-<unset>}
+            if [ "$wf" = "$kn" ]; then
+              echo "  $var: same ($wf)"
+            else
+              echo "  $var: WORKFLOW=[$wf]"
+              echo "        KERNEL=[$kn]"
+            fi
+          done
+          echo "::endgroup::"
+          true  # always succeed
+
       - name: Execute notebook
         if: steps.promote.outputs.promoted != 'true'
         timeout-minutes: 1500
