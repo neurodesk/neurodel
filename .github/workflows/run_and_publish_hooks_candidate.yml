@@ -259,14 +259,30 @@ jobs:
     container:
       image: ${{ needs.setup.outputs.neurodesk_image }}
 
-    # Pass git identity through to apptainer SIFs (datalad calls `git annex init`
-    # which runs `git commit-tree` and needs a committer). The SIF wrapper uses
-    # `singularity exec --cleanenv`, which strips host env vars and the SIF's
-    # container user has a different $HOME from the runner pod's root, so
-    # `git config --global` on the runner doesn't propagate. APPTAINERENV_*
-    # prefixed vars cross the --cleanenv boundary: apptainer translates each into
-    # its unprefixed form inside the container. Values are arbitrary markers.
+    # Git identity for datalad's `git annex init` (which runs `git commit-tree`
+    # and needs a committer). Two paths to cover:
+    #
+    # 1. NATIVE datalad path (/opt/conda/bin/datalad — what `!`-shell escape
+    #    actually runs by PATH lookup in the kernel): plain unprefixed GIT_*_NAME
+    #    /GIT_*_EMAIL env vars. git reads these directly; takes precedence over
+    #    config files. The job-level env is inherited by every step including
+    #    the Jupyter kernel and its `!` subshells.
+    #
+    # 2. APPTAINER-WRAPPED datalad path (/cvmfs/.../datalad → singularity exec
+    #    --cleanenv): APPTAINERENV_*-prefixed vars. apptainer translates these
+    #    into their unprefixed form inside the SIF, surviving --cleanenv stripping.
+    #
+    # Both paths are exercised in the corpus; both fixes are needed. Verified
+    # via env-diff probe run 26490180216 (env_diff_probe in the workflow).
+    # Without (1), native datalad fails at git-annex init with `fatal: unable to
+    # auto-detect email address (got 'root@<pod-host>.(none)')` → silent failure
+    # in `!`-shell escape → downstream notebook cells crash on missing files.
+    # Values are arbitrary markers (no notebook does `git commit`/`git push`).
     env:
+      GIT_AUTHOR_NAME: "Neurodesk CI"
+      GIT_AUTHOR_EMAIL: "ci@neurodesk.dev"
+      GIT_COMMITTER_NAME: "Neurodesk CI"
+      GIT_COMMITTER_EMAIL: "ci@neurodesk.dev"
       APPTAINERENV_GIT_AUTHOR_NAME: "Neurodesk CI"
       APPTAINERENV_GIT_AUTHOR_EMAIL: "ci@neurodesk.dev"
       APPTAINERENV_GIT_COMMITTER_NAME: "Neurodesk CI"
