@@ -413,6 +413,18 @@ jobs:
             echo "starter-suid not setuid — fine post-δ (root + add: [ALL] provides caps directly)"
           fi
 
+      - name: Configure in-pod git identity (for datalad git-annex init)
+        # datalad's `git annex init` runs `git commit-tree --no-gpg-sign` to create
+        # the initial git-annex branch commit. commit-tree exits 128 without a
+        # committer identity, which silently breaks `datalad install` (Jupyter's `!`
+        # shell escape swallows the non-zero exit, and downstream cells then fail
+        # on missing dataset files). $HOME=/root in this pod and root has no
+        # ~/.gitconfig. Values are arbitrary markers — git only needs SOMETHING set.
+        # This is in-pod only; commits to neurodeskedu still use the actor identity.
+        run: |
+          git config --global user.email "ci@neurodesk.dev"
+          git config --global user.name "Neurodesk CI"
+
       - name: Container setup (apptainer overlay, working dirs)
         # hooks-migration: dropped `docker exec --user root $CONTAINER_NAME bash
         # -c '...'` wrapping AND the jovyan UID/GID remap block. We are already
