@@ -26,14 +26,44 @@ on:
           - "3"
           - "4"
           - "5"
+      pool:
+        description: "Runner pool to target"
+        required: true
+        default: "qriscloud"
+        type: choice
+        options:
+          - "qriscloud"
+          - "sydney"
+          - "both"
 
 jobs:
+  # ------------------------------------------------------------------
+  # SETUP: resolve pool input → scale-set name matrix
+  # ------------------------------------------------------------------
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      pools: ${{ steps.set-pools.outputs.pools }}
+    steps:
+      - id: set-pools
+        run: |
+          case "${{ inputs.pool }}" in
+            both)   echo 'pools=["neurodesk-arcrunner-neurodeskedu","neurodesk-syd-arcrunner-neurodeskedu"]' >> "$GITHUB_OUTPUT" ;;
+            sydney) echo 'pools=["neurodesk-syd-arcrunner-neurodeskedu"]' >> "$GITHUB_OUTPUT" ;;
+            *)      echo 'pools=["neurodesk-arcrunner-neurodeskedu"]' >> "$GITHUB_OUTPUT" ;;
+          esac
+
   # ------------------------------------------------------------------
   # LEVEL 1: Hook intercept works at all
   # ------------------------------------------------------------------
   level-1-alpine:
+    needs: setup
     if: ${{ inputs.level == '1' || inputs.level == '4' }}
-    runs-on: neurodesk-arcrunner-neurodeskedu
+    strategy:
+      matrix:
+        pool: ${{ fromJson(needs.setup.outputs.pools) }}
+      fail-fast: false
+    runs-on: ${{ matrix.pool }}
     container:
       image: alpine:latest
     steps:
@@ -67,8 +97,13 @@ jobs:
   # LEVEL 2: Extension template applied correctly
   # ------------------------------------------------------------------
   level-2-extension-template:
+    needs: setup
     if: ${{ inputs.level == '2' || inputs.level == '4' }}
-    runs-on: neurodesk-arcrunner-neurodeskedu
+    strategy:
+      matrix:
+        pool: ${{ fromJson(needs.setup.outputs.pools) }}
+      fail-fast: false
+    runs-on: ${{ matrix.pool }}
     container:
       image: vnmd/neurodesktop:2026-04-28
     steps:
@@ -109,12 +144,49 @@ jobs:
           id
           test "$(id -u)" = "0" || { echo "FAIL: not root"; exit 1; }
 
+      - name: Pool resources snapshot (CPU / memory / disk)
+        shell: bash
+        run: |
+          echo "=== CPUs ===" && nproc
+          echo "=== Memory ===" && free -h
+          echo "=== Disk ===" && df -h /tmp "$GITHUB_WORKSPACE" 2>/dev/null || df -h /tmp
+
+      - name: CVMFS catalog latency
+        shell: bash
+        run: |
+          echo "=== Container count ==="
+          ls /cvmfs/neurodesk.ardc.edu.au/containers/ | wc -l
+          echo "=== Full listing time (catalog fetch) ==="
+          time ls /cvmfs/neurodesk.ardc.edu.au/containers/ > /dev/null
+          echo "=== FSL container layout ==="
+          ls -lh /cvmfs/neurodesk.ardc.edu.au/containers/fsl_6.0.5.1_20221016/
+
+      - name: /tmp write throughput
+        shell: bash
+        run: |
+          echo "Writing 128 MB to /tmp (fsync):"
+          dd if=/dev/zero of=/tmp/_bench bs=1M count=128 conv=fsync 2>&1
+          rm -f /tmp/_bench
+
+      - name: External network connectivity (HF / GitHub / ARDC)
+        shell: bash
+        run: |
+          for host in huggingface.co github.com neurodesk.ardc.edu.au; do
+            printf "%s: " "$host"
+            curl -sI --max-time 10 "https://$host" | head -1 || echo "UNREACHABLE"
+          done
+
   # ------------------------------------------------------------------
   # LEVEL 3: The real neurodesk use case — Apptainer on CVMFS
   # ------------------------------------------------------------------
   level-3-apptainer-on-cvmfs:
+    needs: setup
     if: ${{ inputs.level == '3' || inputs.level == '4' }}
-    runs-on: neurodesk-arcrunner-neurodeskedu
+    strategy:
+      matrix:
+        pool: ${{ fromJson(needs.setup.outputs.pools) }}
+      fail-fast: false
+    runs-on: ${{ matrix.pool }}
     container:
       image: vnmd/neurodesktop:2026-04-28
     steps:
