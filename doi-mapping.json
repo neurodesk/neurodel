@@ -875,11 +875,11 @@
     "doi_url": "https://doi.org/10.5281/zenodo.20076084",
     "website_url": "https://neurodesk.org/edu/examples/workflows/container_paths_neurodesk.html",
     "concept_recid": "20076084",
-    "record_id": "20076085",
+    "record_id": "20585389",
     "content_type": "notebook",
-    "checksum": "7b611a7aa732c7841f41bd5c6c2c1c1c",
+    "checksum": "080217dbdb5d5b26ab659cc63025f050",
     "authors": [],
-    "updated_at": "2026-05-07T21:47:23Z"
+    "updated_at": "2026-06-07T22:07:45Z"
   },
   "books/tutorials/about_neurodesk/MySt_neurodesk.ipynb": {
     "doi_url": "https://doi.org/10.5281/zenodo.20279172",
