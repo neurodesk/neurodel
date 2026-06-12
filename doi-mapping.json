@@ -903,5 +903,15 @@
     "checksum": "a3f645ffd678d128a6e185937fce9717",
     "authors": [],
     "updated_at": "2026-05-19T03:39:57Z"
+  },
+  "books/examples/workflows/snakemake.ipynb": {
+    "doi_url": "https://doi.org/10.5281/zenodo.20653250",
+    "website_url": "https://neurodesk.org/edu/examples/workflows/snakemake.html",
+    "concept_recid": "20653250",
+    "record_id": "20653251",
+    "content_type": "notebook",
+    "checksum": "0b56fe4929d3d4195d22bcd92dd2f732",
+    "authors": [],
+    "updated_at": "2026-06-12T02:52:50Z"
   }
 }
