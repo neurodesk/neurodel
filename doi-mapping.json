@@ -280,11 +280,11 @@
     "doi_url": "https://doi.org/10.5281/zenodo.18728757",
     "website_url": "https://neurodesk.org/edu/examples/workflows/AA_Neurodesk_demo_tour.html",
     "concept_recid": "18728757",
-    "record_id": "19503182",
+    "record_id": "20700024",
     "content_type": "notebook",
-    "checksum": "0b7a9e220a6038ec9e07fd1048433891",
+    "checksum": "00a72ec9053efa832dc90452340aab8f",
     "authors": [],
-    "updated_at": "2026-04-10T23:41:09Z"
+    "updated_at": "2026-06-15T09:43:13Z"
   },
   "books/examples/quantitative_imaging/qsmxt.ipynb": {
     "doi_url": "https://doi.org/10.5281/zenodo.18728759",
