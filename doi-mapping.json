@@ -513,13 +513,13 @@
     "doi_url": "https://doi.org/10.5281/zenodo.18728800",
     "website_url": "https://neurodesk.org/edu/examples/functional_imaging/fsl_all_levels_flanker_nipype.html",
     "concept_recid": "18728800",
-    "record_id": "18728801",
+    "record_id": "20726591",
     "content_type": "notebook",
-    "checksum": "5ebe5fbd758b16556dcf8409af41bef1",
+    "checksum": "d0a5a4c17ea870d09511c461c3d841c6",
     "authors": [
       "Monika Doerig"
     ],
-    "updated_at": "2026-02-22T03:24:35Z"
+    "updated_at": "2026-06-17T05:37:17Z"
   },
   "books/examples/workflows/PyBIDS.ipynb": {
     "doi_url": "https://doi.org/10.5281/zenodo.18728802",
