@@ -147,12 +147,14 @@ jobs:
           if [ -n "${{ inputs.image_override }}" ]; then
             echo "neurodesk_image=${{ inputs.image_override }}" >> $GITHUB_OUTPUT
           else
-            # Production default: slim py-stack (validated 2026-06-08, replaces full neurodesktop).
-            # Frozen tag maintained by the image team; image_override still works for one-offs.
-            # Previous full-image default kept for one-line revert:
-            #   NEURODESKTOP_VERSION=$(curl -s https://raw.githubusercontent.com/neurodesk/neurodesk.github.io/main/data/neurodesktop.toml | grep '^jupyter_neurodesk_version' | sed 's/.*= *"\(.*\)"/\1/')
-            #   echo "neurodesk_image=ghcr.io/neurodesk/neurodesktop/neurodesktop:${NEURODESKTOP_VERSION}" >> $GITHUB_OUTPUT
-            echo "neurodesk_image=ghcr.io/neurodesk/neurocommand:py-stack" >> $GITHUB_OUTPUT
+            # Production default: full neurodesktop image, so CI runs the SAME environment
+            # Neurodesk users run (and catches the same errors). Executed via lean nbconvert
+            # (no Jupyter server, via the `sleep infinity` CMD override below). image_override
+            # still works for one-offs, e.g. slim py-stack benchmarking.
+            NEURODESKTOP_VERSION=$(curl -s https://raw.githubusercontent.com/neurodesk/neurodesk.github.io/main/data/neurodesktop.toml | grep '^jupyter_neurodesk_version' | sed 's/.*= *"\(.*\)"/\1/')
+            echo "neurodesk_image=ghcr.io/neurodesk/neurodesktop/neurodesktop:${NEURODESKTOP_VERSION}" >> $GITHUB_OUTPUT
+            # Slim py-stack default kept for one-line revert:
+            #   echo "neurodesk_image=ghcr.io/neurodesk/neurocommand:py-stack" >> $GITHUB_OUTPUT
           fi
           echo "Using image: $(grep neurodesk_image $GITHUB_OUTPUT | cut -d= -f2)"
 
@@ -538,7 +540,13 @@ jobs:
           echo "Waiting for Neurodesktop to become ready (up to 5 minutes)..."
           for i in {1..300}; do
             if docker logs "$CONTAINER_NAME" 2>&1 | grep -qE "To access the server|\[neurocommand\] CVMFS"; then
-              echo "Container ready after ${i} seconds"
+              echo "Container ready (startup log) after ${i} seconds"
+              exit 0
+            fi
+            # Image-agnostic fallback: ready once CVMFS modules are visible inside the container
+            # (full neurodesktop under `sleep infinity` may not print the slim image's log line).
+            if docker exec "$CONTAINER_NAME" test -d /cvmfs/neurodesk.ardc.edu.au/containers/modules 2>/dev/null; then
+              echo "Container ready (CVMFS mounted) after ${i} seconds"
               exit 0
             fi
             sleep 1
@@ -1859,7 +1867,13 @@ jobs:
           echo "Waiting for Neurodesktop to become ready (up to 5 minutes)..."
           for i in {1..300}; do
             if docker logs "$CONTAINER_NAME" 2>&1 | grep -qE "To access the server|\[neurocommand\] CVMFS"; then
-              echo "Container ready after ${i} seconds"
+              echo "Container ready (startup log) after ${i} seconds"
+              exit 0
+            fi
+            # Image-agnostic fallback: ready once CVMFS modules are visible inside the container
+            # (full neurodesktop under `sleep infinity` may not print the slim image's log line).
+            if docker exec "$CONTAINER_NAME" test -d /cvmfs/neurodesk.ardc.edu.au/containers/modules 2>/dev/null; then
+              echo "Container ready (CVMFS mounted) after ${i} seconds"
               exit 0
             fi
             sleep 1
