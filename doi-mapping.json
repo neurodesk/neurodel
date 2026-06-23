@@ -793,13 +793,13 @@
     "doi_url": "https://doi.org/10.5281/zenodo.18883334",
     "website_url": "https://neurodesk.org/edu/examples/structural_imaging/brain_extraction_different_tools.html",
     "concept_recid": "18883334",
-    "record_id": "20635116",
+    "record_id": "20806145",
     "content_type": "notebook",
-    "checksum": "57c9f383ca55b9c572487a422e270a99",
+    "checksum": "e7f039fa853095385cd5f02c12532769",
     "authors": [
       "Monika Doerig"
     ],
-    "updated_at": "2026-06-11T01:01:27Z"
+    "updated_at": "2026-06-23T03:17:14Z"
   },
   "books/tutorials/neurodesk_workflows/accessing_neurodesk_tools.ipynb": {
     "doi_url": "https://doi.org/10.5281/zenodo.18991604",
