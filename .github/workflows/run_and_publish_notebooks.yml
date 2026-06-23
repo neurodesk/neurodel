@@ -27,6 +27,12 @@ on:
       - '**/*.ipynb'
       - 'books/**/*.md'
 
+  schedule:
+    # Monthly drift check. GitHub cron is UTC and cannot express "first Saturday",
+    # so this fires every Saturday 14:00 UTC (~midnight Sydney AEST) and the
+    # select-notebooks job guards execution to the first Saturday of the month.
+    - cron: '0 14 * * 6'
+
   # NOTE: create_review_branch.yml uses pull_request_target to auto-create a
   # review branch. A reviewer must merge the PR into that branch to trigger CI
   # (push event, collaborators only).
@@ -199,7 +205,14 @@ jobs:
         run: |
           # Determine which notebooks to run based on trigger type
           if [ "${{ github.event_name }}" = "schedule" ]; then
-            echo "Mode: Scheduled run, execute ALL notebooks"
+            # Monthly cadence: the cron fires every Saturday, but only the first
+            # Saturday of the month runs the full corpus. Skip the other weeks.
+            if [ "$(date -u +%-d)" -gt 7 ]; then
+              echo "Scheduled run outside the first week of the month; skipping (monthly cadence)."
+              echo "notebook_list=[]" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+            echo "Mode: Scheduled monthly run, execute ALL notebooks"
             changed_notebooks=$(find books -name "*.ipynb" | sed 's|^books/||')
 
           elif [ "${{ inputs.force_execution }}" == "true" ]; then
@@ -714,7 +727,9 @@ jobs:
           echo "Saved source snapshot: $SOURCE_DIR/$(basename "$NOTEBOOK_PATH")"
 
       - name: Try promoting cached notebook (main only)
-        if: github.ref == 'refs/heads/main'
+        # Skip on scheduled drift checks: we want real re-execution to catch
+        # upstream package/image drift, not a cache hit that would mask it.
+        if: github.ref == 'refs/heads/main' && github.event_name != 'schedule'
         id: promote
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
@@ -951,7 +966,7 @@ jobs:
       # 2. Transform uploads data to HF, rewrites paths->urls, clears outputs
       # 3. Second execution generates clean outputs with HF URLs
       - name: Transform notebook paths to HF URLs (post-execution)
-        if: steps.promote.outputs.promoted != 'true' && inputs.diagnostic_mode != true
+        if: steps.promote.outputs.promoted != 'true' && inputs.diagnostic_mode != true && github.event_name != 'schedule'
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
           HF_REPO: neurodeskorg/neurodeskedu
@@ -1223,7 +1238,7 @@ jobs:
           retention-days: 7
 
       - name: Upload source + executed notebooks to HuggingFace
-        if: success() && inputs.diagnostic_mode != true
+        if: success() && inputs.diagnostic_mode != true && github.event_name != 'schedule'
         # ARC pods see ~2% transient HF network failures (cluster team-confirmed infra floor).
         # Without this gate, one transient would fail the run-notebooks job and block publish-pages
         # entirely — 49 successful notebooks would not deploy because of one failed upload.
@@ -1408,7 +1423,7 @@ jobs:
   publish-dois:
     name: Publish DOIs to Zenodo
     needs: [run-notebooks]
-    if: ${{ needs.run-notebooks.result == 'success' && github.ref == 'refs/heads/main' }}
+    if: ${{ needs.run-notebooks.result == 'success' && github.ref == 'refs/heads/main' && github.event_name != 'schedule' }}
     runs-on: ubuntu-22.04
     concurrency:
       group: publish-dois
@@ -1559,7 +1574,7 @@ jobs:
   publish-pages:
     name: Build & Publish to GitHub Pages
     needs: [run-notebooks, setup, publish-dois]
-    if: ${{ always() && (needs.run-notebooks.result == 'success' || needs.run-notebooks.result == 'skipped' || needs.run-notebooks.result == 'failure') }}
+    if: ${{ always() && github.event_name != 'schedule' && (needs.run-notebooks.result == 'success' || needs.run-notebooks.result == 'skipped' || needs.run-notebooks.result == 'failure') }}
     runs-on: ubuntu-22.04
     # Serialize publish jobs to prevent race conditions on gh-pages
     concurrency:
@@ -2135,4 +2150,66 @@ jobs:
           publish_dir: ./books/_build/html
           keep_files: false  # Clean publish - removes old/broken notebooks
           force_orphan: true  # Reset gh-pages history on each deploy to prevent size bloat
+
+  # ---------------------------------------------------------------------------
+  # DRIFT REPORT: On scheduled monthly runs, open/update a GitHub issue listing
+  # any notebooks that failed (usually upstream package/image drift). A fully
+  # green run creates no issue, so there is no noise.
+  # ---------------------------------------------------------------------------
+  report-drift:
+    name: Report scheduled drift
+    needs: [run-notebooks]
+    if: ${{ always() && github.event_name == 'schedule' && needs.run-notebooks.result == 'failure' }}
+    runs-on: ubuntu-22.04
+    permissions:
+      issues: write
+      actions: read
+    steps:
+      - name: Open or update the corpus-drift issue
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea
+        with:
+          script: |
+            const label = 'corpus-drift';
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const runUrl = `${context.serverUrl}/${owner}/${repo}/actions/runs/${context.runId}`;
+            const today = new Date().toISOString().slice(0, 10);
+
+            // Ensure the label exists (no-op if it already does).
+            try {
+              await github.rest.issues.createLabel({ owner, repo, name: label, color: 'B60205', description: 'Scheduled corpus run found drift' });
+            } catch (e) { /* already exists */ }
+
+            // Collect the notebooks that failed in this run.
+            const jobs = await github.paginate(github.rest.actions.listJobsForWorkflowRun, {
+              owner, repo, run_id: context.runId, per_page: 100,
+            });
+            const failed = jobs
+              .filter(j => j.conclusion === 'failure' && j.name.startsWith('Run Notebook ('))
+              .map(j => j.name.slice('Run Notebook ('.length, -1))
+              .sort();
+            const list = failed.length
+              ? failed.map(n => `- \`${n}\``).join('\n')
+              : '- (failure outside a notebook job — see the run log)';
+            const body = [
+              `The scheduled monthly corpus run on **${today}** found **${failed.length}** failing notebook(s):`,
+              '', list, '',
+              `Run: ${runUrl}`, '',
+              `These are usually upstream package or image drift. Investigate each, pin a known-good version, and re-run.`,
+            ].join('\n');
+            const title = 'Scheduled corpus drift: notebook(s) failing';
+
+            // Reuse one rolling open issue to avoid inbox spam.
+            const existing = await github.paginate(github.rest.issues.listForRepo, {
+              owner, repo, state: 'open', labels: label, per_page: 100,
+            });
+            if (existing.length) {
+              const num = existing[0].number;
+              await github.rest.issues.update({ owner, repo, issue_number: num, body });
+              await github.rest.issues.createComment({ owner, repo, issue_number: num, body: `Re-checked **${today}**: ${failed.length} failing. ${runUrl}` });
+              core.notice(`Updated drift issue #${num}`);
+            } else {
+              const created = await github.rest.issues.create({ owner, repo, title, body, labels: [label] });
+              core.notice(`Opened drift issue #${created.data.number}`);
+            }
 
