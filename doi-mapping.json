@@ -747,11 +747,11 @@
     "doi_url": "https://doi.org/10.5281/zenodo.18835281",
     "website_url": "https://neurodesk.org/edu/examples/workflows/nipype_full.html",
     "concept_recid": "18835281",
-    "record_id": "18835282",
+    "record_id": "21270809",
     "content_type": "notebook",
-    "checksum": "256e770bf02e48135c7ee76aa2877d23",
+    "checksum": "c9fa839cf573a9945eec9695c8d0d3b2",
     "authors": [],
-    "updated_at": "2026-03-02T12:15:10Z"
+    "updated_at": "2026-07-09T00:57:02Z"
   },
   "books/examples/structural_imaging/freesurfer.ipynb": {
     "doi_url": "https://doi.org/10.5281/zenodo.18843449",
