@@ -913,5 +913,17 @@
     "checksum": "e0060c4a68f2cc07afcb48384b3d4b43",
     "authors": [],
     "updated_at": "2026-07-02T01:25:38Z"
+  },
+  "books/examples/diffusion_imaging/qsiprep.ipynb": {
+    "doi_url": "https://doi.org/10.5281/zenodo.21369394",
+    "website_url": "https://neurodesk.org/edu/examples/diffusion_imaging/qsiprep.html",
+    "concept_recid": "21369394",
+    "record_id": "21369395",
+    "content_type": "notebook",
+    "checksum": "f78d71be3b4db3fef40a4ebe0fda85a5",
+    "authors": [
+      "Monika Doerig"
+    ],
+    "updated_at": "2026-07-15T06:23:19Z"
   }
 }
