@@ -292,7 +292,10 @@ jobs:
     # Everyone else → whatever setup selected (default: Sydney AZ DinD pool neurodesk-syd-arcrunner-neurodeskedu).
     # To add another notebook to the heavy list: append its path to the array below.
     # Previous QRIS arc-mem routing kept for one-line revert: ...matrix.notebooks) && fromJson('{"group":"arc-mem"}') || ...
-    runs-on: ${{ contains(fromJson('["examples/functional_imaging/Demo_FEAT_HigherLevelStats.ipynb","examples/functional_imaging/Demo_fmriprep_FEAT.ipynb"]'), matrix.notebooks) && 'neurodesk-syd-arcrunner-neurodeskedu-heavy' || fromJson(needs.setup.outputs.runs_on) }}
+    # TEMP (syd2 heavy-pool validation, 2026-07-17): heavy pool repointed to the
+    # syd2 pool for a one-off cluster-team validation run. Revert to
+    # neurodesk-syd-arcrunner-neurodeskedu-heavy after they confirm; this branch is throwaway.
+    runs-on: ${{ contains(fromJson('["examples/functional_imaging/Demo_FEAT_HigherLevelStats.ipynb","examples/functional_imaging/Demo_fmriprep_FEAT.ipynb"]'), matrix.notebooks) && 'neurodesk-syd2-arcrunner-neurodeskedu-heavy' || fromJson(needs.setup.outputs.runs_on) }}
     timeout-minutes: 840
 
     concurrency:
