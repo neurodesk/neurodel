@@ -925,5 +925,17 @@
       "Monika Doerig"
     ],
     "updated_at": "2026-07-15T06:23:19Z"
+  },
+  "books/examples/diffusion_imaging/qsirecon.ipynb": {
+    "doi_url": "https://doi.org/10.5281/zenodo.21403392",
+    "website_url": "https://neurodesk.org/edu/examples/diffusion_imaging/qsirecon.html",
+    "concept_recid": "21403392",
+    "record_id": "21403393",
+    "content_type": "notebook",
+    "checksum": "77484d434d38c53203f4e9443e398a62",
+    "authors": [
+      "Monika Doerig"
+    ],
+    "updated_at": "2026-07-17T01:17:59Z"
   }
 }
