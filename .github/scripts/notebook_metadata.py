@@ -8,7 +8,11 @@ import re
 from typing import List
 
 
-_AUTHOR_LINE_RE = re.compile(r"^authors?\s*:?[\s\-]*(.*)$", re.IGNORECASE)
+# Require a ':' after the label. Without it, a sentence line such as the template's
+# "Author of this template : ..." instruction is mistaken for an author field. The
+# markdown and front-matter paths below already require the colon; this aligns the
+# notebook path with them.
+_AUTHOR_LINE_RE = re.compile(r"^authors?\s*:\s*(.*)$", re.IGNORECASE)
 _STOP_LINE_RE = re.compile(
     r"^(date|title|license|doi|institution|affiliation|contact|email|version)\b",
     re.IGNORECASE,
@@ -105,17 +109,34 @@ def extract_authors_from_first_cell_source(first_cell_source: str) -> List[str]:
 
 
 def extract_authors_from_notebook(notebook_obj: dict) -> List[str]:
-    """Extract author names from the first notebook cell."""
-    first_cell_source = ""
-    cells = notebook_obj.get("cells", [])
-    if cells:
-        source = cells[0].get("source", [])
-        first_cell_source = "".join(source) if isinstance(source, list) else str(source)
-    return extract_authors_from_first_cell_source(first_cell_source)
+    """Extract author names from the notebook's leading markdown header.
+
+    The project template puts the title in the first cell and the "**Author**:"
+    line in a *later* markdown cell, so scanning only cells[0] misses the author
+    and the publisher falls back to a generic creator. Scan the contiguous
+    markdown header block instead and return the first hit.
+
+    The scan stops at the first code cell — author metadata always lives in the
+    header, so stopping there avoids picking up stray "Author:" mentions in later
+    citation/reference prose. Non-code, non-markdown cells (e.g. leading raw
+    cells) are skipped rather than treated as the boundary.
+    """
+    for cell in notebook_obj.get("cells", []):
+        cell_type = cell.get("cell_type")
+        if cell_type == "code":
+            break
+        if cell_type != "markdown":
+            continue
+        source = cell.get("source", [])
+        cell_source = "".join(source) if isinstance(source, list) else str(source)
+        authors = extract_authors_from_first_cell_source(cell_source)
+        if authors:
+            return authors
+    return []
 
 
 def extract_authors_from_first_cell(notebook_path: str) -> List[str]:
-    """Load a notebook and return author names from the first cell."""
+    """Load a notebook and return author names from its leading markdown header."""
     with open(notebook_path, "r", encoding="utf-8") as fh:
         notebook_obj = json.load(fh)
     return extract_authors_from_notebook(notebook_obj)

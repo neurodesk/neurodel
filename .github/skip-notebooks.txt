@@ -1,3 +1,8 @@
 # Notebooks to skip in CI execution
 # One notebook path per line (relative to books/ directory)
 # Lines starting with # are comments
+
+# Scaffolding, not real educational content: skipping execution also keeps it out
+# of the executed-artifacts set, so it is not minted a Zenodo DOI. (Its author cell
+# holds placeholder text, which would otherwise be published as a bogus creator.)
+examples/template.ipynb
