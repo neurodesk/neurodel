@@ -855,11 +855,11 @@
     "doi_url": "https://doi.org/10.5281/zenodo.19627256",
     "website_url": "https://neurodesk.org/edu/examples/functional_imaging/Demo_fmriprep_FEAT.html",
     "concept_recid": "19627256",
-    "record_id": "19627257",
+    "record_id": "21469476",
     "content_type": "notebook",
-    "checksum": "f309842c34f3769f184884e14e0a184b",
+    "checksum": "07833e5863bf26908fbaeb1616c11223",
     "authors": [],
-    "updated_at": "2026-04-17T08:25:01Z"
+    "updated_at": "2026-07-21T08:07:49Z"
   },
   "books/examples/functional_imaging/Demo_FEAT_HigherLevelStats.ipynb": {
     "doi_url": "https://doi.org/10.5281/zenodo.19657478",
