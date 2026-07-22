@@ -49,6 +49,13 @@ def test_template_decoy_line_is_not_matched():
     assert extract_authors_from_first_cell_source(src) == []
 
 
+def test_author_label_requires_colon():
+    # The colon is what separates an author field from prose. Without it nothing
+    # is extracted — this pins the label regex so it can't be loosened silently.
+    assert extract_authors_from_first_cell_source("**Author** Jane Doe\n") == []
+    assert extract_authors_from_first_cell_source("Authors - Jane Doe\n") == []
+
+
 def test_multiple_authors_split():
     nb = _md("# Title\n", "**Author**: Ada Lovelace and Alan Turing\n")
     assert extract_authors_from_notebook(nb) == ["Ada Lovelace", "Alan Turing"]
