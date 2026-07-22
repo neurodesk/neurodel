@@ -1,0 +1,104 @@
+# =============================================================================
+# ONE-OFF: Backfill author metadata on already-published Zenodo records
+# =============================================================================
+# Corrects records credited to "Neurodesk Project" before the author-extraction
+# fix (PR #147). Edits each record's metadata IN PLACE via the Zenodo edit action
+# — same concept DOI, same version DOI, no new version.
+#
+# Manual dispatch only. Uses the existing repo secret ZENODO_TOKEN, so the token
+# never leaves the repo. Recommended sequence (workflow_dispatch inputs):
+#   1. apply = false                 → dry run, prints planned changes, no writes
+#   2. apply = true,  limit = 1      → canary: fix ONE record, then eyeball its DOI
+#   3. apply = true,  limit = 0      → full run
+#
+# DELETE this workflow + .github/scripts/backfill-zenodo-authors.py once the
+# remediation is complete (see .github/scripts/BACKFILL_RUNBOOK.md).
+# =============================================================================
+name: Backfill Zenodo Authors (one-off)
+
+on:
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: 'Actually edit records (unchecked = dry run, no changes)'
+        type: boolean
+        default: false
+      limit:
+        description: 'Max records to fix (0 = all; use 1 for a canary run)'
+        type: string
+        default: '0'
+      push_mapping:
+        description: 'On a full apply, push the updated doi-mapping.json back to ci-data'
+        type: boolean
+        default: false
+
+# Never run two backfills at once against the same Zenodo account.
+concurrency:
+  group: backfill-zenodo-authors
+  cancel-in-progress: false
+
+jobs:
+  backfill:
+    name: Backfill author metadata
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write   # only used by the optional push-to-ci-data step
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+
+      - name: Load doi-mapping.json from ci-data branch
+        run: |
+          if git fetch origin ci-data 2>/dev/null \
+             && git show origin/ci-data:doi-mapping.json > doi-mapping.json 2>/dev/null; then
+            echo "Loaded doi-mapping.json from ci-data branch"
+          else
+            echo "::error::Could not load doi-mapping.json from ci-data branch"
+            exit 1
+          fi
+
+      - name: Run backfill
+        env:
+          ZENODO_TOKEN: ${{ secrets.ZENODO_TOKEN }}
+        run: |
+          if [ -z "$ZENODO_TOKEN" ]; then
+            echo "::error::ZENODO_TOKEN secret is not set"
+            exit 1
+          fi
+          APPLY_FLAG=""
+          if [ "${{ inputs.apply }}" = "true" ]; then
+            APPLY_FLAG="--apply"
+          fi
+          echo "Mode: ${APPLY_FLAG:-dry-run}   limit=${{ inputs.limit }}"
+          python3 .github/scripts/backfill-zenodo-authors.py \
+            --doi-mapping doi-mapping.json \
+            --output-mapping doi-mapping.json \
+            --zenodo-token "$ZENODO_TOKEN" \
+            --limit "${{ inputs.limit }}" \
+            $APPLY_FLAG
+
+      - name: Upload updated doi-mapping.json
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+        with:
+          name: doi-mapping-backfilled
+          path: doi-mapping.json
+          retention-days: 7
+
+      # Only meaningful after a FULL apply (limit=0). Keeps the ci-data ledger's
+      # `authors` field in sync with Zenodo. Not required for correctness — the
+      # Zenodo record is the source of truth.
+      - name: Push updated doi-mapping.json to ci-data
+        if: ${{ inputs.apply == true && inputs.push_mapping == true && inputs.limit == '0' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          mv doi-mapping.json /tmp/doi-mapping.json
+          git fetch origin ci-data
+          git checkout ci-data
+          cp /tmp/doi-mapping.json doi-mapping.json
+          git add doi-mapping.json
+          if git diff --cached --quiet; then
+            echo "No changes to doi-mapping.json"
+          else
+            git commit -m "chore: backfill author metadata in doi-mapping.json"
+            git push origin ci-data
+          fi
