@@ -81,6 +81,12 @@ def _creator_names(creators):
     return [c.get("name", "") for c in creators or []]
 
 
+def fetch_live_creators(api_url, record_id, token):
+    """Read a published record's CURRENT creators (read-only, no edit)."""
+    dep = api_request(f"{api_url}/api/deposit/depositions/{record_id}", token=token)
+    return (dep.get("metadata") or {}).get("creators") or []
+
+
 def edit_record_metadata(api_url, record_id, new_creators, token):
     """Correct ONLY the creators of a published record; preserve all other metadata.
 
@@ -173,6 +179,14 @@ def main():
             continue
 
         try:
+            # Authoritative check against the LIVE record (the mapping can be stale):
+            # if Zenodo already has the right creators, skip. Makes re-runs idempotent.
+            if _creator_names(fetch_live_creators(args.api_url, record_id, args.zenodo_token)) == authors:
+                print("        already correct on Zenodo — skipping")
+                planned -= 1
+                skipped += 1
+                continue
+
             edit_record_metadata(args.api_url, record_id, new_creators, args.zenodo_token)
             entry["authors"] = authors
             corrected += 1
@@ -187,8 +201,10 @@ def main():
                     method="POST", token=args.zenodo_token, retries=1,
                 )
                 print(f"        rolled back draft for record {record_id}")
-            except Exception:
-                pass
+            except Exception as discard_exc:  # noqa: BLE001
+                print(f"        ::warning::could not roll back draft for record {record_id} "
+                      f"(may be left in edit state — clean up by hand): {discard_exc}",
+                      file=sys.stderr)
             print(f"        ::error:: failed to edit {record_id}: {exc}", file=sys.stderr)
 
     if args.apply and args.output_mapping:
