@@ -22,11 +22,14 @@ the existing repo secret `ZENODO_TOKEN` (the token never leaves the repo).
 ## Run it (Actions → "Backfill Zenodo Authors (one-off)" → Run workflow)
 Do the three dispatches in order, checking the logs/artifact between each:
 
-1. **Dry run** — inputs: `apply = false`. Prints the ~12 planned `old → new`
+1. **Dry run** — inputs: `apply = false`. Prints the **11** planned `old → new`
    creator changes and writes nothing. Confirm the list looks right.
-2. **Canary** — inputs: `apply = true`, `limit = 1`. Fixes ONE record. Open its
-   DOI on zenodo.org and confirm the creator is corrected and the **DOI is
-   unchanged**.
+   (`container_paths_neurodesk.ipynb` is intentionally skipped — the normal
+   pipeline re-publishes it with the correct author when this PR merges.)
+2. **Canary** — inputs: `apply = true`, `limit = 1`. Fixes ONE record. Open the
+   printed **`zenodo.org/records/<record_id>`** page (the version, not the concept
+   DOI) and confirm the creator is corrected and the record's DOI + publication
+   date are **unchanged**.
 3. **Full run** — inputs: `apply = true`, `limit = 0`. Fixes the rest.
    Optionally set `push_mapping = true` to sync the `authors` field back to the
    `ci-data` ledger (not required — Zenodo is the source of truth).

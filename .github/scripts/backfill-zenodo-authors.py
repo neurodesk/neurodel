@@ -16,8 +16,9 @@ For each mapping entry it re-extracts the author(s) from the current content fil
 and, if that differs from what the record carries, edits the *published* Zenodo
 record's metadata IN PLACE (Zenodo "edit" action → PUT metadata → publish). This
 keeps the same concept DOI and the same version DOI — no new version is minted.
-Metadata is rebuilt with the same ``build_zenodo_metadata`` the normal publisher
-uses, so a corrected record is identical to one freshly published with the fix.
+It is read-modify-write: the record's *current* metadata is read and only the
+``creators`` field is changed, so publication_date, description, keywords,
+communities, related_identifiers, etc. are preserved (not reset or dropped).
 
 Safety
 ------
@@ -62,34 +63,46 @@ _PUBLISH_PATH = os.path.join(os.path.dirname(__file__), "publish-zenodo.py")
 _spec = importlib.util.spec_from_file_location("publish_zenodo", _PUBLISH_PATH)
 _pz = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(_pz)
-build_zenodo_metadata = _pz.build_zenodo_metadata
 api_request = _pz.api_request
-detect_content_type = _pz.detect_content_type
 
-SKIP_KEYS = {"books/examples/template.ipynb"}
+# Records we deliberately do NOT touch, and why.
+SKIP_KEYS = {
+    "books/examples/template.ipynb":
+        "template scaffolding — its DOI shouldn't exist; handle by hand",
+    # PR #148's typo fix changes this notebook's source, so merging re-publishes it
+    # as a NEW version with the correct author via the normal pipeline. Editing it
+    # here would race that and touch a now-stale record_id.
+    "books/examples/workflows/container_paths_neurodesk.ipynb":
+        "handled by the normal publish pipeline (new version on merge)",
+}
 
 
 def _creator_names(creators):
     return [c.get("name", "") for c in creators or []]
 
 
-def edit_record_metadata(api_url, record_id, metadata, token):
-    """Unlock a published record, replace its metadata, and re-publish (same DOI)."""
-    # 1. Move the published record into an editable draft state.
-    api_request(
-        f"{api_url}/api/deposit/depositions/{record_id}/actions/edit",
-        method="POST", token=token,
-    )
-    # 2. Replace metadata.
-    api_request(
-        f"{api_url}/api/deposit/depositions/{record_id}",
-        method="PUT", data=json.dumps(metadata).encode(), token=token,
-    )
-    # 3. Re-publish. Same version — no new DOI is minted.
-    api_request(
-        f"{api_url}/api/deposit/depositions/{record_id}/actions/publish",
-        method="POST", token=token,
-    )
+def edit_record_metadata(api_url, record_id, new_creators, token):
+    """Correct ONLY the creators of a published record; preserve all other metadata.
+
+    Read-modify-write: unlock the record, read its *current* metadata, replace only
+    the ``creators`` field, then re-publish. Keeps the same concept + version DOI
+    (no new version) and leaves publication_date, description, keywords,
+    communities, related_identifiers, etc. exactly as they were — so it never
+    resets the publication date or clobbers a manual edit.
+    """
+    base = f"{api_url}/api/deposit/depositions/{record_id}"
+    # 1. Unlock the published record into an editable draft state.
+    api_request(f"{base}/actions/edit", method="POST", token=token)
+    # 2. Read the record's CURRENT metadata and change only the creators.
+    deposition = api_request(base, token=token)
+    metadata = dict(deposition.get("metadata") or {})
+    if not metadata:
+        raise RuntimeError(f"no metadata returned for record {record_id}")
+    metadata["creators"] = new_creators
+    # 3. Write it back and re-publish (same version, no new DOI is minted).
+    api_request(base, method="PUT",
+                data=json.dumps({"metadata": metadata}).encode(), token=token)
+    api_request(f"{base}/actions/publish", method="POST", token=token)
 
 
 def main():
@@ -101,7 +114,6 @@ def main():
     ap.add_argument("--api-url", default="https://zenodo.org")
     ap.add_argument("--repo-root", default=".",
                     help="Repo root that the mapping keys (books/...) are relative to.")
-    ap.add_argument("--site-base-url", default="https://neurodesk.org/edu")
     ap.add_argument("--apply", action="store_true",
                     help="Actually edit records. Without this it is a dry run.")
     ap.add_argument("--limit", type=int, default=0,
@@ -122,8 +134,7 @@ def main():
         content_path = os.path.join(args.repo_root, key)
 
         if key in SKIP_KEYS:
-            print(f"SKIP  {key}: template scaffolding — delete/deprecate its DOI by hand "
-                  f"({entry.get('doi_url','')})")
+            print(f"SKIP  {key}: {SKIP_KEYS[key]} ({entry.get('doi_url','')})")
             skipped += 1
             continue
         if not record_id:
@@ -151,27 +162,33 @@ def main():
             continue  # already correct
 
         planned += 1
+        # Log the version-specific record URL (not the concept doi_url), so a canary
+        # reviewer verifies the exact object that was edited.
+        record_url = f"{args.api_url}/records/{record_id}"
         print(f"FIX   {key}")
-        print(f"        record_id={record_id}  doi={entry.get('doi_url','')}")
+        print(f"        {record_url}  (record_id={record_id})")
         print(f"        creators: {old_names or ['Neurodesk Project (fallback)']} -> {authors}")
 
         if not args.apply:
             continue
 
-        content_type = entry.get("content_type") or detect_content_type(content_path)
-        content_name = os.path.basename(content_path).rsplit(".", 1)[0]
-        page_url = entry.get("website_url") or _pz.build_content_page_url(key, args.site_base_url)
-        metadata = build_zenodo_metadata(
-            content_name=content_name, content_type=content_type,
-            content_key=key, page_url=page_url, creators=new_creators,
-        )
         try:
-            edit_record_metadata(args.api_url, record_id, metadata, args.zenodo_token)
+            edit_record_metadata(args.api_url, record_id, new_creators, args.zenodo_token)
             entry["authors"] = authors
             corrected += 1
-            print("        corrected.")
+            print("        corrected (creators only; all other metadata preserved).")
         except Exception as exc:  # noqa: BLE001 — one bad record shouldn't abort the batch
             failed += 1
+            # Best-effort: discard any half-open draft so a broken edit never shadows
+            # the live published record.
+            try:
+                api_request(
+                    f"{args.api_url}/api/deposit/depositions/{record_id}/actions/discard",
+                    method="POST", token=args.zenodo_token, retries=1,
+                )
+                print(f"        rolled back draft for record {record_id}")
+            except Exception:
+                pass
             print(f"        ::error:: failed to edit {record_id}: {exc}", file=sys.stderr)
 
     if args.apply and args.output_mapping:
