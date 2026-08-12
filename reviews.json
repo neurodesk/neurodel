@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generated_at": "2026-08-12T00:46:45+00:00",
+  "generated_at": "2026-08-12T07:02:09+00:00",
   "source": {
     "type": "github-issues",
     "repo": "neurodesk/neurodeskedu-reviews"
@@ -474,17 +474,6 @@
       "source_path": "examples/functional_imaging/fmriprep.ipynb",
       "review_content_hash": "e3a791c1545403a51fd83ccfa385530cac7a5cb6154a480dc233f8e61c46a89f"
     },
-    "f578f799-150b-4e54-a9d7-e168596d782f": {
-      "state": "reviewed",
-      "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews/issues/24",
-      "reviewers": [
-        "thomshaw92"
-      ],
-      "reviewed_at": "2026-03-06",
-      "review_commit_sha": "9063ec7f355f21069f10cfa498c87b7a28feee09",
-      "source_path": "examples/structural_imaging/brain_extraction_different_tools.ipynb",
-      "review_content_hash": "9051bf11ff532e915dcb88f74a4a37eb61aad04bbd34126a9dfe084a1f7c2468"
-    },
     "71fd5ecb-23f1-424c-9701-3beb2027db7d": {
       "state": "reviewed",
       "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews/issues/45",
@@ -495,6 +484,17 @@
       "review_commit_sha": "fa4d6c4071dc8c55cc2c367b9c05795bd27122d2",
       "source_path": "examples/functional_imaging/AFNI_processing_task_based.ipynb",
       "review_content_hash": "034139e10a39570575f1d8f8f5792fd950500e156d6f59cc80700de5a2c4872f"
+    },
+    "f578f799-150b-4e54-a9d7-e168596d782f": {
+      "state": "reviewed",
+      "review_issue_url": "https://github.com/neurodesk/neurodeskedu-reviews/issues/24",
+      "reviewers": [
+        "thomshaw92"
+      ],
+      "reviewed_at": "2026-03-06",
+      "review_commit_sha": "9063ec7f355f21069f10cfa498c87b7a28feee09",
+      "source_path": "examples/structural_imaging/brain_extraction_different_tools.ipynb",
+      "review_content_hash": "9051bf11ff532e915dcb88f74a4a37eb61aad04bbd34126a9dfe084a1f7c2468"
     },
     "20e4499d-61ef-44df-a5c1-6fd48cc5d23f": {
       "state": "reviewed",
