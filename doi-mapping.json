@@ -372,25 +372,25 @@
     "doi_url": "https://doi.org/10.5281/zenodo.18728774",
     "website_url": "https://neurodesk.org/edu/examples/diffusion_imaging/DIPY_2.html",
     "concept_recid": "18728774",
-    "record_id": "22135628",
+    "record_id": "22149283",
     "content_type": "notebook",
-    "checksum": "ab455edec59a9f6888a559ebd7915fb1",
+    "checksum": "38d8cf62e5b26f75854f93aa0baa0fda",
     "authors": [
       "Monika Doerig"
     ],
-    "updated_at": "2026-08-28T01:23:46Z"
+    "updated_at": "2026-08-28T18:18:37Z"
   },
   "books/examples/diffusion_imaging/DIPY_1.ipynb": {
     "doi_url": "https://doi.org/10.5281/zenodo.18728776",
     "website_url": "https://neurodesk.org/edu/examples/diffusion_imaging/DIPY_1.html",
     "concept_recid": "18728776",
-    "record_id": "22135627",
+    "record_id": "22149282",
     "content_type": "notebook",
-    "checksum": "d10ba974d02c1d33517b68ed98199245",
+    "checksum": "770455c5e21a7052d4714e2587204a3a",
     "authors": [
       "Monika Doerig"
     ],
-    "updated_at": "2026-08-28T01:23:42Z"
+    "updated_at": "2026-08-28T18:18:29Z"
   },
   "books/examples/spectroscopy/lcmodel.ipynb": {
     "doi_url": "https://doi.org/10.5281/zenodo.18728778",
