@@ -1,0 +1,60 @@
+:root {
+  --nd-review-reviewed-bg: #0a7b34;
+  --nd-review-reviewed-fg: #ffffff;
+  --nd-review-inprogress-bg: #1d4ed8;
+  --nd-review-inprogress-fg: #ffffff;
+  --nd-review-unreviewed-bg: #6b7280;
+  --nd-review-unreviewed-fg: #ffffff;
+  --nd-review-stale-bg: #b45309;
+  --nd-review-stale-fg: #ffffff;
+  --nd-review-border: rgba(0, 0, 0, 0.12);
+}
+
+.nd-review-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1;
+  border: 1px solid var(--nd-review-border);
+}
+
+.nd-review-badge__dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.9;
+}
+
+.nd-review-badge--reviewed {
+  background: var(--nd-review-reviewed-bg);
+  color: var(--nd-review-reviewed-fg);
+}
+
+.nd-review-badge--in-progress,
+.nd-review-badge--under-review,
+.nd-review-badge--under_review {
+  background: var(--nd-review-inprogress-bg);
+  color: var(--nd-review-inprogress-fg);
+}
+
+.nd-review-badge--unreviewed {
+  background: var(--nd-review-unreviewed-bg);
+  color: var(--nd-review-unreviewed-fg);
+}
+
+.nd-review-badge--stale {
+  background: var(--nd-review-stale-bg);
+  color: var(--nd-review-stale-fg);
+}
+
+.nd-review-badge a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-weight: 700;
+}

@@ -1,0 +1,1766 @@
+<!DOCTYPE html><html lang="en" data-content_root="../../"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="nd-review-id" content="e2377815-3e92-4201-9ab2-f989efaabf60">
+
+    <title>Snakemake — Neurodesk</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079">
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=3c74b3bc">
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be">
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b">
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css">
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6">
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e">
+    <link rel="stylesheet" type="text/css" href="../../_static/review-badge.css?v=66080ea3">
+  
+  <!-- So that users can add custom icons -->
+  <script defer="" src="../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb">
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb">
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-4Z9774J59Y"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('consent', 'default', {
+                    'ad_storage': 'denied',
+                    'ad_user_data': 'denied',
+                    'ad_personalization': 'denied',
+                    'analytics_storage': 'denied'
+                });
+                gtag('js', new Date());
+                gtag('config', 'G-4Z9774J59Y');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('consent', 'default', {
+                    'ad_storage': 'denied',
+                    'ad_user_data': 'denied',
+                    'ad_personalization': 'denied',
+                    'analytics_storage': 'denied'
+                });
+                gtag('js', new Date());
+                gtag('config', 'G-4Z9774J59Y');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples/workflows/snakemake';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="../../_static/review-badge.js?v=e2204dae"></script>
+    <link rel="canonical" href="https://neurodesk.org/edu/examples/workflows/snakemake.html">
+    <link rel="icon" href="../../_static/neurodesk_logo.svg">
+    <link rel="index" title="Index" href="../../genindex.html">
+    <link rel="search" title="Search" href="../../search.html">
+    <link rel="next" title="Tutorials" href="../../tutorials/intro.html">
+    <link rel="prev" title="Pydra" href="pydra_preproc_ants.html">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="docsearch:language" content="en">
+  <meta name="docsearch:version" content="">
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  <meta name="author" content="Monika Doerig"><meta property="article:author" content="Monika Doerig"><meta name="citation_author" content="Monika Doerig"></head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" placeholder="Search..." aria-label="Search..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/neurodesk_logo.svg" class="logo__image only-light" alt="Neurodesk - Home">
+    <img src="../../_static/neurodesk_logo.svg" class="logo__image only-dark pst-js-only" alt="Neurodesk - Home">
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><ul class="navbar-icon-links" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://neurodesk.org" title="Return to neurodesk.org" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Return to neurodesk.org</span></a>
+        </li>
+</ul></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../intro.html">Examples</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../template.html">Example Notebook Template</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../diffusion_imaging/intro.html">Diffusion Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../diffusion_imaging/DIPY_1.html">Basic Tracking with DIPY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../diffusion_imaging/DIPY_2.html">Advanced Tracking with DIPY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../diffusion_imaging/Diffusion_TBSS_Demo.html">TBSS Tutorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../diffusion_imaging/MRtrix_1.html">MRtrix: Part 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../diffusion_imaging/MRtrix_2.html">MRtrix: Part 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../diffusion_imaging/MRtrix_3.html">MRtrix: Part 3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../diffusion_imaging/mrtrix3tissue.html">MRtrix3Tissue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../diffusion_imaging/qsiprep.html">QSIPrep</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../diffusion_imaging/qsirecon.html">QSIRecon</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../electrophysiology/intro.html">Electrophysiology</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../electrophysiology/eeg_with_mne.html">EEG Analysis with MNE</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../functional_imaging/intro.html">Functional Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/AFNI_preprocessing_only.html">AFNI Preprocessing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/AFNI_preprocessing_plus_glm.html">AFNI Preprocessing and GLM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/AFNI_preprocessing_plus_glm_group.html">AFNI Preprocessing &amp; Group Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/AFNI_processing_task_based.html">Processing task-based FMRI with AFNI and afni_proc.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/Demo_FEAT_HigherLevelStats.html">Scripted Higher-Level Analyses in FSL using FEAT derivatives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/Demo_fmriprep_FEAT.html">Scripted First-Level Analyses in FSL using fMRIPrep data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/FSL_preproc_glm.html">FSL Preprocessing and GLM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/FSLnets_course_practical.html">Resting state with FSLnets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/NiWrap.html">NiWrap and Connectome Workbench</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/deepretinotopy.html">DeepRetinotopy Toolbox</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/fMRI_tutorial_in_R_magic.html">Resting-State fMRI Analysis in R</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/first_and_second_level_spm.html">Nipype-SPM fMRI Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/fmriprep.html">fMRIprep</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/fsl_all_levels_flanker_nipype.html">Nipype-FSL fMRI Analysis</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/intro_to_preprocessing.html">Introduction to Preprocessing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/mri_vol2surf.html">FreeSurfer: mri_vol2surf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/process_five_echo_dataset.html">tedana: TE Dependent ANAlysis</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../quantitative_imaging/intro.html">Quantitative Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../quantitative_imaging/aslprep.html">ASLprep</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../quantitative_imaging/qsmxt.html">QSMxT</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../spectroscopy/intro.html">Spectroscopy</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../spectroscopy/lcmodel.html">MR Spectroscopy with LCModel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../spectroscopy/osprey.html">MR Spectroscopy with Osprey</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../structural_imaging/intro.html">Structural Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../structural_imaging/FSL_course_bet.html">FSL course - BET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structural_imaging/SYNcro.html">SYNcro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structural_imaging/brain_extraction_different_tools.html">Brain Extraction Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structural_imaging/brainageR.html">Brain Age Prediction with brainageR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structural_imaging/freesurfer-recon-all-clinical.html">FreeSurfer: recon-all-clinical</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structural_imaging/freesurfer.html">FreeSurfer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structural_imaging/sct_toolbox.html">SCT Toolbox</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="intro.html">Workflows</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="AA_Neurodesk_demo_tour.html">Neurodesk Tools Demo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MRIQC.html">MRIQC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Magic_commands.html">Magic Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PyBIDS.html">PyBIDS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="RISE_slideshow.html">RISE Slideshow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bids_conversion.html">BIDS conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="container_paths_neurodesk.html">Container Resource Paths on Neurodesk</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ipyniivue_ipywidgets.html">Ipyniivue and Ipywidgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nextflow_neurodesk.html">Nextflow in Neurodesk</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nipype_full.html">Nipype on Neurodesk</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nipype_short.html">Basic Nipype</a></li>
+<li class="toctree-l3"><a class="reference internal" href="papermill-slurm-submission-example.html">Papermill Slurm Job Submission</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pydra_preproc_ants.html">Pydra</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Snakemake</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../tutorials/intro.html">Tutorials</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../tutorials/about_neurodesk/intro.html">About Neurodesk</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/about_neurodesk/MySt_neurodesk.html">Citation and Resources</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/about_neurodesk/accessing_neurodesk_tools.html">Accessing Tools in Neurodesk</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../tutorials/electrophysiology/intro.html">Electrophysiology</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/electrophysiology/EEG_mne-python.html">Analysing EEG Data with MNE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/electrophysiology/fieldtrip.html">Analysing M/EEG Data with FieldTrip</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../tutorials/functional_imaging/intro.html">Functional Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/functional_imaging/connectomeWorkbench.html">Connectome Workbench</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/functional_imaging/fmriprep.html">Using fmriprep with neurodesk on an HPC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/functional_imaging/mriqc.html">Using mriqc with neurodesk on HPC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/functional_imaging/physio.html">PhysIO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/functional_imaging/physio_batch_workflow.html">A batch scripting example for PhysIO toolbox</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/functional_imaging/spm.html">Statistical Parametric Mapping (SPM)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../tutorials/multimodal_imaging/intro.html">Multimodal Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/multimodal_imaging/MFCSC.html">Using MFCSC</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../tutorials/open_data/intro.html">Open Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/open_data/datalad.html">datalad</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/open_data/osfclient.html">osfclient</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../tutorials/phase_processing/intro.html">Phase Processing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/phase_processing/swi.html">Susceptibility-Weighted Imaging (SWI)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/phase_processing/unwrapping.html">MRI Phase Unwrapping with ROMEO</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../tutorials/programming/intro.html">Programming</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/programming/conda.html">Conda environments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/programming/matlab.html">Matlab</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../tutorials/reproducibility/intro.html">Reproducibility</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/reproducibility/datalad-run.html">Reproducible script execution with DataLad</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../tutorials/spectroscopy/intro.html">Spectroscopy</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/spectroscopy/lcmodel.html">Spectroscopy with lcmodel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/spectroscopy/mrsiproc.html">Spectroscopy pipeline</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../tutorials/structural_imaging/intro.html">Structural Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/structural_imaging/freesurfer.html">FreeSurfer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/structural_imaging/structuralconnectivity.html">Structural connectivity dMRI</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../contribute/intro.html">Contribute</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../contribute/examples.html">Creating Example Notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contribute/tutorials.html">Creating Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contribute/review.html">Reviewing for NeurodeskEDU</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement" class="flat" data-ea-publisher="readthedocs" data-ea-type="readthedocs-sidebar" data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons"><a href="https://doi.org/10.5281/zenodo.20653250" target="_blank" rel="noopener noreferrer" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button">https://doi.org/10.5281/zenodo.20653250</a>
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://play.neurodesk.cloud.edu.au/hub/user-redirect/git-pull?repo=https%3A//github.com/neurodesk/neurodeskedu&amp;urlpath=lab/tree/neurodeskedu/books/examples/workflows/snakemake.ipynb&amp;branch=main" target="_blank" class="btn btn-sm dropdown-item" title="Launch on Run in Australia" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Run in Australia logo" src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">Run in Australia</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://play-europe.neurodesk.org/hub/user-redirect/git-pull?repo=https%3A//github.com/neurodesk/neurodeskedu&amp;urlpath=lab/tree/neurodeskedu/books/examples/workflows/snakemake.ipynb&amp;branch=main" target="_blank" class="btn btn-sm dropdown-item" title="Launch on Run in Europe" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Run in Europe logo" src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">Run in Europe</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://play-america.neurodesk.org/hub/user-redirect/git-pull?repo=https%3A//github.com/neurodesk/neurodeskedu&amp;urlpath=lab/tree/neurodeskedu/books/examples/workflows/snakemake.ipynb&amp;branch=main" target="_blank" class="btn btn-sm dropdown-item" title="Launch on Run in America" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Run in America logo" src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">Run in America</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://play-europe.neurodesk.org/hub/user-redirect/git-pull?repo=https%3A//github.com/neurodesk/neurodeskedu&amp;urlpath=lab/tree/neurodeskedu/books/examples/workflows/snakemake.ipynb&amp;branch=main" target="_blank" class="btn btn-sm dropdown-item" title="Launch on Run in Global Server 1" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Run in Global Server 1 logo" src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">Run in Global Server 1</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://edu.neurodesk.org/hub/user-redirect/git-pull?repo=https%3A//github.com/neurodesk/neurodeskedu&amp;urlpath=lab/tree/neurodeskedu/books/examples/workflows/snakemake.ipynb&amp;branch=main" target="_blank" class="btn btn-sm dropdown-item" title="Launch on Run in Global Server 2" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Run in Global Server 2 logo" src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">Run in Global Server 2</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/examples/workflows/snakemake.ipynb" target="_blank" class="btn btn-sm btn-download-source-button dropdown-item" title="Download source file" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()" class="btn btn-sm btn-download-pdf-button dropdown-item" title="Print to PDF" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()" class="btn btn-sm btn-fullscreen-button pst-navbar-icon" title="Fullscreen mode" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark" title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto" title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Snakemake</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citation-and-resources">Citation and Resources</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-included-in-this-workflow">Tools included in this workflow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#educational-resources">Educational resources</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-snakemake-and-why-use-it-on-neurodesk">1. What is Snakemake, and why use it on Neurodesk?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-software-and-import-libraries">2. Load software and import libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-layout-and-data-preparation">3. Project layout and data preparation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#layout">3.1. Layout</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-download">3.2. Data download</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bids-sanity-check-with-pybids">3.3. BIDS sanity check with pybids</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-workflow">4. The workflow</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rules-common-smk-constants">4.1. <code class="docutils literal notranslate"><span class="pre">rules/common.smk</span></code> — constants</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rules-bet-smk-brain-extraction">4.2. <code class="docutils literal notranslate"><span class="pre">rules/bet.smk</span></code> — brain extraction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rules-fast-smk-tissue-segmentation">4.3. <code class="docutils literal notranslate"><span class="pre">rules/fast.smk</span></code> — tissue segmentation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rules-qc-smk-qc-figure-via-the-script-directive">4.4. <code class="docutils literal notranslate"><span class="pre">rules/qc.smk</span></code> — QC figure via the <code class="docutils literal notranslate"><span class="pre">script:</span></code> directive</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-scripts-qc-py">4.5. <code class="docutils literal notranslate"><span class="pre">workflow/scripts/qc.py</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-snakefile-the-entry-point">4.6. <code class="docutils literal notranslate"><span class="pre">workflow/Snakefile</span></code> — the entry point</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lint-the-workflow">5. Lint the workflow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualise-the-workflow">6. Visualise the workflow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dry-run-the-pipeline">7. Dry-run the pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-pipeline">8. Run the pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inspect-outputs">9. Inspect outputs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling-beyond-a-notebook">10. Scaling beyond a notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependencies-in-jupyter-python">Dependencies in Jupyter/Python</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="snakemake">
+<h1>Snakemake<a class="headerlink" href="#snakemake" title="Link to this heading">#</a></h1>
+<p>A small structural-MRI pipeline using FSL built with <strong>Snakemake</strong> — a workflow manager — running on Neurodesk. The workflow is split across <code class="docutils literal notranslate"><span class="pre">workflow/Snakefile</span></code> and per-step rule files in <code class="docutils literal notranslate"><span class="pre">workflow/rules/</span></code>.</p>
+<p><strong>Author:</strong> Monika Doerig</p>
+<p><strong>Date:</strong> 11 June 2026</p>
+<p><strong>License:</strong></p>
+<div style="margin-top: 10px;">
+    <a href="https://opensource.org/licenses/MIT" target="_blank" style="color: #0066cc;">
+        <i class="fas fa-balance-scale"></i> MIT License
+    </a>
+</div>
+<p><strong>Note:</strong> This notebook uses neuroimaging tools from Neurocontainers; those tools retain their original licenses. Please see <a href="https://neurodesk.org/overview/how-to-cite-us/" target="_blank" style="color: #0066cc;">Neurodesk citation guidelines</a> for details.</p>
+<details style="border-left: 4px solid #f0a500; background-color: rgba(240, 165, 0, 0.08); border-radius: 4px; padding: 0.75em 1em; margin: 1em 0;">
+  <summary style="cursor: pointer; display: flex; justify-content: space-between; align-items: center; list-style: none; font-size: 1.1em;">
+    <strong style="color: black;">✨ Use of AI</strong>
+    <span style="color: black !important; font-size: 1.1em;">▽</span>
+  </summary>
+  <p style="font-size: 1.1em;">This notebook was generated with assistance from <em>Anthropic's Claude (via Claude Code)</em> across several iterations and then revised by the author. The author reviewed the final content and takes responsibility for it.</p>
+</details><section id="citation-and-resources">
+<h2>Citation and Resources<a class="headerlink" href="#citation-and-resources" title="Link to this heading">#</a></h2>
+<section id="tools-included-in-this-workflow">
+<h3>Tools included in this workflow<a class="headerlink" href="#tools-included-in-this-workflow" title="Link to this heading">#</a></h3>
+<p><strong>Snakemake</strong></p>
+<ul class="simple">
+<li><p>Mölder F, Jablonski KP, Letcher B et al. Sustainable data analysis with Snakemake [version 3; peer review: 2 approved]. F1000Research 2025, 10:33 <a class="reference external" href="https://doi.org/10.12688/f1000research.29032.3">https://doi.org/10.12688/f1000research.29032.3</a></p></li>
+<li><p>Documentation: <a class="reference external" href="https://snakemake.readthedocs.io/">snakemake.readthedocs.io</a></p></li>
+</ul>
+<p><strong>FSL</strong> (BET + FAST)</p>
+<ul class="simple">
+<li><p>Jenkinson, M., Beckmann, C. F., Behrens, T. E. J., Woolrich, M. W., &amp; Smith, S. M. (2012). FSL. <em>NeuroImage</em>, 62(2), 782–790. <a class="reference external" href="https://doi.org/10.1016/j.neuroimage.2011.09.015">https://doi.org/10.1016/j.neuroimage.2011.09.015</a></p></li>
+<li><p>Smith, S. M. (2002). Fast robust automated brain extraction. <em>Human Brain Mapping</em>, 17(3), 143–155. <a class="reference external" href="https://doi.org/10.1002/hbm.10062">https://doi.org/10.1002/hbm.10062</a></p></li>
+<li><p>Zhang, Y., Brady, M., &amp; Smith, S. (2001). Segmentation of brain MR images through a hidden Markov random field model and the expectation-maximization algorithm. <em>IEEE Transactions on Medical Imaging</em>, 20(1), 45–57. <a class="reference external" href="https://doi.org/10.1109/42.906424">https://doi.org/10.1109/42.906424</a></p></li>
+</ul>
+</section>
+<section id="dataset">
+<h3>Dataset<a class="headerlink" href="#dataset" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Gorgolewski KJ, Storkey A, Bastin ME, Whittle IR, Wardlaw JM, and Pernet CR (1970). A test-retest fMRI dataset for motor, language and spatial attention functions. . OpenNeuro. [Dataset] doi: <a class="reference external" href="https://openneuro.org/datasets/ds000114/versions/1.0.2">doi:10.18112/openneuro.ds000114.v1.0.2</a></p></li>
+</ul>
+</section>
+<section id="educational-resources">
+<h3>Educational resources<a class="headerlink" href="#educational-resources" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Mannion, D. J., Quiroga, M., Paul, J. M., &amp; Garrido, M. (2026, May 13). Orchestrating neuroimaging data processing using the ‘Snakemake’ workflow manager. Retrieved from <a class="reference external" href="https://osf.io/preprints/psyarxiv/fmdvn_v2">osf.io/preprints/psyarxiv/fmdvn_v2</a></p></li>
+<li><p><a class="reference external" href="https://github.com/unimelbmdap/snakemake_paper_demo_workflow">GitHub Repository snakemake_paper_demo_workflow</a></p></li>
+<li><p><a class="reference external" href="https://unimelbmdap.github.io/neuroimaging_snakemake_tutorial/">Snakemake in neuroimaging: a worked example</a></p></li>
+</ul>
+</section>
+</section>
+<section id="what-is-snakemake-and-why-use-it-on-neurodesk">
+<h2>1. What is Snakemake, and why use it on Neurodesk?<a class="headerlink" href="#what-is-snakemake-and-why-use-it-on-neurodesk" title="Link to this heading">#</a></h2>
+<p><strong>Snakemake</strong> is a <em>file-based</em> workflow management system: you declare rules of the form <em>“to produce output X, run command C on input Y,”</em> and Snakemake works out the dependency graph and the run order.
+It’s heavily inspired by GNU Make — wildcards, resumability via file timestamps, and parallel execution are core Make features too. Snakemake’s value-add is bringing that model to a Python-based syntax with tooling built for scientific pipelines:</p>
+<ul class="simple">
+<li><p><strong>Wildcards</strong> — write a rule once, run it across many subjects (<code class="docutils literal notranslate"><span class="pre">sub-{subject}_T1w.nii.gz</span></code>).</p></li>
+<li><p><strong>DAG resolution + visualisation</strong> — Snakemake plans the whole workflow and can draw it for you.</p></li>
+<li><p><strong>Resumability</strong> — re-running only redoes what’s changed, based on file timestamps.</p></li>
+<li><p><strong>Parallel execution</strong> — out-of-the-box across local cores, or across cluster nodes via SLURM/Kubernetes/cloud profiles.</p></li>
+<li><p><strong>Native module support</strong> — the <code class="docutils literal notranslate"><span class="pre">envmodules:</span></code> directive lets each rule declare its own <em>Lmod modules</em>, which maps cleanly onto Neurodesk’s module system.</p></li>
+<li><p><strong>Modular layout</strong> — a top-level <code class="docutils literal notranslate"><span class="pre">Snakefile</span></code> can <code class="docutils literal notranslate"><span class="pre">include:</span></code> per-step rule files (<code class="docutils literal notranslate"><span class="pre">workflow/rules/&lt;step&gt;.smk</span></code>), so a real workflow stays readable as it grows.</p></li>
+</ul>
+<p>Other workflow engines (Nextflow, Nipype, Pydra) tackle the same problem with different ergonomics. Snakemake’s particular fit for Neurodesk comes from two things: <code class="docutils literal notranslate"><span class="pre">envmodules:</span></code> lets each rule pin its own software version against Neurodesk’s Lmod tree, and the same Snakefile runs identically from a Jupyter cell during development and on SLURM when you scale out. You don’t rewrite the workflow to move between scales — only the executor flag changes.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>How this notebook handles tool loading.</strong> We do <strong>not</strong> pre-load any modules in this notebook. Each Snakemake rule declares its own modules via the <code class="docutils literal notranslate"><span class="pre">envmodules:</span></code> directive, and we run Snakemake with <code class="docutils literal notranslate"><span class="pre">--use-envmodules</span></code>. This is the idiomatic pattern — rules are self-describing — and the same Snakefile runs unchanged on a single laptop or across a SLURM cluster.</p>
+<p>A simpler alternative is to pre-load FSL once at the notebook level (Python: <code class="docutils literal notranslate"><span class="pre">await</span> <span class="pre">module.load('fsl/6.0.7.18')</span></code>) and let rules invoke FSL commands directly without a module load prefix. That works because the rule subprocess inherits the Python kernel’s environment — including the <code class="docutils literal notranslate"><span class="pre">PATH</span></code> extension that
+<code class="docutils literal notranslate"><span class="pre">module.load</span></code> just made.</p>
+</div>
+</section>
+<section id="load-software-and-import-libraries">
+<h2>2. Load software and import libraries<a class="headerlink" href="#load-software-and-import-libraries" title="Link to this heading">#</a></h2>
+<p>We do <strong>not</strong> load any neuroimaging modules here (which is different from most other example notebooks on NeurodeskEDU). Each Snakemake rule will load its own modules at execution time via the <code class="docutils literal notranslate"><span class="pre">envmodules:</span></code> directive.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">module</span>
+<span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>  <span class="c1"># should be empty / no neuroimaging tools loaded</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s install python packages and import them:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+<span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">nilearn</span><span class="o">==</span><span class="mf">0.13.1</span> <span class="n">nibabel</span><span class="o">==</span><span class="mf">5.4.2</span> <span class="n">pybids</span><span class="o">==</span><span class="mf">0.22.0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">SVG</span><span class="p">,</span> <span class="n">Image</span><span class="p">,</span> <span class="n">display</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">bids</span><span class="w"> </span><span class="kn">import</span> <span class="n">BIDSLayout</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">nibabel</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nilearn</span><span class="w"> </span><span class="kn">import</span> <span class="n">plotting</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="project-layout-and-data-preparation">
+<h2>3. Project layout and data preparation<a class="headerlink" href="#project-layout-and-data-preparation" title="Link to this heading">#</a></h2>
+<section id="layout">
+<h3>3.1. Layout<a class="headerlink" href="#layout" title="Link to this heading">#</a></h3>
+<p>We work inside a dedicated directory <code class="docutils literal notranslate"><span class="pre">snakemake_demo/</span></code>. The full tree will be shown after the workflow has run — the cell below creates only the two scaffolding directories.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>snakemake_demo/
+├── workflow/
+│   ├── Snakefile             # entry point: includes + rule all
+│   ├── rules/
+│   │   ├── common.smk        # shared constants + T1_PATH
+│   │   ├── bet.smk           # FSL bet
+│   │   ├── fast.smk          # FSL fast
+│   │   └── qc.smk            # 3-panel QC figure
+│   └── scripts/
+│       └── qc.py             # consumes the snakemake-object API
+├── ds000114/                 # raw data (DataLad-managed)
+├── results/                  # BIDS-derivatives-style outputs
+└── logs/                     # per-rule stdout/stderr
+</pre></div>
+</div>
+<p>Splitting one rule per <code class="docutils literal notranslate"><span class="pre">.smk</span></code> file means each step can be read, reviewed, and tested in isolation. The top-level <code class="docutils literal notranslate"><span class="pre">Snakefile</span></code> becomes a one-screen summary for the pipeline.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">workdir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">'snakemake_demo'</span><span class="p">)</span>
+<span class="p">(</span><span class="n">workdir</span> <span class="o">/</span> <span class="s1">'workflow'</span> <span class="o">/</span> <span class="s1">'rules'</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">(</span><span class="n">workdir</span> <span class="o">/</span> <span class="s1">'workflow'</span> <span class="o">/</span> <span class="s1">'scripts'</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Working directory:'</span><span class="p">,</span> <span class="n">workdir</span><span class="o">.</span><span class="n">resolve</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Working directory: /home/jovyan/workspace/books/examples/workflows/snakemake_demo
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="data-download">
+<h3>3.2. Data download<a class="headerlink" href="#data-download" title="Link to this heading">#</a></h3>
+<p>We pull the <strong>ds000114</strong> dataset via DataLad. <code class="docutils literal notranslate"><span class="pre">datalad</span> <span class="pre">install</span></code> clones the dataset metadata (creating broken git-annex symlinks for every file), then <code class="docutils literal notranslate"><span class="pre">datalad</span> <span class="pre">get</span></code> fetches the actual T1w content for the three subjects we’ll process.</p>
+<div class="cell tag_scroll-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+cd snakemake_demo
+[ -d ds000114 ] || datalad install https://github.com/OpenNeuroDatasets/ds000114.git
+for s in 01 02 03; do
+    datalad get -d ds000114 ds000114/sub-${s}/ses-test/anat/sub-${s}_ses-test_T1w.nii.gz
+done
+ls -lh ds000114/sub-0{1,2,3}/ses-test/anat/*_T1w.nii.gz
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>install(ok): /home/jovyan/workspace/books/examples/workflows/snakemake_demo/ds000114 (dataset)
+get(ok): sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz (file) [from s3-PUBLIC...]
+get(ok): sub-02/ses-test/anat/sub-02_ses-test_T1w.nii.gz (file) [from s3-PUBLIC...]
+get(ok): sub-03/ses-test/anat/sub-03_ses-test_T1w.nii.gz (file) [from s3-PUBLIC...]
+lrwxrwxrwx 1 jovyan jovyan 143 Jul  8 10:02 ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz
+ -&gt; ../../../.git/annex/objects/QP/jm/MD5E-s8677710--d6820f6cb8fb965e864419c14f6a22d5.nii.gz/MD5E-s8
+677710--d6820f6cb8fb965e864419c14f6a22d5.nii.gz
+lrwxrwxrwx 1 jovyan jovyan 145 Jul  8 10:02 ds000114
+/sub-02/ses-test/anat/sub-02_ses-test_T1w.nii.gz -&gt; ../../../.git/annex/objects/qq/gm/MD5E-s10025785
+--0e790e210a275d76e3f2f4d895df6358.nii.gz/MD5E-s10025785--0e790e210a275d76e3f2f4d895df6358.nii.gz
+lr
+wxrwxrwx 1 jovyan jovyan 143 Jul  8 10:02 ds000114/sub-03/ses-test/anat/sub-03_ses-test_T1w.nii.gz -
+&gt; ../../../.git/annex/objects/P9/kj/MD5E-s7970968--75bb38265ea96864bfa0b012ba21b0b0.nii.gz/MD5E-s797
+0968--75bb38265ea96864bfa0b012ba21b0b0.nii.gz
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[INFO] Attempting a clone into /home/jovyan/workspace/books/examples/workflows/snakemake_demo/ds0001
+14 
+[INFO] Attempting to clone from https://github.com/OpenNeuroDatasets/ds000114.git to /home/jovya
+n/workspace/books/examples/workflows/snakemake_demo/ds000114
+[INFO] Start enumerating objects
+[INFO] Start counting objects
+[INFO] Start compressing objects
+[INFO] Start receiving objects
+[INFO] Start resolving deltas
+[INFO] Completed clone attempts for Dataset(/home/jovyan/workspace/books/examples/workflows/snakemak
+e_demo/ds000114)
+[INFO] Remote origin not usable by git-annex; setting annex-ignore
+[INFO] https://github.com/OpenNeuroDatasets/ds000114.git/config download failed: Not Found
+[INFO] Remote origin not usable by git-annex; setting annex-ignore
+[INFO] https://github.com/OpenNeuroDatasets/ds000114.git/config download failed: Not Found
+[INFO] access to 1 dataset sibling s3-PRIVATE not auto-enabled, enable with:
+| 		datalad siblings -d
+ "/home/jovyan/workspace/books/examples/workflows/snakemake_demo/ds000114" enable -s s3-PRIVATE
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="bids-sanity-check-with-pybids">
+<h3>3.3. BIDS sanity check with pybids<a class="headerlink" href="#bids-sanity-check-with-pybids" title="Link to this heading">#</a></h3>
+<p>Before we point a workflow at this dataset, a quick <code class="docutils literal notranslate"><span class="pre">BIDSLayout</span></code> query confirms it parses as BIDS and that the subjects we plan to process have the file type we expect. <code class="docutils literal notranslate"><span class="pre">validate=True</span></code> is pybids’ default: it uses an internal regex/schema to include only files whose names match BIDS patterns — non-matching files are silently excluded from the layout (no exception is raised for individual files; PyBIDS does still raise if the dataset root itself is non-BIDS, e.g. missing <code class="docutils literal notranslate"><span class="pre">dataset_description.json</span></code>). This is filename-level validation only; for full metadata/sidecar/inheritance auditing, run the standalone <a class="reference external" href="https://github.com/bids-standard/bids-validator">bids-validator</a> Node.js tool.</p>
+<p>See the dedicated <a class="reference internal" href="PyBIDS.html"><span class="std std-doc">PyBIDS notebook</span></a> for richer queries.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">layout</span> <span class="o">=</span> <span class="n">BIDSLayout</span><span class="p">(</span><span class="n">workdir</span> <span class="o">/</span> <span class="s1">'ds000114'</span><span class="p">)</span>  <span class="c1"># validate=True is the default</span>
+<span class="n">subjects</span> <span class="o">=</span> <span class="n">layout</span><span class="o">.</span><span class="n">get_subjects</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">subjects</span><span class="p">)</span><span class="si">}</span><span class="s1"> subjects in dataset; first few: </span><span class="si">{</span><span class="n">subjects</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">sub</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'01'</span><span class="p">,</span> <span class="s1">'02'</span><span class="p">,</span> <span class="s1">'03'</span><span class="p">]:</span>
+    <span class="n">t1s</span> <span class="o">=</span> <span class="n">layout</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">subject</span><span class="o">=</span><span class="n">sub</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s1">'T1w'</span><span class="p">,</span> <span class="n">extension</span><span class="o">=</span><span class="s1">'.nii.gz'</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s1">'file'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'sub-</span><span class="si">{</span><span class="n">sub</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">t1s</span><span class="p">)</span><span class="si">}</span><span class="s1"> T1w file(s)'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10 subjects in dataset; first few: ['01', '02', '03', '04', '05']
+
+sub-01: 2 T1w file(s)
+sub-02: 2 T1w file(s)
+sub-03: 2 T1w file(s)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="the-workflow">
+<h2>4. The workflow<a class="headerlink" href="#the-workflow" title="Link to this heading">#</a></h2>
+<p>We build the workflow up one file at a time, the same order Snakemake reads them:</p>
+<ol class="arabic simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">rules/common.smk</span></code></strong> — shared constants and the raw T1w path. Loaded first so every other rule can see them.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">rules/bet.smk</span></code></strong> — FSL <code class="docutils literal notranslate"><span class="pre">bet</span></code> for brain extraction. Its input is <code class="docutils literal notranslate"><span class="pre">T1_PATH</span></code> from <code class="docutils literal notranslate"><span class="pre">common.smk</span></code>.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">rules/fast.smk</span></code></strong> — FSL <code class="docutils literal notranslate"><span class="pre">fast</span></code> for 3-class tissue segmentation. Uses <code class="docutils literal notranslate"><span class="pre">shadow:</span> <span class="pre">"shallow"</span></code> to discard FAST’s many intermediate files.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">rules/qc.smk</span></code></strong> — a 3-panel QC figure. Uses the <code class="docutils literal notranslate"><span class="pre">script:</span></code> directive.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Snakefile</span></code></strong> — just <code class="docutils literal notranslate"><span class="pre">include:</span></code> directives and a one-line <code class="docutils literal notranslate"><span class="pre">rule</span> <span class="pre">all</span></code>.</p></li>
+</ol>
+<p>Outputs follow <a class="reference external" href="https://bids-specification.readthedocs.io/en/stable/derivatives/">BIDS-derivatives</a> conventions: <code class="docutils literal notranslate"><span class="pre">sub-XX_desc-brain_T1w.nii.gz</span></code> for the skull-stripped brain, <code class="docutils literal notranslate"><span class="pre">sub-XX_dseg.nii.gz</span></code> for the discrete segmentation. The QC PNGs use the same naming style (<code class="docutils literal notranslate"><span class="pre">sub-XX_desc-qc.png</span></code> in a <code class="docutils literal notranslate"><span class="pre">figures/</span></code> subdir) but live outside the strict spec, which doesn’t formally cover QC images.</p>
+<section id="rules-common-smk-constants">
+<h3>4.1. <code class="docutils literal notranslate"><span class="pre">rules/common.smk</span></code> — constants<a class="headerlink" href="#rules-common-smk-constants" title="Link to this heading">#</a></h3>
+<p>These constants live in their own file and are loaded first (via the <code class="docutils literal notranslate"><span class="pre">include:</span></code> directive at the top of the <code class="docutils literal notranslate"><span class="pre">Snakefile</span></code>), so every other rule can reference  <code class="docutils literal notranslate"><span class="pre">SUBJECTS</span></code>, <code class="docutils literal notranslate"><span class="pre">BIDS_ROOT</span></code>, <code class="docutils literal notranslate"><span class="pre">SESSION</span></code>, and <code class="docutils literal notranslate"><span class="pre">T1_PATH</span></code> by name. Uppercase signals “constant” — Python convention.</p>
+<p><code class="docutils literal notranslate"><span class="pre">T1_PATH</span></code> is a Python f-string with two kinds of braces. Single braces around <code class="docutils literal notranslate"><span class="pre">{BIDS_ROOT}</span></code> and <code class="docutils literal notranslate"><span class="pre">{SESSION}</span></code> are interpolated immediately when the file is included — those are plain Python variables. The double braces around <code class="docutils literal notranslate"><span class="pre">{{subject}}</span></code> are an f-string escape: they survive interpolation as a literal <code class="docutils literal notranslate"><span class="pre">{subject}</span></code>, which Snakemake later sees as a wildcard and resolves per job. The result is one path template that’s partly Python-resolved at module load and partly Snakemake-resolved at run time.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">common_smk</span> <span class="o">=</span> <span class="s1">'''SUBJECTS = ["01", "02", "03"]</span>
+<span class="s1">BIDS_ROOT = "ds000114"</span>
+<span class="s1">SESSION = "ses-test"</span>
+
+<span class="s1"># Raw T1w path for one subject. The double-brace `{{subject}}` keeps the</span>
+<span class="s1"># Snakemake wildcard unsubstituted at module-load time.</span>
+<span class="s1">T1_PATH = f"</span><span class="si">{BIDS_ROOT}</span><span class="s1">/sub-{{subject}}/</span><span class="si">{SESSION}</span><span class="s1">/anat/sub-{{subject}}_</span><span class="si">{SESSION}</span><span class="s1">_T1w.nii.gz"</span>
+<span class="s1">'''</span>
+<span class="p">(</span><span class="n">workdir</span> <span class="o">/</span> <span class="s1">'workflow'</span> <span class="o">/</span> <span class="s1">'rules'</span> <span class="o">/</span> <span class="s1">'common.smk'</span><span class="p">)</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">common_smk</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">common_smk</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SUBJECTS = ["01", "02", "03"]
+BIDS_ROOT = "ds000114"
+SESSION = "ses-test"
+
+# Raw T1w path for one subject. The double-brace `{{subject}}` keeps the
+# Snakemake wildcard unsubstituted at module-load time.
+T1_PATH = f"{BIDS_ROOT}/sub-{{subject}}/{SESSION}/anat/sub-{{subject}}_{SESSION}_T1w.nii.gz"
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="rules-bet-smk-brain-extraction">
+<h3>4.2. <code class="docutils literal notranslate"><span class="pre">rules/bet.smk</span></code> — brain extraction<a class="headerlink" href="#rules-bet-smk-brain-extraction" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">input:</span></code> references <code class="docutils literal notranslate"><span class="pre">T1_PATH</span></code> from <code class="docutils literal notranslate"><span class="pre">common.smk</span></code> — Snakemake substitutes the <code class="docutils literal notranslate"><span class="pre">{subject}</span></code> wildcard at job-resolution time, so the path is written exactly once in the workflow. The output uses BIDS-derivative naming (<code class="docutils literal notranslate"><span class="pre">_desc-brain_T1w.nii.gz</span></code>). The shell line runs <code class="docutils literal notranslate"><span class="pre">bet</span></code> with <code class="docutils literal notranslate"><span class="pre">-f</span> <span class="pre">0.5</span></code> (the fractional intensity threshold, BET’s main tuning knob — lower values strip less aggressively) and redirects both stdout and stderr into the per-rule log via <code class="docutils literal notranslate"><span class="pre">&amp;&gt;</span> <span class="pre">{log}</span></code>. The verbose flag <code class="docutils literal notranslate"><span class="pre">-v</span></code> is added specifically so the log files aren’t empty.</p>
+<p>A docstring, a <code class="docutils literal notranslate"><span class="pre">log:</span></code>, <code class="docutils literal notranslate"><span class="pre">envmodules:</span></code>, <code class="docutils literal notranslate"><span class="pre">threads:</span></code> and a <code class="docutils literal notranslate"><span class="pre">resources:</span></code> hint together make this rule self-describing for cluster execution: switching to the SLURM executor later needs no extra configuration — each job already knows which Lmod module to load and how much memory to request.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bet_smk</span> <span class="o">=</span> <span class="s1">'''rule bet:</span>
+<span class="s1">    "Brain-extract T1w with FSL bet"</span>
+<span class="s1">    input:</span>
+<span class="s1">        img=T1_PATH,</span>
+<span class="s1">    output:</span>
+<span class="s1">        img="results/sub-</span><span class="si">{subject}</span><span class="s1">/anat/sub-</span><span class="si">{subject}</span><span class="s1">_desc-brain_T1w.nii.gz",</span>
+<span class="s1">    log:</span>
+<span class="s1">        "logs/bet/sub-</span><span class="si">{subject}</span><span class="s1">.log",</span>
+<span class="s1">    envmodules:</span>
+<span class="s1">        "fsl/6.0.7.18",</span>
+<span class="s1">    threads: 1</span>
+<span class="s1">    resources:</span>
+<span class="s1">        mem_mb=2000,</span>
+<span class="s1">    shell:</span>
+<span class="s1">        """</span>
+<span class="s1">        bet </span><span class="si">{input.img}</span><span class="s1"> </span><span class="si">{output.img}</span><span class="s1"> -f 0.5 -v &amp;&gt; </span><span class="si">{log}</span>
+<span class="s1">        """</span>
+<span class="s1">'''</span>
+<span class="p">(</span><span class="n">workdir</span> <span class="o">/</span> <span class="s1">'workflow'</span> <span class="o">/</span> <span class="s1">'rules'</span> <span class="o">/</span> <span class="s1">'bet.smk'</span><span class="p">)</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">bet_smk</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bet_smk</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rule bet:
+    "Brain-extract T1w with FSL bet"
+    input:
+        img=T1_PATH,
+    output:
+        img="results/sub-{subject}/anat/sub-{subject}_desc-brain_T1w.nii.gz",
+    log:
+        "logs/bet/sub-{subject}.log",
+    envmodules:
+        "fsl/6.0.7.18",
+    threads: 1
+    resources:
+        mem_mb=2000,
+    shell:
+        """
+        bet {input.img} {output.img} -f 0.5 -v &amp;&gt; {log}
+        """
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="rules-fast-smk-tissue-segmentation">
+<h3>4.3. <code class="docutils literal notranslate"><span class="pre">rules/fast.smk</span></code> — tissue segmentation<a class="headerlink" href="#rules-fast-smk-tissue-segmentation" title="Link to this heading">#</a></h3>
+<p>FSL <code class="docutils literal notranslate"><span class="pre">fast</span></code> is a tissue-segmentation tool. Given a brain-extracted T1w, it writes several files based on a user-supplied prefix (-o <prefix>): partial-volume probability maps for CSF/GM/WM (<code class="docutils literal notranslate"><span class="pre">_pve_0/1/2</span></code>), the discrete hard-classified map (<code class="docutils literal notranslate"><span class="pre">_seg</span></code>), and a couple of intermediate views (<code class="docutils literal notranslate"><span class="pre">_mixeltype</span></code>, <code class="docutils literal notranslate"><span class="pre">_pveseg</span></code>). We only consume <code class="docutils literal notranslate"><span class="pre">_seg</span></code>.</prefix></p>
+<p>Rather than declare every byproduct as an output, the rule uses <code class="docutils literal notranslate"><span class="pre">shadow:</span> <span class="pre">"shallow"</span></code>. Snakemake runs the job in a temporary directory and, when it finishes, copies only files listed in <code class="docutils literal notranslate"><span class="pre">output:</span></code> back into <code class="docutils literal notranslate"><span class="pre">results/</span></code>; everything else is discarded with the shadow dir. That keeps the derivatives tree clean without us having to know FAST’s full output surface.</p>
+<p>The rule also sets <code class="docutils literal notranslate"><span class="pre">threads:</span> <span class="pre">2</span></code>. Snakemake automatically sets <code class="docutils literal notranslate"><span class="pre">OMP_NUM_THREADS</span></code> (and related thread-count environment variables) to match this value, so <code class="docutils literal notranslate"><span class="pre">fast</span></code> - which respects OpenMP threading —  picks up the thread count without needing a manual export in the <code class="docutils literal notranslate"><span class="pre">shell:</span></code> block.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">params:</span> <span class="pre">prefix</span></code> entry is a small lambda that computes the prefix from <code class="docutils literal notranslate"><span class="pre">output.img</span></code> by stripping the BIDS suffix, so the prefix is the path FAST should write its byproducts under. The rule’s <code class="docutils literal notranslate"><span class="pre">shell:</span></code> block then passes it through as <code class="docutils literal notranslate"><span class="pre">fast</span> <span class="pre">-o</span> <span class="pre">{params.prefix}</span> <span class="pre">...</span></code>, so the prefix FAST sees is always derived from the same path Snakemake tracks. If we later renamed or relocated the output, the prefix would follow automatically. Writing the prefix as a hardcoded string would split that single source of truth into two places, and Snakemake’s linter also flags hardcoded <code class="docutils literal notranslate"><span class="pre">params:</span></code> values for exactly this portability reason.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fast_smk</span> <span class="o">=</span> <span class="s1">'''rule fast:</span>
+<span class="s1">    "3-class tissue segmentation with FSL fast"</span>
+<span class="s1">    input:</span>
+<span class="s1">        img=rules.bet.output.img,</span>
+<span class="s1">    output:</span>
+<span class="s1">        img="results/sub-</span><span class="si">{subject}</span><span class="s1">/anat/sub-</span><span class="si">{subject}</span><span class="s1">_dseg.nii.gz",</span>
+<span class="s1">    params:</span>
+<span class="s1">        prefix=lambda wildcards, output: output.img.removesuffix("_dseg.nii.gz"),</span>
+<span class="s1">    log:</span>
+<span class="s1">        "logs/fast/sub-</span><span class="si">{subject}</span><span class="s1">.log",</span>
+<span class="s1">    envmodules:</span>
+<span class="s1">        "fsl/6.0.7.18",</span>
+<span class="s1">    threads: 2</span>
+<span class="s1">    resources:</span>
+<span class="s1">        mem_mb=2000,</span>
+<span class="s1">    shadow: "shallow"</span>
+<span class="s1">    shell:</span>
+<span class="s1">        """</span>
+<span class="s1">        fast -t 1 -n 3 -v -o </span><span class="si">{params.prefix}</span><span class="s1"> </span><span class="si">{input.img}</span><span class="s1"> &amp;&gt; </span><span class="si">{log}</span>
+<span class="s1">        mv </span><span class="si">{params.prefix}</span><span class="s1">_seg.nii.gz </span><span class="si">{output.img}</span>
+<span class="s1">        """</span>
+<span class="s1">'''</span>
+<span class="p">(</span><span class="n">workdir</span> <span class="o">/</span> <span class="s1">'workflow'</span> <span class="o">/</span> <span class="s1">'rules'</span> <span class="o">/</span> <span class="s1">'fast.smk'</span><span class="p">)</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">fast_smk</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fast_smk</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rule fast:
+    "3-class tissue segmentation with FSL fast"
+    input:
+        img=rules.bet.output.img,
+    output:
+        img="results/sub-{subject}/anat/sub-{subject}_dseg.nii.gz",
+    params:
+        prefix=lambda wildcards, output: output.img.removesuffix("_dseg.nii.gz"),
+    log:
+        "logs/fast/sub-{subject}.log",
+    envmodules:
+        "fsl/6.0.7.18",
+    threads: 2
+    resources:
+        mem_mb=2000,
+    shadow: "shallow"
+    shell:
+        """
+        fast -t 1 -n 3 -v -o {params.prefix} {input.img} &amp;&gt; {log}
+        mv {params.prefix}_seg.nii.gz {output.img}
+        """
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="rules-qc-smk-qc-figure-via-the-script-directive">
+<h3>4.4. <code class="docutils literal notranslate"><span class="pre">rules/qc.smk</span></code> — QC figure via the <code class="docutils literal notranslate"><span class="pre">script:</span></code> directive<a class="headerlink" href="#rules-qc-smk-qc-figure-via-the-script-directive" title="Link to this heading">#</a></h3>
+<p>The QC rule generates a three-panel sanity-check figure for each subject: the raw T1w, the brain-extracted volume from BET, and the FAST segmentation overlaid on the brain. The point is to let a reader scroll through subjects and spot misregistrations or failed brain extractions at a glance, without opening any viewer.</p>
+<p>Snakemake’s <code class="docutils literal notranslate"><span class="pre">script:</span></code> directive is a better fit here than <code class="docutils literal notranslate"><span class="pre">shell:</span></code> because the QC step is logic-heavy (load NIfTI, slice volume, draw overlay, write PNG) and would be awkward to wedge into a one-line shell command. <code class="docutils literal notranslate"><span class="pre">script:</span></code> launches a Python interpreter that already has access to a global <code class="docutils literal notranslate"><span class="pre">snakemake</span></code> object, so <code class="docutils literal notranslate"><span class="pre">../scripts/qc.py</span></code> reads <code class="docutils literal notranslate"><span class="pre">snakemake.input.original</span></code>, <code class="docutils literal notranslate"><span class="pre">snakemake.input.brain</span></code>, <code class="docutils literal notranslate"><span class="pre">snakemake.input.seg</span></code>,<code class="docutils literal notranslate"><span class="pre">snakemake.output.png</span></code> and <code class="docutils literal notranslate"><span class="pre">snakemake.log[0]</span></code> directly — no argparse, no path strings passed on the command line, no risk of the wrapper and the script disagreeing about field order.</p>
+<p>The two derivative inputs are referenced via <code class="docutils literal notranslate"><span class="pre">rules.bet.output.img</span></code> and <code class="docutils literal notranslate"><span class="pre">rules.fast.output.img</span></code> — the same single-source-of-truth pattern used elsewhere in the pipeline. The QC rule never re-types a file path; it borrows the one already declared upstream, so renaming any output ripples through automatically.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc_smk</span> <span class="o">=</span> <span class="s1">'''rule qc:</span>
+<span class="s1">    "Produce a 3-panel QC figure (T1 → BET → FAST overlay)"</span>
+<span class="s1">    input:</span>
+<span class="s1">        original=T1_PATH,</span>
+<span class="s1">        brain=rules.bet.output.img,</span>
+<span class="s1">        seg=rules.fast.output.img,</span>
+<span class="s1">    output:</span>
+<span class="s1">        png="results/sub-</span><span class="si">{subject}</span><span class="s1">/figures/sub-</span><span class="si">{subject}</span><span class="s1">_desc-qc.png",</span>
+<span class="s1">    log:</span>
+<span class="s1">        "logs/qc/sub-</span><span class="si">{subject}</span><span class="s1">.log",</span>
+<span class="s1">    threads: 1</span>
+<span class="s1">    resources:</span>
+<span class="s1">        mem_mb=2000,</span>
+<span class="s1">    script:</span>
+<span class="s1">        "../scripts/qc.py"</span>
+<span class="s1">'''</span>
+<span class="p">(</span><span class="n">workdir</span> <span class="o">/</span> <span class="s1">'workflow'</span> <span class="o">/</span> <span class="s1">'rules'</span> <span class="o">/</span> <span class="s1">'qc.smk'</span><span class="p">)</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">qc_smk</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">qc_smk</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>rule qc:
+    "Produce a 3-panel QC figure (T1 → BET → FAST overlay)"
+    input:
+        original=T1_PATH,
+        brain=rules.bet.output.img,
+        seg=rules.fast.output.img,
+    output:
+        png="results/sub-{subject}/figures/sub-{subject}_desc-qc.png",
+    log:
+        "logs/qc/sub-{subject}.log",
+    threads: 1
+    resources:
+        mem_mb=2000,
+    script:
+        "../scripts/qc.py"
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="workflow-scripts-qc-py">
+<h3>4.5. <code class="docutils literal notranslate"><span class="pre">workflow/scripts/qc.py</span></code><a class="headerlink" href="#workflow-scripts-qc-py" title="Link to this heading">#</a></h3>
+<p>When Snakemake invokes a Python script via the <code class="docutils literal notranslate"><span class="pre">script:</span></code> directive, it prepends a preamble that defines a module-level <code class="docutils literal notranslate"><span class="pre">snakemake</span></code> object — no import is needed. (Linters and IDE type-checkers don’t know about this injection and will flag the bare snakemake reference; the <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">noqa:</span> <span class="pre">F821</span></code> comments in the script silence that noise.)</p>
+<p>The script reads <code class="docutils literal notranslate"><span class="pre">snakemake.input.&lt;name&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">snakemake.output.&lt;name&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">snakemake.log[0]</span></code> directly, then renders a three-panel figure with <code class="docutils literal notranslate"><span class="pre">nilearn</span></code>: the original T1w, the BET-extracted brain, and the FAST tissue segmentation. For each subject the axial cut is placed at the z-coordinate of the brain’s centre of mass (computed in millimetres via the BET affine), so the slice always lands inside the brain even though subjects sit at different positions in native space. The two anatomical panels (<code class="docutils literal notranslate"><span class="pre">plot_anat</span></code>) clamp <em>vmax</em> to the 99th percentile of non-zero voxels — that keeps bright outliers and large empty backgrounds from washing out contrast. The third panel (<code class="docutils literal notranslate"><span class="pre">plot_roi</span></code>) overlays the discrete FAST labels (1 = CSF, 2 = GM, 3 = WM) on the BET brain.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qc_script</span> <span class="o">=</span> <span class="s1">'''# Snakemake's `script:` directive prepends a preamble that defines a</span>
+<span class="s1"># module-level `snakemake` object — no import needed. Linters report it as an undefined name (pyflakes F821, ruff F821); </span>
+<span class="s1"># the `# noqa: F821` comments silence that.</span>
+<span class="s1">import numpy as np</span>
+<span class="s1">import nibabel as nib</span>
+<span class="s1">import matplotlib.pyplot as plt</span>
+<span class="s1">from nilearn import plotting</span>
+
+<span class="s1">original_path = snakemake.input.original  # noqa: F821</span>
+<span class="s1">brain_path = snakemake.input.brain  # noqa: F821</span>
+<span class="s1">seg_path = snakemake.input.seg  # noqa: F821</span>
+<span class="s1">out_path = snakemake.output.png  # noqa: F821</span>
+
+<span class="s1"># Pick a *per-subject* anatomical cut at the brain's centre of mass (in mm),</span>
+<span class="s1"># computed from the BET-extracted brain. Using the voxel-grid centre or a fixed</span>
+<span class="s1"># value like z=0 lands at different anatomical levels per subject in native space.</span>
+<span class="s1">brain_img = nib.load(brain_path)</span>
+<span class="s1">brain_data = brain_img.get_fdata()</span>
+<span class="s1">centroid_vox = np.argwhere(brain_data &gt; 0).mean(axis=0)</span>
+<span class="s1"># Append 1 for homogeneous coords so the 4x4 affine maps voxel -&gt; mm.</span>
+<span class="s1">z_mm = float((brain_img.affine @ np.append(centroid_vox, 1.0))[2])</span>
+
+<span class="s1"># Per-image vmax at the 99th percentile of non-zero voxels keeps contrast healthy</span>
+<span class="s1"># (otherwise a few bright outliers - or large empty background - wash everything out).</span>
+<span class="s1">def pct99(path):</span>
+<span class="s1">    data = nib.load(path).get_fdata()</span>
+<span class="s1">    nz = data[data &gt; 0]</span>
+<span class="s1">    return float(np.percentile(nz, 99)) if nz.size else None</span>
+
+<span class="s1">fig, axes = plt.subplots(1, 3, figsize=(12, 4))</span>
+
+<span class="s1">plotting.plot_anat(</span>
+<span class="s1">    original_path, display_mode="z", cut_coords=[z_mm], axes=axes[0],</span>
+<span class="s1">    title="Original T1", vmax=pct99(original_path),</span>
+<span class="s1">)</span>
+<span class="s1">plotting.plot_anat(</span>
+<span class="s1">    brain_path, display_mode="z", cut_coords=[z_mm], axes=axes[1],</span>
+<span class="s1">    title="After BET", vmax=pct99(brain_path),</span>
+<span class="s1">)</span>
+<span class="s1"># FAST seg values: 1 = CSF, 2 = gray matter, 3 = white matter.</span>
+<span class="s1">plotting.plot_roi(</span>
+<span class="s1">    seg_path, bg_img=brain_path, display_mode="z", cut_coords=[z_mm],</span>
+<span class="s1">    axes=axes[2], title="FAST tissue segmentation",</span>
+<span class="s1">)</span>
+
+<span class="s1">fig.savefig(out_path, dpi=80, bbox_inches="tight")</span>
+<span class="s1">plt.close(fig)</span>
+<span class="s1">'''</span>
+<span class="p">(</span><span class="n">workdir</span> <span class="o">/</span> <span class="s1">'workflow'</span> <span class="o">/</span> <span class="s1">'scripts'</span> <span class="o">/</span> <span class="s1">'qc.py'</span><span class="p">)</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">qc_script</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'Wrote'</span><span class="p">,</span> <span class="p">(</span><span class="n">workdir</span> <span class="o">/</span> <span class="s1">'workflow'</span> <span class="o">/</span> <span class="s1">'scripts'</span> <span class="o">/</span> <span class="s1">'qc.py'</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Wrote /home/jovyan/workspace/books/examples/workflows/snakemake_demo/workflow/scripts/qc.py
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="workflow-snakefile-the-entry-point">
+<h3>4.6. <code class="docutils literal notranslate"><span class="pre">workflow/Snakefile</span></code> — the entry point<a class="headerlink" href="#workflow-snakefile-the-entry-point" title="Link to this heading">#</a></h3>
+<p>With each step in its own <code class="docutils literal notranslate"><span class="pre">.smk</span> <span class="pre">file</span></code>, the top-level Snakefile is essentially a one-screen summary: four <code class="docutils literal notranslate"><span class="pre">include:</span></code> lines (with <code class="docutils literal notranslate"><span class="pre">common.smk</span></code> first, so that <code class="docutils literal notranslate"><span class="pre">SUBJECTS</span></code> and <code class="docutils literal notranslate"><span class="pre">T1_PATH</span></code> are defined before the rules that use them) and a <code class="docutils literal notranslate"><span class="pre">rule</span> <span class="pre">all</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">rule</span> <span class="pre">all</span></code> is a Snakemake convention — the first rule in the file becomes the default target, and its <code class="docutils literal notranslate"><span class="pre">input:</span></code> block declares what Snakemake should build when invoked without arguments. Here it asks for one QC figure per subject, written as <code class="docutils literal notranslate"><span class="pre">expand(rules.qc.output.png,</span> <span class="pre">subject=SUBJECTS)</span></code>rather than retyping the literal path. That’s the same single-source-of-truth pattern used elsewhere in the workflow — the entry point and the QC rule cannot drift apart.</p>
+<p>Because QC depends on FAST and FAST depends on BET, Snakemake traces the DAG backwards from those PNGs and runs every upstream rule whose output isn’t already on disk. You never have to spell the upstream rules out; asking for the leaves is enough.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">snakefile</span> <span class="o">=</span> <span class="s1">'''include: "rules/common.smk"</span>
+<span class="s1">include: "rules/bet.smk"</span>
+<span class="s1">include: "rules/fast.smk"</span>
+<span class="s1">include: "rules/qc.smk"</span>
+
+
+<span class="s1">rule all:</span>
+<span class="s1">    input:</span>
+<span class="s1">        expand(rules.qc.output.png, subject=SUBJECTS),</span>
+<span class="s1">'''</span>
+<span class="p">(</span><span class="n">workdir</span> <span class="o">/</span> <span class="s1">'workflow'</span> <span class="o">/</span> <span class="s1">'Snakefile'</span><span class="p">)</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">snakefile</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">snakefile</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>include: "rules/common.smk"
+include: "rules/bet.smk"
+include: "rules/fast.smk"
+include: "rules/qc.smk"
+
+
+rule all:
+    input:
+        expand(rules.qc.output.png, subject=SUBJECTS),
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="lint-the-workflow">
+<h2>5. Lint the workflow<a class="headerlink" href="#lint-the-workflow" title="Link to this heading">#</a></h2>
+<p>Snakemake ships with a built-in <strong>linter</strong>, invoked via <code class="docutils literal notranslate"><span class="pre">snakemake</span> <span class="pre">--lint</span></code>, that scans the workflow for common best-practice violations: rules missing a <code class="docutils literal notranslate"><span class="pre">log:</span></code> directive, hardcoded values inside <code class="docutils literal notranslate"><span class="pre">shell:</span></code> commands that should be lifted to <code class="docutils literal notranslate"><span class="pre">params:</span></code>, missing reproducibility metadata such as <code class="docutils literal notranslate"><span class="pre">conda:</span></code>, <code class="docutils literal notranslate"><span class="pre">container:</span></code>, or <code class="docutils literal notranslate"><span class="pre">envmodules:</span></code>, and a handful of similar patterns. The authors recommend running it before publishing any workflow. We invoke it through subprocess.run(…) because the notebook isn’t a shell.</p>
+<div class="cell tag_scroll-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lint</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+    <span class="p">[</span><span class="s1">'snakemake'</span><span class="p">,</span> <span class="s1">'-s'</span><span class="p">,</span> <span class="s1">'workflow/Snakefile'</span><span class="p">,</span> <span class="s1">'--lint'</span><span class="p">],</span>
+    <span class="n">cwd</span><span class="o">=</span><span class="n">workdir</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lint</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">lint</span><span class="o">.</span><span class="n">stderr</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'--- stderr ---'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">lint</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- stderr ---
+Lints for rule bet (line 1, /home/jovyan/workspace/books/examples/workflows/snakemake_demo/workflow/rules/bet.smk):
+    * Additionally specify a conda environment or container for each rule, environment modules are not enough:
+      While environment modules allow to document and deploy the required
+      software on a certain platform, they lock your workflow in there,
+      disabling easy reproducibility on other machines that don't have exactly
+      the same environment modules. Hence env modules (which might be beneficial
+      in certain cluster environments), should always be complemented with
+      equivalent conda environments.
+      Also see:
+      https://snakemake.readthedocs.io/en/latest/snakefiles/deployment.html#integrated-package-management
+      https://snakemake.readthedocs.io/en/latest/snakefiles/deployment.html#running-jobs-in-containers
+
+Lints for rule fast (line 1, /home/jovyan/workspace/books/examples/workflows/snakemake_demo/workflow/rules/fast.smk):
+    * Additionally specify a conda environment or container for each rule, environment modules are not enough:
+      While environment modules allow to document and deploy the required
+      software on a certain platform, they lock your workflow in there,
+      disabling easy reproducibility on other machines that don't have exactly
+      the same environment modules. Hence env modules (which might be beneficial
+      in certain cluster environments), should always be complemented with
+      equivalent conda environments.
+      Also see:
+      https://snakemake.readthedocs.io/en/latest/snakefiles/deployment.html#integrated-package-management
+      https://snakemake.readthedocs.io/en/latest/snakefiles/deployment.html#running-jobs-in-containers
+
+Lints for rule qc (line 1, /home/jovyan/workspace/books/examples/workflows/snakemake_demo/workflow/rules/qc.smk):
+    * Specify a conda environment or container for each rule.:
+      This way, the used software for each specific step is documented, and the
+      workflow can be executed on any machine without prerequisites.
+      Also see:
+      https://snakemake.readthedocs.io/en/latest/snakefiles/deployment.html#integrated-package-management
+      https://snakemake.readthedocs.io/en/latest/snakefiles/deployment.html#running-jobs-in-containers
+</pre></div>
+</div>
+</div>
+</div>
+<p>Our workflow already addresses several common lint findings up front:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">log:</span></code> on every rule</strong> — per-job stdout/stderr lands in <code class="docutils literal notranslate"><span class="pre">logs/&lt;rule&gt;/sub-&lt;subject&gt;.log</span></code> rather than getting interleaved.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">params:</span> <span class="pre">prefix</span></code> derived from <code class="docutils literal notranslate"><span class="pre">output.img</span></code> via a lambda</strong> in <code class="docutils literal notranslate"><span class="pre">fast.smk</span></code>, so the lint check “Param <code class="docutils literal notranslate"><span class="pre">prefix</span></code> is hardcoded” doesn’t fire.</p></li>
+<li><p><strong>No <code class="docutils literal notranslate"><span class="pre">+</span></code> path composition</strong> — we use f-strings and <code class="docutils literal notranslate"><span class="pre">rules.&lt;x&gt;.output</span></code> everywhere.</p></li>
+</ul>
+<p>One family of warnings remains by design: <strong>“Specify a conda environment or container… env modules are not enough”</strong> on the two rules that load FSL (<code class="docutils literal notranslate"><span class="pre">bet</span></code>, <code class="docutils literal notranslate"><span class="pre">fast</span></code>), plus the plain <strong>“Specify a conda environment or container”</strong> on the <code class="docutils literal notranslate"><span class="pre">qc</span></code> rule (which uses the conda-env Python via the <code class="docutils literal notranslate"><span class="pre">script:</span></code> directive). <code class="docutils literal notranslate"><span class="pre">envmodules:</span></code> ties the workflow to systems with those exact Lmod modules (i.e. Neurodesk). We deliberately keep <code class="docutils literal notranslate"><span class="pre">envmodules:</span></code> alone since this notebook is specifically about Snakemake on Neurodesk. Adding a <code class="docutils literal notranslate"><span class="pre">conda:</span></code> env file or <code class="docutils literal notranslate"><span class="pre">container:</span></code> image alongside makes the workflow portable to laptops, CI, or non-HPC clouds; both choices are valid — see the Snakemake deployment docs (https://snakemake.readthedocs.io/en/latest/snakefiles/deployment.html) for how to wire them in.</p>
+</section>
+<section id="visualise-the-workflow">
+<h2>6. Visualise the workflow<a class="headerlink" href="#visualise-the-workflow" title="Link to this heading">#</a></h2>
+<p>Snakemake can render two complementary diagrams:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">--rulegraph</span></code></strong> — one node per rule, regardless of how many subjects you process. The compact “shape” of the pipeline.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">--dag</span></code></strong> — one node per <em>job</em> (rule × wildcard combination). The fully unrolled execution plan.</p></li>
+</ul>
+<p>Both flags emit Graphviz DOT format on stdout, so we pipe the output through <code class="docutils literal notranslate"><span class="pre">dot</span> <span class="pre">-Tsvg</span></code> (from the <code class="docutils literal notranslate"><span class="pre">graphviz</span></code> package) to render as SVG. The rulegraph and DAG below show the same workflow at those two levels of detail.</p>
+<p><strong>Rulegraph</strong> (one node per rule):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rg</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+    <span class="p">[</span><span class="s1">'snakemake'</span><span class="p">,</span> <span class="s1">'-s'</span><span class="p">,</span> <span class="s1">'workflow/Snakefile'</span><span class="p">,</span> <span class="s1">'--rulegraph'</span><span class="p">],</span>
+    <span class="n">cwd</span><span class="o">=</span><span class="n">workdir</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">if</span> <span class="n">rg</span><span class="o">.</span><span class="n">returncode</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'--- stderr ---'</span><span class="p">);</span> <span class="nb">print</span><span class="p">(</span><span class="n">rg</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">'snakemake --rulegraph failed'</span><span class="p">)</span>
+
+<span class="n">rg_svg</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+    <span class="p">[</span><span class="s1">'dot'</span><span class="p">,</span> <span class="s1">'-Tsvg'</span><span class="p">],</span> <span class="nb">input</span><span class="o">=</span><span class="n">rg</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">if</span> <span class="n">rg_svg</span><span class="o">.</span><span class="n">returncode</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'--- dot stderr ---'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">rg_svg</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">'dot failed; is graphviz installed?'</span><span class="p">)</span>
+    
+<span class="n">display</span><span class="p">(</span><span class="n">SVG</span><span class="p">(</span><span class="n">rg_svg</span><span class="o">.</span><span class="n">stdout</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/5875b6651d1cab164fcb08e2513d06331e83b0c0e3a4f3297f7c37b36c941084.svg" src="../../_images/5875b6651d1cab164fcb08e2513d06331e83b0c0e3a4f3297f7c37b36c941084.svg">
+</div>
+</div>
+<p><strong>DAG</strong> (one node per rule × subject job — Snakemake will execute 9 jobs total: 3 subjects × 3 rules):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Note: in Snakemake 9.x `--dag` takes an optional *format* argument (dot/mermaid-js),</span>
+<span class="c1"># so we omit any target — Snakemake defaults to the first rule (`all`).</span>
+<span class="n">dag_result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+    <span class="p">[</span><span class="s1">'snakemake'</span><span class="p">,</span> <span class="s1">'-s'</span><span class="p">,</span> <span class="s1">'workflow/Snakefile'</span><span class="p">,</span> <span class="s1">'--dag'</span><span class="p">],</span>
+    <span class="n">cwd</span><span class="o">=</span><span class="n">workdir</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">if</span> <span class="n">dag_result</span><span class="o">.</span><span class="n">returncode</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'--- stderr ---'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dag_result</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">'snakemake --dag failed; see stderr above'</span><span class="p">)</span>
+
+<span class="n">dag_svg</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+    <span class="p">[</span><span class="s1">'dot'</span><span class="p">,</span> <span class="s1">'-Tsvg'</span><span class="p">],</span>
+    <span class="nb">input</span><span class="o">=</span><span class="n">dag_result</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">if</span> <span class="n">dag_svg</span><span class="o">.</span><span class="n">returncode</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'--- dot stderr ---'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">dag_svg</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">'dot failed; is graphviz installed?'</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">SVG</span><span class="p">(</span><span class="n">dag_svg</span><span class="o">.</span><span class="n">stdout</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/53125f24e7646490e335c745a0ed9e97d4d2a3a47e68f98299679101e84c60b4.svg" src="../../_images/53125f24e7646490e335c745a0ed9e97d4d2a3a47e68f98299679101e84c60b4.svg">
+</div>
+</div>
+</section>
+<section id="dry-run-the-pipeline">
+<h2>7. Dry-run the pipeline<a class="headerlink" href="#dry-run-the-pipeline" title="Link to this heading">#</a></h2>
+<p>Before committing real compute, <code class="docutils literal notranslate"><span class="pre">snakemake</span> <span class="pre">-n</span></code> (or <code class="docutils literal notranslate"><span class="pre">--dry-run</span></code>) walks the DAG and prints which jobs would be executed and why (missing output, updated input, changed input set, etc.) — without running anything. That makes it the fastest way to catch wildcard or path mismatches, unintended re-runs, or the wrong target list before they cost real compute. <code class="docutils literal notranslate"><span class="pre">--cores</span> <span class="pre">4</span></code> is still required because Snakemake refuses to plan without a resource budget; nothing is actually scheduled.</p>
+<div class="cell tag_scroll-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+    <span class="p">[</span><span class="s1">'snakemake'</span><span class="p">,</span> <span class="s1">'-s'</span><span class="p">,</span> <span class="s1">'workflow/Snakefile'</span><span class="p">,</span> <span class="s1">'-n'</span><span class="p">,</span> <span class="s1">'--cores'</span><span class="p">,</span> <span class="s1">'4'</span><span class="p">],</span>
+    <span class="n">cwd</span><span class="o">=</span><span class="n">workdir</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">returncode</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'--- stderr ---'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SNAKEMAKE
+=========
+  Date: 2026-07-08 10:03:07
+  Workflow ID: 06afbfa2-d74f-4329-aaa8-491a221d1565
+  Platform: Linux-6.8.0-111-generic-x86_64-with-glibc2.39
+  Host: ece8513257cb
+  User: jovyan
+  Snakemake version: 9.22.0
+  Python version: 3.13.13 | packaged by conda-forge | (main, Apr  8 2026, 02:00:33) [GCC 14.3.0]
+  Command: /opt/conda/bin/snakemake -s workflow/Snakefile -n --cores 4
+  Snakefile: /home/jovyan/workspace/books/examples/workflows/snakemake_demo/workflow/Snakefile
+  Base directory: /home/jovyan/workspace/books/examples/workflows/snakemake_demo/workflow
+  Run directory: /home/jovyan/workspace/books/examples/workflows/snakemake_demo
+  Working directory: /home/jovyan/workspace/books/examples/workflows/snakemake_demo
+  Config file(s): []
+  Config MD5: 99914b932bd37a50b983c5e7c90ae93b
+
+Building DAG of jobs...
+Job stats:
+job      count
+-----  -------
+bet          3
+fast         3
+qc           3
+all          1
+total       10
+
+
+[Wed Jul  8 10:03:08 2026]
+rule bet:
+    input: ds000114/sub-02/ses-test/anat/sub-02_ses-test_T1w.nii.gz
+    output: results/sub-02/anat/sub-02_desc-brain_T1w.nii.gz
+    log: logs/bet/sub-02.log
+    jobid: 5
+    reason: Missing output files: results/sub-02/anat/sub-02_desc-brain_T1w.nii.gz
+    wildcards: subject=02
+    resources: tmpdir=/tmp, mem_mb=2000, mem=2 GB, mem_mib=1908
+[Wed Jul  8 10:03:08 2026]
+rule bet:
+    input: ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz
+    output: results/sub-01/anat/sub-01_desc-brain_T1w.nii.gz
+    log: logs/bet/sub-01.log
+    jobid: 2
+    reason: Missing output files: results/sub-01/anat/sub-01_desc-brain_T1w.nii.gz
+    wildcards: subject=01
+    resources: tmpdir=/tmp, mem_mb=2000, mem=2 GB, mem_mib=1908
+[Wed Jul  8 10:03:08 2026]
+rule bet:
+    input: ds000114/sub-03/ses-test/anat/sub-03_ses-test_T1w.nii.gz
+    output: results/sub-03/anat/sub-03_desc-brain_T1w.nii.gz
+    log: logs/bet/sub-03.log
+    jobid: 8
+    reason: Missing output files: results/sub-03/anat/sub-03_desc-brain_T1w.nii.gz
+    wildcards: subject=03
+    resources: tmpdir=/tmp, mem_mb=2000, mem=2 GB, mem_mib=1908
+[Wed Jul  8 10:03:08 2026]
+rule fast:
+    input: results/sub-01/anat/sub-01_desc-brain_T1w.nii.gz
+    output: results/sub-01/anat/sub-01_dseg.nii.gz
+    log: logs/fast/sub-01.log
+    jobid: 3
+    reason: Missing output files: results/sub-01/anat/sub-01_dseg.nii.gz; Input files updated by another job: results/sub-01/anat/sub-01_desc-brain_T1w.nii.gz
+    wildcards: subject=01
+    threads: 2
+    resources: tmpdir=/tmp, mem_mb=2000, mem=2 GB, mem_mib=1908
+[Wed Jul  8 10:03:08 2026]
+rule fast:
+    input: results/sub-02/anat/sub-02_desc-brain_T1w.nii.gz
+    output: results/sub-02/anat/sub-02_dseg.nii.gz
+    log: logs/fast/sub-02.log
+    jobid: 6
+    reason: Missing output files: results/sub-02/anat/sub-02_dseg.nii.gz; Input files updated by another job: results/sub-02/anat/sub-02_desc-brain_T1w.nii.gz
+    wildcards: subject=02
+    threads: 2
+    resources: tmpdir=/tmp, mem_mb=2000, mem=2 GB, mem_mib=1908
+[Wed Jul  8 10:03:08 2026]
+rule fast:
+    input: results/sub-03/anat/sub-03_desc-brain_T1w.nii.gz
+    output: results/sub-03/anat/sub-03_dseg.nii.gz
+    log: logs/fast/sub-03.log
+    jobid: 9
+    reason: Missing output files: results/sub-03/anat/sub-03_dseg.nii.gz; Input files updated by another job: results/sub-03/anat/sub-03_desc-brain_T1w.nii.gz
+    wildcards: subject=03
+    threads: 2
+    resources: tmpdir=/tmp, mem_mb=2000, mem=2 GB, mem_mib=1908
+[Wed Jul  8 10:03:08 2026]
+rule qc:
+    input: ds000114/sub-01/ses-test/anat/sub-01_ses-test_T1w.nii.gz, results/sub-01/anat/sub-01_desc-brain_T1w.nii.gz, results/sub-01/anat/sub-01_dseg.nii.gz
+    output: results/sub-01/figures/sub-01_desc-qc.png
+    log: logs/qc/sub-01.log
+    jobid: 1
+    reason: Missing output files: results/sub-01/figures/sub-01_desc-qc.png; Input files updated by another job: results/sub-01/anat/sub-01_desc-brain_T1w.nii.gz, results/sub-01/anat/sub-01_dseg.nii.gz
+    wildcards: subject=01
+    resources: tmpdir=/tmp, mem_mb=2000, mem=2 GB, mem_mib=1908
+[Wed Jul  8 10:03:08 2026]
+rule qc:
+    input: ds000114/sub-02/ses-test/anat/sub-02_ses-test_T1w.nii.gz, results/sub-02/anat/sub-02_desc-brain_T1w.nii.gz, results/sub-02/anat/sub-02_dseg.nii.gz
+    output: results/sub-02/figures/sub-02_desc-qc.png
+    log: logs/qc/sub-02.log
+    jobid: 4
+    reason: Missing output files: results/sub-02/figures/sub-02_desc-qc.png; Input files updated by another job: results/sub-02/anat/sub-02_dseg.nii.gz, results/sub-02/anat/sub-02_desc-brain_T1w.nii.gz
+    wildcards: subject=02
+    resources: tmpdir=/tmp, mem_mb=2000, mem=2 GB, mem_mib=1908
+[Wed Jul  8 10:03:08 2026]
+rule qc:
+    input: ds000114/sub-03/ses-test/anat/sub-03_ses-test_T1w.nii.gz, results/sub-03/anat/sub-03_desc-brain_T1w.nii.gz, results/sub-03/anat/sub-03_dseg.nii.gz
+    output: results/sub-03/figures/sub-03_desc-qc.png
+    log: logs/qc/sub-03.log
+    jobid: 7
+    reason: Missing output files: results/sub-03/figures/sub-03_desc-qc.png; Input files updated by another job: results/sub-03/anat/sub-03_dseg.nii.gz, results/sub-03/anat/sub-03_desc-brain_T1w.nii.gz
+    wildcards: subject=03
+    resources: tmpdir=/tmp, mem_mb=2000, mem=2 GB, mem_mib=1908
+[Wed Jul  8 10:03:08 2026]
+rule all:
+    input: results/sub-01/figures/sub-01_desc-qc.png, results/sub-02/figures/sub-02_desc-qc.png, results/sub-03/figures/sub-03_desc-qc.png
+    jobid: 0
+    reason: Input files updated by another job: results/sub-03/figures/sub-03_desc-qc.png, results/sub-01/figures/sub-01_desc-qc.png, results/sub-02/figures/sub-02_desc-qc.png
+    resources: tmpdir=/tmp
+Job stats:
+job      count
+-----  -------
+bet          3
+fast         3
+qc           3
+all          1
+total       10
+
+Reasons:
+    (check individual jobs above for details)
+    input files updated by another job:
+        all, fast, qc
+    output files have to be generated:
+        bet, fast, qc
+This was a dry-run (flag -n). The order of jobs does not reflect the order of execution.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="run-the-pipeline">
+<h2>8. Run the pipeline<a class="headerlink" href="#run-the-pipeline" title="Link to this heading">#</a></h2>
+<p>Running with <code class="docutils literal notranslate"><span class="pre">--cores</span> <span class="pre">4</span></code> lets Snakemake run up to four independent jobs in parallel on this machine — for this DAG that means BET on subject 01, 02, 03 all kicking off together. Expect a few minutes total: <code class="docutils literal notranslate"><span class="pre">bet</span></code> is fast (~10 s/subject), <code class="docutils literal notranslate"><span class="pre">fast</span></code> is the slower step (~2–3 min/subject).</p>
+<p>We also pass <code class="docutils literal notranslate"><span class="pre">--keep-going</span></code> (<code class="docutils literal notranslate"><span class="pre">-k</span></code>) so a failure on one subject doesn’t block the others. By default Snakemake stops on the first error — fine for debugging, but in a multi-subject run you usually want every independent branch of the DAG to make as much progress as possible before you investigate.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>Neurodesk-specific subshell tweak.</strong> Snakemake’s <code class="docutils literal notranslate"><span class="pre">--use-envmodules</span></code> spawns each rule in a non-interactive bash subshell to run <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">purge</span> <span class="pre">&amp;&amp;</span> <span class="pre">module</span> <span class="pre">load</span> <span class="pre">&lt;X&gt;</span> <span class="pre">&amp;&amp;</span> <span class="pre">&lt;your</span> <span class="pre">command&gt;</span></code>. On Neurodesk, <code class="docutils literal notranslate"><span class="pre">module</span></code> is a <strong>bash function</strong> (not a binary on PATH) defined by Lmod’s <code class="docutils literal notranslate"><span class="pre">/etc/profile.d/lmod.sh</span></code> — and non-interactive bash subshells don’t source <code class="docutils literal notranslate"><span class="pre">/etc/profile.d/*</span></code> by default, so <code class="docutils literal notranslate"><span class="pre">module</span></code> is undefined and every rule fails.</p>
+<p>Fix: set <code class="docutils literal notranslate"><span class="pre">BASH_ENV=/etc/profile.d/lmod.sh</span></code> in the environment we pass to Snakemake. Bash sources whatever <code class="docutils literal notranslate"><span class="pre">BASH_ENV</span></code> points to <em>before</em> running its command, so each rule’s subshell will have <code class="docutils literal notranslate"><span class="pre">module</span></code> available. Without this, the rules fail with <code class="docutils literal notranslate"><span class="pre">module:</span> <span class="pre">command</span> <span class="pre">not</span> <span class="pre">found</span></code>.</p>
+</div>
+<div class="cell tag_scroll-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">env</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">,</span> <span class="s1">'BASH_ENV'</span><span class="p">:</span> <span class="s1">'/etc/profile.d/lmod.sh'</span><span class="p">}</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+    <span class="p">[</span><span class="s1">'snakemake'</span><span class="p">,</span> <span class="s1">'-s'</span><span class="p">,</span> <span class="s1">'workflow/Snakefile'</span><span class="p">,</span> <span class="s1">'--use-envmodules'</span><span class="p">,</span> <span class="s1">'--cores'</span><span class="p">,</span> <span class="s1">'4'</span><span class="p">,</span> <span class="s1">'--keep-going'</span><span class="p">],</span>
+    <span class="n">cwd</span><span class="o">=</span><span class="n">workdir</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">env</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">'return code:'</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">returncode</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'--- stderr (tail) ---'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()[</span><span class="o">-</span><span class="mi">25</span><span class="p">:]))</span>
+<span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">returncode</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">'--- stdout ---'</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>return code: 0
+--- stderr (tail) ---
+[Wed Jul  8 10:09:01 2026]
+localrule qc:
+    input: ds000114/sub-03/ses-test/anat/sub-03_ses-test_T1w.nii.gz, results/sub-03/anat/sub-03_desc-brain_T1w.nii.gz, results/sub-03/anat/sub-03_dseg.nii.gz
+    output: results/sub-03/figures/sub-03_desc-qc.png
+    log: logs/qc/sub-03.log
+    jobid: 7
+    reason: Missing output files: results/sub-03/figures/sub-03_desc-qc.png; Input files updated by another job: results/sub-03/anat/sub-03_desc-brain_T1w.nii.gz, results/sub-03/anat/sub-03_dseg.nii.gz
+    wildcards: subject=03
+    resources: tmpdir=/tmp, mem_mb=2000, mem=2 GB, mem_mib=1908
+[Wed Jul  8 10:09:15 2026]
+Finished jobid: 7 (Rule: qc)
+9 of 10 steps (90%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Wed Jul  8 10:09:15 2026]
+localrule all:
+    input: results/sub-01/figures/sub-01_desc-qc.png, results/sub-02/figures/sub-02_desc-qc.png, results/sub-03/figures/sub-03_desc-qc.png
+    jobid: 0
+    reason: Input files updated by another job: results/sub-03/figures/sub-03_desc-qc.png, results/sub-02/figures/sub-02_desc-qc.png, results/sub-01/figures/sub-01_desc-qc.png
+    resources: tmpdir=/tmp
+[Wed Jul  8 10:09:15 2026]
+Finished jobid: 0 (Rule: all)
+10 of 10 steps (100%) done
+Complete log(s): /home/jovyan/workspace/books/examples/workflows/snakemake_demo/.snakemake/log/2026-07-08T100309.493475.snakemake.log
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Resumability.</strong> If you delete or modify any output file (e.g. <code class="docutils literal notranslate"><span class="pre">results/sub-01/anat/sub-01_dseg.nii.gz</span></code>) and re-run the cell above, Snakemake detects the missing/changed file and only re-runs the rules that depend on it. This is a general property of caching workflow engines — Nipype, Pydra, and Nextflow all do the same thing under the hood, just with different mechanisms (input hashes for Nipype/Pydra, hash-keyed <code class="docutils literal notranslate"><span class="pre">work/</span></code> directories for Nextflow, file mtime for Snakemake by default). What’s distinctive about Snakemake’s version is its transparency of <code class="docutils literal notranslate"><span class="pre">snakemake</span> <span class="pre">-n</span></code> which tells you exactly which jobs would re-run and why (<code class="docutils literal notranslate"><span class="pre">reason:</span> <span class="pre">Missing</span> <span class="pre">output</span> <span class="pre">files:</span> <span class="pre">...</span></code>, <code class="docutils literal notranslate"><span class="pre">reason:</span> <span class="pre">Input</span> <span class="pre">files</span> <span class="pre">updated</span> <span class="pre">by</span> <span class="pre">another</span> <span class="pre">job:</span> <span class="pre">...</span></code>). That makes it easy to predict exactly which rules will re-fire before committing a long run.</p>
+</div>
+</section>
+<section id="inspect-outputs">
+<h2>9. Inspect outputs<a class="headerlink" href="#inspect-outputs" title="Link to this heading">#</a></h2>
+<p>Snakemake placed each subject’s QC PNG under <code class="docutils literal notranslate"><span class="pre">results/sub-XX/figures/</span></code>. We display each inline so we can eyeball whether BET + FAST worked as expected for each subject.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">png</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">((</span><span class="n">workdir</span> <span class="o">/</span> <span class="s1">'results'</span><span class="p">)</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">'sub-*/figures/*.png'</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">png</span><span class="o">.</span><span class="n">relative_to</span><span class="p">(</span><span class="n">workdir</span><span class="p">))</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">png</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>results/sub-01/figures/sub-01_desc-qc.png
+results/sub-02/figures/sub-02_desc-qc.png
+results/sub-03/figures/sub-03_desc-qc.png
+</pre></div>
+</div>
+<img alt="../../_images/792b69103f45621fb5781eef34412aa8eef337fc718b2128d8c0cb6d2bc0f16c.png" src="../../_images/792b69103f45621fb5781eef34412aa8eef337fc718b2128d8c0cb6d2bc0f16c.png">
+<img alt="../../_images/10f554bd37c763cde18bcab58dab4fe5311622f7eeb39543cc09065bd00b5744.png" src="../../_images/10f554bd37c763cde18bcab58dab4fe5311622f7eeb39543cc09065bd00b5744.png">
+<img alt="../../_images/1e125873b04c7651525ecd78a1b1bd3286c1f117ae150205c041a687a880490e.png" src="../../_images/1e125873b04c7651525ecd78a1b1bd3286c1f117ae150205c041a687a880490e.png">
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Reading the third panel.</strong> FAST assigns each brain voxel a discrete tissue class — typically rendered in three colours for CSF, gray matter, and white matter. A successful segmentation traces the cortical ribbon (a thin gray-matter band following gyri/sulci), with white matter as the bulkier interior structure and CSF marking the ventricles and the sulci between gyri. Mislabeled skull or empty patches inside the brain are signs that something went wrong upstream — most commonly a too-aggressive or too-conservative BET that left bone or removed cortex.</p>
+</div>
+</section>
+<section id="scaling-beyond-a-notebook">
+<h2>10. Scaling beyond a notebook<a class="headerlink" href="#scaling-beyond-a-notebook" title="Link to this heading">#</a></h2>
+<p>Three natural next steps once your workflow is correct on a few subjects:</p>
+<ol class="arabic simple">
+<li><p><strong>More subjects on the same machine</strong> — extend <code class="docutils literal notranslate"><span class="pre">SUBJECTS</span></code> in <code class="docutils literal notranslate"><span class="pre">common.smk</span></code> and bump <code class="docutils literal notranslate"><span class="pre">--cores</span></code>. Snakemake will parallelise up to that limit automatically.</p></li>
+<li><p><strong>Cluster execution via SLURM</strong> — the <a class="reference external" href="https://github.com/snakemake/snakemake-executor-plugin-slurm">snakemake-executor-plugin-slurm</a> lets you submit each rule as its own <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> job (<code class="docutils literal notranslate"><span class="pre">snakemake</span> <span class="pre">--executor</span> <span class="pre">slurm</span> <span class="pre">...</span></code>). Combined with the per-rule    <code class="docutils literal notranslate"><span class="pre">envmodules:</span></code> and <code class="docutils literal notranslate"><span class="pre">resources:</span></code> directives this workflow already declares, every job loads exactly the modules it needs and asks SLURM for the right memory and threads on its assigned node — the <em>same workflow</em> runs locally and on the cluster.</p></li>
+<li><p><strong>Containerise per rule:</strong> If you eventually need to run this workflow off Neurodesk (laptops, CI, non-HPC clouds), see the <a class="reference external" href="https://snakemake.readthedocs.io/en/latest/snakefiles/deployment.html">Snakemake deployment docs</a> for adding <code class="docutils literal notranslate"><span class="pre">conda:</span></code> or <code class="docutils literal notranslate"><span class="pre">container:</span></code> directives alongside <code class="docutils literal notranslate"><span class="pre">envmodules:</span></code>. Both can coexist on the same rule.</p></li>
+</ol>
+<p>For an alternative scaling pattern using parameterised notebooks rather than a Snakefile, see <a class="reference internal" href="papermill-slurm-submission-example.html"><span class="std std-doc">Papermill SLURM Job Submission</span></a>.</p>
+</section>
+<section id="dependencies-in-jupyter-python">
+<h2>Dependencies in Jupyter/Python<a class="headerlink" href="#dependencies-in-jupyter-python" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Using the package <a class="reference external" href="https://github.com/rasbt/watermark">watermark</a> to document system environment and software versions used in this notebook, alongside the Neurodesktop version extracted from the <code class="docutils literal notranslate"><span class="pre">JUPYTER_IMAGE</span></code> or <code class="docutils literal notranslate"><span class="pre">NEURODESKTOP_VERSION</span></code> environment variables.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
+
+<span class="o">%</span><span class="k">watermark</span>
+<span class="o">%</span><span class="k">watermark</span> --iversions
+
+<span class="n">neurodesktop_version</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'JUPYTER_IMAGE'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">':'</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="ow">or</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'NEURODESKTOP_VERSION'</span><span class="p">,</span> <span class="s1">'unknown'</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Neurodesktop version: </span><span class="si">{</span><span class="n">neurodesktop_version</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: 2026-07-08T10:09:17.408475+00:00
+
+Python implementation: CPython
+Python version       : 3.13.13
+IPython version      : 9.12.0
+
+Compiler    : GCC 14.3.0
+OS          : Linux
+Release     : 6.8.0-111-generic
+Machine     : x86_64
+Processor   : x86_64
+CPU cores   : 16
+Architecture: 64bit
+
+IPython   : 9.12.0
+bids      : 0.22.0
+matplotlib: 3.10.9
+nibabel   : 5.4.2
+nilearn   : 0.13.1
+numpy     : 2.4.6
+
+Neurodesktop version: 2026-06-04
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./examples/workflows"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev" href="pydra_preproc_ants.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Pydra</p>
+      </div>
+    </a>
+    <a class="right-next" href="../../tutorials/intro.html" title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Tutorials</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div id="pst-page-navigation-heading-2" class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citation-and-resources">Citation and Resources</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-included-in-this-workflow">Tools included in this workflow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#educational-resources">Educational resources</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-snakemake-and-why-use-it-on-neurodesk">1. What is Snakemake, and why use it on Neurodesk?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-software-and-import-libraries">2. Load software and import libraries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-layout-and-data-preparation">3. Project layout and data preparation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#layout">3.1. Layout</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-download">3.2. Data download</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bids-sanity-check-with-pybids">3.3. BIDS sanity check with pybids</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-workflow">4. The workflow</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rules-common-smk-constants">4.1. <code class="docutils literal notranslate"><span class="pre">rules/common.smk</span></code> — constants</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rules-bet-smk-brain-extraction">4.2. <code class="docutils literal notranslate"><span class="pre">rules/bet.smk</span></code> — brain extraction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rules-fast-smk-tissue-segmentation">4.3. <code class="docutils literal notranslate"><span class="pre">rules/fast.smk</span></code> — tissue segmentation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rules-qc-smk-qc-figure-via-the-script-directive">4.4. <code class="docutils literal notranslate"><span class="pre">rules/qc.smk</span></code> — QC figure via the <code class="docutils literal notranslate"><span class="pre">script:</span></code> directive</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-scripts-qc-py">4.5. <code class="docutils literal notranslate"><span class="pre">workflow/scripts/qc.py</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-snakefile-the-entry-point">4.6. <code class="docutils literal notranslate"><span class="pre">workflow/Snakefile</span></code> — the entry point</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lint-the-workflow">5. Lint the workflow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualise-the-workflow">6. Visualise the workflow</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dry-run-the-pipeline">7. Dry-run the pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-pipeline">8. Run the pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inspect-outputs">9. Inspect outputs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scaling-beyond-a-notebook">10. Scaling beyond a notebook</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependencies-in-jupyter-python">Dependencies in Jupyter/Python</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Neurodesk Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer="" src="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer="" src="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  
+</body></html>

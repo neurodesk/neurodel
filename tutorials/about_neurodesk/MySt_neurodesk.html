@@ -1,0 +1,1423 @@
+<!DOCTYPE html><html lang="en" data-content_root="../../"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="nd-review-id" content="6efa2dd3-1858-4cea-945a-c8751ba86617">
+
+    <title>Citation and Resources — Neurodesk</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079">
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=3c74b3bc">
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be">
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b">
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css">
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6">
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e">
+    <link rel="stylesheet" type="text/css" href="../../_static/review-badge.css?v=66080ea3">
+  
+  <!-- So that users can add custom icons -->
+  <script defer="" src="../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb">
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb">
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-4Z9774J59Y"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('consent', 'default', {
+                    'ad_storage': 'denied',
+                    'ad_user_data': 'denied',
+                    'ad_personalization': 'denied',
+                    'analytics_storage': 'denied'
+                });
+                gtag('js', new Date());
+                gtag('config', 'G-4Z9774J59Y');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('consent', 'default', {
+                    'ad_storage': 'denied',
+                    'ad_user_data': 'denied',
+                    'ad_personalization': 'denied',
+                    'analytics_storage': 'denied'
+                });
+                gtag('js', new Date());
+                gtag('config', 'G-4Z9774J59Y');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="application/vnd.jupyter.widget-state+json">{"state": {"2a88dcf9002f49c59bb7c37da2437b14": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "IntSliderModel", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "IntSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "IntSliderView", "behavior": "drag-tap", "continuous_update": true, "description": "Subjects:", "description_allow_html": false, "disabled": false, "layout": "IPY_MODEL_c4f4ed7f6e524579980348b123f63eab", "max": 10, "min": 0, "orientation": "horizontal", "readout": true, "readout_format": "d", "step": 1, "style": "IPY_MODEL_bfd4cd21e71c40c49b9e075a74a57208", "tabbable": null, "tooltip": null, "value": 5}}, "bfd4cd21e71c40c49b9e075a74a57208": {"model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "model_name": "SliderStyleModel", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "c4f4ed7f6e524579980348b123f63eab": {"model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "model_name": "LayoutModel", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}}, "version_major": 2, "version_minor": 0}</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script crossorigin="anonymous" data-jupyter-widgets-cdn="https://cdn.jsdelivr.net/npm/" src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@1.0.6/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/about_neurodesk/MySt_neurodesk';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="../../_static/review-badge.js?v=e2204dae"></script>
+    <link rel="canonical" href="https://neurodesk.org/edu/tutorials/about_neurodesk/MySt_neurodesk.html">
+    <link rel="icon" href="../../_static/neurodesk_logo.svg">
+    <link rel="index" title="Index" href="../../genindex.html">
+    <link rel="search" title="Search" href="../../search.html">
+    <link rel="next" title="Accessing Tools in Neurodesk" href="accessing_neurodesk_tools.html">
+    <link rel="prev" title="About Neurodesk" href="intro.html">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="docsearch:language" content="en">
+  <meta name="docsearch:version" content="">
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  <meta name="author" content="name: Monika Doerig orcid: 0009-0008-3617-2185 affiliations: School of Electrical Engineering, Computer Science The University of Queensland, Brisbane, Australia github: https://github.com/MoniDoerig"><meta property="article:author" content="name: Monika Doerig orcid: 0009-0008-3617-2185 affiliations: School of Electrical Engineering, Computer Science The University of Queensland, Brisbane, Australia github: https://github.com/MoniDoerig"><meta name="citation_author" content="name: Monika Doerig orcid: 0009-0008-3617-2185 affiliations: School of Electrical Engineering"><meta name="citation_author" content="Computer Science The University of Queensland, Brisbane, Australia github: https://github.com/MoniDoerig"></head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" placeholder="Search..." aria-label="Search..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/neurodesk_logo.svg" class="logo__image only-light" alt="Neurodesk - Home">
+    <img src="../../_static/neurodesk_logo.svg" class="logo__image only-dark pst-js-only" alt="Neurodesk - Home">
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><ul class="navbar-icon-links" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://neurodesk.org" title="Return to neurodesk.org" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Return to neurodesk.org</span></a>
+        </li>
+</ul></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../examples/intro.html">Examples</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/template.html">Example Notebook Template</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/diffusion_imaging/intro.html">Diffusion Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/diffusion_imaging/DIPY_1.html">Basic Tracking with DIPY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/diffusion_imaging/DIPY_2.html">Advanced Tracking with DIPY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/diffusion_imaging/Diffusion_TBSS_Demo.html">TBSS Tutorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/diffusion_imaging/MRtrix_1.html">MRtrix: Part 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/diffusion_imaging/MRtrix_2.html">MRtrix: Part 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/diffusion_imaging/MRtrix_3.html">MRtrix: Part 3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/diffusion_imaging/mrtrix3tissue.html">MRtrix3Tissue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/diffusion_imaging/qsiprep.html">QSIPrep</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/diffusion_imaging/qsirecon.html">QSIRecon</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/electrophysiology/intro.html">Electrophysiology</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/electrophysiology/eeg_with_mne.html">EEG Analysis with MNE</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/functional_imaging/intro.html">Functional Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/functional_imaging/AFNI_preprocessing_only.html">AFNI Preprocessing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/functional_imaging/AFNI_preprocessing_plus_glm.html">AFNI Preprocessing and GLM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/functional_imaging/AFNI_preprocessing_plus_glm_group.html">AFNI Preprocessing &amp; Group Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/functional_imaging/AFNI_processing_task_based.html">Processing task-based FMRI with AFNI and afni_proc.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/functional_imaging/Demo_FEAT_HigherLevelStats.html">Scripted Higher-Level Analyses in FSL using FEAT derivatives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/functional_imaging/Demo_fmriprep_FEAT.html">Scripted First-Level Analyses in FSL using fMRIPrep data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/functional_imaging/FSL_preproc_glm.html">FSL Preprocessing and GLM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/functional_imaging/FSLnets_course_practical.html">Resting state with FSLnets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/functional_imaging/NiWrap.html">NiWrap and Connectome Workbench</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/functional_imaging/deepretinotopy.html">DeepRetinotopy Toolbox</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/functional_imaging/fMRI_tutorial_in_R_magic.html">Resting-State fMRI Analysis in R</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/functional_imaging/first_and_second_level_spm.html">Nipype-SPM fMRI Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/functional_imaging/fmriprep.html">fMRIprep</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/functional_imaging/fsl_all_levels_flanker_nipype.html">Nipype-FSL fMRI Analysis</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../examples/functional_imaging/intro_to_preprocessing.html">Introduction to Preprocessing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/functional_imaging/mri_vol2surf.html">FreeSurfer: mri_vol2surf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/functional_imaging/process_five_echo_dataset.html">tedana: TE Dependent ANAlysis</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/quantitative_imaging/intro.html">Quantitative Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/quantitative_imaging/aslprep.html">ASLprep</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/quantitative_imaging/qsmxt.html">QSMxT</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/spectroscopy/intro.html">Spectroscopy</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/spectroscopy/lcmodel.html">MR Spectroscopy with LCModel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/spectroscopy/osprey.html">MR Spectroscopy with Osprey</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/structural_imaging/intro.html">Structural Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/structural_imaging/FSL_course_bet.html">FSL course - BET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/structural_imaging/SYNcro.html">SYNcro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/structural_imaging/brain_extraction_different_tools.html">Brain Extraction Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/structural_imaging/brainageR.html">Brain Age Prediction with brainageR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/structural_imaging/freesurfer-recon-all-clinical.html">FreeSurfer: recon-all-clinical</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/structural_imaging/freesurfer.html">FreeSurfer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/structural_imaging/sct_toolbox.html">SCT Toolbox</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/workflows/intro.html">Workflows</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/workflows/AA_Neurodesk_demo_tour.html">Neurodesk Tools Demo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/workflows/MRIQC.html">MRIQC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/workflows/Magic_commands.html">Magic Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/workflows/PyBIDS.html">PyBIDS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/workflows/RISE_slideshow.html">RISE Slideshow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/workflows/bids_conversion.html">BIDS conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/workflows/container_paths_neurodesk.html">Container Resource Paths on Neurodesk</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/workflows/ipyniivue_ipywidgets.html">Ipyniivue and Ipywidgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/workflows/nextflow_neurodesk.html">Nextflow in Neurodesk</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/workflows/nipype_full.html">Nipype on Neurodesk</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/workflows/nipype_short.html">Basic Nipype</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/workflows/papermill-slurm-submission-example.html">Papermill Slurm Job Submission</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/workflows/pydra_preproc_ants.html">Pydra</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/workflows/snakemake.html">Snakemake</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../intro.html">Tutorials</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="intro.html">About Neurodesk</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Citation and Resources</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="accessing_neurodesk_tools.html">Accessing Tools in Neurodesk</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../electrophysiology/intro.html">Electrophysiology</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../electrophysiology/EEG_mne-python.html">Analysing EEG Data with MNE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../electrophysiology/fieldtrip.html">Analysing M/EEG Data with FieldTrip</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../functional_imaging/intro.html">Functional Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/connectomeWorkbench.html">Connectome Workbench</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/fmriprep.html">Using fmriprep with neurodesk on an HPC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/mriqc.html">Using mriqc with neurodesk on HPC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/physio.html">PhysIO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/physio_batch_workflow.html">A batch scripting example for PhysIO toolbox</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/spm.html">Statistical Parametric Mapping (SPM)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../multimodal_imaging/intro.html">Multimodal Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../multimodal_imaging/MFCSC.html">Using MFCSC</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../open_data/intro.html">Open Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../open_data/datalad.html">datalad</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../open_data/osfclient.html">osfclient</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../phase_processing/intro.html">Phase Processing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../phase_processing/swi.html">Susceptibility-Weighted Imaging (SWI)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../phase_processing/unwrapping.html">MRI Phase Unwrapping with ROMEO</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../programming/intro.html">Programming</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../programming/conda.html">Conda environments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../programming/matlab.html">Matlab</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../reproducibility/intro.html">Reproducibility</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reproducibility/datalad-run.html">Reproducible script execution with DataLad</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../spectroscopy/intro.html">Spectroscopy</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../spectroscopy/lcmodel.html">Spectroscopy with lcmodel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../spectroscopy/mrsiproc.html">Spectroscopy pipeline</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../structural_imaging/intro.html">Structural Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../structural_imaging/freesurfer.html">FreeSurfer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structural_imaging/structuralconnectivity.html">Structural connectivity dMRI</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../contribute/intro.html">Contribute</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../contribute/examples.html">Creating Example Notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contribute/tutorials.html">Creating Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contribute/review.html">Reviewing for NeurodeskEDU</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement" class="flat" data-ea-publisher="readthedocs" data-ea-type="readthedocs-sidebar" data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons"><a href="https://doi.org/10.5281/zenodo.20279172" target="_blank" rel="noopener noreferrer" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button">https://doi.org/10.5281/zenodo.20279172</a>
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://play.neurodesk.cloud.edu.au/hub/user-redirect/git-pull?repo=https%3A//github.com/neurodesk/neurodeskedu&amp;urlpath=lab/tree/neurodeskedu/books/tutorials/about_neurodesk/MySt_neurodesk.ipynb&amp;branch=main" target="_blank" class="btn btn-sm dropdown-item" title="Launch on Run in Australia" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Run in Australia logo" src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">Run in Australia</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://play-europe.neurodesk.org/hub/user-redirect/git-pull?repo=https%3A//github.com/neurodesk/neurodeskedu&amp;urlpath=lab/tree/neurodeskedu/books/tutorials/about_neurodesk/MySt_neurodesk.ipynb&amp;branch=main" target="_blank" class="btn btn-sm dropdown-item" title="Launch on Run in Europe" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Run in Europe logo" src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">Run in Europe</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://play-america.neurodesk.org/hub/user-redirect/git-pull?repo=https%3A//github.com/neurodesk/neurodeskedu&amp;urlpath=lab/tree/neurodeskedu/books/tutorials/about_neurodesk/MySt_neurodesk.ipynb&amp;branch=main" target="_blank" class="btn btn-sm dropdown-item" title="Launch on Run in America" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Run in America logo" src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">Run in America</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://play-europe.neurodesk.org/hub/user-redirect/git-pull?repo=https%3A//github.com/neurodesk/neurodeskedu&amp;urlpath=lab/tree/neurodeskedu/books/tutorials/about_neurodesk/MySt_neurodesk.ipynb&amp;branch=main" target="_blank" class="btn btn-sm dropdown-item" title="Launch on Run in Global Server 1" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Run in Global Server 1 logo" src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">Run in Global Server 1</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://edu.neurodesk.org/hub/user-redirect/git-pull?repo=https%3A//github.com/neurodesk/neurodeskedu&amp;urlpath=lab/tree/neurodeskedu/books/tutorials/about_neurodesk/MySt_neurodesk.ipynb&amp;branch=main" target="_blank" class="btn btn-sm dropdown-item" title="Launch on Run in Global Server 2" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Run in Global Server 2 logo" src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">Run in Global Server 2</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/tutorials/about_neurodesk/MySt_neurodesk.ipynb" target="_blank" class="btn btn-sm btn-download-source-button dropdown-item" title="Download source file" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()" class="btn btn-sm btn-download-pdf-button dropdown-item" title="Print to PDF" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()" class="btn btn-sm btn-fullscreen-button pst-navbar-icon" title="Fullscreen mode" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark" title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto" title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Citation and Resources</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Citation and Resources</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">1. Introduction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#admonitions">2. Admonitions</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-standard-admonition-types">2.1 The standard admonition types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-titles">2.2 Custom titles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collapsible-admonitions">2.3 Collapsible admonitions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nested-admonitions">2.4 Nested admonitions</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tables-figures-and-code-blocks">3. Tables, figures, and code blocks</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tables">3.1 Tables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#figures">3.2 Figures</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-blocks">3.3 Code blocks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-lists">3.4 Task lists</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-widgets">3.5 Interactive widgets</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#math-and-equations">4. Math and equations</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inline-math-via-python">4.1 Inline math via Python</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-references">5. Cross-references</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-simple-label-syntax">5.1 The simple <code class="docutils literal notranslate"><span class="pre">[](#label)</span></code> syntax</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-explicit-role-syntax">5.2 The explicit role syntax</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tabs-cards-and-grids">6. Tabs, cards, and grids</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabs">6.1 Tabs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cards">6.2 Cards</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grids">6.3 Grids</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reference-myst-extensions-enabled-in-this-book">7. Reference: MyST extensions enabled in this book</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#where-to-go-from-here">Where to go from here</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependencies-in-jupyter-python">Dependencies in Jupyter/Python</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <hr class="docutils">
+<p>title: Working with MyST in Neurodesk
+subtitle: Authoring tutorials and example notebooks for NeurodeskEDU
+subject: MyST Quickstart Tutorial
+authors:</p>
+<ul class="simple">
+<li><p>name: Monika Doerig
+orcid: 0009-0008-3617-2185
+affiliations:</p>
+<ul>
+<li><p>School of Electrical Engineering and Computer Science</p></li>
+<li><p>The University of Queensland, Brisbane, Australia
+github: https://github.com/MoniDoerig
+license: MIT License
+date: 2026-05-19</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils">
+<div class="dropdown admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Use of AI
+This notebook was generated with assistance from <em>Anthropic’s Claude (via Claude Code)</em> across several iterations and then revised by the author. The author reviewed the final content and takes responsibility for it.</p>
+</div>
+<section id="citation-and-resources">
+<h1>Citation and Resources<a class="headerlink" href="#citation-and-resources" title="Link to this heading">#</a></h1>
+<p>This tutorial adapts material from the official MyST quickstart guides:</p>
+<ul class="simple">
+<li><p>mystmd team. <em>Working with MyST in Jupyter</em> — <a class="reference external" href="https://mystmd.org/guide/quickstart-jupyter-lab-myst">mystmd.org/guide/quickstart-jupyter-lab-myst</a></p></li>
+<li><p>MyST-Parser docs (the Python/Sphinx flavour Jupyter Book uses) — <a class="reference external" href="https://myst-parser.readthedocs.io/en/latest/syntax/optional.html">myst-parser.readthedocs.io</a></p></li>
+<li><p>MyST-NB authoring guide — <a class="reference external" href="https://myst-nb.readthedocs.io/en/latest/authoring/jupyter-notebooks.html">myst-nb.readthedocs.io</a></p></li>
+<li><p>Admonition reference — <a class="reference external" href="https://myst-parser.readthedocs.io/en/latest/syntax/admonitions.html">myst-parser admonitions</a></p></li>
+</ul>
+</section>
+<section id="introduction">
+<h1>1. Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h1>
+<p>NeurodeskEDU is built with <strong>Jupyter Book</strong>, which renders notebooks via <strong>MyST-Parser</strong> — an extended Markdown flavour that adds directives, roles, cross-references, math, admonitions, tabs, cards, and more.</p>
+<p>If you’re contributing an example notebook or tutorial here, the same <strong>MyST syntax</strong> works in plain Markdwon in <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>. On Neurodesk, the <strong>jupyterlab-myst</strong> extension is already enabled and markdown cells render directives like <code class="docutils literal notranslate"><span class="pre">:::{note}</span></code> immediately.</p>
+<p>This tutorial walks through the MyST features available in NeurodeskEDU, with examples flavoured for Neurodesk content.</p>
+</section>
+<section id="admonitions">
+<h1>2. Admonitions<a class="headerlink" href="#admonitions" title="Link to this heading">#</a></h1>
+<p>Admonitions are coloured callout boxes. They have a directive name (<code class="docutils literal notranslate"><span class="pre">note</span></code>, <code class="docutils literal notranslate"><span class="pre">tip</span></code>, <code class="docutils literal notranslate"><span class="pre">warning</span></code>, <code class="docutils literal notranslate"><span class="pre">important</span></code>, <code class="docutils literal notranslate"><span class="pre">caution</span></code>, etc.) that controls the colour and icon. Use <code class="docutils literal notranslate"><span class="pre">:::{name}</span></code> to open and <code class="docutils literal notranslate"><span class="pre">:::</span></code> to close.</p>
+<section id="the-standard-admonition-types">
+<h2>2.1 The standard admonition types<a class="headerlink" href="#the-standard-admonition-types" title="Link to this heading">#</a></h2>
+<p>The renderer ships with ten built-in types. Click through the tabs to see each:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-0">
+note</label><div class="sd-tab-content docutils">
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Loaded modules persist for the life of the kernel — restart to start fresh.</p>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-1">
+tip</label><div class="sd-tab-content docutils">
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Pin tool versions explicitly: <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">fsl/6.0.7.18</span></code>, not <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">fsl</span></code>.</p>
+</div>
+</div>
+<input id="sd-tab-item-2" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-2">
+important</label><div class="sd-tab-content docutils">
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Reproducibility starts with version pinning. Always specify the exact module version.</p>
+</div>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-3">
+hint</label><div class="sd-tab-content docutils">
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">spider</span> <span class="pre">&lt;name&gt;</span></code> to discover available versions before loading.</p>
+</div>
+</div>
+<input id="sd-tab-item-4" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-4">
+attention</label><div class="sd-tab-content docutils">
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Some Neurodesk tools require a graphical session — these need to be run from the Neurodesktop terminal, not the JupyterLab terminal.</p>
+</div>
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-5">
+warning</label><div class="sd-tab-content docutils">
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>SPM12 in Neurodesk is the standalone (MCR) build — no full MATLAB licence is needed, but Nipype’s SPM interface needs <code class="docutils literal notranslate"><span class="pre">use_mcr=True</span></code>.</p>
+</div>
+</div>
+<input id="sd-tab-item-6" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-6">
+caution</label><div class="sd-tab-content docutils">
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Heavy jobs run on the login node will affect other users. Submit them to SLURM with <code class="docutils literal notranslate"><span class="pre">sbatch</span></code>.</p>
+</div>
+</div>
+<input id="sd-tab-item-7" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-7">
+danger</label><div class="sd-tab-content docutils">
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p><code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">-rf</span></code> does not ask twice. Double-check the path, especially when scripts construct it from variables.</p>
+</div>
+</div>
+<input id="sd-tab-item-8" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-8">
+error</label><div class="sd-tab-content docutils">
+<div class="admonition error">
+<p class="admonition-title">Error</p>
+<p>“Module not found” usually means you forgot <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">&lt;tool&gt;</span></code> — not that the tool is missing.</p>
+</div>
+</div>
+<input id="sd-tab-item-9" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-9">
+seealso</label><div class="sd-tab-content docutils">
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Get started with Neurodesk: <a class="reference external" href="https://neurodesk.org/getting-started/">neurodesk.org/getting-started</a></p>
+</div>
+</div>
+</div>
+</section>
+<section id="custom-titles">
+<h2>2.2 Custom titles<a class="headerlink" href="#custom-titles" title="Link to this heading">#</a></h2>
+<p>Use <code class="docutils literal notranslate"><span class="pre">:::{admonition}</span> <span class="pre">&lt;title&gt;</span></code> for an arbitrary title, and add <code class="docutils literal notranslate"><span class="pre">:class:</span> <span class="pre">&lt;type&gt;</span></code> to keep one of the standard styles:</p>
+<div class="tip admonition">
+<p class="admonition-title">Which method should I use?</p>
+<dl class="simple myst">
+<dt><strong>I want to run a quick command</strong></dt><dd><p>Use the <strong>JupyterLab Terminal</strong> — open one from the Launcher and type <code class="docutils literal notranslate"><span class="pre">ml</span> <span class="pre">&lt;tool&gt;</span></code>.</p>
+</dd>
+<dt><strong>I’m building an analysis pipeline</strong></dt><dd><p>Use the <strong>Jupyter Notebook</strong> — <code class="docutils literal notranslate"><span class="pre">await</span> <span class="pre">module.load(...)</span></code> keeps your setup documented alongside your code.</p>
+</dd>
+<dt><strong>I need to visualise data with a GUI tool</strong></dt><dd><p>Use the <strong>Neurodesktop Terminal</strong> or <strong>Application Menu</strong> — both give you access to graphical applications.</p>
+</dd>
+<dt><strong>I’m new to the command line</strong></dt><dd><p>Use the <strong>Sidebar Panel</strong> or <strong>Application Menu</strong> — point-and-click, no commands needed.</p>
+</dd>
+</dl>
+</div>
+<p>This admonition combines a custom title with a definition list — the pattern of a term on one line followed by <code class="docutils literal notranslate"><span class="pre">:</span> <span class="pre">definition</span></code> on the next, enabled by the <code class="docutils literal notranslate"><span class="pre">deflist</span></code> extension.</p>
+</section>
+<section id="collapsible-admonitions">
+<h2>2.3 Collapsible admonitions<a class="headerlink" href="#collapsible-admonitions" title="Link to this heading">#</a></h2>
+<p>Add <code class="docutils literal notranslate"><span class="pre">:class:</span> <span class="pre">dropdown</span></code> to any admonition to make it collapsible. Useful for long content that would otherwise crowd the page:</p>
+<div class="dropdown admonition note">
+<p class="admonition-title">Note</p>
+<p>Module shorthand reference</p>
+<dl class="simple myst">
+<dt><code class="docutils literal notranslate"><span class="pre">ml</span></code></dt><dd><p>Shorthand for <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code>. Used to load, unload, list, and search for tools.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ml</span> <span class="pre">avail</span></code></dt><dd><p>Lists all available tools and versions on the system.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ml</span> <span class="pre">list</span></code></dt><dd><p>Shows which tools are currently loaded in your session.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ml</span> <span class="pre">purge</span></code></dt><dd><p>Unloads all currently loaded tools, resetting your environment.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ml</span> <span class="pre">spider</span> <span class="pre">&lt;keyword&gt;</span></code></dt><dd><p>Searches for tools matching a keyword.</p>
+</dd>
+</dl>
+</div>
+</section>
+<section id="nested-admonitions">
+<h2>2.4 Nested admonitions<a class="headerlink" href="#nested-admonitions" title="Link to this heading">#</a></h2>
+<p>You can nest one admonition inside another by using <strong>more colons</strong> on the outer block:</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Reproducibility caveat
+Make sure you pin tool versions in your scripts.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Internally, <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">&lt;tool&gt;</span></code> without a version loads the system default — which <strong>changes</strong> when Neurodesk updates the default.</p>
+</div>
+</div>
+<p>The outer block uses <code class="docutils literal notranslate"><span class="pre">::::</span></code> (four colons), the inner uses <code class="docutils literal notranslate"><span class="pre">:::</span></code> (three). The rule: any nested directive needs <strong>fewer colons</strong> than its parent.</p>
+</section>
+</section>
+<section id="tables-figures-and-code-blocks">
+<h1>3. Tables, figures, and code blocks<a class="headerlink" href="#tables-figures-and-code-blocks" title="Link to this heading">#</a></h1>
+<section id="tables">
+<h2>3.1 Tables<a class="headerlink" href="#tables" title="Link to this heading">#</a></h2>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">list-table</span></code> directive for tables that need a name (so you can cross-reference them) or alignment options:</p>
+<div class="pst-scrollable-table-container"><table class="table" id="modules-table">
+<caption><span class="caption-number">Table 1 </span><span class="caption-text">Common Neurodesk neuroimaging modules</span><a class="headerlink" href="#modules-table" title="Link to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Tool</p></th>
+<th class="head"><p>Loaded with</p></th>
+<th class="head"><p>Typical use</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>FSL</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">fsl/6.0.7.18</span></code></p></td>
+<td><p>Linear/non-linear registration, BET, FAST, FEAT</p></td>
+</tr>
+<tr class="row-odd"><td><p>ANTs</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">ants/2.5.3</span></code></p></td>
+<td><p>N4 bias correction, advanced registration (SyN)</p></td>
+</tr>
+<tr class="row-even"><td><p>SPM12</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">spm12/r7771</span></code></p></td>
+<td><p>Segmentation, fMRI GLM, VBM</p></td>
+</tr>
+<tr class="row-odd"><td><p>AFNI</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">afni/24.0.04</span></code></p></td>
+<td><p>3dDespike, 3dvolreg, classic AFNI workflows</p></td>
+</tr>
+<tr class="row-even"><td><p>FreeSurfer</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">freesurfer/7.4.1</span></code></p></td>
+<td><p>Cortical surface reconstruction (<code class="docutils literal notranslate"><span class="pre">recon-all</span></code>)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>For quick simple tables, GitHub-style pipe tables also work:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Module system command</p></th>
+<th class="head"><p>Purpose</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">avail</span></code></p></td>
+<td><p>List available tools</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">spider</span> <span class="pre">&lt;name&gt;</span></code></p></td>
+<td><p>Search for a tool</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">&lt;tool&gt;/&lt;version&gt;</span></code></p></td>
+<td><p>Activate a tool</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">list</span></code></p></td>
+<td><p>Show what’s currently loaded</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">purge</span></code></p></td>
+<td><p>Unload everything</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="figures">
+<h2>3.2 Figures<a class="headerlink" href="#figures" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">figure</span></code> directive supports captions, labels, and sizing:</p>
+<figure class="align-center" id="neurodesk-logo">
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/neurodesk/neurodesk.github.io/refs/heads/main/static/logos/neurodesk.org-pride.png"><img alt="Neurodesk Pride Logo" src="https://raw.githubusercontent.com/neurodesk/neurodesk.github.io/refs/heads/main/static/logos/neurodesk.org-pride.png" style="width: 300px;">
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">The Neurodesk project logo.</span><a class="headerlink" href="#neurodesk-logo" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Common figure options:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">:name:</span></code> — label for cross-referencing</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">:alt:</span></code> — alt text for accessibility</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">:width:</span></code> — <code class="docutils literal notranslate"><span class="pre">300px</span></code>, <code class="docutils literal notranslate"><span class="pre">50%</span></code>, etc.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">:height:</span></code> — pixels</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">:align:</span></code> — <code class="docutils literal notranslate"><span class="pre">left</span></code>, <code class="docutils literal notranslate"><span class="pre">center</span></code>, <code class="docutils literal notranslate"><span class="pre">right</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">:figwidth:</span></code> — width of the entire figure block (caption included)</p></li>
+</ul>
+</section>
+<section id="code-blocks">
+<h2>3.3 Code blocks<a class="headerlink" href="#code-blocks" title="Link to this heading">#</a></h2>
+<p>Plain fenced code blocks render with syntax highlighting:</p>
+<p>Bash:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>fsl/6.0.7.18
+flirt<span class="w"> </span>-ref<span class="w"> </span><span class="nv">$FSLDIR</span>/data/standard/MNI152_T1_2mm_brain<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>-in<span class="w"> </span>subject_T1.nii.gz<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>-out<span class="w"> </span>subject_in_mni.nii.gz<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>-dof<span class="w"> </span><span class="m">12</span>
+</pre></div>
+</div>
+<p>Or Python:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">module</span>
+<span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'fsl/6.0.7.18'</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>For more control (line numbers, emphasising specific lines, captions), use the <code class="docutils literal notranslate"><span class="pre">code-block</span></code> directive:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-number">Listing 1 </span><span class="caption-text">Submit a parameterised job to SLURM</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --job-name=preproc</span>
+<span class="c1">#SBATCH --time=01:00:00</span>
+<span class="c1">#SBATCH --cpus-per-task=4</span>
+
+<span class="hll">module<span class="w"> </span>load<span class="w"> </span>fsl/6.0.7.18
+</span>papermill<span class="w"> </span>preproc.ipynb<span class="w"> </span>out.ipynb<span class="w"> </span>--parameters_raw<span class="w"> </span>subject_id<span class="w"> </span><span class="m">02</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="task-lists">
+<h2>3.4 Task lists<a class="headerlink" href="#task-lists" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">tasklist</span></code> extension turns GitHub-style checkbox lists into rendered task lists — useful for tutorial steps, todo prompts, or progress overviews:</p>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> Load the FSL module</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> Run brain extraction</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Register T1 to MNI152</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Generate QC overlay</p></li>
+</ul>
+<p>The static build doesn’t allow toggling them.</p>
+</section>
+<section id="interactive-widgets">
+<h2>3.5 Interactive widgets<a class="headerlink" href="#interactive-widgets" title="Link to this heading">#</a></h2>
+<p>Notebooks can include <code class="docutils literal notranslate"><span class="pre">ipywidgets</span></code> for interactive controls — sliders, dropdowns, file pickers, viewers (<code class="docutils literal notranslate"><span class="pre">ipyniivue</span></code>), and more — and they render in JupyterLab as live components. Here’s a minimal slider:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">ipywidgets</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">widgets</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">IntSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">'Subjects:'</span><span class="p">)</span>
+<span class="n">n</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "2a88dcf9002f49c59bb7c37da2437b14", "version_major": 2, "version_minor": 0}</script></div>
+</div>
+<p>The variable <code class="docutils literal notranslate"><span class="pre">n</span></code> bound to the slider can be referenced inside markdown via <code class="docutils literal notranslate"><span class="pre">jupyterlab-myst</span></code>’s <code class="docutils literal notranslate"><span class="pre">{eval}</span></code> role. The value below reflects the kernel’s current state at cell-render time — re-execute the cell to refresh after sliding:</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Slider state
+</p>
+</div>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Live features need a kernel
+The slider above and the value shown in the admonition both depend on a running Python kernel — neither will function meaningfully in the static GitHub Pages build:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ipywidgets</span></code> with Python callbacks (<code class="docutils literal notranslate"><span class="pre">observe</span></code>, <code class="docutils literal notranslate"><span class="pre">on_click</span></code>) won’t function without a kernel. Widgets using client-side trait linking (<code class="docutils literal notranslate"><span class="pre">jslink</span></code>) do remain interactive.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">{eval}</span></code> inline expressions are evaluated by <code class="docutils literal notranslate"><span class="pre">jupyterlab-myst</span></code> when the markdown cell is rendered. In JupyterLab the value reflects the current kernel state (re-execute the cell to refresh). In the static build the value appears frozen at whatever the kernel last produced, or empty.</p></li>
+</ul>
+</div>
+</section>
+</section>
+<section id="math-and-equations">
+<h1>4. Math and equations<a class="headerlink" href="#math-and-equations" title="Link to this heading">#</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">dollarmath</span></code> extension is enabled in this book, so LaTeX-style math works with single dollars (inline) and double dollars (block):</p>
+<ul class="simple">
+<li><p><strong>Inline (<code class="docutils literal notranslate"><span class="pre">$...$</span></code>)</strong> — sits inside a sentence at text size. Example: <code class="docutils literal notranslate"><span class="pre">$T_2^*$</span></code> renders as <span class="math notranslate nohighlight">\(T_2^*\)</span>.</p></li>
+<li><p><strong>Block</strong> — wrap on its own lines with <code class="docutils literal notranslate"><span class="pre">$$...$$</span></code>. Add <code class="docutils literal notranslate"><span class="pre">(label)</span></code> after the closing <code class="docutils literal notranslate"><span class="pre">$$</span></code> to make the equation cross-referenceable.<br>
+Example with a label:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-bold-signal">
+<span class="eqno">(1)<a class="headerlink" href="#equation-bold-signal" title="Link to this equation">#</a></span>\[
+S(t) = S_0 \cdot e^{-TE / T_2^*}
+\]</div>
+<p>Now <code class="docutils literal notranslate"><span class="pre">[](#bold-signal)</span></code> or <a class="reference internal" href="#equation-bold-signal">(1)</a> becomes a link to this equation.</p>
+<p>For multi-line equations, use the <code class="docutils literal notranslate"><span class="pre">math</span></code> directive. This example shows the cost function for sum-of-squared-differences image registration:</p>
+<div class="math notranslate nohighlight" id="equation-registration-cost">
+<span class="eqno">(2)<a class="headerlink" href="#equation-registration-cost" title="Link to this equation">#</a></span>\[\hat{T} = \arg\min_{T} \; \sum_{x \in \Omega} \big(I_{\text{moving}}(T(x)) - I_{\text{fixed}}(x)\big)^2\]</div>
+<section id="inline-math-via-python">
+<h2>4.1 Inline math via Python<a class="headerlink" href="#inline-math-via-python" title="Link to this heading">#</a></h2>
+<p>The IPython display module lets you render LaTeX from a code cell:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Math</span>
+<span class="n">Math</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\sigma_{\text</span><span class="si">{noise}</span><span class="s2">} = \sqrt{\frac</span><span class="si">{1}{N}</span><span class="s2">\sum_{i=1}^</span><span class="si">{N}</span><span class="s2"> (x_i - \bar</span><span class="si">{x}</span><span class="s2">)^2}"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_latex math notranslate nohighlight">
+\[\displaystyle \sigma_{\text{noise}} = \sqrt{\frac{1}{N}\sum_{i=1}^{N} (x_i - \bar{x})^2}\]</div>
+</div>
+</div>
+</section>
+</section>
+<section id="cross-references">
+<h1>5. Cross-references<a class="headerlink" href="#cross-references" title="Link to this heading">#</a></h1>
+<p>Once a figure, table, equation, or section has a <code class="docutils literal notranslate"><span class="pre">:name:</span></code> (or label), you can link to it from anywhere in the same book.</p>
+<section id="the-simple-label-syntax">
+<h2>5.1 The simple <code class="docutils literal notranslate"><span class="pre">[](#label)</span></code> syntax<a class="headerlink" href="#the-simple-label-syntax" title="Link to this heading">#</a></h2>
+<p>Modern MyST-Parser supports <code class="docutils literal notranslate"><span class="pre">[](#label)</span></code> as the most concise form. Empty link text means the renderer auto-fills it from the target’s caption or label:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">[](#neurodesk-logo)</span></code> → <a class="reference internal" href="#neurodesk-logo"><span class="std std-ref">The Neurodesk project logo.</span></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[](#modules-table)</span></code> → <a class="reference internal" href="#modules-table"><span class="std std-ref">Common Neurodesk neuroimaging modules</span></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[](#bold-signal)</span></code> → <a class="reference internal" href="#equation-bold-signal">(1)</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[](#registration-cost)</span></code> → <a class="reference internal" href="#equation-registration-cost">(2)</a></p></li>
+</ul>
+<p>You can also override the link text: <code class="docutils literal notranslate"><span class="pre">[the</span> <span class="pre">Neurodesk</span> <span class="pre">logo](#neurodesk-logo)</span></code> → <a class="reference internal" href="#neurodesk-logo">the Neurodesk logo</a>.</p>
+</section>
+<section id="the-explicit-role-syntax">
+<h2>5.2 The explicit role syntax<a class="headerlink" href="#the-explicit-role-syntax" title="Link to this heading">#</a></h2>
+<p>Sphinx-style roles also work and let you control numbering format:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Role</p></th>
+<th class="head"><p>Purpose</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">{numref}`label`</span></code></p></td>
+<td><p>Numbered figure or table</p></td>
+<td><p>“Fig. 1” / “Table 1”</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">{eq}`label`</span></code></p></td>
+<td><p>Numbered equation</p></td>
+<td><p>“(1)”</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">{ref}`label`</span></code></p></td>
+<td><p>Section heading or generic label</p></td>
+<td><p>uses heading text</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Example: see <a class="reference internal" href="#modules-table"><span class="std std-numref">Table 1</span></a> for the modules list, equation <a class="reference internal" href="#equation-bold-signal">(1)</a> for the <span class="math notranslate nohighlight">\(T_2^*\)</span>-weighted signal equation.</p>
+</section>
+</section>
+<section id="tabs-cards-and-grids">
+<h1>6. Tabs, cards, and grids<a class="headerlink" href="#tabs-cards-and-grids" title="Link to this heading">#</a></h1>
+<p>These come from the <strong>sphinx-design</strong> extension (already available in Jupyter Book) and let you build richer, screen-responsive layouts.</p>
+<section id="tabs">
+<h2>6.1 Tabs<a class="headerlink" href="#tabs" title="Link to this heading">#</a></h2>
+<p>Tabs group related variants of the same content (e.g. instructions for different tools). The same <code class="docutils literal notranslate"><span class="pre">tab-set</span></code> directive used in <strong>§2.1</strong> above also works as a standalone container:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-10">
+Bash</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bet<span class="w"> </span>input_T1.nii.gz<span class="w"> </span>output_brain.nii.gz<span class="w"> </span>-R
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-11" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-11">
+Python (Nipype)</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">nipype.interfaces</span><span class="w"> </span><span class="kn">import</span> <span class="n">fsl</span>
+<span class="n">bet</span> <span class="o">=</span> <span class="n">fsl</span><span class="o">.</span><span class="n">BET</span><span class="p">(</span><span class="n">in_file</span><span class="o">=</span><span class="s1">'input_T1.nii.gz'</span><span class="p">,</span> <span class="n">robust</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">bet</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-12" name="sd-tab-set-1" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-12">
+Python (subprocess)</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+<span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s1">'bet'</span><span class="p">,</span> <span class="s1">'input_T1.nii.gz'</span><span class="p">,</span> <span class="s1">'output_brain.nii.gz'</span><span class="p">,</span> <span class="s1">'-R'</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="cards">
+<h2>6.2 Cards<a class="headerlink" href="#cards" title="Link to this heading">#</a></h2>
+<p>Cards are bordered, optionally clickable boxes — useful for navigation or feature-highlight blocks:</p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+About Neurodesk</div>
+<p class="sd-card-text">A flexible, scalable, and reproducible neuroimaging environment with 100+ research applications, available across desktop, JupyterLab, HPC, and cloud.</p>
+</div>
+<a class="sd-stretched-link sd-hide-link-text reference external" href="https://neurodesk.org/"><span>https://neurodesk.org/</span></a></div>
+</section>
+<section id="grids">
+<h2>6.3 Grids<a class="headerlink" href="#grids" title="Link to this heading">#</a></h2>
+<p>Grids arrange multiple cards in a responsive layout:</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Tutorials</div>
+<p class="sd-card-text">Tutorials are static, step-by-step guides that walk you through analyses including the use of graphical user interfaces (GUIs).</p>
+</div>
+<a class="sd-stretched-link sd-hide-link-text reference external" href="https://neurodesk.org/edu/tutorials/intro.html"><span>https://neurodesk.org/edu/tutorials/intro.html</span></a></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Examples</div>
+<p class="sd-card-text">Examples are interactive computational notebooks that you can run, modify, and experiment with.</p>
+</div>
+<a class="sd-stretched-link sd-hide-link-text reference external" href="https://neurodesk.org/edu/examples/intro.html"><span>https://neurodesk.org/edu/examples/intro.html</span></a></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+Documentation</div>
+<p class="sd-card-text">The main Neurodesk site — installation, getting started, full module list.</p>
+</div>
+<a class="sd-stretched-link sd-hide-link-text reference external" href="https://neurodesk.org/"><span>https://neurodesk.org/</span></a></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+GitHub</div>
+<p class="sd-card-text">Source code, issues, and contributions for all Neurodesk projects.</p>
+</div>
+<a class="sd-stretched-link sd-hide-link-text reference external" href="https://github.com/NeuroDesk"><span>https://github.com/NeuroDesk</span></a></div>
+</div>
+</div>
+</div>
+<p>The four numbers after <code class="docutils literal notranslate"><span class="pre">:::::{grid}</span></code> set how many columns to show at four screen sizes (small to extra-large).
+Examples:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">1</span> <span class="pre">1</span> <span class="pre">1</span></code> → 1 column at all sizes → 4 stacked rows</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">1</span> <span class="pre">2</span> <span class="pre">2</span></code> → 2 columns on bigger screens → 2 rows of 2 (used above)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">2</span> <span class="pre">3</span> <span class="pre">4</span></code> → more columns the wider the screen → 1 row of 4 on desktop</p></li>
+</ul>
+</section>
+</section>
+<section id="reference-myst-extensions-enabled-in-this-book">
+<h1>7. Reference: MyST extensions enabled in this book<a class="headerlink" href="#reference-myst-extensions-enabled-in-this-book" title="Link to this heading">#</a></h1>
+<p>Neurodeskedu’s <code class="docutils literal notranslate"><span class="pre">books/_config.yml</span></code> enables these MyST-Parser extensions out of the box, so anything in this tutorial works without any additional configuration on your part:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Extension</p></th>
+<th class="head"><p>What it enables</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong><code class="docutils literal notranslate"><span class="pre">html_image</span></code></strong></p></td>
+<td><p>Allows raw <code class="docutils literal notranslate"><span class="pre">&lt;img&gt;</span></code> tags in markdown with HTML attributes (e.g. <code class="docutils literal notranslate"><span class="pre">style</span></code>, <code class="docutils literal notranslate"><span class="pre">class</span></code>).</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong><code class="docutils literal notranslate"><span class="pre">dollarmath</span></code></strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">$inline$</span></code> and <code class="docutils literal notranslate"><span class="pre">$$block$$</span></code> LaTeX math.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong><code class="docutils literal notranslate"><span class="pre">colon_fence</span></code></strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">:::{directive}</span></code> syntax (alternative to triple-backtick fences) for admonitions, figures, etc.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong><code class="docutils literal notranslate"><span class="pre">deflist</span></code></strong></p></td>
+<td><p>Definition lists: <code class="docutils literal notranslate"><span class="pre">term</span> <span class="pre">\n</span> <span class="pre">:</span> <span class="pre">definition</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong><code class="docutils literal notranslate"><span class="pre">tasklist</span></code></strong></p></td>
+<td><p>GitHub-style task checkboxes: <code class="docutils literal notranslate"><span class="pre">-</span> <span class="pre">[</span> <span class="pre">]</span></code> and <code class="docutils literal notranslate"><span class="pre">-</span> <span class="pre">[x]</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong><code class="docutils literal notranslate"><span class="pre">substitution</span></code></strong></p></td>
+<td><p>Variable substitution with <code class="docutils literal notranslate"><span class="pre">{{varname}}</span></code> syntax — variables defined under <code class="docutils literal notranslate"><span class="pre">myst_substitutions:</span></code> in <code class="docutils literal notranslate"><span class="pre">_config.yml</span></code> get expanded inline.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Plus directives that work without extension flags:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">figure</span></code>, <code class="docutils literal notranslate"><span class="pre">list-table</span></code>, <code class="docutils literal notranslate"><span class="pre">code-block</span></code>, <code class="docutils literal notranslate"><span class="pre">math</span></code>, <code class="docutils literal notranslate"><span class="pre">note</span></code> (and other admonitions)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tab-set</span></code> / <code class="docutils literal notranslate"><span class="pre">tab-item</span></code>, <code class="docutils literal notranslate"><span class="pre">card</span></code>, <code class="docutils literal notranslate"><span class="pre">grid</span></code> (from <strong>sphinx-design</strong>, included by default)</p></li>
+<li><p>Cross-reference roles: <code class="docutils literal notranslate"><span class="pre">{numref}</span></code>, <code class="docutils literal notranslate"><span class="pre">{eq}</span></code>, <code class="docutils literal notranslate"><span class="pre">{ref}</span></code>, plus <code class="docutils literal notranslate"><span class="pre">[](#label)</span></code> shorthand</p></li>
+</ul>
+<p>If you find yourself wanting an <a class="reference external" href="https://myst-parser.readthedocs.io/en/latest/syntax/optional.html">extension</a> that <em>isn’t</em> enabled (e.g. <code class="docutils literal notranslate"><span class="pre">linkify</span></code>, <code class="docutils literal notranslate"><span class="pre">attrs_inline</span></code>), it can be added to <code class="docutils literal notranslate"><span class="pre">_config.yml</span></code>.</p>
+</section>
+<section id="where-to-go-from-here">
+<h1>Where to go from here<a class="headerlink" href="#where-to-go-from-here" title="Link to this heading">#</a></h1>
+<ul>
+<li><p>The <strong>MyST-Parser docs</strong> are the most thorough reference: <a class="reference external" href="https://myst-parser.readthedocs.io/">myst-parser.readthedocs.io</a></p></li>
+<li><p>The <strong>Jupyter Book guide</strong> covers book-level configuration: <a class="reference external" href="https://jupyterbook.org/">jupyterbook.org</a></p></li>
+<li><p>Browse the existing notebooks in <code class="docutils literal notranslate"><span class="pre">books/examples/</span></code> and <code class="docutils literal notranslate"><span class="pre">books/tutorials/</span></code> for live patterns you can copy.</p></li>
+<li><p>If you don’t work on Neurodesk and you need to enable MyST renderer:</p>
+<blockquote>
+<div><p>In JupyterLab, click the <strong>Settings</strong> ⚙️ → <em>Settings Editor</em> → <em>Document Manager</em> → set <strong>Default Viewer</strong> for <code class="docutils literal notranslate"><span class="pre">markdown</span></code> to <em>MyST</em>. Or just install/enable the <strong>jupyterlab-myst</strong> extension.</p>
+</div></blockquote>
+</li>
+</ul>
+<p>Happy authoring! 🧠</p>
+<section id="dependencies-in-jupyter-python">
+<h2>Dependencies in Jupyter/Python<a class="headerlink" href="#dependencies-in-jupyter-python" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Using the package <a class="reference external" href="https://github.com/rasbt/watermark">watermark</a> to document system environment and software versions used in this notebook, alongside the Neurodesktop version extracted from the <code class="docutils literal notranslate"><span class="pre">JUPYTER_IMAGE</span></code> or <code class="docutils literal notranslate"><span class="pre">NEURODESKTOP_VERSION</span></code> environment variables.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="o">%</span><span class="k">load_ext</span> watermark
+
+<span class="o">%</span><span class="k">watermark</span>
+<span class="o">%</span><span class="k">watermark</span> --iversions
+
+<span class="n">neurodesktop_version</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'JUPYTER_IMAGE'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">':'</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="ow">or</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'NEURODESKTOP_VERSION'</span><span class="p">,</span> <span class="s1">'unknown'</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Neurodesktop version: </span><span class="si">{</span><span class="n">neurodesktop_version</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: 2026-08-20T03:48:50.911254+00:00
+
+Python implementation: CPython
+Python version       : 3.13.14
+IPython version      : 9.12.0
+
+Compiler    : GCC 14.3.0
+OS          : Linux
+Release     : 6.8.0-111-generic
+Machine     : x86_64
+Processor   : x86_64
+CPU cores   : 16
+Architecture: 64bit
+
+IPython   : 9.12.0
+ipywidgets: 8.1.8
+
+Neurodesktop version: 2026-07-11
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tutorials/about_neurodesk"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev" href="intro.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">About Neurodesk</p>
+      </div>
+    </a>
+    <a class="right-next" href="accessing_neurodesk_tools.html" title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Accessing Tools in Neurodesk</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div id="pst-page-navigation-heading-2" class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Citation and Resources</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">1. Introduction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#admonitions">2. Admonitions</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-standard-admonition-types">2.1 The standard admonition types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-titles">2.2 Custom titles</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collapsible-admonitions">2.3 Collapsible admonitions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nested-admonitions">2.4 Nested admonitions</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tables-figures-and-code-blocks">3. Tables, figures, and code blocks</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tables">3.1 Tables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#figures">3.2 Figures</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-blocks">3.3 Code blocks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#task-lists">3.4 Task lists</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-widgets">3.5 Interactive widgets</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#math-and-equations">4. Math and equations</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inline-math-via-python">4.1 Inline math via Python</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-references">5. Cross-references</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-simple-label-syntax">5.1 The simple <code class="docutils literal notranslate"><span class="pre">[](#label)</span></code> syntax</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-explicit-role-syntax">5.2 The explicit role syntax</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#tabs-cards-and-grids">6. Tabs, cards, and grids</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabs">6.1 Tabs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cards">6.2 Cards</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grids">6.3 Grids</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reference-myst-extensions-enabled-in-this-book">7. Reference: MyST extensions enabled in this book</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#where-to-go-from-here">Where to go from here</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependencies-in-jupyter-python">Dependencies in Jupyter/Python</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Neurodesk Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer="" src="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer="" src="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  
+</body></html>

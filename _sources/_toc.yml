@@ -1,0 +1,122 @@
+format: jb-book
+root: intro
+chapters:
+  - file: examples/intro
+    sections:
+      - file: examples/diffusion_imaging/intro
+        sections:
+          - file: examples/diffusion_imaging/Diffusion_TBSS_Demo
+          - file: examples/diffusion_imaging/MRtrix_1
+          - file: examples/diffusion_imaging/MRtrix_2
+          - file: examples/diffusion_imaging/MRtrix_3
+          - file: examples/diffusion_imaging/mrtrix3tissue
+
+      - file: examples/electrophysiology/intro
+        sections:
+          - file: examples/electrophysiology/eeg_with_mne
+
+      - file: examples/functional_imaging/intro
+        sections:
+          - file: examples/functional_imaging/AFNI_preprocessing_only
+          - file: examples/functional_imaging/AFNI_preprocessing_plus_glm
+          - file: examples/functional_imaging/AFNI_preprocessing_plus_glm_group
+          - file: examples/functional_imaging/deepretinotopy
+          - file: examples/functional_imaging/first_and_second_level_spm
+          - file: examples/functional_imaging/fmriprep
+          - file: examples/functional_imaging/fsl_all_levels_flanker_nipype
+          - file: examples/functional_imaging/FSL_preproc_glm
+          - file: examples/functional_imaging/FSLnets_course_practical
+          - file: examples/functional_imaging/intro_to_preprocessing
+          - file: examples/functional_imaging/mri_vol2surf
+          - file: examples/functional_imaging/NiWrap
+          - file: examples/functional_imaging/process_five_echo_dataset
+
+      - file: examples/spectroscopy/intro
+        sections:
+          - file: examples/spectroscopy/lcmodel
+          - file: examples/spectroscopy/osprey
+
+      - file: examples/quantitative_imaging/intro
+        sections:
+          - file: examples/quantitative_imaging/aslprep
+          - file: examples/quantitative_imaging/qsmxt
+
+      - file: examples/structural_imaging/intro
+        sections:
+          - file: examples/structural_imaging/brain_extraction_different_tools
+          - file: examples/structural_imaging/freesurfer
+          - file: examples/structural_imaging/FSL_course_bet
+          - file: examples/structural_imaging/sct_toolbox
+
+      - file: examples/workflows/intro
+        sections:
+          - file: examples/workflows/AA_Neurodesk_demo_tour
+          - file: examples/workflows/bids_conversion
+          - file: examples/workflows/MRIQC
+          - file: examples/workflows/nipype_full
+          - file: examples/workflows/nipype_short
+          - file: examples/workflows/nextflow_neurodesk
+          - file: examples/workflows/papermill-slurm-submission-example
+          - file: examples/workflows/PyBIDS
+          - file: examples/workflows/pydra_preproc_ants
+          - file: examples/workflows/RISE_slideshow
+
+  - file: tutorials/intro
+    sections:
+      - file: tutorials/about_neurodesk/intro
+        sections:
+          - file: tutorials/about_neurodesk/accessing_neurodesk_tools
+
+      - file: tutorials/electrophysiology/intro
+        sections:
+          - file: tutorials/electrophysiology/EEG_mne-python
+          - file: tutorials/electrophysiology/fieldtrip
+
+      - file: tutorials/functional_imaging/intro
+        sections:
+          - file: tutorials/functional_imaging/connectomeWorkbench
+          - file: tutorials/functional_imaging/fmriprep
+          - file: tutorials/functional_imaging/mriqc
+          - file: tutorials/functional_imaging/physio
+          - file: tutorials/functional_imaging/physio_batch_workflow
+          - file: tutorials/functional_imaging/spm
+
+      - file: tutorials/multimodal_imaging/intro
+        sections:
+          - file: tutorials/multimodal_imaging/MFCSC
+
+      - file: tutorials/open_data/intro
+        sections:
+          - file: tutorials/open_data/datalad
+          - file: tutorials/open_data/osfclient
+
+      - file: tutorials/phase_processing/intro
+        sections:
+          - file: tutorials/phase_processing/qsm
+          - file: tutorials/phase_processing/swi
+          - file: tutorials/phase_processing/unwrapping
+
+      - file: tutorials/programming/intro
+        sections:
+          - file: tutorials/programming/conda
+          - file: tutorials/programming/matlab
+
+      - file: tutorials/reproducibility/intro
+        sections:
+          - file: tutorials/reproducibility/datalad-run
+
+      - file: tutorials/spectroscopy/intro
+        sections:
+          - file: tutorials/spectroscopy/lcmodel
+          - file: tutorials/spectroscopy/mrsiproc
+
+      - file: tutorials/structural_imaging/intro
+        sections:
+          - file: tutorials/structural_imaging/freesurfer
+          - file: tutorials/structural_imaging/structuralconnectivity
+
+  - file: contribute/intro
+    sections:
+      - file: contribute/examples
+      - file: contribute/tutorials
+      - file: contribute/review

@@ -1,0 +1,86 @@
+# Book settings
+# Learn more at https://jupyterbook.org/customize/config.html
+
+title: Neurodesk
+author: Neurodesk Team
+logo: images/neurodesk_logo.svg
+only_build_toc_files: true
+# Logo created via https://vega.github.io/editor/#/url/vega-lite/N4Igxg9gdgZglgcxALlANzgUwO4tAZwBcAnCAa0xRBIEMp8AHG4zKQkAXwBoQaAPOPjwgExOABMAwhAA2EYlVr0mLNp24hxNQjWEBXYjKoALQoQb5kAeithxUAHQArfOMwy4aYg6iZCVqAYAWys0TAQaAFotHXw-fAABAEYrGJorIIgMTHxnfGhOHiDmMioAI2YQHlZIcTgoJFRwWXlheHdxKgBJAFkAEQAhAH0AJW16pB4y+uFivmn6FCSABg0ZcNZO5Cg9GRkefDAadeFiOgRKZABtEABiGDKwZYAmTp57x5e3u+WAZhoAJwwAAsVR+-yBoPewJgYF+MAA7GDbjC4YjkWVfpgAKywjFY3FgEAAXR4LDCxDiKBIekwHA0fGEhAAngxLiAAI56OiEOA6XlhMELWb8BZCZDPVY8doyLYgXqDUbjBpg-iCFA7PYHI4nJrkzCUy40ukaZlM1nsrk8vnjQU8GgIUThbTsyB6NT2gTizUyek8YyYRCmJbY5Y8AAkhwDxRMZgs1lCzocCD5xj0ZQccAgVijmGKiYikQ8hEwoWBDgAHA4knkChwgA
+
+# Force re-execution of notebooks on each build.
+# See https://jupyterbook.org/content/execute.html
+execute:
+  execute_notebooks: force
+  allow_errors: false
+  timeout: 45000
+  stderr_output: show
+  run_in_temp: true
+  execution_show_tb: True
+  kernel_name: python3
+
+# Information about where the book exists on the web
+repository:
+  url: https://github.com/neurodesk/neurodeskedu # Online location of your book
+  path_to_book: books
+  branch: main  # Which branch of the repository should be used when creating links (optional)
+
+# Add GitHub buttons to your book
+# See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
+html:
+  favicon: "images/neurodesk_logo.svg"
+  baseurl: https://neurodesk.org/edu
+  repository_url: https://github.com/neurodesk/neurodeskedu
+  use_issues_button: true
+  use_repository_button: true
+  use_download_button: true
+  use_edit_page_button: true
+
+sphinx:
+  config:
+    nb_code_prompt_hide: "outputs"
+    nb_merge_streams: true
+    mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+    html_static_path: ["_static"]
+    html_js_files: ["review-badge.js"]
+    html_css_files: ["review-badge.css"]
+    html_theme_options:
+      analytics:
+        google_analytics_id: "G-4Z9774J59Y"
+      repository_url: https://github.com/neurodesk/neurodeskedu
+      path_to_docs: books
+      repository_branch: main
+      show_navbar_depth: 2
+      navigation_depth: 3
+      icon_links:
+        - name: Return to neurodesk.org
+          url: https://neurodesk.org
+          icon: fa-solid fa-house
+          type: fontawesome
+      launch_buttons:
+        jupyterhub_url: "https://play-america.neurodesk.org"
+        notebook_interface: "jupyterlab"
+        jupyterhub_servers:
+          - text: "Run in Australia"
+            url: "https://play.neurodesk.cloud.edu.au"
+          - text: "Run in Europe"
+            url: "https://play-europe.neurodesk.org"
+          - text: "Run in America"
+            url: "https://play-america.neurodesk.org"
+          - text: "Run in Global Server 1"
+            url: "https://play-europe.neurodesk.org"
+          - text: "Run in Global Server 2"
+            url: "https://edu.neurodesk.org"
+  local_extensions:
+    multiple_jupyterhub: _ext
+    nd_review_meta: _ext
+
+parse:
+  myst_enable_extensions:
+    # don't forget to list any other extensions you want enabled,
+    # including those that are enabled by default! See here: https://jupyterbook.org/en/stable/customize/config.html
+    - html_image
+    - dollarmath
+    - colon_fence
+    - deflist
+    - tasklist
+    - substitution

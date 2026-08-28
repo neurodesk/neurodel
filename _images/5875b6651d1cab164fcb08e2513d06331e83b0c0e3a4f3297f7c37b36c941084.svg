@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="90pt" height="260pt" viewBox="0.00 0.00 90.00 260.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 256)">
+<title>snakemake_dag</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-256 86,-256 86,4 -4,4"/>
+<!-- 0 -->
+<g id="node1" class="node">
+<title>0</title>
+<path fill="none" stroke="#d85656" stroke-width="2" d="M42,-36C42,-36 12,-36 12,-36 6,-36 0,-30 0,-24 0,-24 0,-12 0,-12 0,-6 6,0 12,0 12,0 42,0 42,0 48,0 54,-6 54,-12 54,-12 54,-24 54,-24 54,-30 48,-36 42,-36"/>
+<text text-anchor="middle" x="27" y="-15.5" font-family="sans" font-size="10.00">all</text>
+</g>
+<!-- 1 -->
+<g id="node2" class="node">
+<title>1</title>
+<path fill="none" stroke="#56d8d8" stroke-width="2" d="M42,-108C42,-108 12,-108 12,-108 6,-108 0,-102 0,-96 0,-96 0,-84 0,-84 0,-78 6,-72 12,-72 12,-72 42,-72 42,-72 48,-72 54,-78 54,-84 54,-84 54,-96 54,-96 54,-102 48,-108 42,-108"/>
+<text text-anchor="middle" x="27" y="-87.5" font-family="sans" font-size="10.00">qc</text>
+</g>
+<!-- 1&#45;&gt;0 -->
+<g id="edge1" class="edge">
+<title>1-&gt;0</title>
+<path fill="none" stroke="grey" stroke-width="2" d="M27,-71.7C27,-63.98 27,-54.71 27,-46.11"/>
+<polygon fill="grey" stroke="grey" stroke-width="2" points="30.5,-46.1 27,-36.1 23.5,-46.1 30.5,-46.1"/>
+</g>
+<!-- 2 -->
+<g id="node3" class="node">
+<title>2</title>
+<path fill="none" stroke="#d6d856" stroke-width="2" d="M42,-252C42,-252 12,-252 12,-252 6,-252 0,-246 0,-240 0,-240 0,-228 0,-228 0,-222 6,-216 12,-216 12,-216 42,-216 42,-216 48,-216 54,-222 54,-228 54,-228 54,-240 54,-240 54,-246 48,-252 42,-252"/>
+<text text-anchor="middle" x="27" y="-231.5" font-family="sans" font-size="10.00">bet</text>
+</g>
+<!-- 2&#45;&gt;1 -->
+<g id="edge3" class="edge">
+<title>2-&gt;1</title>
+<path fill="none" stroke="grey" stroke-width="2" d="M23.75,-215.89C21.95,-205.54 19.91,-192.06 19,-180 17.8,-164.04 17.8,-159.96 19,-144 19.64,-135.52 20.84,-126.34 22.12,-118.04"/>
+<polygon fill="grey" stroke="grey" stroke-width="2" points="25.58,-118.55 23.75,-108.11 18.68,-117.41 25.58,-118.55"/>
+</g>
+<!-- 3 -->
+<g id="node4" class="node">
+<title>3</title>
+<path fill="none" stroke="#59d856" stroke-width="2" d="M70,-180C70,-180 40,-180 40,-180 34,-180 28,-174 28,-168 28,-168 28,-156 28,-156 28,-150 34,-144 40,-144 40,-144 70,-144 70,-144 76,-144 82,-150 82,-156 82,-156 82,-168 82,-168 82,-174 76,-180 70,-180"/>
+<text text-anchor="middle" x="55" y="-159.5" font-family="sans" font-size="10.00">fast</text>
+</g>
+<!-- 2&#45;&gt;3 -->
+<g id="edge4" class="edge">
+<title>2-&gt;3</title>
+<path fill="none" stroke="grey" stroke-width="2" d="M33.92,-215.7C37.07,-207.81 40.88,-198.3 44.38,-189.55"/>
+<polygon fill="grey" stroke="grey" stroke-width="2" points="47.69,-190.69 48.16,-180.1 41.19,-188.09 47.69,-190.69"/>
+</g>
+<!-- 3&#45;&gt;1 -->
+<g id="edge2" class="edge">
+<title>3-&gt;1</title>
+<path fill="none" stroke="grey" stroke-width="2" d="M48.08,-143.7C44.93,-135.81 41.12,-126.3 37.62,-117.55"/>
+<polygon fill="grey" stroke="grey" stroke-width="2" points="40.81,-116.09 33.84,-108.1 34.31,-118.69 40.81,-116.09"/>
+</g>
+</g>
+</svg>

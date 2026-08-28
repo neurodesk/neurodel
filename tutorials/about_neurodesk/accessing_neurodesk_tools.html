@@ -1,0 +1,1449 @@
+<!DOCTYPE html><html lang="en" data-content_root="../../"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="nd-review-id" content="ebabad24-92a2-433a-811c-61e237b8d4c7">
+
+    <title>Accessing Tools in Neurodesk — Neurodesk</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079">
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=3c74b3bc">
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be">
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b">
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css">
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6">
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e">
+    <link rel="stylesheet" type="text/css" href="../../_static/review-badge.css?v=66080ea3">
+  
+  <!-- So that users can add custom icons -->
+  <script defer="" src="../../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb">
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb">
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-4Z9774J59Y"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('consent', 'default', {
+                    'ad_storage': 'denied',
+                    'ad_user_data': 'denied',
+                    'ad_personalization': 'denied',
+                    'analytics_storage': 'denied'
+                });
+                gtag('js', new Date());
+                gtag('config', 'G-4Z9774J59Y');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('consent', 'default', {
+                    'ad_storage': 'denied',
+                    'ad_user_data': 'denied',
+                    'ad_personalization': 'denied',
+                    'analytics_storage': 'denied'
+                });
+                gtag('js', new Date());
+                gtag('config', 'G-4Z9774J59Y');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/about_neurodesk/accessing_neurodesk_tools';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <script src="../../_static/review-badge.js?v=e2204dae"></script>
+    <link rel="canonical" href="https://neurodesk.org/edu/tutorials/about_neurodesk/accessing_neurodesk_tools.html">
+    <link rel="icon" href="../../_static/neurodesk_logo.svg">
+    <link rel="index" title="Index" href="../../genindex.html">
+    <link rel="search" title="Search" href="../../search.html">
+    <link rel="next" title="Electrophysiology" href="../electrophysiology/intro.html">
+    <link rel="prev" title="Citation and Resources" href="MySt_neurodesk.html">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="docsearch:language" content="en">
+  <meta name="docsearch:version" content="">
+  
+    
+    <script src="../../_static/searchtools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../searchindex.js"></script>
+  
+  <meta name="author" content="Michèle Masson-Trottier"><meta property="article:author" content="Michèle Masson-Trottier"><meta name="citation_author" content="Michèle Masson-Trottier"></head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search" class="form-control" name="q" placeholder="Search..." aria-label="Search..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/neurodesk_logo.svg" class="logo__image only-light" alt="Neurodesk - Home">
+    <img src="../../_static/neurodesk_logo.svg" class="logo__image only-dark pst-js-only" alt="Neurodesk - Home">
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><ul class="navbar-icon-links" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://neurodesk.org" title="Return to neurodesk.org" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Return to neurodesk.org</span></a>
+        </li>
+</ul></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../examples/intro.html">Examples</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/template.html">Example Notebook Template</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/diffusion_imaging/intro.html">Diffusion Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/diffusion_imaging/DIPY_1.html">Basic Tracking with DIPY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/diffusion_imaging/DIPY_2.html">Advanced Tracking with DIPY</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/diffusion_imaging/Diffusion_TBSS_Demo.html">TBSS Tutorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/diffusion_imaging/MRtrix_1.html">MRtrix: Part 1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/diffusion_imaging/MRtrix_2.html">MRtrix: Part 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/diffusion_imaging/MRtrix_3.html">MRtrix: Part 3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/diffusion_imaging/mrtrix3tissue.html">MRtrix3Tissue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/diffusion_imaging/qsiprep.html">QSIPrep</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/diffusion_imaging/qsirecon.html">QSIRecon</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/electrophysiology/intro.html">Electrophysiology</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/electrophysiology/eeg_with_mne.html">EEG Analysis with MNE</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/functional_imaging/intro.html">Functional Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/functional_imaging/AFNI_preprocessing_only.html">AFNI Preprocessing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/functional_imaging/AFNI_preprocessing_plus_glm.html">AFNI Preprocessing and GLM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/functional_imaging/AFNI_preprocessing_plus_glm_group.html">AFNI Preprocessing &amp; Group Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/functional_imaging/AFNI_processing_task_based.html">Processing task-based FMRI with AFNI and afni_proc.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/functional_imaging/Demo_FEAT_HigherLevelStats.html">Scripted Higher-Level Analyses in FSL using FEAT derivatives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/functional_imaging/Demo_fmriprep_FEAT.html">Scripted First-Level Analyses in FSL using fMRIPrep data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/functional_imaging/FSL_preproc_glm.html">FSL Preprocessing and GLM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/functional_imaging/FSLnets_course_practical.html">Resting state with FSLnets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/functional_imaging/NiWrap.html">NiWrap and Connectome Workbench</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/functional_imaging/deepretinotopy.html">DeepRetinotopy Toolbox</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/functional_imaging/fMRI_tutorial_in_R_magic.html">Resting-State fMRI Analysis in R</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/functional_imaging/first_and_second_level_spm.html">Nipype-SPM fMRI Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/functional_imaging/fmriprep.html">fMRIprep</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/functional_imaging/fsl_all_levels_flanker_nipype.html">Nipype-FSL fMRI Analysis</a></li>
+
+
+
+<li class="toctree-l3"><a class="reference internal" href="../../examples/functional_imaging/intro_to_preprocessing.html">Introduction to Preprocessing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/functional_imaging/mri_vol2surf.html">FreeSurfer: mri_vol2surf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/functional_imaging/process_five_echo_dataset.html">tedana: TE Dependent ANAlysis</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/quantitative_imaging/intro.html">Quantitative Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/quantitative_imaging/aslprep.html">ASLprep</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/quantitative_imaging/qsmxt.html">QSMxT</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/spectroscopy/intro.html">Spectroscopy</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/spectroscopy/lcmodel.html">MR Spectroscopy with LCModel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/spectroscopy/osprey.html">MR Spectroscopy with Osprey</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/structural_imaging/intro.html">Structural Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/structural_imaging/FSL_course_bet.html">FSL course - BET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/structural_imaging/SYNcro.html">SYNcro</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/structural_imaging/brain_extraction_different_tools.html">Brain Extraction Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/structural_imaging/brainageR.html">Brain Age Prediction with brainageR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/structural_imaging/freesurfer-recon-all-clinical.html">FreeSurfer: recon-all-clinical</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/structural_imaging/freesurfer.html">FreeSurfer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/structural_imaging/sct_toolbox.html">SCT Toolbox</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../examples/workflows/intro.html">Workflows</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/workflows/AA_Neurodesk_demo_tour.html">Neurodesk Tools Demo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/workflows/MRIQC.html">MRIQC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/workflows/Magic_commands.html">Magic Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/workflows/PyBIDS.html">PyBIDS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/workflows/RISE_slideshow.html">RISE Slideshow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/workflows/bids_conversion.html">BIDS conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/workflows/container_paths_neurodesk.html">Container Resource Paths on Neurodesk</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/workflows/ipyniivue_ipywidgets.html">Ipyniivue and Ipywidgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/workflows/nextflow_neurodesk.html">Nextflow in Neurodesk</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/workflows/nipype_full.html">Nipype on Neurodesk</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/workflows/nipype_short.html">Basic Nipype</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/workflows/papermill-slurm-submission-example.html">Papermill Slurm Job Submission</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/workflows/pydra_preproc_ants.html">Pydra</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/workflows/snakemake.html">Snakemake</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../intro.html">Tutorials</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="intro.html">About Neurodesk</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="MySt_neurodesk.html">Citation and Resources</a></li>
+
+
+
+
+
+
+
+
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Accessing Tools in Neurodesk</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../electrophysiology/intro.html">Electrophysiology</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../electrophysiology/EEG_mne-python.html">Analysing EEG Data with MNE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../electrophysiology/fieldtrip.html">Analysing M/EEG Data with FieldTrip</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../functional_imaging/intro.html">Functional Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/connectomeWorkbench.html">Connectome Workbench</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/fmriprep.html">Using fmriprep with neurodesk on an HPC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/mriqc.html">Using mriqc with neurodesk on HPC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/physio.html">PhysIO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/physio_batch_workflow.html">A batch scripting example for PhysIO toolbox</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functional_imaging/spm.html">Statistical Parametric Mapping (SPM)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../multimodal_imaging/intro.html">Multimodal Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../multimodal_imaging/MFCSC.html">Using MFCSC</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../open_data/intro.html">Open Data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../open_data/datalad.html">datalad</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../open_data/osfclient.html">osfclient</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../phase_processing/intro.html">Phase Processing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../phase_processing/swi.html">Susceptibility-Weighted Imaging (SWI)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../phase_processing/unwrapping.html">MRI Phase Unwrapping with ROMEO</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../programming/intro.html">Programming</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../programming/conda.html">Conda environments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../programming/matlab.html">Matlab</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../reproducibility/intro.html">Reproducibility</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reproducibility/datalad-run.html">Reproducible script execution with DataLad</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../spectroscopy/intro.html">Spectroscopy</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../spectroscopy/lcmodel.html">Spectroscopy with lcmodel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../spectroscopy/mrsiproc.html">Spectroscopy pipeline</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../structural_imaging/intro.html">Structural Imaging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../structural_imaging/freesurfer.html">FreeSurfer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../structural_imaging/structuralconnectivity.html">Structural connectivity dMRI</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../contribute/intro.html">Contribute</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../contribute/examples.html">Creating Example Notebooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contribute/tutorials.html">Creating Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../contribute/review.html">Reviewing for NeurodeskEDU</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement" class="flat" data-ea-publisher="readthedocs" data-ea-type="readthedocs-sidebar" data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons"><a href="https://doi.org/10.5281/zenodo.18995883" target="_blank" rel="noopener noreferrer" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button">https://doi.org/10.5281/zenodo.18995883</a>
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://play.neurodesk.cloud.edu.au/hub/user-redirect/git-pull?repo=https%3A//github.com/neurodesk/neurodeskedu&amp;urlpath=lab/tree/neurodeskedu/books/tutorials/about_neurodesk/accessing_neurodesk_tools.ipynb&amp;branch=main" target="_blank" class="btn btn-sm dropdown-item" title="Launch on Run in Australia" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Run in Australia logo" src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">Run in Australia</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://play-europe.neurodesk.org/hub/user-redirect/git-pull?repo=https%3A//github.com/neurodesk/neurodeskedu&amp;urlpath=lab/tree/neurodeskedu/books/tutorials/about_neurodesk/accessing_neurodesk_tools.ipynb&amp;branch=main" target="_blank" class="btn btn-sm dropdown-item" title="Launch on Run in Europe" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Run in Europe logo" src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">Run in Europe</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://play-america.neurodesk.org/hub/user-redirect/git-pull?repo=https%3A//github.com/neurodesk/neurodeskedu&amp;urlpath=lab/tree/neurodeskedu/books/tutorials/about_neurodesk/accessing_neurodesk_tools.ipynb&amp;branch=main" target="_blank" class="btn btn-sm dropdown-item" title="Launch on Run in America" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Run in America logo" src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">Run in America</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://play-europe.neurodesk.org/hub/user-redirect/git-pull?repo=https%3A//github.com/neurodesk/neurodeskedu&amp;urlpath=lab/tree/neurodeskedu/books/tutorials/about_neurodesk/accessing_neurodesk_tools.ipynb&amp;branch=main" target="_blank" class="btn btn-sm dropdown-item" title="Launch on Run in Global Server 1" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Run in Global Server 1 logo" src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">Run in Global Server 1</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://edu.neurodesk.org/hub/user-redirect/git-pull?repo=https%3A//github.com/neurodesk/neurodeskedu&amp;urlpath=lab/tree/neurodeskedu/books/tutorials/about_neurodesk/accessing_neurodesk_tools.ipynb&amp;branch=main" target="_blank" class="btn btn-sm dropdown-item" title="Launch on Run in Global Server 2" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Run in Global Server 2 logo" src="../../_static/images/logo_jupyterhub.svg">
+  </span>
+<span class="btn__text-container">Run in Global Server 2</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/tutorials/about_neurodesk/accessing_neurodesk_tools.ipynb" target="_blank" class="btn btn-sm btn-download-source-button dropdown-item" title="Download source file" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()" class="btn btn-sm btn-download-pdf-button dropdown-item" title="Print to PDF" data-bs-placement="left" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()" class="btn btn-sm btn-fullscreen-button pst-navbar-icon" title="Fullscreen mode" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark" title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto" title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Accessing Tools in Neurodesk</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citation-and-resources">Citation and Resources</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-included-in-this-workflow">Tools included in this workflow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#educational-resources">Educational resources</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statement-of-need">Statement of Need</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-software-tools-and-install-dependencies">Load software tools and install dependencies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-terminal-loading-fsl">1. Jupyter Terminal — Loading FSL</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#launching-a-terminal">Launching a terminal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-tools-from-the-sidebar">Loading tools from the sidebar</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-fsl-with-ml">Loading FSL with <code class="docutils literal notranslate"><span class="pre">ml</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-ml-works-under-the-hood">How <code class="docutils literal notranslate"><span class="pre">ml</span></code> works under the hood</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#managing-modules">Managing modules</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting-jupyter-terminal">Troubleshooting: Jupyter Terminal</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebook-loading-freesurfer">2. Jupyter Notebook — Loading FreeSurfer</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-module-interface">The <code class="docutils literal notranslate"><span class="pre">module</span></code> interface</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-shell-commands-from-a-notebook">Running shell commands from a notebook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-python-wrappers">Using Python wrappers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting-jupyter-notebook">Troubleshooting: Jupyter Notebook</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neurodesktop-terminal-loading-ants">3. Neurodesktop Terminal — Loading ANTs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-a-terminal-in-neurodesktop">Opening a terminal in Neurodesktop</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-ants-with-ml">Loading ANTs with <code class="docutils literal notranslate"><span class="pre">ml</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#launching-gui-tools-from-the-terminal">Launching GUI tools from the terminal</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neurodesktop-application-menu">4. Neurodesktop Application Menu</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-application-menu">Using the application menu</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting-application-menu">Troubleshooting: Application Menu</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#putting-it-all-together">5. Putting It All Together</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-and-quick-reference">6. Comparison and Quick Reference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependencies-in-jupyter-python">Dependencies in Jupyter/Python</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="accessing-tools-in-neurodesk">
+<h1>Accessing Tools in Neurodesk<a class="headerlink" href="#accessing-tools-in-neurodesk" title="Link to this heading">#</a></h1>
+<p><strong>Author</strong>: Michèle Masson-Trottier</p>
+<p><strong>Date</strong>: 2026-03-10</p>
+<p><strong>License:</strong></p>
+<div style="margin-top: 10px;">
+    <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" style="color: #0066cc;">
+        <i class="fas fa-balance-scale"></i> CC-BY-4.0 License
+    </a>
+</div>
+<p><strong>Note:</strong> If this notebook uses neuroimaging tools from Neurocontainers, those tools retain their original licenses. Please see <a href="https://neurodesk.org/overview/how-to-cite-us/" target="_blank" style="color: #0066cc;">Neurodesk citation guidelines</a> for details.</p>
+<section id="citation-and-resources">
+<h2>Citation and Resources<a class="headerlink" href="#citation-and-resources" title="Link to this heading">#</a></h2>
+<section id="tools-included-in-this-workflow">
+<h3>Tools included in this workflow<a class="headerlink" href="#tools-included-in-this-workflow" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Neurodesk</strong> — Renton, A.I., Dao, T.T., Johnstone, T. et al. Neurodesk: an accessible, flexible and portable data analysis environment for reproducible neuroimaging. <em>Nat Methods</em> 21, 804–808 (2024). <a class="reference external" href="https://doi.org/10.1038/s41592-024-02237-2">doi:10.1038/s41592-024-02237-2</a></p></li>
+<li><p><strong>Lmod</strong> — McLay, R., Schulz, K.W., Barth, W.L., Minyard, T. Best Practices for the Deployment and Management of Production HPC Clusters. <em>SC11</em>, (2011). <a class="reference external" href="https://lmod.readthedocs.io">https://lmod.readthedocs.io</a></p></li>
+<li><p><strong>FSL</strong> — Jenkinson, M., Beckmann, C.F., Behrens, T.E.J., Woolrich, M.W., Smith, S.M. FSL. <em>NeuroImage</em> 62, 782-790 (2012). <a class="reference external" href="https://doi.org/10.1016/j.neuroimage.2011.09.015">doi:10.1016/j.neuroimage.2011.09.015</a></p></li>
+<li><p><strong>FreeSurfer</strong> — Fischl, B. FreeSurfer. <em>NeuroImage</em> 62, 774-781 (2012). <a class="reference external" href="https://doi.org/10.1016/j.neuroimage.2012.01.021">doi:10.1016/j.neuroimage.2012.01.021</a></p></li>
+<li><p><strong>ANTs</strong> — Avants, B.B., Tustison, N.J., Song, G., et al. A reproducible evaluation of ANTs similarity metric performance in brain image registration. <em>NeuroImage</em> 54, 2033-2044 (2011). <a class="reference external" href="https://doi.org/10.1016/j.neuroimage.2010.09.025">doi:10.1016/j.neuroimage.2010.09.025</a></p></li>
+</ul>
+</section>
+<section id="dataset">
+<h3>Dataset<a class="headerlink" href="#dataset" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>OpenNeuro ds000102</strong> — Kelly, A.M.C. et al. (2008). Competition between functional brain networks mediates behavioral variability. <em>NeuroImage</em> 39, 527-537. <a class="reference external" href="https://doi.org/10.1016/j.neuroimage.2007.08.008">doi:10.1016/j.neuroimage.2007.08.008</a>. Dataset available at <a class="reference external" href="https://openneuro.org/datasets/ds000102">OpenNeuro</a>.</p></li>
+</ul>
+</section>
+<section id="educational-resources">
+<h3>Educational resources<a class="headerlink" href="#educational-resources" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://neurodesk.org">Neurodesk Documentation</a></p></li>
+<li><p><a class="reference external" href="https://neurodesk.org/edu/intro.html">NeurodeskEDU</a></p></li>
+<li><p><a class="reference external" href="https://lmod.readthedocs.io/en/latest/010_user.html">Lmod User Guide</a></p></li>
+</ul>
+</section>
+</section>
+<section id="statement-of-need">
+<h2>Statement of Need<a class="headerlink" href="#statement-of-need" title="Link to this heading">#</a></h2>
+<p>Neurodesk provides access to a large collection of neuroimaging tools through containerised applications. New users often ask: <em>how do I actually run my tools?</em> The answer depends on which interface you’re using.</p>
+<p>This tutorial is for <strong>anyone getting started with Neurodesk</strong> — from first-time users to experienced researchers exploring a different interface. It covers the <strong>four main ways</strong> to access tools (Jupyter Terminal, Jupyter Notebook, Neurodesktop Terminal, and the Neurodesktop Application Menu), and demonstrates that all methods share the same underlying module system by loading a <strong>different tool</strong> in each section — FSL, FreeSurfer, and ANTs — then confirming they are all available together at the end.</p>
+</section>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<p>After completing this tutorial, you will be able to:</p>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Use <code class="docutils literal notranslate"><span class="pre">ml</span></code> commands to discover, load, and manage neuroimaging tools in a terminal</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Load tools programmatically inside a Jupyter notebook using <code class="docutils literal notranslate"><span class="pre">await</span> <span class="pre">module.load()</span></code></p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Launch tools from the Neurodesktop terminal and application menu</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Choose the appropriate access method for different tasks</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Combine tools loaded through different methods in a single session</p></li>
+</ul>
+</section>
+<section id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Link to this heading">#</a></h2>
+<p><a class="reference internal" href="#1.-Jupyter-Terminal-%E2%80%94-Loading-FSL"><span class="xref myst">1. Jupyter Terminal — Loading FSL</span></a><br>
+<a class="reference internal" href="#2.-Jupyter-Notebook-%E2%80%94-Loading-FreeSurfer"><span class="xref myst">2. Jupyter Notebook — Loading FreeSurfer</span></a><br>
+<a class="reference internal" href="#3.-Neurodesktop-Terminal-%E2%80%94-Loading-ANTs"><span class="xref myst">3. Neurodesktop Terminal — Loading ANTs</span></a><br>
+<a class="reference internal" href="#4.-Neurodesktop-Application-Menu"><span class="xref myst">4. Neurodesktop Application Menu</span></a><br>
+<a class="reference internal" href="#5.-Putting-It-All-Together"><span class="xref myst">5. Putting It All Together</span></a><br>
+<a class="reference internal" href="#6.-Comparison-and-Quick-Reference"><span class="xref myst">6. Comparison and Quick Reference</span></a></p>
+</section>
+<section id="load-software-tools-and-install-dependencies">
+<h2>Load software tools and install dependencies<a class="headerlink" href="#load-software-tools-and-install-dependencies" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+<span class="c1"># Install packages not included in the Neurodesk base image</span>
+<span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">nibabel</span> <span class="n">matplotlib</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="jupyter-terminal-loading-fsl">
+<h2>1. Jupyter Terminal — Loading FSL<a class="headerlink" href="#jupyter-terminal-loading-fsl" title="Link to this heading">#</a></h2>
+<p>The Jupyter Terminal gives you a full shell session inside the Neurodesk environment. This is the most direct way to interact with tools, and it works identically to using a terminal on an HPC system with environment modules.</p>
+<p><img alt="The JupyterLab interface in Neurodesk" src="../../_images/jupyterlab_interface.png">
+<em>The JupyterLab interface in Neurodesk — this is where you’ll find the Terminal, Notebook, sidebar module panel, and file browser.</em></p>
+<p>In this section, we’ll use it to load <strong>FSL</strong>.</p>
+<section id="launching-a-terminal">
+<h3>Launching a terminal<a class="headerlink" href="#launching-a-terminal" title="Link to this heading">#</a></h3>
+<p>From JupyterLab, you can open a terminal in two ways:</p>
+<ul class="simple">
+<li><p><strong>Launcher tab</strong> — click <strong>Terminal</strong> under “Other”</p></li>
+<li><p><strong>Menu</strong> — File &gt; New &gt; Terminal</p></li>
+</ul>
+<p><img alt="JupyterLab Launcher tab with Terminal tile highlighted" src="../../_images/launcher_terminal.png">
+<em>The JupyterLab Launcher showing the Terminal option under “Neurodesk”.</em></p>
+</section>
+<section id="loading-tools-from-the-sidebar">
+<h3>Loading tools from the sidebar<a class="headerlink" href="#loading-tools-from-the-sidebar" title="Link to this heading">#</a></h3>
+<p>The JupyterLab sidebar includes a <strong>Neurodesk module panel</strong> (provided by the <a class="reference external" href="https://github.com/cmd-ntrf/jupyter-lmod"><code class="docutils literal notranslate"><span class="pre">jupyter-lmod</span></code></a> extension) that lists all available software containers. You can browse or search by name, and <strong>click the “Load” button</strong> next to any tool to activate it — no terminal commands needed. Here in the example below, Connectome Workbench 2.1.0 is loaded from the sidebar, making its executables available in a new terminal.</p>
+<p><img alt="Neurodesk sidebar showing tool categories and available software" src="../../_images/sidebar_launcher.png">
+<em>The Neurodesk module panel in the JupyterLab sidebar. Click “Load” next to a tool to activate it.</em></p>
+<p>Loading a tool from the sidebar sets the environment variables in the <strong>JupyterLab server process</strong>. This means:</p>
+<ul class="simple">
+<li><p><strong>Notebook cells</strong> — tools loaded from the sidebar are immediately available via <code class="docutils literal notranslate"><span class="pre">!</span></code> shell escapes and <code class="docutils literal notranslate"><span class="pre">subprocess</span></code> calls in a Notebook</p></li>
+<li><p><strong>New terminals</strong> — any terminal opened <em>after</em> loading from the sidebar will inherit the loaded modules</p></li>
+<li><p><strong>Already-open terminals</strong> — terminals that were opened <em>before</em> you clicked “Load” in the sidebar will <strong>not</strong> see the new module</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Important gotcha:</strong> If you load a tool from the sidebar and want to use it in a terminal, you must open a <strong>new</strong> terminal after loading. Terminals that were already open will not pick up the change — their environment was set when they launched. If you prefer to use an existing terminal, run <code class="docutils literal notranslate"><span class="pre">ml</span> <span class="pre">&lt;tool&gt;</span></code> directly in that terminal instead.</p>
+</div>
+</section>
+<section id="loading-fsl-with-ml">
+<h3>Loading FSL with <code class="docutils literal notranslate"><span class="pre">ml</span></code><a class="headerlink" href="#loading-fsl-with-ml" title="Link to this heading">#</a></h3>
+<p>Once you have a terminal open, you use the <code class="docutils literal notranslate"><span class="pre">ml</span></code> (module load) command to activate tools:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># List all available modules</span>
+ml<span class="w"> </span>avail
+</pre></div>
+</div>
+<p><img alt="Terminal output of ml avail showing available Neurodesk containers" src="../../_images/ml_avail_output.png">
+<em>Example output of <code class="docutils literal notranslate"><span class="pre">ml</span> <span class="pre">avail</span></code> showing the list of available tools and versions.</em></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load FSL</span>
+ml<span class="w"> </span>fsl/6.0.7.8
+
+<span class="c1"># Verify it's loaded</span>
+ml<span class="w"> </span>list
+
+<span class="c1"># Check that FSL tools are accessible</span>
+which<span class="w"> </span>bet
+</pre></div>
+</div>
+<p><img alt="Terminal output of ml list showing both Connectome Workbench and FSL containers loaded" src="../../_images/ml_list_output.png">
+<em>Example output of <code class="docutils literal notranslate"><span class="pre">ml</span> <span class="pre">list</span></code> showing the tools and versions that have been loaded in the terminal.</em></p>
+</section>
+<section id="how-ml-works-under-the-hood">
+<h3>How <code class="docutils literal notranslate"><span class="pre">ml</span></code> works under the hood<a class="headerlink" href="#how-ml-works-under-the-hood" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">ml</span></code> is a shorthand for the <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code> command from <a class="reference external" href="https://lmod.readthedocs.io/">Lmod</a>. When you run <code class="docutils literal notranslate"><span class="pre">ml</span> <span class="pre">fsl/6.0.7.8</span></code>, Neurodesk:</p>
+<ol class="arabic simple">
+<li><p>Fetches the corresponding container (if not already cached)</p></li>
+<li><p>Sets up environment variables (<code class="docutils literal notranslate"><span class="pre">PATH</span></code>, <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code>, etc.)</p></li>
+<li><p>Makes all executables from that tool available in your shell</p></li>
+</ol>
+<p>This is transparent — once loaded, you just use the tool commands directly.</p>
+<div class="seealso admonition">
+<p class="admonition-title">Key terms</p>
+<dl class="simple myst">
+<dt><code class="docutils literal notranslate"><span class="pre">ml</span></code></dt><dd><p>Shorthand for <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code>. Used to load, unload, list, and search for tools.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ml</span> <span class="pre">avail</span></code></dt><dd><p>Lists all available tools and versions on the system.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ml</span> <span class="pre">list</span></code></dt><dd><p>Shows which tools are currently loaded in your session.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ml</span> <span class="pre">purge</span></code></dt><dd><p>Unloads all currently loaded tools, resetting your environment.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ml</span> <span class="pre">spider</span> <span class="pre">&lt;keyword&gt;</span></code></dt><dd><p>Searches for tools matching a keyword.</p>
+</dd>
+</dl>
+</div>
+</section>
+<section id="managing-modules">
+<h3>Managing modules<a class="headerlink" href="#managing-modules" title="Link to this heading">#</a></h3>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-0">
+Terminal</label><div class="sd-tab-content docutils">
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Unload a specific module</span>
+ml<span class="w"> </span>-fsl
+
+<span class="c1"># Purge all loaded modules</span>
+ml<span class="w"> </span>purge
+
+<span class="c1"># Load a different version</span>
+ml<span class="w"> </span>fsl/6.0.7.4
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-1">
+Notebook (Python)</label><div class="sd-tab-content docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">module</span>
+
+<span class="c1"># Purge all loaded modules</span>
+<span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">purge</span><span class="p">()</span>
+
+<span class="c1"># Load a different version</span>
+<span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'fsl/6.0.7.4'</span><span class="p">)</span>
+
+<span class="c1"># List what's loaded</span>
+<span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="troubleshooting-jupyter-terminal">
+<h3>Troubleshooting: Jupyter Terminal<a class="headerlink" href="#troubleshooting-jupyter-terminal" title="Link to this heading">#</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>“Use ml <tool>/<version> to load module into existing terminal. Or open a new terminal after loading module from sidebard”</version></tool></strong> - Ensure the module loaded successfully with <code class="docutils literal notranslate"><span class="pre">ml</span> <span class="pre">list</span></code>. If the container is fetched for the first time, there may be a short delay.</p>
+<p><strong>“Module not found” error</strong> — Check the exact module name with <code class="docutils literal notranslate"><span class="pre">ml</span> <span class="pre">avail</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">&lt;toolname&gt;</span></code>. Module names are case-sensitive.</p>
+<p><strong>Slow first load</strong> — The first time you load a tool, the container image is pulled. Subsequent loads will be near-instant thanks to caching.</p>
+</div>
+</section>
+</section>
+<section id="jupyter-notebook-loading-freesurfer">
+<h2>2. Jupyter Notebook — Loading FreeSurfer<a class="headerlink" href="#jupyter-notebook-loading-freesurfer" title="Link to this heading">#</a></h2>
+<p>When working inside a Jupyter notebook (like this one), you can load Neurodesk tools programmatically using Python. This is ideal for <strong>reproducible analysis pipelines</strong> where you want your tool setup documented alongside your code.</p>
+<p><img alt="Neurodesk launcher window to open a new Jupyter Notebook" src="../../_images/new_notebook.png">
+<em>Neurodesk launcher window to open a new Jupyter Notebook.</em></p>
+<p>In this section, we’ll load <strong>FreeSurfer</strong> to demonstrate the notebook interface.</p>
+<section id="the-module-interface">
+<h3>The <code class="docutils literal notranslate"><span class="pre">module</span></code> interface<a class="headerlink" href="#the-module-interface" title="Link to this heading">#</a></h3>
+<p>Neurodesk provides a Python <code class="docutils literal notranslate"><span class="pre">module</span></code> package that mirrors the terminal’s <code class="docutils literal notranslate"><span class="pre">ml</span></code> commands using <code class="docutils literal notranslate"><span class="pre">async</span></code>/<code class="docutils literal notranslate"><span class="pre">await</span></code> syntax:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">module</span>
+
+<span class="c1"># Start with a clean slate</span>
+<span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">purge</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load FreeSurfer</span>
+<span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'freesurfer/7.4.1'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Verify what's loaded</span>
+<span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>['freesurfer/7.4.1']
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">await</span></code> keyword is required because module loading is an <strong>asynchronous</strong> operation — the container may need to be fetched or initialised. Jupyter’s built-in event loop handles this seamlessly.</p>
+</div>
+</section>
+<section id="running-shell-commands-from-a-notebook">
+<h3>Running shell commands from a notebook<a class="headerlink" href="#running-shell-commands-from-a-notebook" title="Link to this heading">#</a></h3>
+<p>Once FreeSurfer is loaded, you can call its executables using the <code class="docutils literal notranslate"><span class="pre">!</span></code> shell escape or <code class="docutils literal notranslate"><span class="pre">subprocess</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using shell escape — check that recon-all is available</span>
+<span class="o">!</span>recon-all<span class="w"> </span>--version
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>freesurfer-linux-centos8_x86_64-7.4.1-20230613-7eb8460
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using subprocess — more control over output</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span><span class="o">,</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s1">'mri_info'</span><span class="p">,</span> <span class="s1">'--version'</span><span class="p">],</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="ow">or</span> <span class="n">result</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mri_info freesurfer 7.4.1
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="using-python-wrappers">
+<h3>Using Python wrappers<a class="headerlink" href="#using-python-wrappers" title="Link to this heading">#</a></h3>
+<p>Some tools also have native Python interfaces. After loading the module, you can import them directly. For example, <a class="reference external" href="https://nipy.org/nibabel/">nibabel</a> can read NIfTI and FreeSurfer <code class="docutils literal notranslate"><span class="pre">.mgz</span></code> files, letting you inspect and manipulate neuroimaging data directly in Python.</p>
+<p>Let’s download a T1-weighted brain scan from <a class="reference external" href="https://openneuro.org/datasets/ds000102">OpenNeuro dataset ds000102</a> using DataLad, then load it with nibabel:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
+# Install the OpenNeuro dataset using DataLad
+datalad install https://github.com/OpenNeuroDatasets/ds000102.git
+
+# Download a single T1w scan for one subject
+cd ds000102 &amp;&amp; datalad get sub-08/anat/sub-08_T1w.nii.gz
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>install(ok): /home/jovyan/workspace/books/tutorials/about_neurodesk/ds000102 (dataset)
+get(ok): sub-08/anat/sub-08_T1w.nii.gz (file) [from s3-PUBLIC...]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[INFO] Attempting a clone into /home/jovyan/workspace/books/tutorials/about_neurodesk/ds000102 
+[INF
+O] Attempting to clone from https://github.com/OpenNeuroDatasets/ds000102.git to /home/jovyan/worksp
+ace/books/tutorials/about_neurodesk/ds000102
+[INFO] Start enumerating objects 
+[INFO] Start counting objects
+[INFO] Start compressing objects
+[INFO] Start receiving objects
+[INFO] Start resolving deltas
+[INFO] Completed clone attempts for Dataset(/home/jovyan/workspace/books/tutorials/about_neurodesk/d
+s000102)
+[INFO] Remote origin not usable by git-annex; setting annex-ignore
+[INFO] https://github.com/OpenNeuroDatasets/ds000102.git/config download failed: Not Found
+[INFO] Remote origin not usable by git-annex; setting annex-ignore
+[INFO] https://github.com/OpenNeuroDatasets/ds000102.git/config download failed: Not Found
+[INFO] access to 1 dataset sibling s3-PRIVATE not auto-enabled, enable with:
+| 		datalad siblings -d
+ "/home/jovyan/workspace/books/tutorials/about_neurodesk/ds000102" enable -s s3-PRIVATE
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">nibabel</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Load the T1w NIfTI image</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">nib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'ds000102/sub-08/anat/sub-08_T1w.nii.gz'</span><span class="p">)</span>
+
+<span class="c1"># Inspect basic properties</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Image shape: </span><span class="si">{</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Voxel size (mm): </span><span class="si">{</span><span class="n">img</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">get_zooms</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Data type: </span><span class="si">{</span><span class="n">img</span><span class="o">.</span><span class="n">get_data_dtype</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># Display a sagittal slice</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+<span class="n">mid_sagittal</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//</span> <span class="mi">2</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">mid_sagittal</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'gray'</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">'lower'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">'sub-08 T1w — Sagittal slice </span><span class="si">{</span><span class="n">mid_sagittal</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">'off'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image shape: (176, 256, 256)
+Voxel size (mm): (np.float32(1.0), np.float32(1.0), np.float32(1.0))
+Data type: int16
+</pre></div>
+</div>
+<img alt="../../_images/d101be81cc575d96e061eb06b7be84c5a87c5a6f400b1545b8e18679f9e54929.png" src="../../_images/d101be81cc575d96e061eb06b7be84c5a87c5a6f400b1545b8e18679f9e54929.png">
+</div>
+</div>
+</section>
+<section id="troubleshooting-jupyter-notebook">
+<h3>Troubleshooting: Jupyter Notebook<a class="headerlink" href="#troubleshooting-jupyter-notebook" title="Link to this heading">#</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong><code class="docutils literal notranslate"><span class="pre">ModuleNotFoundError:</span> <span class="pre">No</span> <span class="pre">module</span> <span class="pre">named</span> <span class="pre">'module'</span></code></strong> — You are likely running this notebook outside of the Neurodesk environment. The <code class="docutils literal notranslate"><span class="pre">module</span></code> package is pre-installed in Neurodesk’s Jupyter kernel.</p>
+<p><strong><code class="docutils literal notranslate"><span class="pre">SyntaxError</span></code> on <code class="docutils literal notranslate"><span class="pre">await</span></code></strong> — Make sure you are using a Jupyter notebook (<code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>) — <code class="docutils literal notranslate"><span class="pre">await</span></code> at the top level is supported by IPython’s built-in event loop. It won’t work in a plain <code class="docutils literal notranslate"><span class="pre">.py</span></code> script without <code class="docutils literal notranslate"><span class="pre">asyncio</span></code>.</p>
+<p><strong>Tool command not found after <code class="docutils literal notranslate"><span class="pre">module.load()</span></code></strong> — The module sets environment variables in the notebook’s kernel process. If using <code class="docutils literal notranslate"><span class="pre">!</span></code> shell commands, they inherit this environment. If spawning subprocesses differently, you may need to pass the environment explicitly via <code class="docutils literal notranslate"><span class="pre">env=os.environ</span></code>.</p>
+</div>
+</section>
+</section>
+<section id="neurodesktop-terminal-loading-ants">
+<h2>3. Neurodesktop Terminal — Loading ANTs<a class="headerlink" href="#neurodesktop-terminal-loading-ants" title="Link to this heading">#</a></h2>
+<p>The Neurodesktop provides a full graphical Linux desktop environment that you can access directly from JupyterLab. To open it, click the <strong>Neurodesktop</strong> button in the JupyterLab Launcher (under “Notebook”).</p>
+<p><img alt="The JupyterLab Launcher with the Neurodesktop button highlighted" src="../../_images/launcher_neurodesktop.png">
+<em>Click “Neurodesktop” in the JupyterLab Launcher to open the desktop environment in a new tab.</em></p>
+<p>Once open, a window will open. You’ll see a Linux desktop with a taskbar, file manager, and application menu.</p>
+<p><img alt="The Neurodesktop desktop environment" src="../../_images/neurodesktop_interface.png">
+<em>The Neurodesktop environment — a full Linux desktop with taskbar, file manager, and application menu.</em></p>
+<p>In this section, we’ll load <strong>ANTs</strong> from the Neurodesktop’s LXTerminal to demonstrate that the same module system works across all interfaces.</p>
+<section id="opening-a-terminal-in-neurodesktop">
+<h3>Opening a terminal in Neurodesktop<a class="headerlink" href="#opening-a-terminal-in-neurodesktop" title="Link to this heading">#</a></h3>
+<p>From the Neurodesktop, open <strong>LXTerminal</strong> from the taskbar at the bottom of the screen.</p>
+<p><img alt="Neurodesktop with LXTerminal open" src="../../_images/desktop_terminal.png">
+<em>The Neurodesktop environment with LXTerminal open from the taskbar.</em></p>
+</section>
+<section id="loading-ants-with-ml">
+<h3>Loading ANTs with <code class="docutils literal notranslate"><span class="pre">ml</span></code><a class="headerlink" href="#loading-ants-with-ml" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">ml</span></code> command works identically in the Neurodesktop terminal:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load ANTs</span>
+ml<span class="w"> </span>ants/2.5.3
+
+<span class="c1"># Verify it's loaded</span>
+ml<span class="w"> </span>list
+
+<span class="c1"># Check that ANTs tools are accessible</span>
+which<span class="w"> </span>antsRegistration
+antsRegistration<span class="w"> </span>--version
+</pre></div>
+</div>
+<p>This is the same module system as the Jupyter Terminal — the only difference is that here you also have access to a full graphical display, so you can launch GUI tools alongside your command-line work.</p>
+</section>
+<section id="launching-gui-tools-from-the-terminal">
+<h3>Launching GUI tools from the terminal<a class="headerlink" href="#launching-gui-tools-from-the-terminal" title="Link to this heading">#</a></h3>
+<p>One advantage of the Neurodesktop terminal is that you can launch graphical tools directly:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load FSL and launch FSLeyes</span>
+ml<span class="w"> </span>fsl/6.0.7.8
+fsleyes<span class="w"> </span><span class="p">&amp;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> at the end runs the GUI application in the background so you can continue using the terminal.</p>
+</div>
+<p><img alt="FSLeyes running inside the Neurodesktop environment" src="../../_images/desktop_fsleyes.png">
+<em>FSLeyes launched from the Neurodesktop terminal, displaying a brain image.</em></p>
+</section>
+</section>
+<section id="neurodesktop-application-menu">
+<h2>4. Neurodesktop Application Menu<a class="headerlink" href="#neurodesktop-application-menu" title="Link to this heading">#</a></h2>
+<p>The Neurodesktop includes an <strong>application menu</strong> that lets you launch tools with a single click — no terminal commands required. This is the easiest method for users who prefer a point-and-click workflow.</p>
+<section id="using-the-application-menu">
+<h3>Using the application menu<a class="headerlink" href="#using-the-application-menu" title="Link to this heading">#</a></h3>
+<p><img alt="Neurodesktop application menu with tool categories" src="../../_images/desktop_app_menu.png">
+<em>The Applications menu showing Neurodesk tool categories on the desktop.</em></p>
+<p><strong>Step-by-step:</strong></p>
+<ol class="arabic simple">
+<li><p>Click the <strong>Applications</strong> menu in the desktop taskbar</p></li>
+<li><p>Navigate to <strong>Neurodesk</strong></p></li>
+<li><p>Browse categories (e.g., <em>All Applications</em>, <em>Structural Imaging</em>, <em>Functional Imaging</em>)</p></li>
+<li><p>Click on the desired tool (e.g., <em>FSLeyes 6.0.7.14</em>)</p></li>
+<li><p>Wait briefly while the container initialises (first launch may take a moment)</p></li>
+<li><p>The application opens — ready to use!</p></li>
+</ol>
+<p>The application menu automatically handles the <code class="docutils literal notranslate"><span class="pre">ml</span> <span class="pre">load</span></code> step behind the scenes. GUI tools open in their own window; CLI tools open in a pre-configured terminal.</p>
+</section>
+<section id="troubleshooting-application-menu">
+<h3>Troubleshooting: Application Menu<a class="headerlink" href="#troubleshooting-application-menu" title="Link to this heading">#</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Application doesn’t appear in the menu</strong> — The application menu is populated from the available containers. If a tool is missing, it may not be installed in your Neurodesk image. Check <code class="docutils literal notranslate"><span class="pre">ml</span> <span class="pre">avail</span></code> in a terminal. You can also request new tools or check available containers at the <a class="reference external" href="https://neurodesk.org/neurocontainers-ui/">Neurocontainers UI</a>.</p>
+<p><strong>GUI application window is blank or unresponsive</strong> — This can happen on slow networks. Try refreshing your browser tab or closing and reopening the Neurodesktop tab from the Launcher.</p>
+</div>
+</section>
+</section>
+<section id="putting-it-all-together">
+<h2>5. Putting It All Together<a class="headerlink" href="#putting-it-all-together" title="Link to this heading">#</a></h2>
+<p>Throughout this tutorial, we loaded different tools through different methods:</p>
+<ul class="simple">
+<li><p><strong>FSL</strong> via the Jupyter Terminal (<code class="docutils literal notranslate"><span class="pre">ml</span> <span class="pre">fsl/6.0.7.8</span></code>)</p></li>
+<li><p><strong>FreeSurfer</strong> via the Jupyter Notebook (<code class="docutils literal notranslate"><span class="pre">await</span> <span class="pre">module.load('freesurfer/7.4.1')</span></code>)</p></li>
+<li><p><strong>ANTs</strong> via the Neurodesktop Terminal (<code class="docutils literal notranslate"><span class="pre">ml</span> <span class="pre">ants/2.5.3</span></code>)</p></li>
+<li><p><strong>FSLeyes</strong> via the Neurodesktop Application Menu (point-and-click)</p></li>
+</ul>
+<p>All methods use the same underlying module system. In a notebook, we can load all three together and verify they are available side by side:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">module</span>
+
+<span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">purge</span><span class="p">()</span>
+
+<span class="c1"># Load all three tools — each originally demonstrated via a different method</span>
+<span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'fsl/6.0.7.8'</span><span class="p">)</span>        <span class="c1"># Method 1: Jupyter Terminal</span>
+<span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'freesurfer/7.4.1'</span><span class="p">)</span>    <span class="c1"># Method 2: Jupyter Notebook</span>
+<span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'ants/2.5.3'</span><span class="p">)</span>          <span class="c1"># Method 3: Neurodesktop Terminal</span>
+
+<span class="k">await</span> <span class="n">module</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>['fsl/6.0.7.8', 'freesurfer/7.4.1', 'ants/2.5.3']
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Verify all three tools are accessible</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span><span class="o">,</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="n">tools</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">'FSL'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'cat'</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'FSLDIR'</span><span class="p">,</span> <span class="s1">''</span><span class="p">),</span> <span class="s1">'etc'</span><span class="p">,</span> <span class="s1">'fslversion'</span><span class="p">)],</span>
+    <span class="s1">'FreeSurfer'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'recon-all'</span><span class="p">,</span> <span class="s1">'--version'</span><span class="p">],</span>
+    <span class="s1">'ANTs'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'antsRegistration'</span><span class="p">,</span> <span class="s1">'--version'</span><span class="p">],</span>
+<span class="p">}</span>
+
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">cmd</span> <span class="ow">in</span> <span class="n">tools</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">)</span>
+    <span class="n">version</span> <span class="o">=</span> <span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="ow">or</span> <span class="n">result</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">version</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>FSL: 6.0.7.8
+FreeSurfer: freesurfer-linux-centos8_x86_64-7.4.1-20230613-7eb8460
+ANTs: ANTs Version: 2.5.3-g98bf76d
+</pre></div>
+</div>
+</div>
+</div>
+<p>Regardless of whether you load tools from a Jupyter terminal, a notebook cell, or the Neurodesktop — they all share the same environment. You can mix and match access methods within a single session.</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Which method should I use?</p>
+<dl class="simple myst">
+<dt><strong>I want to run a quick command</strong></dt><dd><p>Use the <strong>Jupyter Terminal</strong> — open one from the Launcher and type <code class="docutils literal notranslate"><span class="pre">ml</span> <span class="pre">&lt;tool&gt;</span></code>.</p>
+</dd>
+<dt><strong>I’m building an analysis pipeline</strong></dt><dd><p>Use the <strong>Jupyter Notebook</strong> — <code class="docutils literal notranslate"><span class="pre">await</span> <span class="pre">module.load()</span></code> keeps your setup documented alongside your code.</p>
+</dd>
+<dt><strong>I need to visualise data with a GUI tool</strong></dt><dd><p>Use the <strong>Neurodesktop Terminal</strong> or <strong>Application Menu</strong> — both give you access to graphical applications.</p>
+</dd>
+<dt><strong>I’m new to the command line</strong></dt><dd><p>Use the <strong>Sidebar Panel</strong> or <strong>Application Menu</strong> — point-and-click, no commands needed.</p>
+</dd>
+</dl>
+</div>
+</section>
+<section id="comparison-and-quick-reference">
+<h2>6. Comparison and Quick Reference<a class="headerlink" href="#comparison-and-quick-reference" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Feature</p></th>
+<th class="head"><p>Sidebar Panel</p></th>
+<th class="head"><p>Jupyter Terminal</p></th>
+<th class="head"><p>Jupyter Notebook</p></th>
+<th class="head"><p>Neurodesktop Terminal</p></th>
+<th class="head"><p>Neurodesktop App Menu</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Interface</strong></p></td>
+<td><p>Point-and-click</p></td>
+<td><p>Command line</p></td>
+<td><p>Python cells</p></td>
+<td><p>Command line (GUI display)</p></td>
+<td><p>Point-and-click</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Load command</strong></p></td>
+<td><p>Click “Load”</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ml</span> <span class="pre">&lt;tool&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">await</span> <span class="pre">module.load('&lt;tool&gt;')</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ml</span> <span class="pre">&lt;tool&gt;</span></code></p></td>
+<td><p>Automatic</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>List available</strong></p></td>
+<td><p>Browse + search</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ml</span> <span class="pre">avail</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">!ml</span> <span class="pre">avail</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ml</span> <span class="pre">avail</span></code></p></td>
+<td><p>Browse categories</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>List loaded</strong></p></td>
+<td><p>“Loaded Modules” panel</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ml</span> <span class="pre">list</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">await</span> <span class="pre">module.list()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ml</span> <span class="pre">list</span></code></p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Unload</strong></p></td>
+<td><p>Click “Unload”</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ml</span> <span class="pre">-&lt;tool&gt;</span></code></p></td>
+<td><p>—</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ml</span> <span class="pre">-&lt;tool&gt;</span></code></p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Purge all</strong></p></td>
+<td><p>—</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ml</span> <span class="pre">purge</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">await</span> <span class="pre">module.purge()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ml</span> <span class="pre">purge</span></code></p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Search</strong></p></td>
+<td><p>Filter box</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ml</span> <span class="pre">spider</span> <span class="pre">&lt;keyword&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">!ml</span> <span class="pre">spider</span> <span class="pre">&lt;keyword&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ml</span> <span class="pre">spider</span> <span class="pre">&lt;keyword&gt;</span></code></p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>GUI tools</strong></p></td>
+<td><p>No display</p></td>
+<td><p>No display</p></td>
+<td><p>No display</p></td>
+<td><p>Full support</p></td>
+<td><p>Full support</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Reproducibility</strong></p></td>
+<td><p>Manual</p></td>
+<td><p>Script it yourself</p></td>
+<td><p>Excellent (code + docs)</p></td>
+<td><p>Script it yourself</p></td>
+<td><p>Manual</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Best for</strong></p></td>
+<td><p>Quick discovery + load</p></td>
+<td><p>Quick tasks, scripting</p></td>
+<td><p>Analysis pipelines, teaching</p></td>
+<td><p>Visualisation + CLI</p></td>
+<td><p>Users new to CLI</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Terminal caveat</strong></p></td>
+<td><p>Must open new terminal</p></td>
+<td><p>—</p></td>
+<td><p>—</p></td>
+<td><p>—</p></td>
+<td><p>—</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="dependencies-in-jupyter-python">
+<h2>Dependencies in Jupyter/Python<a class="headerlink" href="#dependencies-in-jupyter-python" title="Link to this heading">#</a></h2>
+<p>Using the package <a class="reference external" href="https://github.com/rasbt/watermark">watermark</a> to document system environment and software versions used in this notebook.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> watermark
+
+<span class="o">%</span><span class="k">watermark</span>
+<span class="o">%</span><span class="k">watermark</span> --iversions
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Last updated: 2026-08-27T22:40:13.527490+00:00
+
+Python implementation: CPython
+Python version       : 3.13.14
+IPython version      : 9.12.0
+
+Compiler    : GCC 14.3.0
+OS          : Linux
+Release     : 6.8.0-111-generic
+Machine     : x86_64
+Processor   : x86_64
+CPU cores   : 16
+Architecture: 64bit
+
+matplotlib: 3.11.0
+nibabel   : 5.4.2
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./tutorials/about_neurodesk"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev" href="MySt_neurodesk.html" title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Citation and Resources</p>
+      </div>
+    </a>
+    <a class="right-next" href="../electrophysiology/intro.html" title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Electrophysiology</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div id="pst-page-navigation-heading-2" class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#citation-and-resources">Citation and Resources</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tools-included-in-this-workflow">Tools included in this workflow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#educational-resources">Educational resources</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#statement-of-need">Statement of Need</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-software-tools-and-install-dependencies">Load software tools and install dependencies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-terminal-loading-fsl">1. Jupyter Terminal — Loading FSL</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#launching-a-terminal">Launching a terminal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-tools-from-the-sidebar">Loading tools from the sidebar</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-fsl-with-ml">Loading FSL with <code class="docutils literal notranslate"><span class="pre">ml</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-ml-works-under-the-hood">How <code class="docutils literal notranslate"><span class="pre">ml</span></code> works under the hood</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#managing-modules">Managing modules</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting-jupyter-terminal">Troubleshooting: Jupyter Terminal</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupyter-notebook-loading-freesurfer">2. Jupyter Notebook — Loading FreeSurfer</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-module-interface">The <code class="docutils literal notranslate"><span class="pre">module</span></code> interface</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-shell-commands-from-a-notebook">Running shell commands from a notebook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-python-wrappers">Using Python wrappers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting-jupyter-notebook">Troubleshooting: Jupyter Notebook</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neurodesktop-terminal-loading-ants">3. Neurodesktop Terminal — Loading ANTs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#opening-a-terminal-in-neurodesktop">Opening a terminal in Neurodesktop</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-ants-with-ml">Loading ANTs with <code class="docutils literal notranslate"><span class="pre">ml</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#launching-gui-tools-from-the-terminal">Launching GUI tools from the terminal</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#neurodesktop-application-menu">4. Neurodesktop Application Menu</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-application-menu">Using the application menu</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting-application-menu">Troubleshooting: Application Menu</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#putting-it-all-together">5. Putting It All Together</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-and-quick-reference">6. Comparison and Quick Reference</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dependencies-in-jupyter-python">Dependencies in Jupyter/Python</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Neurodesk Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer="" src="../../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer="" src="../../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  
+</body></html>
